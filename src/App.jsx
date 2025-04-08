@@ -13,45 +13,46 @@ function App() {
           <img src={logo} alt="TechXplorers Logo" height="40" />
         </Navbar.Brand>
         <Nav id="navbar" className="mx-auto">
-          <Nav.Link href="#home" className="text-black mx-2 nav-link">Home</Nav.Link>
-          <Nav.Link href="#about" className="text-black mx-2 nav-link">About</Nav.Link>
-          <Nav.Link href="#services" className="text-black mx-2 nav-link">Services</Nav.Link>
-          <Nav.Link href="#contact" className="text-black mx-2 nav-link">Contact</Nav.Link>
+          <Nav.Link href="#home" className="text-black mx-4 nav-link">Home</Nav.Link>
+          <Nav.Link href="#about" className="text-black mx-4 nav-link">About</Nav.Link>
+          <Nav.Link href="#services" className="text-black mx-4 nav-link">Services</Nav.Link>
+          <Nav.Link href="#contact" className="text-black mx-4 nav-link">Contact</Nav.Link>
         </Nav>
       </Navbar>
       <div className="cinematic-text-wrapper">
         <h1 className="cinematic-text">Welcome to Techxplorers private limited</h1>
       </div>
+
       <div className="content-section">
-        <Container>
-          <h2>About Us</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
-          <h2>Services</h2>
-          <p>We offer a variety of tech-related services...</p>
-          <h2>Contact</h2>
-          <p>Reach out via email or phone...</p>
-          <h2>About Us</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
-          <h2>Services</h2>
-          <p>We offer a variety of tech-related services...</p>
-          <h2>Contact</h2>
-          <p>Reach out via email or phone...</p>
-          <h2>About Us</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
-          <h2>Services</h2>
-          <p>We offer a variety of tech-related services...</p>
-          <h2>Contact</h2>
-          <p>Reach out via email or phone...</p>
-          <h2>About Us</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
-          <h2>Services</h2>
-          <p>We offer a variety of tech-related services...</p>
-          <h2>Contact</h2>
-          <p>Reach out via email or phone...</p>
-          <p>We offer a variety of tech-related services...</p>
-    
-        </Container>
+        <div className="card-container">
+          <div className="card-row">
+            <div className="info-card">
+              <h3>Innovation</h3>
+              <p>Explore cutting-edge technology trends and ideas.</p>
+            </div>
+            <div className="info-card">
+              <h3>Collaboration</h3>
+              <p>Work together with teams across the globe.</p>
+            </div>
+          </div>
+          <div className="card-row">
+            <div className="info-card">
+              <h3>Growth</h3>
+              <p>Enhance your skills and grow your career with us.</p>
+            </div>
+            <div className="info-card">
+              <h3>Innovation</h3>
+              <p>Explore cutting-edge technology trends and ideas.</p>
+            </div>
+            <div className="info-card">
+              <h3>Collaboration</h3>
+              <p>Work together with teams across the globe.</p>
+            </div>
+          </div>
+
+        </div>
       </div>
+
     </div>
 
 
