@@ -1,62 +1,62 @@
-/* App.css */
-
-body, html {
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-  height: 100%;
+/* // App.css */
+.hero-section {
+  background-image: url('./assets/loop.gif'); /* Use your animated background URL */
+  background-size: cover;
+  background-position:center;
+  height: 100vh;
+  position: sticky;
+  animation: backgroundScroll 10s linear;
 }
 
-.hero-section {
-  background-image: url('./assets/loop.gif');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed; /* <-- This makes the gif background stay fixed */
-  height: 100vh;
-  width: 100%;
-  position: relative;
+
+@keyframes backgroundScroll {
+  from {
+    background-position: 0;
+  }
+  to {
+    background-position:  0;
+  }
+}
+
+.hero-text {
+  position: absolute;
+  top: 100%;
+  left: 100%;
+  transform: translate(-50%, -50%);
 }
 
 .navbar-custom {
-  position: fixed;
+  position: absolute;
   top: 0;
-  left: 0;
   width: 100%;
   z-index: 1000;
-  background: transparent; /* semi-transparent bg for readability */
-  /* backdrop-filter: blur(8px); */
-  padding: 10px 20px;
+  background: transparent;
 }
-
 #navbar .nav-link {
-  color: white !important;
-  font-weight: bold;
-  font-size: 18px;
-  margin: 0 15px;
+  color: rgb(245, 239, 239) !important;
+  font-weight: 10;
+  font-size: 20px;
+  margin: 10px 10px;
   text-transform: uppercase;
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Orbitron', sans-serif; /* <-- updated line */
 }
-
 .cinematic-text-wrapper {
   position: absolute;
-  top: 55%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  text-align: center;
   z-index: 10;
+  text-align: center;
 }
-
 .cinematic-text {
   font-family: 'Orbitron', sans-serif;
-  color: white;
-  font-size: 2.5rem;
-  font-weight: bold;
-  line-height: 1.5;
+  color: rgb(241, 237, 237);
+  font-size: 2rem;
+  opacity: 0;
   text-transform: uppercase;
+  transform: scale(1.8);
   animation: fadeZoomIn 2s ease-out forwards;
 }
-
 @keyframes fadeZoomIn {
   0% {
     opacity: 0;
@@ -70,10 +70,4 @@ body, html {
     opacity: 1;
     transform: scale(1);
   }
-}
-
-.content-section {
-  background: transparent;
-  /* color: black; */
-  padding: 120px 30px 50px; /* top padding leaves space for fixed navbar */
 }
