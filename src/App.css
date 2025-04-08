@@ -1,11 +1,16 @@
 /* // App.css */
 .hero-section {
-  background-image: url('./assets/loop.gif'); /* Use your animated background URL */
+  background-image: url('./assets/loop.gif');
+  background-attachment: fixed; /* Key for parallax effect */
   background-size: cover;
-  background-position:center;
-  height: 100vh;
-  position: sticky;
-  animation: backgroundScroll 10s linear;
+  background-position: center;
+  height: 400vh;
+  position: relative;
+  /* display: flex;
+  flex-direction: column; */
+  /* justify-content: center;
+  align-items: center; */
+  /* animation: backgroundScroll 10s linear; */
 }
 
 
@@ -28,8 +33,9 @@
 .navbar-custom {
   position: absolute;
   top: 0;
+  left: 0;
   width: 100%;
-  z-index: 1000;
+  z-index: 10;
   background: transparent;
 }
 #navbar .nav-link {
@@ -40,9 +46,17 @@
   text-transform: uppercase;
   font-family: 'Orbitron', sans-serif; /* <-- updated line */
 }
+.content-section {
+  padding: 500px 0;
+  background-color: rgba(255, 255, 255, 0); /* fully transparent */
+  color: #fffefee0;
+}
+
+
+
 .cinematic-text-wrapper {
   position: absolute;
-  top: 50%;
+  top: 15%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 10;
