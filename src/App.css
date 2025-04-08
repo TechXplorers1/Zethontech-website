@@ -1,0 +1,73 @@
+/* // App.css */
+.hero-section {
+  background-image: url('./assets/loop.gif'); /* Use your animated background URL */
+  background-size: cover;
+  background-position:center;
+  height: 100vh;
+  position: sticky;
+  animation: backgroundScroll 10s linear;
+}
+
+
+@keyframes backgroundScroll {
+  from {
+    background-position: 0;
+  }
+  to {
+    background-position:  0;
+  }
+}
+
+.hero-text {
+  position: absolute;
+  top: 100%;
+  left: 100%;
+  transform: translate(-50%, -50%);
+}
+
+.navbar-custom {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background: transparent;
+}
+#navbar .nav-link {
+  color: rgb(245, 239, 239) !important;
+  font-weight: 10;
+  font-size: 20px;
+  margin: 10px 10px;
+  text-transform: uppercase;
+  font-family: 'Orbitron', sans-serif; /* <-- updated line */
+}
+.cinematic-text-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  text-align: center;
+}
+.cinematic-text {
+  font-family: 'Orbitron', sans-serif;
+  color: rgb(241, 237, 237);
+  font-size: 2rem;
+  opacity: 0;
+  text-transform: uppercase;
+  transform: scale(1.8);
+  animation: fadeZoomIn 2s ease-out forwards;
+}
+@keyframes fadeZoomIn {
+  0% {
+    opacity: 0;
+    transform: scale(1.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
