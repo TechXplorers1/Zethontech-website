@@ -59,25 +59,25 @@ function App() {
         <div className="card-container">
           <div className="card-row">
             <div className="info-card">
-              <h3>Innovation</h3>
+              <h3>Web Applications</h3>
               <p>Explore cutting-edge technology trends and ideas.</p>
             </div>
             <div className="info-card">
-              <h3>Collaboration</h3>
+              <h3>Android & IOS Applications</h3>
               <p>Work together with teams across the globe.</p>
             </div>
           </div>
           <div className="card-row">
             <div className="info-card">
-              <h3>Growth</h3>
+              <h3>Job Support & IT Consulting</h3>
               <p>Enhance your skills and grow your career with us.</p>
             </div>
             <div className="info-card">
-              <h3>Innovation</h3>
+              <h3>IT Talent Supply</h3>
               <p>Explore cutting-edge technology trends and ideas.</p>
             </div>
             <div className="info-card">
-              <h3>Collaboration</h3>
+              <h3>Digital Marketing</h3>
               <p>Work together with teams across the globe.</p>
             </div>
           </div>

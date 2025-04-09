@@ -81,7 +81,7 @@ body, html {
 }
 
 .content-section {
-  padding: 210px 0;
+  padding: 110px 0;
   background-color: transparent;
   color: #fffefee0;
   display: flex;
@@ -121,7 +121,7 @@ body, html {
 .card-row {
   display: flex;
   justify-content: center;
-  gap: 2rem;
+  gap: 10rem;
   margin-bottom: 2rem;
 }
 
