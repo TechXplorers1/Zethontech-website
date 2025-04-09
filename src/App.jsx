@@ -1,14 +1,11 @@
 // App.jsx
-import React, { useEffect, useState, useRef } from 'react'
-import { Container, Nav, Navbar } from 'react-bootstrap'
-import './App.css'
-import logo from './assets/logo.png' // Add your logo image here
-import rocketCursor from './assets/SpaceRock.png' // Add your image here
+import React, { useEffect, useState, useRef } from 'react';
+import './App.css';
+import CustomNavbar from './components/Navbar/';
+import rocketCursor from './assets/SpaceRock.png';
 
 function App() {
-  const [position, setPosition] = useState({ x: 0, y: 0 })
-  const [showPopup, setShowPopup] = useState(false);
-
+  const [position, setPosition] = useState({ x: 0, y: 0 });
   const contentRef = useRef(null);
 
   const scrollToContent = () => {
@@ -17,50 +14,20 @@ function App() {
 
   useEffect(() => {
     const moveCursor = (e) => {
-      setPosition({ x: e.clientX, y: e.clientY })
-    }
-    window.addEventListener('mousemove', moveCursor)
+      setPosition({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener('mousemove', moveCursor);
 
     return () => {
-      window.removeEventListener('mousemove', moveCursor)
-    }
-  }, [])
-  return (
+      window.removeEventListener('mousemove', moveCursor);
+    };
+  }, []);
 
+  return (
     <div className="hero-section">
       <div className="hero-overlay"></div>
-      <Navbar bg="transparent" expand="lg" className="navbar-custom px-4 pt-3 d-flex justify-content-between align-items-center">
-      <Container fluid>
-          <Navbar.Brand href="#home">
-            <img src={logo} alt="TechXplorers Logo" height="40" />
-          </Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="ms-auto">
-              <Nav.Link href="#home" className="nav-link">Home</Nav.Link>
-              <Nav.Link href="#about" className="nav-link">About</Nav.Link>
-
-              {/* Services with popup */}
-              <div
-                className="nav-link services-popup-wrapper"
-                onMouseEnter={() => setShowPopup(true)}
-                onMouseLeave={() => setShowPopup(false)}
-              >
-                <span>Services</span>
-                {showPopup && (
-                  <div className="services-popup">
-                    {[...Array(6)].map((_, i) => (
-                      <div className="popup-card" key={i}></div>
-                    ))}
-                  </div>
-                )}
-              </div>
-
-              <Nav.Link href="#contact" className="nav-link">Contact</Nav.Link>
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
+      
+      <CustomNavbar />
       
       <div className="content-container">
         <div className="welcome-section">
@@ -72,14 +39,13 @@ function App() {
           <h3 className="tech-innovation">OF TECH & INNOVATION</h3>
           <div className="action-buttons">
             <button className="cta-button talk-button">LET'S TALK</button>
-            <button className="cta-button services-button" onClick={scrollToContent} >EXPLORE SERVICES</button>
+            <button className="cta-button services-button" onClick={scrollToContent}>EXPLORE SERVICES</button>
           </div>
         </div>
       </div>
 
-
- {/* Custom Cursor Tracker */}
- <img
+      {/* Custom Cursor Tracker */}
+      <img
         src={rocketCursor}
         alt="Cursor"
         className="custom-cursor"
@@ -88,7 +54,6 @@ function App() {
           top: `${position.y}px`
         }}
       />
-
 
       <div className="content-section" ref={contentRef}>
         <div className="card-container">
@@ -116,16 +81,10 @@ function App() {
               <p>Work together with teams across the globe.</p>
             </div>
           </div>
-
         </div>
       </div>
-
     </div>
-
-
-
-
-  )
+  );
 }
 
-export default App
+export default App;
