@@ -1,87 +1,309 @@
-/* // App.css */
+/* App.css */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap');
+
+:root {
+  --primary-color: #ffffff;
+  --accent-color: #00f0ff;
+  --text-glow: 0 0 10px rgba(0, 240, 255, 0.7);
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  height: 100%;
+  font-family: 'Orbitron', sans-serif;
+  background-color: #000;
+
+  /* Add custom cursor image */
+  cursor: url('./public/cursor.png'), auto;
+}
+
+/* Hero Section with Fixed GIF Background */
 .hero-section {
+  position: relative;
+  height: 100vh;
+  width: 100%;
   background-image: url('./assets/loop.gif');
-  background-attachment: fixed; /* Key for parallax effect */
+  background-attachment: fixed;
   background-size: cover;
   background-position: center;
-  height: 400vh;
-  position: relative;
-  /* display: flex;
-  flex-direction: column; */
-  /* justify-content: center;
-  align-items: center; */
-  /* animation: backgroundScroll 10s linear; */
+  overflow: hidden;
 }
 
-
-@keyframes backgroundScroll {
-  from {
-    background-position: 0;
-  }
-  to {
-    background-position:  0;
-  }
-}
-
-.hero-text {
+/* Add this pseudo-element to create a dark overlay */
+.hero-section::before {
+  content: "";
   position: absolute;
-  top: 100%;
-  left: 100%;
-  transform: translate(-50%, -50%);
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Adjust the 0.5 for more or less darkness */
+  z-index: 1;
 }
 
-.navbar-custom {
+/* Make sure text or content inside hero section sits above the overlay */
+.hero-section > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Overlay to improve text readability */
+.hero-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 10;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(1px);
+  z-index: 1;
+}
+
+/* Navbar - Right Aligned */
+.navbar-custom {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  font-family: 'Orbitron', sans-serif;
   background: transparent;
+  padding: 15px 0;
+  transition: all 0.3s ease;
 }
-#navbar .nav-link {
-  color: rgb(245, 239, 239) !important;
-  font-weight: 10;
-  font-size: 20px;
-  margin: 10px 10px;
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.navbar-custom.scrolled {
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+}
+
+.navbar-nav {
+  display: flex;
+  align-items: center;
+}
+
+.nav-link {
+  color: var(--primary-color) !important;
+  font-weight: 500;
+  font-size: 1rem;
+  margin: 0 15px !important;
   text-transform: uppercase;
-  font-family: 'Orbitron', sans-serif; /* <-- updated line */
-}
-.content-section {
-  padding: 500px 0;
-  background-color: rgba(255, 255, 255, 0); /* fully transparent */
-  color: #fffefee0;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  position: relative;
+  padding: 5px 0;
 }
 
+.nav-link:hover {
+  color: var(--accent-color) !important;
+  text-shadow: var(--text-glow);
+}
 
-
-.cinematic-text-wrapper {
+.nav-link::after {
+  content: '';
   position: absolute;
-  top: 15%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 10;
-  text-align: center;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent-color);
+  transition: width 0.3s ease;
 }
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Content Container */
+.content-container {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  z-index: 10;
+}
+
+/* Welcome Text */
 .cinematic-text {
   font-family: 'Orbitron', sans-serif;
-  color: rgb(241, 237, 237);
-  font-size: 2rem;
-  opacity: 0;
+  color: var(--primary-color);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 400;
+  line-height: 1.3;
   text-transform: uppercase;
+  margin: 0;
+  opacity: 0;
   transform: scale(1.8);
   animation: fadeZoomIn 2s ease-out forwards;
 }
+
+.cinematic-text span {
+  display: block;
+  font-weight: 300;
+  font-size: 0.8em;
+}
+
+/* Engineering Section */
+.engineering-section {
+  margin-top: 3rem;
+}
+
+.future-heading {
+  color: var(--primary-color);
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  margin: 0;
+  text-shadow: var(--text-glow);
+  opacity: 0;
+  animation: fadeIn 1s ease-out 1s forwards;
+}
+
+.tech-innovation {
+  color: var(--accent-color);
+  font-size: clamp(1rem, 3vw, 1.8rem);
+  font-weight: 400;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin: 10px 0 0 0;
+  opacity: 0;
+  animation: fadeIn 1s ease-out 1.5s forwards;
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  gap: 2rem;
+  margin-top: 3rem;
+  opacity: 0;
+  animation: fadeIn 1s ease-out 2s forwards;
+}
+
+.cta-button {
+  padding: 12px 30px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.talk-button {
+  background: transparent;
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+}
+
+.talk-button:hover {
+  background: var(--primary-color);
+  color: #000;
+}
+
+.services-button {
+  background: var(--accent-color);
+  color: #000;
+  border: 2px solid var(--accent-color);
+}
+
+.services-button:hover {
+  background: transparent;
+  color: var(--accent-color);
+  text-shadow: var(--text-glow);
+}
+
+/* Animations */
 @keyframes fadeZoomIn {
   0% {
     opacity: 0;
     transform: scale(1.8);
   }
-  50% {
-    opacity: 1;
-    transform: scale(1);
-  }
   100% {
     opacity: 1;
     transform: scale(1);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Content Section */
+.content-section {
+  position: relative;
+  background: #000;
+  color: var(--primary-color);
+  padding: 100px 30px;
+  z-index: 5;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+  .navbar-container {
+    flex-direction: column;
+    padding: 10px;
+  }
+  
+  .navbar-nav {
+    width: 100%;
+    justify-content: flex-end;
+    margin-top: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .nav-link {
+    margin: 0 10px !important;
+    
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .action-buttons {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .cinematic-text {
+    font-size: 1.8rem;
+  }
+  
+  .nav-link {
+    font-size: 0.8rem;
+    margin: 0 8px !important;
+  }
+  
+  .engineering-section {
+    margin-top: 2rem;
   }
 }
