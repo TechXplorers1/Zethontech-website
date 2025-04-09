@@ -12,3 +12,7 @@ body, html, #root {
   scroll-behavior: smooth;
   overflow-x:auto;
 }
+
+* {
+  cursor: none !important;
+}

@@ -13,6 +13,22 @@
   /* animation: backgroundScroll 10s linear; */
 }
 
+body {
+  cursor: none;
+}
+
+/* Custom cursor element */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100px; /* Customize size here */
+  height: 100px;
+  pointer-events: none; /* Allow clicks to pass through */
+  z-index: 9999;
+  transform: translate(-50%, -10%);
+  transition: transform 0.1s linear;
+}
 
 @keyframes backgroundScroll {
   from {
@@ -40,7 +56,7 @@
 }
 #navbar .nav-link {
   color: rgb(245, 239, 239) !important;
-  font-weight: 10;
+  font-weight: 400;
   font-size: 20px;
   margin: 10px 10px;
   text-transform: uppercase;
@@ -65,7 +81,7 @@
 
 .info-card {
   background: rgba(12, 12, 12, 0.315);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(17, 168, 155, 0.836);
   border-radius: 16px;
   padding: 2rem;
   width: 260px;
