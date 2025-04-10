@@ -39,6 +39,7 @@
   text-align: center;
   font-weight: bold;
   color: white;
+  color: white;
   background-color: rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
   transition: opacity 0.2s ease, visibility 0.2s ease;
