@@ -279,3 +279,17 @@ body, html {
     margin-top: 2rem;
   }
 }
+/* Add this to your existing App.css */
+.main-content {
+  margin-top: 80px; /* This should match the body padding-top */
+}
+
+/* Update the hero-section height if needed */
+.hero-section {
+  height: auto; /* Changed from 220vh to auto */
+  min-height: 100vh;
+}
+/* App.css */
+.content-container {
+  padding-top: 100px; /* Adjust based on navbar height */
+}
