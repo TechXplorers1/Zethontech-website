@@ -18,7 +18,7 @@ const CustomNavbar = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto align-items-center">
             <Nav.Link href="#home" className="nav-link">Home</Nav.Link>
-            <Nav.Link href="#about" className="nav-link">About</Nav.Link>
+            
 
             {/* Services Dropdown */}
             <div
@@ -29,10 +29,11 @@ const CustomNavbar = () => {
               <span>Services</span>
               {showPopup && <Services />}
             </div>
-
+            <Nav.Link href="#industries" className="nav-link">Industries</Nav.Link>
+            <Nav.Link href="#about" className="nav-link">About</Nav.Link>
             <Nav.Link href="#careers" className="nav-link">Careers</Nav.Link>
             <Nav.Link href="#contact" className="nav-link">Contact</Nav.Link>
-            <Nav.Link href="#more" className="nav-link">More</Nav.Link>
+            <Nav.Link href="#event" className="nav-link">Events</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
