@@ -10,7 +10,7 @@ const CustomNavbar = ({ scrolled }) => {
   return (
     <Navbar
       expand="lg"
-      fixed="top"
+      fixed='top'
       className={`navbar-custom ${scrolled ? 'scrolled' : ''}`}
     >
       <Container fluid>
