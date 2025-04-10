@@ -4,6 +4,7 @@ import './App.css';
 import CustomNavbar from './components/Navbar/';
 import rocketCursor from './assets/SpaceRock.png';
 
+
 function App() {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const contentRef = useRef(null);
@@ -59,11 +60,11 @@ function App() {
         <div className="card-container">
           <div className="card-row">
             <div className="info-card">
-              <h3>Web Applications</h3>
+              <h3>Web Application Development</h3>
               <p>Explore cutting-edge technology trends and ideas.</p>
             </div>
             <div className="info-card">
-              <h3>Android & IOS Applications</h3>
+              <h3>Mobile Application Development</h3>
               <p>Work together with teams across the globe.</p>
             </div>
           </div>
@@ -81,9 +82,14 @@ function App() {
               <p>Work together with teams across the globe.</p>
             </div>
           </div>
+
+        {/* About Us and Contact Section */}
+       {/* / */}
+      </div>
+
         </div>
       </div>
-    </div>
+    
   );
 }
 

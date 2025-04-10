@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import logo from '../assets/logo.png';
 import '../styles/navbar.css';
-
+import Services from './Services';
 
 const CustomNavbar = () => {
   const [showPopup, setShowPopup] = useState(false);
@@ -16,27 +16,23 @@ const CustomNavbar = () => {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="ms-auto">
+          <Nav className="ms-auto align-items-center">
             <Nav.Link href="#home" className="nav-link">Home</Nav.Link>
             <Nav.Link href="#about" className="nav-link">About</Nav.Link>
 
-            {/* Services with popup */}
+            {/* Services Dropdown */}
             <div
               className="nav-link services-popup-wrapper"
               onMouseEnter={() => setShowPopup(true)}
               onMouseLeave={() => setShowPopup(false)}
             >
               <span>Services</span>
-              {showPopup && (
-                <div className="services-popup">
-                  {[...Array(6)].map((_, i) => (
-                    <div className="popup-card" key={i}></div>
-                  ))}
-                </div>
-              )}
+              {showPopup && <Services />}
             </div>
 
+            <Nav.Link href="#careers" className="nav-link">Careers</Nav.Link>
             <Nav.Link href="#contact" className="nav-link">Contact</Nav.Link>
+            <Nav.Link href="#more" className="nav-link">More</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

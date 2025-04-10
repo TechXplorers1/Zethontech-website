@@ -1,0 +1,45 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #000;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.services-section {
+  padding: 50px 5vw;
+  background-color: #000;
+  color: cyan;
+  box-sizing: border-box;
+}
+
+.services-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  color: cyan;
+  text-align: left;
+}
+
+.services-grid {
+  display: flex; /* Changed to flexbox for horizontal layout */
+  flex-direction: row; /* Ensure items are laid out horizontally */
+  gap: 40px; /* Adjust the gap between the cards as needed */
+  width: 100%;
+  overflow-x: auto; /* Enable horizontal scrolling if content overflows */
+}
+
+.service-card {
+  border: 2px solid cyan;
+  border-radius: 12px;
+  padding: 30px 15px;
+  text-align: center;
+  font-weight: bold;
+  color: cyan;
+  background-color: transparent;
+  transition: transform 0.3s ease;
+  min-width: 200px; /* Ensure each card has a minimum width */
+}
+
+.service-card:hover {
+  transform: scale(1.05);
+}
