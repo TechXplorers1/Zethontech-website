@@ -6,6 +6,7 @@ import rocketCursor from './assets/SpaceRock.png';
 function App() {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const contentRef = useRef(null);
+  const [navbarScrolled, setNavbarScrolled] = useState(false);
 
   const scrollToContent = () => {
     contentRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -15,19 +16,27 @@ function App() {
     const moveCursor = (e) => {
       setPosition({ x: e.clientX, y: e.clientY });
     };
+
+    const handleScroll = () => {
+      const isScrolled = window.scrollY > 50;
+      setNavbarScrolled(isScrolled);
+    };
+
     window.addEventListener('mousemove', moveCursor);
+    window.addEventListener('scroll', handleScroll);
 
     return () => {
       window.removeEventListener('mousemove', moveCursor);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
   return (
     <div className="hero-section">
       <div className="hero-overlay"></div>
-      
-      <CustomNavbar />
-      
+
+      <CustomNavbar scrolled={navbarScrolled} />
+
       <div className="main-content">
         <div className="content-container">
           <div className="welcome-section">
@@ -44,7 +53,6 @@ function App() {
           </div>
         </div>
 
-        {/* Custom Cursor Tracker */}
         <img
           src={rocketCursor}
           alt="Cursor"
@@ -53,9 +61,8 @@ function App() {
             left: `${position.x}px`,
             top: `${position.y}px`
           }}
-        />
-
-        <div className="content-section" ref={contentRef}>
+        />     
+           <div className="content-section" ref={contentRef}>
           <div className="card-container">
             <div className="card-row">
               <div className="info-card">

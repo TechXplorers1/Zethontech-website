@@ -1,32 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import logo from '../assets/logo.png';
 import '../styles/navbar.css';
 import Services from './Services';
 
-const CustomNavbar = () => {
+const CustomNavbar = ({ scrolled }) => {
   const [showPopup, setShowPopup] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const offset = window.scrollY;
-      if (offset > 50) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   return (
     <Navbar
       expand="lg"
       fixed="top"
-      className={`navbar-custom px-4 pt-3 ${scrolled ? 'scrolled' : ''}`}
+      className={`navbar-custom ${scrolled ? 'scrolled' : ''}`}
     >
       <Container fluid>
         <Navbar.Brand href="#home">

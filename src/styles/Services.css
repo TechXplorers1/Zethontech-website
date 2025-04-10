@@ -17,29 +17,35 @@ body {
   font-weight: bold;
   margin-bottom: 30px;
   color: cyan;
-  text-align: left;
+  text-align: center;
 }
 
 .services-grid {
-  display: flex; /* Changed to flexbox for horizontal layout */
-  flex-direction: row; /* Ensure items are laid out horizontally */
-  gap: 40px; /* Adjust the gap between the cards as needed */
-  width: 100%;
-  overflow-x: auto; /* Enable horizontal scrolling if content overflows */
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  flex-wrap: nowrap;
+  gap: 20px; /* Optional smaller gap for cleaner look */
 }
 
 .service-card {
   border: 2px solid cyan;
-  border-radius: 12px;
-  padding: 30px 15px;
+  border-radius: 16px;
+  width: 180px;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
   text-align: center;
   font-weight: bold;
   color: cyan;
-  background-color: transparent;
-  transition: transform 0.3s ease;
-  min-width: 200px; /* Ensure each card has a minimum width */
+  background-color: rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  
 }
 
 .service-card:hover {
   transform: scale(1.05);
+  background-color: rgba(0, 255, 255, 0.1);
 }
