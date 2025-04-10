@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import logo from '../assets/logo.png';
 import '../styles/navbar.css';
@@ -6,6 +6,33 @@ import ServicesDropdown from './Services';
 
 const CustomNavbar = ({ scrolled }) => {
   const [showPopup, setShowPopup] = useState(false);
+  const timeoutRef = useRef(null);
+  const dropdownRef = useRef(null);
+
+  const handleMouseEnter = () => {
+    clearTimeout(timeoutRef.current);
+    setShowPopup(true);
+  };
+
+  const handleMouseLeave = () => {
+    timeoutRef.current = setTimeout(() => {
+      if (!dropdownRef.current?.matches(':hover')) {
+        setShowPopup(false);
+      }
+    }, 300); // 300ms delay before closing
+  };
+
+  const handleDropdownLeave = () => {
+    timeoutRef.current = setTimeout(() => {
+      setShowPopup(false);
+    }, 300);
+  };
+
+  useEffect(() => {
+    return () => {
+      clearTimeout(timeoutRef.current);
+    };
+  }, []);
 
   return (
     <Navbar
@@ -25,13 +52,17 @@ const CustomNavbar = ({ scrolled }) => {
 
             <div
               className="nav-link services-popup-wrapper"
-              onMouseEnter={() => setShowPopup(true)}
-              onMouseLeave={() => setShowPopup(false)}
-              style={{ position: 'relative' }}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
             >
               <span>Services</span>
               {showPopup && (
-                <div style={{ position: 'absolute', top: '100%', left: 0, width: '100vw' }}>
+                <div 
+                  className="services-dropdown-container"
+                  ref={dropdownRef}
+                  onMouseEnter={() => clearTimeout(timeoutRef.current)}
+                  onMouseLeave={handleDropdownLeave}
+                >
                   <ServicesDropdown />
                 </div>
               )}
