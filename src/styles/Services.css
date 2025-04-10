@@ -35,7 +35,7 @@
   padding: 20px;
   text-align: center;
   font-weight: bold;
-  color: cyan;
+  color: white;
   background-color: rgba(0, 0, 0, 0.3);
   transition: transform 0.3s ease, background-color 0.3s ease;
   flex: 0 0 auto;
@@ -43,8 +43,8 @@
 }
 
 .service-card:hover {
-  transform: scale(1.05);
-  background-color: rgba(0, 255, 255, 0.1);
+  transform: scale(1.01);
+  background-color: rgba(0, 255, 255, 0);
 }
 
 .service-card img {
