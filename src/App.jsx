@@ -2,6 +2,11 @@ import React, { useEffect, useState, useRef } from 'react';
 import './App.css';
 import CustomNavbar from './components/Navbar/';
 import rocketCursor from './assets/SpaceRock.png';
+import mobileImg from './assets/mobile_app_dev.png';
+import webImg from './assets/web_app_dev.png';
+import digiImg from './assets/digi_mark.png';
+import ittalentImg from './assets/it_talent_supply.png';
+import jobsupportImg from './assets/job_support.png';
 
 function App() {
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -61,31 +66,32 @@ function App() {
             left: `${position.x}px`,
             top: `${position.y}px`
           }}
-        />     
-           <div className="content-section" ref={contentRef}>
+        />
+
+        <div className="content-section" ref={contentRef}>
           <div className="card-container">
             <div className="card-row">
               <div className="info-card">
+                <img src={mobileImg} alt="Mobile App" className="card-icon" />
                 <h3>Mobile Application Development</h3>
-                <p>Explore cutting-edge technology trends and ideas.</p>
               </div>
               <div className="info-card">
+                <img src={webImg} alt="Web App" className="card-icon" />
                 <h3>Web Application Development</h3>
-                <p>Work together with teams across the globe.</p>
               </div>
             </div>
             <div className="card-row">
               <div className="info-card">
+                <img src={digiImg} alt="Digital Marketing" className="card-icon" />
                 <h3>Digital Marketing</h3>
-                <p>Enhance your skills and grow your career with us.</p>
               </div>
               <div className="info-card">
+                <img src={ittalentImg} alt="IT Talent" className="card-icon" />
                 <h3>IT Talent Supply</h3>
-                <p>Explore cutting-edge technology trends and ideas.</p>
               </div>
               <div className="info-card">
+                <img src={jobsupportImg} alt="Consulting" className="card-icon" />
                 <h3>Job Support & IT Consulting</h3>
-                <p>Work together with teams across the globe.</p>
               </div>
             </div>
           </div>
