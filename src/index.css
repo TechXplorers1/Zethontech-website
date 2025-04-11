@@ -14,5 +14,5 @@ body, html, #root {
 }
 
 * {
-  cursor: none !important;
+  cursor: default !important;
 }

@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import './App.css';
 import CustomNavbar from './components/Navbar/';
-import rocketCursor from './assets/SpaceRock.png';
+// import rocketCursor from './assets/SpaceRock.png';
 import mobileImg from './assets/mobile_app_dev.png';
 import webImg from './assets/web_app_dev.png';
 import digiImg from './assets/digi_mark.png';
@@ -58,7 +58,7 @@ function App() {
           </div>
         </div>
 
-        <img
+        {/* <img
           src={rocketCursor}
           alt="Cursor"
           className="custom-cursor"
@@ -66,7 +66,7 @@ function App() {
             left: `${position.x}px`,
             top: `${position.y}px`
           }}
-        />
+        /> */}
 
         <div className="content-section" ref={contentRef}>
           <div className="card-container">
