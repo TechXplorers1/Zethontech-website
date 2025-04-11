@@ -7,6 +7,7 @@ import webImg from './assets/web_app_dev.png';
 import digiImg from './assets/digi_mark.png';
 import ittalentImg from './assets/it_talent_supply.png';
 import jobsupportImg from './assets/job_support.png';
+import Footer from './components/Footer';
 
 function App() {
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -97,6 +98,7 @@ function App() {
           </div>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 }
