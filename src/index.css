@@ -16,3 +16,29 @@ body, html, #root {
 * {
   cursor: default !important;
 }
+/* Scrollbar hidden by default */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background: transparent;
+}
+
+/* Only show scrollbar when hovering or scrolling */
+body:hover::-webkit-scrollbar,
+body:active::-webkit-scrollbar,
+body:focus::-webkit-scrollbar {
+  background: transparent;
+}
+
+/* Scrollbar thumb styling */
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 255, 255, 0.7); /* Aqua color */
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+/* Optional: Firefox support (limited) */
+body {
+  scrollbar-width: none; /* Hide scrollbar in Firefox */
+}
+
