@@ -15,8 +15,8 @@ const Footer = () => {
             <img src={Logo} alt="TX Logo" className="footer-logo mb-2" />
           </div>
           
-           {/* Description */}
-           <div className="col-12 col-md-3 mb-4">
+          {/* Description */}
+          <div className="col-12 col-md-3 mb-4">
             <h5 className="text-info fw-bold">TECHXPLORERS PRIVATE LIMITED</h5>
             <p className="small mt-2">
               BUILDING THE FUTURE WITH STYLE AND INNOVATION.<br />
@@ -44,16 +44,22 @@ const Footer = () => {
             </ul>
           </div>
 
-         
-
           {/* Social Links */}
           <div className="col-12 col-md-2 mb-4">
             <h6 className="text-info fw-bold">FOLLOW US</h6>
             <div className="d-flex justify-content-center justify-content-md-start mt-2 gap-3 fs-5">
-              <a href="#"><FaFacebookF /></a>
-              <a href="#"><FaXTwitter /></a>
-              <a href="#"><FaInstagram /></a>
-              <a href="#"><FaLinkedinIn /></a>
+              <a href="https://www.facebook.com/profile.php?id=61571029190090" target="_blank" rel="noopener noreferrer">
+                <FaFacebookF />
+              </a>
+              <a href="https://x.com/techXplorers_" target="_blank" rel="noopener noreferrer">
+                <FaXTwitter />
+              </a>
+              <a href="https://www.instagram.com/techxplorers.pvt.ltd/" target="_blank" rel="noopener noreferrer">
+                <FaInstagram />
+              </a>
+              <a href="https://www.linkedin.com/company/techxplorers-private-limited/" target="_blank" rel="noopener noreferrer">
+                <FaLinkedinIn />
+              </a>
             </div>
           </div>
 
