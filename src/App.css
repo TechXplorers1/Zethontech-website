@@ -118,6 +118,9 @@ body, html {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
+.info-card h3{ 
+  font-size: 20px;
+}
 .card-row {
   display: flex;
   justify-content: center;
