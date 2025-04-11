@@ -1,10 +1,11 @@
+// CustomNavbar.jsx
 import React, { useState, useRef, useEffect } from 'react';
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import logo from '../assets/logo.png';
 import '../styles/navbar.css';
 import ServicesDropdown from './Services';
 
-const CustomNavbar = ({ scrolled }) => {
+const CustomNavbar = ({ scrolled, aboutRef }) => {
   const [showPopup, setShowPopup] = useState(false);
   const timeoutRef = useRef(null);
   const dropdownRef = useRef(null);
@@ -19,13 +20,19 @@ const CustomNavbar = ({ scrolled }) => {
       if (!dropdownRef.current?.matches(':hover')) {
         setShowPopup(false);
       }
-    }, 300); // 300ms delay before closing
+    }, 300);
   };
 
   const handleDropdownLeave = () => {
     timeoutRef.current = setTimeout(() => {
       setShowPopup(false);
     }, 300);
+  };
+
+  const scrollToAbout = () => {
+    if (aboutRef?.current) {
+      aboutRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   useEffect(() => {
@@ -69,7 +76,7 @@ const CustomNavbar = ({ scrolled }) => {
             </div>
 
             <Nav.Link href="#industries" className="nav-link">Industries</Nav.Link>
-            <Nav.Link href="#about" className="nav-link">About</Nav.Link>
+            <Nav.Link className="nav-link" onClick={scrollToAbout}>About</Nav.Link>
             <Nav.Link href="#careers" className="nav-link">Careers</Nav.Link>
             <Nav.Link href="#contact" className="nav-link">Contact</Nav.Link>
             <Nav.Link href="#event" className="nav-link">Events</Nav.Link>

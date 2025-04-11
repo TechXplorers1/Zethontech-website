@@ -1,17 +1,19 @@
+// App.js
 import React, { useEffect, useState, useRef } from 'react';
 import './App.css';
 import CustomNavbar from './components/Navbar/';
-// import rocketCursor from './assets/SpaceRock.png';
 import mobileImg from './assets/mobile_app_dev.png';
 import webImg from './assets/web_app_dev.png';
 import digiImg from './assets/digi_mark.png';
 import ittalentImg from './assets/it_talent_supply.png';
 import jobsupportImg from './assets/job_support.png';
 import Footer from './components/Footer';
+import About from './components/About';
 
 function App() {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const contentRef = useRef(null);
+  const aboutRef = useRef(null); // <== ADD THIS
   const [navbarScrolled, setNavbarScrolled] = useState(false);
 
   const scrollToContent = () => {
@@ -24,8 +26,7 @@ function App() {
     };
 
     const handleScroll = () => {
-      const isScrolled = window.scrollY > 50;
-      setNavbarScrolled(isScrolled);
+      setNavbarScrolled(window.scrollY > 50);
     };
 
     window.addEventListener('mousemove', moveCursor);
@@ -41,7 +42,8 @@ function App() {
     <div className="hero-section">
       <div className="hero-overlay"></div>
 
-      <CustomNavbar scrolled={navbarScrolled} />
+      {/* Pass the aboutRef to CustomNavbar */}
+      <CustomNavbar scrolled={navbarScrolled} aboutRef={aboutRef} />
 
       <div className="main-content">
         <div className="content-container">
@@ -59,16 +61,12 @@ function App() {
           </div>
         </div>
 
-        {/* <img
-          src={rocketCursor}
-          alt="Cursor"
-          className="custom-cursor"
-          style={{
-            left: `${position.x}px`,
-            top: `${position.y}px`
-          }}
-        /> */}
+        {/* About section with ref */}
+        <div ref={aboutRef}>
+          <About />
+        </div>
 
+        {/* Services Section */}
         <div className="content-section" ref={contentRef}>
           <div className="card-container">
             <div className="card-row">
@@ -98,7 +96,8 @@ function App() {
           </div>
         </div>
       </div>
-      <Footer/>
+
+      <Footer />
     </div>
   );
 }

@@ -1,34 +1,63 @@
-// src/components/About.jsx
 import React from 'react';
-import '../styles/About.css';
+import '../styles/about.css'; // Make sure you style accordingly
 
 const About = () => {
   return (
-    <div className="about-section">
-      <div className="about-overlay" />
-      <div className="about-content">
-        <h2 className="about-heading">What We Do</h2>
-        <p>
-          We offer a diverse range of services tailored to meet your digital needs. Our team of skilled professionals
-          specializes in mobile application development, web application development, digital marketing, IT talent
-          supply, job support, and IT consulting. At TechXplorers, we believe in harnessing the power of technology
-          to transform businesses and enhance their competitive edge in the digital landscape.
+    <div className="about-section" id="about">
+      <div className="container">
+        <h2 className="section-title">About Us</h2>
+        <p className="about-intro">
+          <strong>Empowering Innovation. Enabling Growth.</strong>
         </p>
         <p>
-          At TechXplorers, we understand the dynamic nature of technology and its impact on businesses. Our services
-          are designed to adapt to the ever-changing digital environment and help you stay ahead of the curve.
-          Whether you're looking to develop a mobile app, create a user-friendly web application, or launch a
-          digital marketing campaign, we have the expertise to bring your vision to life.
+          At <strong>TechXplorers Private Limited</strong>, we believe that technology is more than just tools—it’s a catalyst for transformation, growth, and meaningful change.
+          Since our inception, we have been committed to helping businesses, entrepreneurs, and organizations navigate the fast-paced world of digital innovation with confidence and clarity.
         </p>
         <p>
-          As a leader in IT talent supply, we connect businesses with skilled professionals who can drive success and
-          innovation. Our job support and IT consulting services provide guidance and resources to help businesses
-          excel in the evolving tech landscape. When you partner with TechXplorers, you're working with a team
-          dedicated to your success.
+          We are a technology company built on the foundation of creativity, precision, and performance. Our goal is simple: to deliver intelligent and scalable digital solutions that address real-world problems and enable businesses to thrive in the modern era.
         </p>
+
+        <h3>Who We Are</h3>
         <p>
-          Explore our services and discover how TechXplorers can help unlock your full potential and achieve your
-          business goals. Contact us today to begin your digital transformation journey with a trusted partner.
+          <strong>TechXplorers Private Limited</strong> is a dynamic and forward-thinking IT company headquartered in Anantapur, India.
+          With a strong focus on customer success and technological innovation, we specialize in:
+        </p>
+        <ul>
+          <li>Mobile Application Development</li>
+          <li>Web Application Development</li>
+          <li>Digital Marketing</li>
+          <li>IT Talent Supply</li>
+          <li>Job Support & IT Consulting</li>
+        </ul>
+        <p>
+          Our team includes experienced software engineers, creative designers, marketing professionals, and IT consultants who are passionate about building impactful solutions.
+          We take pride in understanding our clients’ unique goals and challenges to deliver tailor-made services.
+        </p>
+
+        <h3>Our Mission</h3>
+        <p>
+          To empower businesses through innovative technology by providing solutions that are not only technically sound but also strategically aligned with our clients’ visions.
+          Whether you're a startup or an enterprise, we’re your trusted partner every step of the way.
+        </p>
+
+        <h3>Our Vision</h3>
+        <p>
+          To be a globally recognized IT company known for delivering excellence, inspiring trust, and setting benchmarks in digital transformation.
+        </p>
+
+        <h3>Why Choose Us?</h3>
+        <ul>
+          <li><strong>Customer-Centric:</strong> We put your goals first and tailor each project to your needs.</li>
+          <li><strong>Innovation-Focused:</strong> Our solutions are cutting-edge and future-ready.</li>
+          <li><strong>Reliable & Transparent:</strong> We ensure clarity in communication and transparency in processes.</li>
+          <li><strong>Experienced & Versatile:</strong> With a diverse team, we bring multi-domain expertise.</li>
+          <li><strong>Committed to Quality:</strong> We focus on delivering true value—not just deliverables.</li>
+        </ul>
+
+        <h3>Our Culture</h3>
+        <p>
+          We foster a culture of continuous learning, collaboration, and integrity. At TechXplorers, we are not just colleagues—we are explorers,
+          constantly pushing the boundaries of what’s possible through technology. Our environment promotes mutual respect, inclusion, and a shared vision for success.
         </p>
       </div>
     </div>
