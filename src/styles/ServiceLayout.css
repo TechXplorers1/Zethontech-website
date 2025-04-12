@@ -2,7 +2,20 @@
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-color: #000;
+    background-image: url('../assets/loop.gif');
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+  }
+  .service-layout::before{
+    content: "";
+    /* position: absolute; */
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
   }
   
   .service-main {
@@ -50,3 +63,50 @@
       padding: 1.5rem;
     }
   }
+
+/* service content css */
+.service-box {
+    max-width: 900px;
+    margin: 100px auto 60px auto;
+    padding: 0 20px;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .section-title {
+    font-size: 32px;
+    font-weight: bold;
+    color: #00ffff;
+    margin-bottom: 30px;
+  }
+  
+  .carousel-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    max-height: 500px;
+    object-fit: cover;
+  }
+  
+  .service-description {
+    margin-top: 40px;
+    font-size: 18px;
+    color: #ffffff;
+    line-height: 1.7;
+  }
+  
+  .slick-dots li button:before {
+    color: #007bff !important;
+  }
+  
+  @media (max-width: 768px) {
+    .section-title {
+      font-size: 24px;
+    }
+  
+    .service-description {
+      font-size: 16px;
+    }
+  }
+  

@@ -2,7 +2,7 @@ import React from 'react';
 import Slider from "react-slick"; // npm install react-slick slick-carousel
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import '../../styles/MobileAppDev.css';
+import '../../styles/ServiceLayout.css';
 
 import img1 from '../../assets/mobile1.png';
 import img2 from '../../assets/mobile2.png';
@@ -23,7 +23,7 @@ const MobileAppDev = () => {
   };
 
   return (
-    <div className="mobile-app-dev">
+    <div className="mobile-app-dev service-box">
       <h2 className="section-title">Mobile Application Development</h2>
       <Slider {...settings}>
         {images.map((img, idx) => (
