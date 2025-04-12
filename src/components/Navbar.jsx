@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Container, Nav, Navbar } from 'react-bootstrap';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '../assets/logo.png';
 import '../styles/navbar.css';
 import ServicesDropdown from './Services';
@@ -8,6 +9,7 @@ import IndustriesDropdown from './Industry';
 const CustomNavbar = ({ scrolled, aboutRef }) => {
   const [showServicesPopup, setShowServicesPopup] = useState(false);
   const [showIndustriesPopup, setShowIndustriesPopup] = useState(false);
+  const navigate = useNavigate();
 
   const servicesTimeoutRef = useRef(null);
   const industriesTimeoutRef = useRef(null);
@@ -60,6 +62,12 @@ const CustomNavbar = ({ scrolled, aboutRef }) => {
     }
   };
 
+  const handleHomeClick = (e) => {
+    e.preventDefault();
+    navigate('/');
+    window.scrollTo(0, 0); // Scroll to top of the page
+  };
+
   useEffect(() => {
     return () => {
       clearTimeout(servicesTimeoutRef.current);
@@ -70,14 +78,14 @@ const CustomNavbar = ({ scrolled, aboutRef }) => {
   return (
     <Navbar expand="lg" fixed="top" className={`navbar-custom ${scrolled ? 'scrolled' : ''}`}>
       <Container fluid>
-        <Navbar.Brand href="#home">
+        <Navbar.Brand as={Link} to="/" onClick={handleHomeClick}>
           <img src={logo} alt="TechXplorers Logo" height="40" />
         </Navbar.Brand>
 
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto align-items-center">
-            <Nav.Link href="#home" className="nav-link">Home</Nav.Link>
+            <Nav.Link as={Link} to="/" className="nav-link" onClick={handleHomeClick}>Home</Nav.Link>
 
             {/* Services */}
             <div
@@ -118,9 +126,9 @@ const CustomNavbar = ({ scrolled, aboutRef }) => {
             </div>
 
             <Nav.Link className="nav-link" onClick={scrollToAbout}>About</Nav.Link>
-            <Nav.Link href="#careers" className="nav-link">Careers</Nav.Link>
-            <Nav.Link href="#contact" className="nav-link">Contact</Nav.Link>
-            <Nav.Link href="#event" className="nav-link">Events</Nav.Link>
+            <Nav.Link as={Link} to="/careers" className="nav-link">Careers</Nav.Link>
+            <Nav.Link as={Link} to="/contact" className="nav-link">Contact</Nav.Link>
+            <Nav.Link as={Link} to="/events" className="nav-link">Events</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

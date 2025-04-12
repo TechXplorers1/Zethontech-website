@@ -83,3 +83,7 @@
     padding: 15px;
   }
 }
+.service-card-link {
+  text-decoration: none;
+  color: inherit;
+}

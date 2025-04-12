@@ -1,7 +1,7 @@
-// App.js
 import React, { useEffect, useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './App.css';
-import CustomNavbar from './components/Navbar/';
+import CustomNavbar from './components/Navbar';
 import mobileImg from './assets/mobile_app_dev.png';
 import webImg from './assets/web_app_dev.png';
 import digiImg from './assets/digi_mark.png';
@@ -13,11 +13,16 @@ import About from './components/About';
 function App() {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const contentRef = useRef(null);
-  const aboutRef = useRef(null); // <== ADD THIS
+  const aboutRef = useRef(null);
   const [navbarScrolled, setNavbarScrolled] = useState(false);
+  const navigate = useNavigate();
 
   const scrollToContent = () => {
     contentRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const handleExploreServices = () => {
+    navigate('/services/mobile-app-development');
   };
 
   useEffect(() => {
@@ -42,7 +47,6 @@ function App() {
     <div className="hero-section">
       <div className="hero-overlay"></div>
 
-      {/* Pass the aboutRef to CustomNavbar */}
       <CustomNavbar scrolled={navbarScrolled} aboutRef={aboutRef} />
 
       <div className="main-content">
@@ -56,40 +60,43 @@ function App() {
             <h3 className="tech-innovation">OF TECH & INNOVATION</h3>
             <div className="action-buttons">
               <button className="cta-button talk-button">LET'S TALK</button>
-              <button className="cta-button services-button" onClick={scrollToContent}>EXPLORE SERVICES</button>
+              <button 
+                className="cta-button services-button" 
+                onClick={handleExploreServices}
+              >
+                EXPLORE SERVICES
+              </button>
             </div>
           </div>
         </div>
 
-        {/* About section with ref */}
         <div ref={aboutRef}>
           <About />
         </div>
 
-        {/* Services Section */}
         <div className="content-section" ref={contentRef}>
-        <h2 className="section-title">What we Offer</h2>
+          <h2 className="section-title">What we Offer</h2>
           <div className="card-container">
             <div className="card-row">
-              <div className="info-card">
+              <div className="info-card" onClick={() => navigate('/services/mobile-app-development')}>
                 <img src={mobileImg} alt="Mobile App" className="card-icon" />
                 <h3>Mobile Application Development</h3>
               </div>
-              <div className="info-card">
+              <div className="info-card" onClick={() => navigate('/services/web-app-development')}>
                 <img src={webImg} alt="Web App" className="card-icon" />
                 <h3>Web Application Development</h3>
               </div>
             </div>
             <div className="card-row">
-              <div className="info-card">
+              <div className="info-card" onClick={() => navigate('/services/digital-marketing')}>
                 <img src={digiImg} alt="Digital Marketing" className="card-icon" />
                 <h3>Digital Marketing</h3>
               </div>
-              <div className="info-card">
+              <div className="info-card" onClick={() => navigate('/services/it-talent-supply')}>
                 <img src={ittalentImg} alt="IT Talent" className="card-icon" />
                 <h3>IT Talent Supply</h3>
               </div>
-              <div className="info-card">
+              <div className="info-card" onClick={() => navigate('/services/job-support')}>
                 <img src={jobsupportImg} alt="Consulting" className="card-icon" />
                 <h3>Job Support & IT Consulting</h3>
               </div>
