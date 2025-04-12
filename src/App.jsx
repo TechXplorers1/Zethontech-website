@@ -68,6 +68,7 @@ function App() {
 
         {/* Services Section */}
         <div className="content-section" ref={contentRef}>
+        <h2 className="section-title">What we Offer</h2>
           <div className="card-container">
             <div className="card-row">
               <div className="info-card">
