@@ -4,9 +4,10 @@ import aboutImage from '../assets/about.png'; // replace with your image path
 
 const About = () => {
   return (
-    
+    <div className="about-conatiner">
+    <h2 className="main-about-heading">About Us</h2>
+  
     <div className="about-wrapper" id="about">
-       <h2 className="main-about-heading">About Us</h2>
       <div className="about-image-container">
         <img src={aboutImage} alt="About TechXplorers" />
       </div>
@@ -19,6 +20,7 @@ const About = () => {
           At TechXplorers, We Bring Together A Passionate Team Of Experts, Modern Methodologies, And Industry Best Practices To Address The Unique Challenges Of Every Project. By Aligning The Right Talent With The Right Technology, We Ensure Flawless Execution And Impactful Outcomes. Our Client-First Approach And Dedication To Excellence Help Businesses Achieve Their Goals With Clarity, Confidence, And A Future-Ready Mindset.
         </p>
       </div>
+    </div>
     </div>
   );
 };
