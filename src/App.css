@@ -54,17 +54,6 @@ body, html {
   z-index: 1;
 }
 
-/* .custom-cursor {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 64px;
-  height: 64px;
-  pointer-events: none;
-  z-index: 9999;
-  transform: translate(-50%, -10%);
-  transition: transform 0.1s linear;
-} */
 
 /* ======================== */
 /* ==== Content Styles ==== */
@@ -121,6 +110,7 @@ body, html {
 .info-card h3{ 
   font-size: 20px;
 }
+
 .card-row {
   display: flex;
   justify-content: center;

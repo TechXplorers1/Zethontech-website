@@ -30,7 +30,7 @@ const Footer = () => {
             <ul className="list-unstyled small mt-2">
               <li><a href="#">ABOUT US</a></li>
               <li><a href="#">CAREERS</a></li>
-              <li><a href="#">BLOG</a></li>
+              <li><a href="#">EVENTS</a></li>
             </ul>
           </div>
 

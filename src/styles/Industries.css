@@ -1,0 +1,93 @@
+.industries-dropdown-container {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    width: 100vw;
+    background: rgba(0, 0, 0, 0.95);
+    padding: 30px 0;
+    box-sizing: border-box;
+    z-index: 9997;
+    min-height: fit-content;
+    display: flex;
+    justify-content: center;
+    backdrop-filter: blur(5px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    transform-origin: top center;
+  }
+  
+  .industries-dropdown {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    width: 100%;
+    max-width: 1200px;
+    box-sizing: border-box;
+    padding: 0 20px;
+  }
+  
+  .industry-card {
+    width: 200px;
+    height: 220px;
+    border: 2px solid #00f0ff;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+  }
+  
+  .industry-card span {
+    font-size: 14px;
+    max-width: 100%;
+    white-space: normal;
+    word-wrap: normal;
+    overflow-wrap: normal;
+    line-height: 1.2;
+  }
+  
+  
+  .industry-card:hover {
+    transform: scale(1.05);
+    background-color: rgba(0, 240, 255, 0.1);
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+  }
+  
+  .industry-card img {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 15px;
+  }
+  
+  .industries-dropdown-container:hover {
+    opacity: 1 !important;
+  }
+ 
+  
+
+  
+  @media (max-width: 1020px) {
+    .industries-dropdown {
+      justify-content: center;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .industries-dropdown-container {
+      top: 70px;
+      padding: 20px 10px;
+    }
+  
+    .industry-card {
+      width: 140px;
+      height: 180px;
+      padding: 15px;
+    }
+  }
+  
