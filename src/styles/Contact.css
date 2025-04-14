@@ -1,8 +1,21 @@
 .contact-section {
     padding: 50px 50px;
-    background-color: #1a1a1a;
+    background-image: url('../assets/loop.gif');
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
     color: #00ffff;
     font-family:'Segoe UI', sans-serif;
+  }
+  .contact-section::before{
+    content: "";
+    /* position: absolute; */
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
   }
   
   .contact-heading {
