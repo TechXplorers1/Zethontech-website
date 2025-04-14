@@ -7,11 +7,13 @@ import DigitalMarketing from '../pages/services/DigitalMarketing';
 import ITTalentSupply from '../pages/services/ITTalentSupply';
 import JobSupport from '../pages/services/JobSupport';
 import ServiceLayout from '../components/ServiceLayout';
+import Contact from '../components/Contact';
 
 const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="/Contact" element={<Contact />} />
       <Route element={<ServiceLayout />}>
         <Route path="/services/mobile-app-development" element={<MobileAppDev />} />
         <Route path="/services/web-app-development" element={<WebAppDev />} />
