@@ -1,5 +1,8 @@
 import React from 'react';
-import '../styles/contact.css';
+import '../styles/Contact.css';
+import ContactImg from '../assets/Contact.png';
+import MailImg from '../assets/Mail.png';
+import LocationImg from '../assets/Location.png';
 
 const Contact = () => {
   return (
@@ -8,16 +11,16 @@ const Contact = () => {
 
       <div className="contact-info-cards">
         <div className="info-card">
-          <i className="fas fa-headset"></i>
+          <img src={ContactImg} alt="Contact Icon" className="info-icon" />
           <p>+91 9052990765</p>
         </div>
         <div className="info-card">
-          <i className="fas fa-envelope"></i>
-          <p>Need to update</p>
+          <img src={MailImg} alt="Mail Icon" className="info-icon" />
+          <p>naresh.pn@techxplorers.in</p>
         </div>
         <div className="info-card">
-          <i className="fas fa-map-marker-alt"></i>
-          <p>Maruthi Nagar 3rd Cross<br />Near Panda Mini Mart, Anantapur, 515001</p>
+          <img src={LocationImg} alt="Location Icon" className="info-icon" />
+          <p>Maruthi Nagar 3rd Cross ,<br />Near Panda Mini Mart, Anantapur, 515001</p>
         </div>
       </div>
 
