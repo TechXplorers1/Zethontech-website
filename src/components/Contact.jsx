@@ -3,9 +3,13 @@ import '../styles/Contact.css';
 import ContactImg from '../assets/Contact.png';
 import MailImg from '../assets/Mail.png';
 import LocationImg from '../assets/Location.png';
+import Footer from './Footer';
+import CustomNavbar from './Navbar'
 
 const Contact = () => {
   return (
+    <div>
+       <CustomNavbar/>
     <div className="contact-section" id="contact">
       <h2 className="contact-heading">TECHXPLORERS NAVIGATING THE FUTURE OF INNOVATION</h2>
 
@@ -46,6 +50,8 @@ const Contact = () => {
           </form>
         </div>
       </div>
+    </div>
+    <Footer/>
     </div>
   );
 };
