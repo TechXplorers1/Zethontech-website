@@ -26,7 +26,7 @@
   .service-content-wrapper {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 2rem;
+    padding: 1rem;
   }
   
   .service-back-button {
@@ -67,7 +67,7 @@
 /* service content css */
 .service-box {
     max-width: 900px;
-    margin: 100px auto 60px auto;
+    margin: 10px auto 60px auto;
     padding: 0 20px;
     text-align: center;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -96,9 +96,9 @@
     line-height: 1.7;
   }
   
-  .slick-dots li button:before {
+  /* .slick-dots li button:before {
     color: #007bff !important;
-  }
+  } */
   
   @media (max-width: 768px) {
     .section-title {
@@ -109,4 +109,22 @@
       font-size: 16px;
     }
   }
+
+
+  /* Single Image Styles */
+.single-image-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  /* padding: 0; */
+}
+
+.service-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
   

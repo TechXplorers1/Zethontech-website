@@ -1,40 +1,66 @@
 import React from 'react';
-import Slider from "react-slick";
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
 import '../../styles/ServiceLayout.css';
-
-import img1 from '../../assets/mobile1.png';
-import img2 from '../../assets/mobile2.png';
-import img3 from '../../assets/mobile3.png';
-import img4 from '../../assets/mobile4.png';
+import img1 from '../../assets/mobile3.png';
 
 const DigitalMarketing = () => {
-  const images = [img1, img2, img3, img4];
-
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 600,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 2500,
-  };
-
   return (
-    <div className="digital-marketing service-box">
+    <div className="mobile-app-dev service-box">
       <h2 className="section-title">Digital Marketing</h2>
-      <Slider {...settings}>
-        {images.map((img, idx) => (
-          <div key={idx}>
-            <img src={img} alt={`DM Slide ${idx + 1}`} className="carousel-image" />
-          </div>
-        ))}
-      </Slider>
+      
+      {/* Single image display */}
+      <div className="single-image-container">
+        <img src={img1} alt="Digital Marketing" className="service-image" />
+      </div>
+
       <div className="service-description">
-        <p>Boost your brand visibility and ROI with our data-driven digital marketing strategies.</p>
-        <p>From SEO and content marketing to social media and paid ads, we’ve got you covered.</p>
+        <h1>Our Digital Marketing Services</h1>
+        <p>
+          We provide a full suite of digital marketing services tailored to help businesses establish a strong online presence and achieve their marketing objectives.
+        </p>
+        
+        <h2>Key Digital Marketing Solutions</h2>
+        <ul>
+          <li>Search Engine Optimization (SEO) – Improve your website's ranking on search engines to drive organic traffic.</li>
+          <li>Pay-Per-Click Advertising (PPC) – Maximize ROI with targeted ad campaigns on Google, Bing, and social media platforms.</li>
+          <li>Social Media Marketing (SMM) – Build brand awareness and customer engagement through strategic social media campaigns.</li>
+          <li>Content Marketing – Develop high-quality content to attract, inform, and convert potential customers.</li>
+          <li>Email Marketing – Drive customer retention and engagement with personalized email campaigns.</li>
+          <li>Conversion Rate Optimization (CRO) – Optimize your website to improve user experience and boost conversions.</li>
+          <li>Influencer & Affiliate Marketing – Leverage industry influencers and partners to expand your reach and credibility.</li>
+          <li>Online Reputation Management (ORM) – Monitor and manage your brand's online presence to maintain a positive reputation.</li>
+        </ul>
+        
+        <h2>Industries We Serve</h2>
+        <p>We provide customized digital marketing strategies for businesses across multiple industries:</p>
+        <ul>
+          <li>E-Commerce & Retail</li>
+          <li>Healthcare & Pharmaceuticals</li>
+          <li>Finance & Banking</li>
+          <li>Real Estate & Construction</li>
+          <li>Education & Training</li>
+          <li>Technology & SaaS</li>
+          <li>Hospitality & Travel</li>
+          <li>Automotive & Manufacturing</li>
+        </ul>
+        
+        <h2>Our Digital Marketing Process</h2>
+        <p>We follow a strategic and data-driven approach to deliver impactful digital marketing campaigns:</p>
+        <ul>
+          <li>Market Research & Analysis – Understanding your industry, competitors, and target audience.</li>
+          <li>Strategy Development – Crafting a customized digital marketing plan based on business goals.</li>
+          <li>Implementation & Execution – Launching marketing campaigns using industry best practices.</li>
+          <li>Monitoring & Optimization – Analyzing performance and making data-backed improvements.</li>
+          <li>Reporting & Insights – Providing detailed reports and insights for continuous growth.</li>
+        </ul>
+        
+        <h2>Why Choose TechXplorers for Digital Marketing?</h2>
+        <ul>
+          <li>Expertise & Experience – A team of seasoned digital marketers with proven success in multiple industries.</li>
+          <li>Custom Strategies – Tailored marketing solutions to align with your business goals and target audience.</li>
+          <li>Data-Driven Approach – Leveraging analytics and insights to maximize campaign effectiveness.</li>
+          <li>Multi-Channel Marketing – Integrated strategies across search, social media, content, and more.</li>
+          <li>Transparent Reporting – Regular performance reports to track progress and optimize results.</li>
+        </ul>
       </div>
     </div>
   );

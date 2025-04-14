@@ -1,41 +1,63 @@
 import React from 'react';
-import Slider from "react-slick"; // npm install react-slick slick-carousel
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+
 import '../../styles/ServiceLayout.css';
 
 import img1 from '../../assets/mobile1.png';
-import img2 from '../../assets/mobile2.png';
-import img3 from '../../assets/mobile3.png';
-import img4 from '../../assets/mobile4.png';
+
 
 const MobileAppDev = () => {
-  const images = [img1, img2, img3, img4];
-
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 3000,
-  };
-
   return (
     <div className="mobile-app-dev service-box">
       <h2 className="section-title">Mobile Application Development</h2>
-      <Slider {...settings}>
-        {images.map((img, idx) => (
-          <div key={idx}>
-            <img src={img} alt={`Slide ${idx + 1}`} className="carousel-image" />
-          </div>
-        ))}
-      </Slider>
+      
+       {/* Single image display instead of carousel */}
+       <div className="single-image-container">
+        <img src={img1} alt="Mobile Application Development" className="service-image" />
+      </div>
 
       <div className="service-description">
-        <p>We specialize in creating beautiful and user-friendly mobile apps for iOS and Android platforms.</p>
-        <p>Our team ensures your app not only looks amazing but also functions smoothly and scales seamlessly.</p>
+      <h1>Mobile Application Development Services: Android & IOS</h1>
+				<p id="firstpara">  
+					TechXplorers Pvt Ltd offers expert Android and iOS app development services, ensuring seamless, user-centric experiences across both platforms. Whether you need custom Android apps or innovative iOS solutions, our skilled developers are here to bring your ideas to life with unmatched quality and performance.
+
+					<h1>Android App Development</h1>
+					Android, developed by Google, powers a wide variety of smartphones. TechXplorers Pvt Ltd provides expert Android app development services, creating high-quality, custom apps tailored to your business needs.
+
+					<h1>Android App Development Services:</h1> 
+					Bluetooth Low Energy (BLE) Powered Devices
+					Music and Video Apps
+					Health and Fitness Apps
+					Security Apps
+					Location-based Apps
+					GPS Tracking & Dispatch Apps
+					Social Media Apps
+					Custom Android App Development
+					iOS App Development
+					Apple's iOS platform is known for its seamless hardware-software integration, setting high benchmarks for mobile operating systems. TechXplorers Pvt Ltd specializes in custom iPhone app development for iOS 15/iOS 16, delivering end-to-end solutions.
+
+					<h1>IOS App Development Services:</h1>
+					Bluetooth Low Energy (BLE) Powered Devices
+					Music and Video Apps
+					Health and Fitness Apps
+					Security Apps
+					Location-based Apps
+					GPS Tracking & Dispatch Apps
+					Social Media Apps
+					Custom iOS App Development
+					Our Team: Android & iOS Development Experts
+					At TechXplorers Pvt Ltd, we believe teamwork is the foundation of every great product. Our young, energetic, and skilled team is proficient in the latest technologies, creating apps that meet user preferences and business needs. Whether for Android or iOS, we prioritize intuitive design, functionality, and performance.
+
+					<h1>Why Choose TechXplorers Pvt Ltd?</h1>
+					Expert Developers: Talented professionals skilled in both Android and iOS app development.
+					Tailored Solutions: Custom-built apps to fit your business and user needs.
+					Cutting-Edge Technologies: Leveraging the latest tools for scalable, secure, and future-proof apps.
+					User-Centric Design: Focus on seamless user experience and beautiful, functional designs.
+					Quality Assurance: Rigorous testing to ensure flawless app performance.
+					Confidentiality: Full protection of your business idea with NDAs.
+					Contact Us for Custom Android & iOS App Development
+					TechXplorers Pvt Ltd is your trusted partner for all mobile app development needs. Whether for Android or iOS, we’re here to help transform your idea into a high-performance app. Contact us today to start your project!
+				</p>
+
       </div>
     </div>
   );

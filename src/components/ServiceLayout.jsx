@@ -13,12 +13,12 @@ const ServiceLayout = () => {
       
       <main className="service-main">
         <div className="service-content-wrapper">
-          <button 
+          {/* <button 
             onClick={() => navigate(-1)}
             className="service-back-button"
           >
             ← Back
-          </button>
+          </button> */}
           <div className="service-content">
             <Outlet />
           </div>

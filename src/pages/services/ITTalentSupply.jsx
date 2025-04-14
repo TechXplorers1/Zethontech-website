@@ -1,40 +1,39 @@
 import React from 'react';
-import Slider from "react-slick";
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
 import '../../styles/ServiceLayout.css';
-
-import img1 from '../../assets/mobile1.png';
-import img2 from '../../assets/mobile2.png';
-import img3 from '../../assets/mobile3.png';
-import img4 from '../../assets/mobile4.png';
+import img1 from '../../assets/mobile4.png';
 
 const ITTalentSupply = () => {
-  const images = [img1, img2, img3, img4];
-
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 600,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 3000,
-  };
-
   return (
-    <div className="it-talent-supply service-box">
+    <div className="mobile-app-dev service-box">
       <h2 className="section-title">IT Talent Supply</h2>
-      <Slider {...settings}>
-        {images.map((img, idx) => (
-          <div key={idx}>
-            <img src={img} alt={`Talent Slide ${idx + 1}`} className="carousel-image" />
-          </div>
-        ))}
-      </Slider>
+      
+      {/* Single image display */}
+      <div className="single-image-container">
+        <img src={img1} alt="IT Talent Supply" className="service-image" />
+      </div>
+
       <div className="service-description">
-        <p>Get access to top-tier tech talent tailored to your project and organizational needs.</p>
-        <p>We offer vetted, skilled, and dependable professionals for short-term or long-term roles.</p>
+        <h1>IT Talent Supply – TechXplorers Private Limited</h1>
+        <p>
+          At TechXplorers Private Limited, we specialize in IT talent supply solutions, helping businesses find the right tech professionals to drive innovation and success. Whether you need contract-based, full-time, or project-based IT talent, we provide skilled professionals tailored to your business needs.
+        </p>
+        
+        <h2>Our IT Talent Supply Services</h2>
+        <p>
+          We connect companies with highly skilled IT professionals across various technologies and domains, ensuring you have the right talent to meet your project and business demands.
+        </p>
+        
+        <h2>Key IT Talent Solutions</h2>
+        <ul>
+          <li><strong>Permanent Staffing</strong> – Hire top IT professionals for long-term roles across various industries.</li>
+          <li><strong>Contract Staffing</strong> – Flexible hiring options for short-term and project-based requirements.</li>
+          <li><strong>Remote IT Talent</strong> – Access a global pool of remote IT experts to work on your projects.</li>
+          <li><strong>Executive Search</strong> – Find highly skilled and experienced IT leaders for critical roles.</li>
+          <li><strong>Project-Based IT Staffing</strong> – Deploy the right talent for specific IT projects, ensuring success.</li>
+          <li><strong>On-Demand IT Experts</strong> – Quickly hire professionals to address urgent skill gaps.</li>
+        </ul>
+        
+    
       </div>
     </div>
   );

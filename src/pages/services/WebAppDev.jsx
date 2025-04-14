@@ -1,40 +1,45 @@
 import React from 'react';
-import Slider from "react-slick";
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
 import '../../styles/ServiceLayout.css';
-
-import img1 from '../../assets/mobile1.png';
-import img2 from '../../assets/mobile2.png';
-import img3 from '../../assets/mobile3.png';
-import img4 from '../../assets/mobile4.png';
+import img1 from '../../assets/mobile2.png';
 
 const WebAppDev = () => {
-  const images = [img1, img2, img3, img4];
-
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 3000,
-  };
-
   return (
-    <div className="web-app-dev service-box">
+    <div className="mobile-app-dev service-box">
       <h2 className="section-title">Web Application Development</h2>
-      <Slider {...settings}>
-        {images.map((img, idx) => (
-          <div key={idx}>
-            <img src={img} alt={`Web Slide ${idx + 1}`} className="carousel-image" />
-          </div>
-        ))}
-      </Slider>
+      
+      {/* Single image display */}
+      <div className="single-image-container">
+        <img src={img1} alt="Web Application Development" className="service-image" />
+      </div>
+
       <div className="service-description">
-        <p>We build scalable and modern web applications tailored to your business goals.</p>
-        <p>Our solutions are secure, responsive, and performance-optimized across all devices.</p>
+        <h1>Web Application Development – TechXplorers Private Limited</h1>
+        <p>
+          At TechXplorers Private Limited, we design and develop scalable, secure, and high-performance web applications that empower businesses across industries. Whether you need a robust enterprise solution, SaaS product, e-commerce platform, or a custom web portal, our team delivers cutting-edge web applications that drive engagement, efficiency, and revenue growth.
+        </p>
+        
+        <h2>Our Web Application Development Services</h2>
+        <p>
+          We offer end-to-end web application development solutions, ensuring your web platform is responsive, secure, and aligned with your business objectives.
+        </p>
+        
+        <h2>Custom Web App Development</h2>
+        <ul>
+          <li>We create web applications that align with your business needs, industry standards, and customer expectations.</li>
+          <li>Modern Tech Stack – We utilize React.js, Angular, Vue.js, Node.js, Python, Laravel, and PHP for scalable and efficient development.</li>
+          <li>Full-Stack Development – From front-end design to back-end architecture, we deliver complete web solutions.</li>
+          <li>Fast & Responsive – Optimized performance for quick loading times.</li>
+        </ul>
+        
+        <h2>Web Application Development Process</h2>
+        <p>We follow an agile and result-driven development process, ensuring quality, scalability, and performance.</p>
+        <ul>
+          <li>Requirement Analysis & Planning – Understanding your business goals and project requirements.</li>
+          <li>UI/UX Design & Prototyping – Crafting intuitive and engaging interfaces for a seamless user experience.</li>
+          <li>Development & Testing – Coding, integration, and rigorous testing to ensure flawless functionality.</li>
+          <li>Deployment & Launch – Ensuring a smooth launch with cloud hosting, domain setup, and database configurations.</li>
+          <li>Ongoing Maintenance & Upgrades – Continuous monitoring, bug fixes, security updates, and feature enhancements.</li>
+        </ul>
       </div>
     </div>
   );
