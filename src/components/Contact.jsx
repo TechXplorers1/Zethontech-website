@@ -10,6 +10,7 @@ const Contact = () => {
   return (
     <div>
        <CustomNavbar/>
+       <br />
     <div className="contact-section" id="contact">
       <h2 className="contact-heading">TECHXPLORERS NAVIGATING THE FUTURE OF INNOVATION</h2>
 
