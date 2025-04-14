@@ -1,23 +1,31 @@
 import React from 'react';
-import '../styles/contact.css';
+import '../styles/Contact.css';
+import ContactImg from '../assets/Contact.png';
+import MailImg from '../assets/Mail.png';
+import LocationImg from '../assets/Location.png';
+import Footer from './Footer';
+import CustomNavbar from './Navbar'
 
 const Contact = () => {
   return (
+    <div>
+       <CustomNavbar/>
+       <br />
     <div className="contact-section" id="contact">
       <h2 className="contact-heading">TECHXPLORERS NAVIGATING THE FUTURE OF INNOVATION</h2>
 
       <div className="contact-info-cards">
         <div className="info-card">
-          <i className="fas fa-headset"></i>
+          <img src={ContactImg} alt="Contact Icon" className="info-icon" />
           <p>+91 9052990765</p>
         </div>
         <div className="info-card">
-          <i className="fas fa-envelope"></i>
-          <p>Need to update</p>
+          <img src={MailImg} alt="Mail Icon" className="info-icon" />
+          <p>naresh.pn@techxplorers.in</p>
         </div>
         <div className="info-card">
-          <i className="fas fa-map-marker-alt"></i>
-          <p>Maruthi Nagar 3rd Cross<br />Near Panda Mini Mart, Anantapur, 515001</p>
+          <img src={LocationImg} alt="Location Icon" className="info-icon" />
+          <p>Maruthi Nagar 3rd Cross ,<br />Near Panda Mini Mart, Anantapur, 515001</p>
         </div>
       </div>
 
@@ -43,6 +51,8 @@ const Contact = () => {
           </form>
         </div>
       </div>
+    </div>
+    <Footer/>
     </div>
   );
 };

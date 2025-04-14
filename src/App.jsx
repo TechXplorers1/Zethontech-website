@@ -59,9 +59,10 @@ function App() {
             <h2 className="future-heading">EXPLORING THE FUTURE</h2>
             <h3 className="tech-innovation">OF TECH & INNOVATION</h3>
             <div className="action-buttons">
-              <button className="cta-button talk-button">LET'S TALK</button>
-              <button className="cta-button services-button" onClick={scrollToContent}>EXPLORE SERVICES</button>
+            <button className="cta-button talk-button" onClick={() => navigate('/contact')}> LET'S TALK </button>
+            <button className="cta-button services-button" onClick={scrollToContent}> EXPLORE SERVICES </button>
             </div>
+
           </div>
         </div>
 

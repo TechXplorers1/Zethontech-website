@@ -1,8 +1,8 @@
 .contact-section {
-    padding: 50px 20px;
+    padding: 50px 50px;
     background-color: #1a1a1a;
     color: #00ffff;
-    font-family: 'Orbitron', sans-serif;
+    font-family:'Segoe UI', sans-serif;
   }
   
   .contact-heading {
@@ -32,7 +32,7 @@
   }
   
   .info-card i {
-    font-size: 24px;
+    font-size: 20px;
     margin-bottom: 10px;
     display: block;
     color: #00ffff;
@@ -47,7 +47,7 @@
   
   .map-container iframe {
     width: 400px;
-    height: 300px;
+    height: 510px;
     border: none;
     border-radius: 12px;
     box-shadow: 0 0 12px #00ffff55;

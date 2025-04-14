@@ -1,5 +1,6 @@
-// src/components/Industries.jsx
+// src/components/IndustriesDropdown.jsx
 import React from 'react';
+import { Link } from 'react-router-dom';
 import bfsiIcon from '../assets/bfsi.png';
 import constructionIcon from '../assets/construction.png';
 import educationIcon from '../assets/education.png';
@@ -12,26 +13,32 @@ import telecomIcon from '../assets/tele_communication.png';
 import '../styles/Industries.css';
 
 const industries = [
-  { title: "BFSI", icon: bfsiIcon },
-  { title: "CONSTRUCTION", icon: constructionIcon },
-  { title: "EDUCATION", icon: educationIcon },
-  { title: "GOVERNMENT", icon: governmentIcon },
-  { title: "HEALTHCARE", icon: healthcareIcon },
-  { title: "MANUFACTURING", icon: manufacturingIcon },
-  { title: "OIL & GAS", icon: oilgasIcon },
-  { title: "RETAIL", icon: retailIcon },
-  { title: "TELE\nCOMMUNICATION", icon: telecomIcon },
+  { title: "BFSI", icon: bfsiIcon, route: "bfsi" },
+  { title: "Construction", icon: constructionIcon, route: "construction" },
+  { title: "Education", icon: educationIcon, route: "education" },
+  { title: "Government", icon: governmentIcon, route: "government" },
+  { title: "Healthcare", icon: healthcareIcon, route: "healthcare" },
+  { title: "Manufacturing", icon: manufacturingIcon, route: "manufacturing" },
+  { title: "Oil & Gas", icon: oilgasIcon, route: "oil-gas" },
+  { title: "Retail", icon: retailIcon, route: "retail" },
+  { title: "Tele\ncommunication", icon: telecomIcon, route: "telecommunication" },
 ];
 
 const IndustriesDropdown = () => {
   return (
-    <div className="industries-dropdown">
-      {industries.map((industry, index) => (
-        <div className="industry-card" key={index}>
-          <img src={industry.icon} alt={industry.title} />
-          <span>{industry.title}</span>
-        </div>
-      ))}
+    <div className="industries-dropdown-container">
+      <div className="industries-dropdown">
+        {industries.map((industry, index) => (
+          <Link
+            to={`/industries/${industry.route}`}
+            key={index}
+            className="industry-card"
+          >
+            <img src={industry.icon} alt={industry.title} />
+            <span>{industry.title}</span>
+          </Link>
+        ))}
+      </div>
     </div>
   );
 };
