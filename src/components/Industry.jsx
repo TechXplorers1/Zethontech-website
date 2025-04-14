@@ -21,7 +21,7 @@ const industries = [
   { title: "Manufacturing", icon: manufacturingIcon, route: "manufacturing" },
   { title: "Oil & Gas", icon: oilgasIcon, route: "oil-gas" },
   { title: "Retail", icon: retailIcon, route: "retail" },
-  { title: "Telecommunication", icon: telecomIcon, route: "telecommunication" },
+  { title: "Tele\ncommunication", icon: telecomIcon, route: "telecommunication" },
 ];
 
 const IndustriesDropdown = () => {
