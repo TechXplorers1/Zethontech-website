@@ -1,28 +1,33 @@
 .service-layout {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    background-image: url('../assets/loop.gif');
-    background-attachment: fixed;
-    background-size: cover;
-    background-position: center;
-  }
-  .service-layout::before{
-    content: "";
-    /* position: absolute; */
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 1;
-  }
-  
-  .service-main {
-    flex: 1;
-    padding-top: 80px;
-  }
-  
+  position: relative; /* Needed for the ::before overlay to position correctly */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-image: url('../assets/loop.gif');
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+
+.service-layout::before {
+  content: "";
+  position: absolute; /* Required to make overlay fill the parent */
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Adjust opacity for more/less darkening */
+  z-index: 0; /* Ensure it sits below content */
+}
+
+.service-main {
+  flex: 1;
+  padding-top: 80px;
+  position: relative;
+  z-index: 1; /* Makes content appear above the dark overlay */
+}
+
   .service-content-wrapper {
     max-width: 1200px;
     margin: 0 auto;
