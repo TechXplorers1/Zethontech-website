@@ -128,7 +128,7 @@ const CustomNavbar = ({ scrolled, aboutRef }) => {
             <Nav.Link className="nav-link" onClick={scrollToAbout}>About</Nav.Link>
             <Nav.Link as={Link} to="/careers" className="nav-link">Careers</Nav.Link>
             <Nav.Link as={Link} to="/contact" className="nav-link">Contact</Nav.Link>
-            <Nav.Link as={Link} to="/events" className="nav-link">Events</Nav.Link>
+            {/* <Nav.Link as={Link} to="/events" className="nav-link">Events</Nav.Link> */}
           </Nav>
         </Navbar.Collapse>
       </Container>
