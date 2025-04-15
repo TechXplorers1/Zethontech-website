@@ -3,8 +3,9 @@ import '../styles/Contact.css';
 import ContactImg from '../assets/Contact.png';
 import MailImg from '../assets/Mail.png';
 import LocationImg from '../assets/Location.png';
-import Footer from './Footer';
-import CustomNavbar from './Navbar'
+import CustomNavbar from './Navbar';
+import Footer from './Footer'
+
 
 const Contact = () => {
   return (

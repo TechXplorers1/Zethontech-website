@@ -125,7 +125,28 @@ const CustomNavbar = ({ scrolled, aboutRef }) => {
               )}
             </div>
 
-            <Nav.Link className="nav-link" onClick={scrollToAbout}>About</Nav.Link>
+            <Nav.Link
+              className="nav-link"
+              onClick={(e) => {
+                e.preventDefault();
+                if (window.location.pathname === '/') {
+                  if (aboutRef?.current) {
+                    aboutRef.current.scrollIntoView({ behavior: 'smooth' });
+                  }
+                } else {
+                  navigate('/');
+                  setTimeout(() => {
+                    if (aboutRef?.current) {
+                      aboutRef.current.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }, 100); // Optional: adjust delay if needed
+                }
+              }}
+            >
+              About
+            </Nav.Link>
+
+
             {/* <Nav.Link as={Link} to="/careers" className="nav-link">Careers</Nav.Link> */}
             <Nav.Link as={Link} to="/contact" className="nav-link">Contact</Nav.Link>
             {/* <Nav.Link as={Link} to="/events" className="nav-link">Events</Nav.Link> */}
