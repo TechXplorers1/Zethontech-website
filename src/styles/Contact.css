@@ -1,23 +1,34 @@
 .contact-section {
-    padding: 50px 50px;
-    background-image: url('../assets/loop.gif');
-    background-attachment: fixed;
-    background-size: cover;
-    background-position: center;
-    color: #00ffff;
-    font-family:'Segoe UI', sans-serif;
-  }
-  .contact-section::before{
-    content: "";
-    /* position: absolute; */
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 1;
-  }
-  
+  position: relative; /* Needed for positioning the pseudo-element */
+  padding: 50px 50px;
+  background-image: url('../assets/loop.gif');
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  color: #00ffff;
+  font-family: 'Segoe UI', sans-serif;
+  z-index: 0;
+  overflow: hidden; /* Ensures the mask stays within bounds */
+}
+
+.contact-section::before {
+  content: "";
+  position: absolute; /* Overlay on top of background */
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Mask effect */
+  z-index: 1;
+  pointer-events: none; /* Ensures clicks go through */
+}
+
+/* This ensures that all content appears above the mask */
+.contact-section > * {
+  position: relative;
+  z-index: 2;
+}
+
   .contact-heading {
     text-align: center;
     font-size: 28px;
