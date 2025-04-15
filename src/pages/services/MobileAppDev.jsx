@@ -6,24 +6,24 @@ import img1 from '../../assets/mobile1.png';
 
 
 const MobileAppDev = () => {
-  return (
-    <div className="mobile-app-dev service-box">
-      <h2 className="section-title">Mobile Application Development</h2>
-      
-       {/* Single image display instead of carousel */}
-       <div className="single-image-container">
-        <img src={img1} alt="Mobile Application Development" className="service-image" />
-      </div>
+	return (
+		<div className="mobile-app-dev service-box">
+			<h2 className="section-title">Mobile Application Development</h2>
 
-      <div className="service-description">
-      <h1>Mobile Application Development Services: Android & IOS</h1>
-				<p id="firstpara">  
+			{/* Single image display instead of carousel */}
+			<div className="single-image-container">
+				<img src={img1} alt="Mobile Application Development" className="service-image" />
+			</div>
+
+			<div className="service-description">
+				<h1>Mobile Application Development Services: Android & IOS</h1>
+				<p id="firstpara">
 					TechXplorers Pvt Ltd offers expert Android and iOS app development services, ensuring seamless, user-centric experiences across both platforms. Whether you need custom Android apps or innovative iOS solutions, our skilled developers are here to bring your ideas to life with unmatched quality and performance.
 
 					<h1>Android App Development</h1>
 					Android, developed by Google, powers a wide variety of smartphones. TechXplorers Pvt Ltd provides expert Android app development services, creating high-quality, custom apps tailored to your business needs.
 
-					<h1>Android App Development Services:</h1> 
+					<h1>Android App Development Services:</h1>
 					Bluetooth Low Energy (BLE) Powered Devices
 					Music and Video Apps
 					Health and Fitness Apps
@@ -57,10 +57,13 @@ const MobileAppDev = () => {
 					Contact Us for Custom Android & iOS App Development
 					TechXplorers Pvt Ltd is your trusted partner for all mobile app development needs. Whether for Android or iOS, we’re here to help transform your idea into a high-performance app. Contact us today to start your project!
 				</p>
-
-      </div>
-    </div>
-  );
+				<div class="contact-container">
+					<h2 class="headline">Want to know more or work with us?</h2>
+					<a href="#" class="contact-button">Contact Us</a>
+				</div>
+			</div>
+		</div>
+	);
 };
 
 export default MobileAppDev;

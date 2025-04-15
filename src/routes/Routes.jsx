@@ -6,6 +6,7 @@ import WebAppDev from '../pages/services/WebAppDev';
 import DigitalMarketing from '../pages/services/DigitalMarketing';
 import ITTalentSupply from '../pages/services/ITTalentSupply';
 import JobSupport from '../pages/services/JobSupport';
+import ContactForm from '../pages/services/JobSupportContactForm';
 import ServiceLayout from '../components/ServiceLayout';
 import Contact from '../components/Contact';
 import BFSI from '../pages/industries/BFSI';
@@ -40,6 +41,7 @@ const AppRoutes = () => {
         <Route path="/services/digital-marketing" element={<DigitalMarketing />} />
         <Route path="/services/it-talent-supply" element={<ITTalentSupply />} />
         <Route path="/services/job-support" element={<JobSupport />} />
+        <Route path="/services/job-contact-support" element={<ContactForm />} />
       </Route>
     </Routes>
   );

@@ -126,5 +126,44 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.contact-container {
+  margin-top: 90px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family:Orbitron;
+}
+
+.headline {
+  color: #00f0ff; /* Cyan color */
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.contact-button {
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  color: #fff;
+  background-color: transparent;
+  border: 2px solid #fff;
+  border-radius: 5px;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.contact-button:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+/* Optional: Add a subtle glow effect */
+.headline, .contact-button {
+  text-shadow: 0 0 10px rgba(0, 240, 255, 0.7);
+}
+
 
   

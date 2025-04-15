@@ -6,7 +6,7 @@ const WebAppDev = () => {
   return (
     <div className="mobile-app-dev service-box">
       <h2 className="section-title">Web Application Development</h2>
-      
+
       {/* Single image display */}
       <div className="single-image-container">
         <img src={img1} alt="Web Application Development" className="service-image" />
@@ -17,12 +17,12 @@ const WebAppDev = () => {
         <p>
           At TechXplorers Private Limited, we design and develop scalable, secure, and high-performance web applications that empower businesses across industries. Whether you need a robust enterprise solution, SaaS product, e-commerce platform, or a custom web portal, our team delivers cutting-edge web applications that drive engagement, efficiency, and revenue growth.
         </p>
-        
+
         <h2>Our Web Application Development Services</h2>
         <p>
           We offer end-to-end web application development solutions, ensuring your web platform is responsive, secure, and aligned with your business objectives.
         </p>
-        
+
         <h2>Custom Web App Development</h2>
         <ul>
           <li>We create web applications that align with your business needs, industry standards, and customer expectations.</li>
@@ -30,7 +30,7 @@ const WebAppDev = () => {
           <li>Full-Stack Development – From front-end design to back-end architecture, we deliver complete web solutions.</li>
           <li>Fast & Responsive – Optimized performance for quick loading times.</li>
         </ul>
-        
+
         <h2>Web Application Development Process</h2>
         <p>We follow an agile and result-driven development process, ensuring quality, scalability, and performance.</p>
         <ul>
@@ -40,6 +40,10 @@ const WebAppDev = () => {
           <li>Deployment & Launch – Ensuring a smooth launch with cloud hosting, domain setup, and database configurations.</li>
           <li>Ongoing Maintenance & Upgrades – Continuous monitoring, bug fixes, security updates, and feature enhancements.</li>
         </ul>
+        <div class="contact-container">
+          <h2 class="headline">Want to know more or work with us?</h2>
+          <a href="#" class="contact-button">Contact Us</a>
+        </div>
       </div>
     </div>
   );

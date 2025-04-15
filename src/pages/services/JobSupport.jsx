@@ -1,8 +1,11 @@
 import React from 'react';
 import '../../styles/ServiceLayout.css';
 import img1 from '../../assets/mobile5.png';
+import { useNavigate } from 'react-router-dom';
 
-const ITTalentSupply = () => {
+
+const JobSupport = () => {
+  const navigate = useNavigate(); // Initialize useNavigate
   return (
     <div className="mobile-app-dev service-box">
       <h2 className="section-title">IT Consulting & Job Support</h2>
@@ -58,9 +61,13 @@ const ITTalentSupply = () => {
           <li><strong>Performance Enhancement</strong> – Optimizing workflows, automation, and cloud integration.</li>
           <li><strong>Continuous Support & Monitoring</strong> – Ongoing assistance to ensure long-term success.</li>
         </ul>
+        <div class="contact-container">
+          <h2 class="headline">Want to Share Your Details</h2>
+          <div class="contact-button" onClick={() => navigate('/services/job-contact-support')}>Apply Now</div>
+        </div>
       </div>
     </div>
   );
 };
 
-export default ITTalentSupply;
+export default JobSupport;

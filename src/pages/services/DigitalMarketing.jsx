@@ -6,7 +6,7 @@ const DigitalMarketing = () => {
   return (
     <div className="mobile-app-dev service-box">
       <h2 className="section-title">Digital Marketing</h2>
-      
+
       {/* Single image display */}
       <div className="single-image-container">
         <img src={img1} alt="Digital Marketing" className="service-image" />
@@ -17,7 +17,7 @@ const DigitalMarketing = () => {
         <p>
           We provide a full suite of digital marketing services tailored to help businesses establish a strong online presence and achieve their marketing objectives.
         </p>
-        
+
         <h2>Key Digital Marketing Solutions</h2>
         <ul>
           <li>Search Engine Optimization (SEO) – Improve your website's ranking on search engines to drive organic traffic.</li>
@@ -29,7 +29,7 @@ const DigitalMarketing = () => {
           <li>Influencer & Affiliate Marketing – Leverage industry influencers and partners to expand your reach and credibility.</li>
           <li>Online Reputation Management (ORM) – Monitor and manage your brand's online presence to maintain a positive reputation.</li>
         </ul>
-        
+
         <h2>Industries We Serve</h2>
         <p>We provide customized digital marketing strategies for businesses across multiple industries:</p>
         <ul>
@@ -42,7 +42,7 @@ const DigitalMarketing = () => {
           <li>Hospitality & Travel</li>
           <li>Automotive & Manufacturing</li>
         </ul>
-        
+
         <h2>Our Digital Marketing Process</h2>
         <p>We follow a strategic and data-driven approach to deliver impactful digital marketing campaigns:</p>
         <ul>
@@ -52,7 +52,7 @@ const DigitalMarketing = () => {
           <li>Monitoring & Optimization – Analyzing performance and making data-backed improvements.</li>
           <li>Reporting & Insights – Providing detailed reports and insights for continuous growth.</li>
         </ul>
-        
+
         <h2>Why Choose TechXplorers for Digital Marketing?</h2>
         <ul>
           <li>Expertise & Experience – A team of seasoned digital marketers with proven success in multiple industries.</li>
@@ -61,6 +61,10 @@ const DigitalMarketing = () => {
           <li>Multi-Channel Marketing – Integrated strategies across search, social media, content, and more.</li>
           <li>Transparent Reporting – Regular performance reports to track progress and optimize results.</li>
         </ul>
+        <div class="contact-container">
+          <h2 class="headline">Want to know more or work with us?</h2>
+          <a href="#" class="contact-button">Contact Us</a>
+        </div>
       </div>
     </div>
   );

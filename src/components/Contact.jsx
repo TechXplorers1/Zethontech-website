@@ -44,10 +44,12 @@ const Contact = () => {
           <p>Fill out your contact details below and our experts will be in touch</p>
           <form>
             <input type="text" placeholder="Name" required />
-            <input type="email" placeholder="Email" required />
-            <input type="text" placeholder="Your Subject" />
-            <textarea placeholder="Message" rows="4"></textarea>
-            <button type="submit">GET A RING BACK</button>
+            <input type="text" placeholder="Last Name" required />
+            <input type="text" placeholder="Gender" />
+            <input type="text" placeholder="Bio" />
+
+            {/* <textarea placeholder="Message" rows="4"></textarea> */}
+            <button type="submit">Submit</button>
           </form>
         </div>
       </div>
