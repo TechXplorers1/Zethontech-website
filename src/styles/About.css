@@ -1,15 +1,17 @@
-.about-conatiner{
+.about-conatiner {
   padding: 100px 20px 0px 20px;
 }
-.about-conatiner .main-about-heading{
+
+.about-conatiner .main-about-heading {
   color: #00ffff;
 }
+
 .about-wrapper {
   display: flex;
   justify-content: center;
   align-items: stretch;
   gap: 30px;
-  padding: 40px 40px;
+  padding: 40px;
   background-color: transparent;
   font-family: 'Segoe UI', sans-serif;
   flex-wrap: wrap;
@@ -21,16 +23,15 @@
   justify-content: center;
   align-items: center;
   background-color: transparent;
-  /* border: 2px solid #00ffff; */
   border-radius: 15px;
-  overflow: hidden; /* prevents overflow padding inside border */
+  overflow: hidden;
 }
 
 .about-image-container img {
   width: 100%;
   height: auto;
   display: block;
-  border-radius: 0; /* remove inner radius to prevent double rounding */
+  border-radius: 0;
   object-fit: cover;
 }
 
@@ -41,7 +42,6 @@
   padding: 30px;
   color: #f3f3f3;
   background-color: rgba(7, 7, 7, 0.429);
-
 }
 
 .about-heading {
@@ -61,7 +61,82 @@
 .main-about-heading {
   text-align: center;
   font-size: 38px;
-  color: #b87333; /* Clay color */
+  color: #b87333;
   font-weight: bold;
   margin-bottom: 40px;
+}
+
+/* Responsive Styling */
+@media (max-width: 1024px) {
+  .about-wrapper {
+    padding: 30px 20px;
+  }
+
+  .about-text-container {
+    padding: 25px;
+  }
+
+  .main-about-heading {
+    font-size: 32px;
+  }
+
+  .about-heading {
+    font-size: 24px;
+  }
+
+  .about-text-container p {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .about-image-container,
+  .about-text-container {
+    flex: 1 1 100%;
+    width: 100%;
+  }
+
+  .about-text-container {
+    padding: 20px;
+  }
+
+  .main-about-heading {
+    font-size: 28px;
+  }
+
+  .about-heading {
+    font-size: 22px;
+  }
+
+  .about-text-container p {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-wrapper {
+    gap: 20px;
+    padding: 20px 10px;
+  }
+
+  .about-text-container {
+    padding: 15px;
+  }
+
+  .main-about-heading {
+    font-size: 24px;
+  }
+
+  .about-heading {
+    font-size: 20px;
+  }
+
+  .about-text-container p {
+    font-size: 14px;
+  }
 }

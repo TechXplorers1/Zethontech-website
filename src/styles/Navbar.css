@@ -4,9 +4,9 @@
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 9998  ;
+  z-index: 9998;
   font-family: 'Orbitron', sans-serif;
-  background: linear-gradient(to bottom, #000000,#000000ea, #2828280e);
+  background: linear-gradient(to bottom, #000000, #000000ea, #2828280e);
   padding: 20px 0;
   transition: all 0.4s ease;
 }
@@ -19,7 +19,7 @@
   padding: 10px 0;
 }
 
-/* Rest of your navbar styles remain the same */
+/* Rest of your navbar styles */
 .nav-link {
   color: white !important;
   font-weight: 500;
@@ -56,21 +56,23 @@
 body {
   padding-top: 80px;
 }
+
 .services-dropdown-container {
   position: fixed;
   top: 80px;
   left: 0;
   width: 100vw;
   z-index: 9997; /* Keep this lower than navbar but higher than other content */
-  /* ... other styles ... */
+  /* Add any additional styles here */
 }
+
 /* Mobile Styles */
 @media (max-width: 992px) {
   .navbar-custom {
     background-color: rgba(0, 0, 0, 0.95) !important;
     padding: 15px 0;
   }
-  
+
   .navbar-nav {
     background: rgba(0, 0, 0, 0.95) !important;
     padding: 15px;
@@ -82,7 +84,7 @@ body {
   body {
     padding-top: 70px;
   }
-  
+
   .nav-link {
     font-size: 0.9rem;
     margin: 8px 0 !important;

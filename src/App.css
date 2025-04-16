@@ -22,7 +22,8 @@ body, html {
   background-attachment: fixed;
   background-size: cover;
   background-position: center;
-  height: 220vh;
+  height: auto;
+  min-height: 100vh;
   position: relative;
   overflow: hidden;
 }
@@ -60,7 +61,8 @@ body, html {
 /* ======================== */
 .content-container {
   position: relative;
-  height: 38%;
+  padding-top: 100px; /* Adjust based on navbar height */
+  padding-bottom: 100px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -68,7 +70,8 @@ body, html {
   text-align: center;
   z-index: 10;
 }
-.section-title{
+
+.section-title {
   padding-bottom: 50px;
   color: #00f0ff;
   font-size: 38px;
@@ -83,6 +86,7 @@ body, html {
   align-items: center;
   flex-direction: column;
 }
+
 
 /* ======================== */
 /* ==== Card Section ====== */
@@ -112,7 +116,7 @@ body, html {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
-.info-card h3{ 
+.info-card h3 { 
   font-size: 20px;
 }
 
@@ -122,6 +126,7 @@ body, html {
   gap: 10rem;
   margin-bottom: 2rem;
 }
+
 
 /* ============================== */
 /* ==== Cinematic Welcome Text = */
@@ -154,6 +159,7 @@ body, html {
   font-size: 0.8em;
 }
 
+
 /* ============================== */
 /* ==== Engineering Section ==== */
 /* ============================== */
@@ -183,6 +189,7 @@ body, html {
   opacity: 0;
   animation: fadeIn 1s ease-out 1.5s forwards;
 }
+
 
 /* ========================= */
 /* ==== Action Buttons ==== */
@@ -234,7 +241,6 @@ body, html {
 }
 
 
-
 /* ======================== */
 /* ==== Animations ======== */
 /* ======================== */
@@ -260,6 +266,7 @@ body, html {
   }
 }
 
+
 /* ========================== */
 /* ====== Responsiveness ==== */
 /* ========================== */
@@ -277,17 +284,10 @@ body, html {
     margin-top: 2rem;
   }
 }
-/* Add this to your existing App.css */
-.main-content {
-  margin-top: 80px; /* This should match the body padding-top */
-}
 
-/* Update the hero-section height if needed */
-.hero-section {
-  height: auto; /* Changed from 220vh to auto */
-  min-height: 100vh;
-}
-/* App.css */
-.content-container {
-  padding-top: 100px; /* Adjust based on navbar height */
+/* ========================== */
+/* ===== Main Layout Fix ==== */
+/* ========================== */
+.main-content {
+  margin-top: 80px; /* Match navbar height if applicable */
 }
