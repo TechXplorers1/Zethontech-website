@@ -211,6 +211,7 @@ const ContactForm = () => {
                   value={formData.gender}
                   onChange={handleChange}
                   required
+                  className="custom-select-cyan"
                 >
                   <option value="">Select gender</option>
                   <option value="male">Male</option>
@@ -295,6 +296,7 @@ const ContactForm = () => {
                   name="securityClearance"
                   value={formData.securityClearance}
                   onChange={handleChange}
+                  className="custom-select-cyan"
                 >
                   <option value="">Select</option>
                   <option value="yes">Yes</option>
@@ -325,6 +327,7 @@ const ContactForm = () => {
                   value={formData.willingToRelocate}
                   onChange={handleChange}
                   required
+                  className="custom-select-cyan"
                 >
                   <option value="">Select</option>
                   <option value="yes">Yes</option>
@@ -340,6 +343,7 @@ const ContactForm = () => {
                   value={formData.workPreference}
                   onChange={handleChange}
                   required
+                  className="custom-select-cyan"
                 >
                   <option value="">Select</option>
                   <option value="remote">Remote</option>
@@ -425,6 +429,7 @@ const ContactForm = () => {
               value={formData.visaStatus}
               onChange={handleChange}
               required
+              className="custom-select-cyan"
             >
               <option value="">Select visa status</option>
               <option value="citizen">Citizen</option>
