@@ -5,6 +5,9 @@ import MailImg from '../assets/Mail.png';
 import LocationImg from '../assets/Location.png';
 import CustomNavbar from './Navbar';
 import Footer from './Footer';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
+
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -95,7 +98,11 @@ const Contact = () => {
                 value={formData.message}
                 onChange={handleChange}
               ></textarea>
-              <button type="submit">GET A RING BACK</button>
+             <button type="submit">
+  <FontAwesomeIcon icon={faWhatsapp} style={{  fontSize: '24px', marginRight: '8px' }} />
+  GET A RING BACK
+</button>
+
             </form>
           </div>
         </div>
