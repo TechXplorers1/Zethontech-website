@@ -10,7 +10,6 @@ import jobsupportImg from './assets/job_support.png';
 import Footer from './components/Footer';
 import About from './components/About';
 
-
 function App() {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const contentRef = useRef(null);
@@ -67,8 +66,9 @@ function App() {
           </div>
         </div>
 
-        <About aboutRef={aboutRef} />
-
+        <div ref={aboutRef}>
+          <About />
+        </div>
 
         <div className="content-section" ref={contentRef}>
           <h2 className="section-title">What we Offer</h2>
