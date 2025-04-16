@@ -13,17 +13,17 @@ const ITTalentSupply = () => {
       </div>
 
       <div className="service-description">
-        <h1>IT Talent Supply – TechXplorers Private Limited</h1>
+        <h4>IT Talent Supply – TechXplorers Private Limited</h4>
         <p>
           At TechXplorers Private Limited, we specialize in IT talent supply solutions, helping businesses find the right tech professionals to drive innovation and success. Whether you need contract-based, full-time, or project-based IT talent, we provide skilled professionals tailored to your business needs.
         </p>
         
-        <h2>Our IT Talent Supply Services</h2>
+        <h4>Our IT Talent Supply Services</h4>
         <p>
           We connect companies with highly skilled IT professionals across various technologies and domains, ensuring you have the right talent to meet your project and business demands.
         </p>
         
-        <h2>Key IT Talent Solutions</h2>
+        <h4>Key IT Talent Solutions</h4>
         <ul>
           <li><strong>Permanent Staffing</strong> – Hire top IT professionals for long-term roles across various industries.</li>
           <li><strong>Contract Staffing</strong> – Flexible hiring options for short-term and project-based requirements.</li>

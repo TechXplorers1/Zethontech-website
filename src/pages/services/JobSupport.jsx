@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../styles/ServiceLayout.css';
-import img1 from '../../assets/mobile5.png';
+import img1 from '../../assets/mobile5.png'
 import { useNavigate } from 'react-router-dom';
 
 
@@ -16,17 +16,17 @@ const JobSupport = () => {
       </div>
 
       <div className="service-description">
-        <h1>IT Consulting & Job Support – TechXplorers Private Limited</h1>
+        <h4>IT Consulting & Job Support – TechXplorers Private Limited</h4>
         <p>
           At TechXplorers Private Limited, we provide expert IT consulting and job support services to help businesses and professionals navigate the complex technology landscape. Our goal is to empower organizations with cutting-edge solutions and equip professionals with real-time project support, ensuring success in their IT careers.
         </p>
         
-        <h2>Our IT Consulting Services</h2>
+        <h4>Our IT Consulting Services</h4>
         <p>
           We offer strategic IT consulting to help businesses streamline operations, enhance security, and adopt modern technologies for digital transformation.
         </p>
         
-        <h2>Key IT Consulting Services</h2>
+        <h4>Key IT Consulting Services</h4>
         <ul>
           <li><strong>Digital Transformation</strong> – Helping businesses modernize with cloud computing, AI, and automation.</li>
           <li><strong>IT Strategy & Roadmap</strong> – Crafting tailored IT strategies to align with business goals.</li>
@@ -37,12 +37,12 @@ const JobSupport = () => {
           <li><strong>Enterprise IT Solutions</strong> – Providing ERP, CRM, and data analytics solutions for businesses.</li>
         </ul>
         
-        <h2>Real-Time Job Support for IT Professionals</h2>
+        <h4>Real-Time Job Support for IT Professionals</h4>
         <p>
           Our job support services help IT professionals overcome technical challenges in real-time projects, ensuring career growth and project success.
         </p>
         
-        <h2>How We Help IT Professionals</h2>
+        <h4>How We Help IT Professionals</h4>
         <ul>
           <li><strong>Live Project Assistance</strong> – Get expert guidance while working on real-time industry projects.</li>
           <li><strong>One-on-One Support</strong> – Personalized mentoring to resolve technical issues quickly.</li>
@@ -52,7 +52,7 @@ const JobSupport = () => {
           <li><strong>Freelancer & Remote Work Support</strong> – Assisting independent professionals in managing client projects.</li>
         </ul>
         
-        <h2>Our IT Consulting & Job Support Process</h2>
+        <h4>Our IT Consulting & Job Support Process</h4>
         <p>We follow a structured approach to ensure efficiency, reliability, and success for businesses and professionals.</p>
         <ul>
           <li><strong>Requirement Analysis</strong> – Understanding your challenges and project requirements.</li>

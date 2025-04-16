@@ -13,12 +13,12 @@ const DigitalMarketing = () => {
       </div>
 
       <div className="service-description">
-        <h1>Our Digital Marketing Services</h1>
+        <h4>Our Digital Marketing Services</h4>
         <p>
           We provide a full suite of digital marketing services tailored to help businesses establish a strong online presence and achieve their marketing objectives.
         </p>
 
-        <h2>Key Digital Marketing Solutions</h2>
+        <h4>Key Digital Marketing Solutions</h4>
         <ul>
           <li>Search Engine Optimization (SEO) – Improve your website's ranking on search engines to drive organic traffic.</li>
           <li>Pay-Per-Click Advertising (PPC) – Maximize ROI with targeted ad campaigns on Google, Bing, and social media platforms.</li>
@@ -30,7 +30,7 @@ const DigitalMarketing = () => {
           <li>Online Reputation Management (ORM) – Monitor and manage your brand's online presence to maintain a positive reputation.</li>
         </ul>
 
-        <h2>Industries We Serve</h2>
+        <h4>Industries We Serve</h4>
         <p>We provide customized digital marketing strategies for businesses across multiple industries:</p>
         <ul>
           <li>E-Commerce & Retail</li>
@@ -43,7 +43,7 @@ const DigitalMarketing = () => {
           <li>Automotive & Manufacturing</li>
         </ul>
 
-        <h2>Our Digital Marketing Process</h2>
+        <h4>Our Digital Marketing Process</h4>
         <p>We follow a strategic and data-driven approach to deliver impactful digital marketing campaigns:</p>
         <ul>
           <li>Market Research & Analysis – Understanding your industry, competitors, and target audience.</li>
@@ -53,7 +53,7 @@ const DigitalMarketing = () => {
           <li>Reporting & Insights – Providing detailed reports and insights for continuous growth.</li>
         </ul>
 
-        <h2>Why Choose TechXplorers for Digital Marketing?</h2>
+        <h4>Why Choose TechXplorers for Digital Marketing?</h4>
         <ul>
           <li>Expertise & Experience – A team of seasoned digital marketers with proven success in multiple industries.</li>
           <li>Custom Strategies – Tailored marketing solutions to align with your business goals and target audience.</li>

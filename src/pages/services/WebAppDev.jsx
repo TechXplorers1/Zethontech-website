@@ -13,17 +13,17 @@ const WebAppDev = () => {
       </div>
 
       <div className="service-description">
-        <h1>Web Application Development – TechXplorers Private Limited</h1>
+        <h4>Web Application Development – TechXplorers Private Limited</h4>
         <p>
           At TechXplorers Private Limited, we design and develop scalable, secure, and high-performance web applications that empower businesses across industries. Whether you need a robust enterprise solution, SaaS product, e-commerce platform, or a custom web portal, our team delivers cutting-edge web applications that drive engagement, efficiency, and revenue growth.
         </p>
 
-        <h2>Our Web Application Development Services</h2>
+        <h4>Our Web Application Development Services</h4>
         <p>
           We offer end-to-end web application development solutions, ensuring your web platform is responsive, secure, and aligned with your business objectives.
         </p>
 
-        <h2>Custom Web App Development</h2>
+        <h4>Custom Web App Development</h4>
         <ul>
           <li>We create web applications that align with your business needs, industry standards, and customer expectations.</li>
           <li>Modern Tech Stack – We utilize React.js, Angular, Vue.js, Node.js, Python, Laravel, and PHP for scalable and efficient development.</li>
@@ -31,7 +31,7 @@ const WebAppDev = () => {
           <li>Fast & Responsive – Optimized performance for quick loading times.</li>
         </ul>
 
-        <h2>Web Application Development Process</h2>
+        <h4>Web Application Development Process</h4>
         <p>We follow an agile and result-driven development process, ensuring quality, scalability, and performance.</p>
         <ul>
           <li>Requirement Analysis & Planning – Understanding your business goals and project requirements.</li>

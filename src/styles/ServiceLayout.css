@@ -1,5 +1,6 @@
+/* ========== Base Layout ========== */
 .service-layout {
-  position: relative; /* Needed for the ::before overlay to position correctly */
+  position: relative;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -12,163 +13,141 @@
 
 .service-layout::before {
   content: "";
-  position: absolute; /* Required to make overlay fill the parent */
+  position: absolute;
   top: 0;
   left: 0;
   height: 100%;
   width: 100%;
-  background: rgba(0, 0, 0, 0.5); /* Adjust opacity for more/less darkening */
-  z-index: 0; /* Ensure it sits below content */
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 0;
 }
 
 .service-main {
   flex: 1;
   padding-top: 80px;
   position: relative;
-  z-index: 1; /* Makes content appear above the dark overlay */
+  z-index: 1;
 }
 
-  .service-content-wrapper {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 1rem;
-  }
-  
-  .service-back-button {
-    background: transparent;
-    border: 1px solid #00f0ff;
-    color: #00f0ff;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-bottom: 2rem;
-    font-family: 'Orbitron', sans-serif;
-    transition: all 0.3s ease;
-  }
-  
-  .service-back-button:hover {
-    background: rgba(0, 240, 255, 0.1);
-    box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
-  }
-  
-  .service-content {
-    background: rgba(12, 12, 12, 0.8);
-    border: 2px solid #00f0ff;
-    border-radius: 16px;
-    padding: 2rem;
-    color: white;
-  }
-  
-  @media (max-width: 768px) {
-    .service-content-wrapper {
-      padding: 1rem;
-    }
-    
-    .service-content {
-      padding: 1.5rem;
-    }
-  }
+.service-content-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
 
-/* service content css */
-.service-box {
-    max-width: 900px;
-    margin: 10px auto 60px auto;
-    padding: 0 20px;
-    text-align: center;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
-  
-  .section-title {
-    font-size: 32px;
-    font-weight: bold;
-    color: #00ffff;
-    margin-bottom: 30px;
-  }
-  
-  .carousel-image {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-    max-height: 500px;
-    object-fit: cover;
-  }
-  
-  .service-description {
-    margin-top: 40px;
-    font-size: 18px;
-    color: #ffffff;
-    line-height: 1.7;
-  }
-  
-  /* .slick-dots li button:before {
-    color: #007bff !important;
-  } */
-  
-  @media (max-width: 768px) {
-    .section-title {
-      font-size: 24px;
-    }
-  
-    .service-description {
-      font-size: 16px;
-    }
-  }
+/* ========== Typography & Titles ========== */
+.section-title {
+  font-size: 2.4rem;
+  color: #00f0ff;
+  text-align: center;
+  margin-bottom: 30px;
+  font-family: 'Orbitron', sans-serif;
+  text-shadow: 0 0 8px rgba(0, 240, 255, 0.4);
+}
 
+.service-description h4 {
+  font-size: 1.5rem;
+  color: #00f0ff;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  font-family: 'Orbitron', sans-serif;
+}
 
-  /* Single Image Styles */
+.service-description p,
+.service-description li {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #e0e0e0;
+  margin-bottom: 10px;
+  font-family: 'Segoe UI', sans-serif;
+  text-align: justify;
+}
+
+/* ========== Image Display ========== */
 .single-image-container {
   width: 100%;
-  max-width: 800px;
-  margin: 0 auto;
-  /* padding: 0; */
+  max-width: 850px;
+  margin: 0 auto 40px auto;
+  padding: 0 10px;
 }
 
 .service-image {
   width: 100%;
   height: auto;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 0 18px rgba(0, 240, 255, 0.4);
 }
 
+/* ========== Contact CTA ========== */
 .contact-container {
-  margin-top: 90px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-family:Orbitron;
+  margin-top: 70px;
+  text-align: center;
 }
 
 .headline {
-  color: #00f0ff; /* Cyan color */
-  font-size: 1.5rem;
+  font-size: 1.8rem;
+  color: #00f0ff;
   margin-bottom: 20px;
   text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.contact-button {
-  padding: 15px 30px;
-  font-size: 1.2rem;
-  color: #fff;
-  background-color: transparent;
-  border: 2px solid #fff;
-  border-radius: 5px;
-  text-decoration: none;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.contact-button:hover {
-  background-color: #fff;
-  color: #000;
-}
-
-/* Optional: Add a subtle glow effect */
-.headline, .contact-button {
+  font-family: 'Orbitron', sans-serif;
   text-shadow: 0 0 10px rgba(0, 240, 255, 0.7);
 }
 
+.contact-button {
+  padding: 14px 32px;
+  font-size: 1.1rem;
+  color: #00f0ff;
+  background: transparent;
+  border: 2px solid #00f0ff;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 1px;
+}
 
-  
+.contact-button:hover {
+  background: #00f0ff;
+  color: #000;
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.7);
+}
+
+/* ========== Responsive ========== */
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 1.8rem;
+  }
+
+  .service-description h1 {
+    font-size: 1.25rem;
+  }
+
+  .headline {
+    font-size: 1.4rem;
+  }
+
+  .contact-button {
+    font-size: 1rem;
+    padding: 12px 24px;
+  }
+
+  .service-description {
+    padding: 0 10px;
+  }
+}
+.service-description {
+  animation: fadeInUp 0.8s ease forwards;
+  opacity: 0;
+}
+
+@keyframes fadeInUp {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
