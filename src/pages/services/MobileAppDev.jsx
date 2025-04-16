@@ -60,8 +60,8 @@ const MobileAppDev = () => {
 				<div class="contact-container">
 					<h2 class="headline">Want to know more or work with us?</h2>
 					<a href="https://wa.me/919052990765" target="_blank" rel="noopener noreferrer" className="contact-button">
-  Contact Us
-</a>
+						Contact Us
+					</a>
 
 				</div>
 			</div>

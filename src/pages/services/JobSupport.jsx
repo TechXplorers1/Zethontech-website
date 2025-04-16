@@ -61,10 +61,22 @@ const JobSupport = () => {
           <li><strong>Performance Enhancement</strong> – Optimizing workflows, automation, and cloud integration.</li>
           <li><strong>Continuous Support & Monitoring</strong> – Ongoing assistance to ensure long-term success.</li>
         </ul>
-        <div class="contact-container">
-          <h2 class="headline">Want to Share Your Details</h2>
-          <div class="contact-button" onClick={() => navigate('/services/job-contact-support')}>Apply Now</div>
-        </div>
+        <div className="contact-container">
+					<h2 className="headline">Want to know more or work with us?</h2>
+					<a href="https://wa.me/919052990765" target="_blank" rel="noopener noreferrer" className="contact-button">
+						Contact Us
+					</a>
+
+				</div>
+        <div className="contact-container">
+  <h2 className="headline">Want to Apply?</h2>
+  <div 
+    className="contact-button apply-now-button" 
+    onClick={() => navigate('/services/job-contact-support')}
+  >
+    Apply Now
+  </div>
+</div>
       </div>
     </div>
   );
