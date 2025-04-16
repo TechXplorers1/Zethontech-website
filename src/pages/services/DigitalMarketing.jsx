@@ -63,7 +63,10 @@ const DigitalMarketing = () => {
         </ul>
         <div class="contact-container">
           <h2 class="headline">Want to know more or work with us?</h2>
-          <a href="#" class="contact-button">Contact Us</a>
+          <a href="https://wa.me/919052990765" target="_blank" rel="noopener noreferrer" className="contact-button">
+  Contact Us
+</a>
+
         </div>
       </div>
     </div>
