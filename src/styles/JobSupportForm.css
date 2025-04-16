@@ -1,20 +1,77 @@
-/* src/components/ContactForm.css */
 .contact-form {
-    background: #181818;
-    padding: 30px;
-    border-radius: 12px;
-    width: 900px;
-    box-shadow:#00ffff;
-  }
-  
-  .contact-form h1 {
-    color: #00ffff;
-    font-weight: 700;
-  }
-  
-  .contact-form .form-label {
-    font-weight: 500;
-  }
-  .submit-button{
-    color: #00ffff;
-  }
+  background: #1f1f1f;
+  padding: 40px;
+  border-radius: 15px;
+  width: 100%;
+  max-width: 960px;
+  margin: auto;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+  color: #f0f0f0;
+}
+
+.contact-form h1 {
+  color: #00ffff;
+  font-weight: 700;
+  text-shadow: 0 0 5px #00ffff80;
+}
+
+.contact-form h4 {
+  color: #ffffff;
+  border-bottom: 1px solid #00ffff;
+  padding-bottom: 5px;
+  margin-bottom: 20px;
+}
+
+.contact-form p {
+  color: #cccccc;
+}
+
+.contact-form .form-label {
+  font-weight: 500;
+  color: #dddddd;
+}
+
+.contact-form .form-control,
+.contact-form .form-select {
+  background-color: #2a2a2a;
+  border: 1px solid #00ffff70;
+  color: #ffffff;
+}
+
+.contact-form .form-control:focus,
+.contact-form .form-select:focus {
+  border-color: #00ffff;
+  box-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+}
+
+.contact-form .form-control::placeholder {
+  color: #bbbbbb;
+}
+
+.submit-button {
+  background-color: #00ffff;
+  border: none;
+  color: #1a1a1a;
+  font-weight: 600;
+  padding: 10px 25px;
+  font-size: 16px;
+  border-radius: 8px;
+  transition: 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: #00dddd;
+  color: #ffffff;
+}
+
+.alert-success {
+  background-color: #003333;
+  color: #00ffaa;
+  border: 1px solid #00ffaa;
+}
+
+.alert-danger {
+  background-color: #330000;
+  color: #ff4d4d;
+  border: 1px solid #ff4d4d;
+}
