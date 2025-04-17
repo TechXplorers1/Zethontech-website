@@ -98,16 +98,17 @@ const Contact = () => {
                 value={formData.message}
                 onChange={handleChange}
               ></textarea>
-             <button type="submit">
-  <FontAwesomeIcon icon={faWhatsapp} style={{  fontSize: '24px', marginRight: '8px' }} />
-  GET A RING BACK
-</button>
+              <button type="submit">
+                <FontAwesomeIcon icon={faWhatsapp} style={{ fontSize: '24px', marginRight: '8px' }} />
+                GET A RING BACK
+              </button>
 
             </form>
           </div>
         </div>
+        <Footer />
       </div>
-      <Footer />
+      
     </div>
   );
 };
