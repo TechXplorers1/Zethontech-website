@@ -4,7 +4,13 @@ import { FaFacebookF, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
 import Logo from '../assets/tx_official_logo.png';
 
-const Footer = () => {
+const Footer = ({ aboutRef }) => {
+  const scrollToAbout = () => {
+    if (aboutRef?.current) {
+      aboutRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <footer className="footer text-white pt-5">
       <div className="container">
@@ -28,7 +34,7 @@ const Footer = () => {
           <div className="col-6 col-md-2 mb-4">
             <h6 className="text-info fw-bold">COMPANY</h6>
             <ul className="list-unstyled small mt-2">
-              <li><a href="#">ABOUT US</a></li>
+              <li><button className="link-button" onClick={scrollToAbout}>ABOUT US</button></li>
               <li><a href="#">CAREERS</a></li>
               <li><a href="#">EVENTS</a></li>
             </ul>

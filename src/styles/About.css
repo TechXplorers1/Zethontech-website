@@ -60,10 +60,12 @@
 
 .main-about-heading {
   text-align: center;
-  font-size: 38px;
-  color: #b87333;
+  font-family: Orbitron;
   font-weight: bold;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  color: #00f0ff;
+  font-size: 38px;
 }
 
 /* Responsive Styling */

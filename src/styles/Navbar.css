@@ -19,7 +19,7 @@
   padding: 10px 0;
 }
 
-/* Rest of your navbar styles */
+/* Hover Effects for Navbar Links */
 .nav-link {
   color: white !important;
   font-weight: 500;
@@ -37,6 +37,7 @@
   text-shadow: 0 0 10px rgba(0, 240, 255, 0.7);
 }
 
+/* Underline Effect for Links */
 .nav-link::after {
   content: '';
   position: absolute;
@@ -52,6 +53,28 @@
   width: 100%;
 }
 
+/* Ensure the Dropdown visibility and hover effects */
+/* Ensure the dropdown appears on tap for touch devices */
+.navbar-nav .nav-item.active .dropdown-menu {
+  display: block; /* Show the dropdown when the item is active */
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.dropdown-menu {
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .navbar-nav .nav-item.active .dropdown-menu {
+    display: block; /* Ensure it shows up when active */
+  }
+}
+
+
 /* Body padding to account for fixed navbar */
 body {
   padding-top: 80px;
@@ -63,7 +86,6 @@ body {
   left: 0;
   width: 100vw;
   z-index: 9997; /* Keep this lower than navbar but higher than other content */
-  /* Add any additional styles here */
 }
 
 /* Mobile Styles */

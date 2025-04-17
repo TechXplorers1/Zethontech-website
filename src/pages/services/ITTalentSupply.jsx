@@ -2,12 +2,10 @@ import React from 'react';
 import '../../styles/ServiceLayout.css';
 import img1 from '../../assets/mobile4.png';
 import CustomNavbar from '../../components/Navbar';
-
-
 const ITTalentSupply = () => {
   return (
     <div className="mobile-app-dev service-box">
-      <CustomNavbar />
+       <CustomNavbar/>
       <h2 className="section-title">IT Talent Supply</h2>
       
       {/* Single image display */}

@@ -7,7 +7,9 @@ const ServiceLayout = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="service-layout">     
+    <div className="service-layout">
+      
+      
       <main className="service-main">
         <div className="service-content-wrapper">
           {/* <button 

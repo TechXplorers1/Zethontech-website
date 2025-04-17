@@ -4,8 +4,6 @@ import emailjs from 'emailjs-com';
 import '../../styles/JobSupportForm.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import CustomNavbar from '../../components/Navbar';
-
-
 const ContactForm = () => {
   useEffect(() => {
     emailjs.init('lawXOvPyQN4FzxyUi');
@@ -139,6 +137,7 @@ const ContactForm = () => {
 
   return (
     <div style={{ backgroundColor: 'transparent', padding: '10px' }}>
+       <CustomNavbar/>
       <Container className="my-1 contact-form">
       <CustomNavbar />
 

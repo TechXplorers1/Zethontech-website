@@ -4,10 +4,10 @@ import aboutImage from '../assets/about.png';
 
 const About = ({ aboutRef }) => {
   return (
-    <div className="about-conatiner" ref={aboutRef}>
+    <div className="about-container" ref={aboutRef} id="about">
       <h2 className="main-about-heading">About Us</h2>
 
-      <div className="about-wrapper" id="about">
+      <div className="about-wrapper">
         <div className="about-image-container">
           <img src={aboutImage} alt="About TechXplorers" />
         </div>
@@ -19,8 +19,8 @@ const About = ({ aboutRef }) => {
           <p>
             At TechXplorers, We Bring Together A Passionate Team Of Experts, Modern Methodologies, And Industry Best Practices To Address The Unique Challenges Of Every Project. By Aligning The Right Talent With The Right Technology, We Ensure Flawless Execution And Impactful Outcomes. Our Client-First Approach And Dedication To Excellence Help Businesses Achieve Their Goals With Clarity, Confidence, And A Future-Ready Mindset.
           </p>
-          <p>With a strong foundation in innovation and a relentless pursuit of excellence, TechXplorers is not just a service provider — we are a strategic partner in your digital transformation journey. Whether it's crafting scalable enterprise solutions or delivering agile staffing models, our focus remains on driving measurable results and building long-term value for our clients.
-
+          <p>
+            With a strong foundation in innovation and a relentless pursuit of excellence, TechXplorers is not just a service provider — we are a strategic partner in your digital transformation journey. Whether it's crafting scalable enterprise solutions or delivering agile staffing models, our focus remains on driving measurable results and building long-term value for our clients.
           </p>
         </div>
       </div>
