@@ -1,10 +1,13 @@
 import React from 'react';
 import '../../styles/ServiceLayout.css';
 import img1 from '../../assets/mobile3.png';
+import CustomNavbar from '../../components/Navbar';
+
 
 const DigitalMarketing = () => {
   return (
     <div className="mobile-app-dev service-box">
+      <CustomNavbar />
       <h2 className="section-title">Digital Marketing</h2>
 
       {/* Single image display */}

@@ -3,6 +3,8 @@ import { Container, Form, Button, Row, Col, Alert } from 'react-bootstrap';
 import emailjs from 'emailjs-com';
 import '../../styles/JobSupportForm.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import CustomNavbar from '../../components/Navbar';
+
 
 const ContactForm = () => {
   useEffect(() => {
@@ -138,6 +140,8 @@ const ContactForm = () => {
   return (
     <div style={{ backgroundColor: 'transparent', padding: '10px' }}>
       <Container className="my-1 contact-form">
+      <CustomNavbar />
+
         <h1 className="text-center mb-4" style={{ fontFamily: "Orbitron" }}>TALK WITH TECHXPLORERS</h1>
         <p className="text-center mb-4">
           <b>Fill out your contact details below and our experts will be in touch</b>
