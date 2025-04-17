@@ -1,6 +1,5 @@
 import React from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
-import CustomNavbar from './Navbar';
 import Footer from './Footer';
 import '../styles/ServiceLayout.css';
 
@@ -8,9 +7,7 @@ const ServiceLayout = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="service-layout">
-      <CustomNavbar />
-      
+    <div className="service-layout">     
       <main className="service-main">
         <div className="service-content-wrapper">
           {/* <button 
