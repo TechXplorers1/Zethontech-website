@@ -2,12 +2,13 @@ import React from 'react';
 import '../../styles/ServiceLayout.css';
 import img1 from '../../assets/mobile5.png'
 import { useNavigate } from 'react-router-dom';
-
+import CustomNavbar from '../../components/Navbar';
 
 const JobSupport = () => {
   const navigate = useNavigate(); // Initialize useNavigate
   return (
     <div className="mobile-app-dev service-box">
+       <CustomNavbar/>
       <h2 className="section-title">IT Consulting & Job Support</h2>
       
       {/* Single image display */}
