@@ -32,6 +32,21 @@
   color: #888;
 }
 
+.link-button {
+  background: none;
+  border: none;
+  color: inherit;
+  padding: 0;
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+}
+
+.link-button:hover {
+  text-decoration: underline;
+  color: #00f2ff;
+}
+
 /* Responsive Enhancements */
 @media (max-width: 768px) {
   .footer {
