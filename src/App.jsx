@@ -16,7 +16,6 @@ function App() {
   const aboutRef = useRef(null);
   const [navbarScrolled, setNavbarScrolled] = useState(false);
   const navigate = useNavigate();
-  
 
   const scrollToContent = () => {
     contentRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -102,8 +101,7 @@ function App() {
         </div>
       </div>
 
-      <Footer aboutRef={aboutRef} />
-
+      <Footer />
     </div>
   );
 }
