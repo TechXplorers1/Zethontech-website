@@ -79,10 +79,10 @@ const ContactForm = () => {
 
     try {
       await emailjs.send(
-        'service_6zo0q3i',
-        'template_plu2dxj',
+        'service_abhj58s',
+        'template_1a6nyoz',
         formData,
-        'I1UJMnujMWkyQsjA0'
+        'lawXOvPyQN4FzxyUi'
       );
       console.log('EmailJS Response:', response); // Add this line
 
