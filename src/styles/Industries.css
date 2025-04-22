@@ -75,12 +75,22 @@
     gap: 25px;
   }
 }
-
-/* Mobile responsiveness */
 @media (max-width: 768px) {
   .industries-dropdown-container {
     top: 70px;
     padding: 20px 10px;
+    height: 100vh; /* Make it take full screen height */
+    overflow: hidden; /* Prevent outer scrolling */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .industries-dropdown {
+    max-height: 80vh; /* Define scrollable area height */
+    overflow-y: auto; /* Enable scroll */
+    padding-right: 10px; /* For scroll bar spacing */
+    -webkit-overflow-scrolling: touch; /* Smooth scroll on iOS */
   }
 
   .industry-card {
@@ -99,6 +109,7 @@
     font-size: 13px;
   }
 }
+
 
 @media (max-width: 480px) {
   .industry-card {
