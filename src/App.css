@@ -93,9 +93,11 @@ body, html {
 /* ======================== */
 .card-container {
   display: flex;
-  gap: 2rem;
   flex-wrap: wrap;
   justify-content: center;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .info-card {
@@ -116,17 +118,22 @@ body, html {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
-.info-card h3 { 
+.info-card h3 {
   font-size: 20px;
 }
 
-.card-row {
-  display: flex;
-  justify-content: center;
-  gap: 10rem;
-  margin-bottom: 2rem;
-}
+/* ✅ Responsive Fix */
+@media (max-width: 768px) {
+  .card-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
 
+  .info-card {
+    width: 90%;
+  }
+}
 
 /* ============================== */
 /* ==== Cinematic Welcome Text = */

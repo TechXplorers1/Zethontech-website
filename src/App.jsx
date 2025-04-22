@@ -59,8 +59,8 @@ function App() {
             <h2 className="future-heading">EXPLORING THE FUTURE</h2>
             <h3 className="tech-innovation">OF TECH & INNOVATION</h3>
             <div className="action-buttons">
-            <button className="cta-button talk-button" onClick={() => navigate('/contact')}> LET'S TALK </button>
-            <button className="cta-button services-button" onClick={scrollToContent}> EXPLORE SERVICES </button>
+              <button className="cta-button talk-button" onClick={() => navigate('/contact')}> LET'S TALK </button>
+              <button className="cta-button services-button" onClick={scrollToContent}> EXPLORE SERVICES </button>
             </div>
 
           </div>
@@ -73,31 +73,28 @@ function App() {
         <div className="content-section" ref={contentRef}>
           <h2 className="section-title">What we Offer</h2>
           <div className="card-container">
-            <div className="card-row">
-              <div className="info-card" onClick={() => navigate('/services/mobile-app-development')}>
-                <img src={mobileImg} alt="Mobile App" className="card-icon" />
-                <h3>Mobile Application Development</h3>
-              </div>
-              <div className="info-card" onClick={() => navigate('/services/web-app-development')}>
-                <img src={webImg} alt="Web App" className="card-icon" />
-                <h3>Web Application Development</h3>
-              </div>
+            <div className="info-card" onClick={() => navigate('/services/mobile-app-development')}>
+              <img src={mobileImg} alt="Mobile App" className="card-icon" />
+              <h3>Mobile Application Development</h3>
             </div>
-            <div className="card-row">
-              <div className="info-card" onClick={() => navigate('/services/digital-marketing')}>
-                <img src={digiImg} alt="Digital Marketing" className="card-icon" />
-                <h3>Digital Marketing</h3>
-              </div>
-              <div className="info-card" onClick={() => navigate('/services/it-talent-supply')}>
-                <img src={ittalentImg} alt="IT Talent" className="card-icon" />
-                <h3>IT Talent Supply</h3>
-              </div>
-              <div className="info-card" onClick={() => navigate('/services/job-support')}>
-                <img src={jobsupportImg} alt="Consulting" className="card-icon" />
-                <h3>Job Support & IT Consulting</h3>
-              </div>
+            <div className="info-card" onClick={() => navigate('/services/web-app-development')}>
+              <img src={webImg} alt="Web App" className="card-icon" />
+              <h3>Web Application Development</h3>
+            </div>
+            <div className="info-card" onClick={() => navigate('/services/digital-marketing')}>
+              <img src={digiImg} alt="Digital Marketing" className="card-icon" />
+              <h3>Digital Marketing</h3>
+            </div>
+            <div className="info-card" onClick={() => navigate('/services/it-talent-supply')}>
+              <img src={ittalentImg} alt="IT Talent" className="card-icon" />
+              <h3>IT Talent Supply</h3>
+            </div>
+            <div className="info-card" onClick={() => navigate('/services/job-support')}>
+              <img src={jobsupportImg} alt="Consulting" className="card-icon" />
+              <h3>Job Support & IT Consulting</h3>
             </div>
           </div>
+
         </div>
       </div>
 

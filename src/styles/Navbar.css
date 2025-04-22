@@ -56,9 +56,11 @@
 /* Ensure the Dropdown visibility and hover effects */
 /* Ensure the dropdown appears on tap for touch devices */
 .navbar-nav .nav-item.active .dropdown-menu {
-  display: block; /* Show the dropdown when the item is active */
+  display: block;
+  /* Show the dropdown when the item is active */
   opacity: 1;
   transition: opacity 0.3s ease;
+
 }
 
 .dropdown-menu {
@@ -70,7 +72,10 @@
 /* Mobile Styles */
 @media (max-width: 768px) {
   .navbar-nav .nav-item.active .dropdown-menu {
-    display: block; /* Ensure it shows up when active */
+    display: block;
+    color: #00f0ff;
+
+    /* Ensure it shows up when active */
   }
 }
 
@@ -85,18 +90,19 @@ body {
   top: 80px;
   left: 0;
   width: 100vw;
-  z-index: 9997; /* Keep this lower than navbar but higher than other content */
+  z-index: 9997;
+  /* Keep this lower than navbar but higher than other content */
 }
 
 /* Mobile Styles */
 @media (max-width: 992px) {
   .navbar-custom {
-    background-color: rgba(0, 0, 0, 0.95) !important;
+    background: linear-gradient(to bottom, #000000, #000000ea, #2828280e);
     padding: 15px 0;
   }
 
   .navbar-nav {
-    background: rgba(0, 0, 0, 0.95) !important;
+    background: linear-gradient(to bottom, #000000, #000000ea, #2828280e);
     padding: 15px;
     margin-top: 10px;
   }
@@ -111,4 +117,12 @@ body {
     font-size: 0.9rem;
     margin: 8px 0 !important;
   }
+}
+/* Hamburger icon color fix */
+.navbar-custom .navbar-toggler {
+  border-color: #00f0ff;
+}
+
+.navbar-custom .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255,255,255, 0.9%29' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
