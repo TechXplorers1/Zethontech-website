@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import CustomNavbar from '../../components/Navbar';
 const ContactForm = () => {
   useEffect(() => {
-    emailjs.init('lawXOvPyQN4FzxyUi');
+    emailjs.init('I1UJMnujMWkyQsjA0');
   }, []);
 
   const [formData, setFormData] = useState({
@@ -78,15 +78,14 @@ const ContactForm = () => {
     setIsSubmitting(true);
 
     try {
-      await emailjs.send(
-        'service_abhj58s',
-        'template_1a6nyoz',
+      const response = await emailjs.send(
+        'service_6zo0q3i',
+        'template_plu2dxj',
         formData,
-        'lawXOvPyQN4FzxyUi'
+        'I1UJMnujMWkyQsjA0'
       );
       console.log('EmailJS Response:', response); // Add this line
 
-      setSubmitStatus({ success: true, message: 'Form submitted successfully!' });
       // Reset form
       setFormData({
         firstName: '',
@@ -128,6 +127,8 @@ const ContactForm = () => {
         jobPortalAccountName: '',
         jobPortalCredentials: ''
       });
+      
+      setSubmitStatus({ success: true, message: 'Form submitted successfully!' });
     } catch (error) {
       setSubmitStatus({ success: false, message: 'Submission failed. Please try again.' });
     } finally {
