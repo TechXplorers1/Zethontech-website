@@ -43,6 +43,13 @@ function App() {
     };
   }, []);
 
+    useEffect(() => {
+      if (!window.location.hash.includes('#')) {
+        window.location.href = window.location.href + '#';
+        window.location.reload();
+      }
+      }, []);
+
   return (
     <div className="hero-section">
       <div className="hero-overlay"></div>

@@ -135,6 +135,12 @@ const ContactForm = () => {
       setIsSubmitting(false);
     }
   };
+    useEffect(() => {
+      if (!window.location.hash.includes('#')) {
+        window.location.href = window.location.href + '#';
+        window.location.reload();
+      }
+      }, []);
 
   return (
     <div style={{ backgroundColor: 'transparent', padding: '10px' }}>

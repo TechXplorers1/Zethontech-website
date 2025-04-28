@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import '../../styles/ServiceLayout.css';
 import img1 from '../../assets/mobile4.png';
 import CustomNavbar from '../../components/Navbar';
 const ITTalentSupply = () => {
+     useEffect(() => {
+      if (!window.location.hash.includes('#')) {
+        window.location.href = window.location.href + '#';
+        window.location.reload();
+      }
+      }, []);
   return (
     <div className="mobile-app-dev service-box">
        <CustomNavbar/>

@@ -5,8 +5,8 @@ const IndustryTemplate = ({ title, description, image }) => {
   return (
     <div className="industry-layout">
       <CustomNavbar />
-      <img src={image} alt={`${title} Banner`} className="industry-image" />
       <h2 className="industry-title">{title}</h2>
+      <img src={image} alt={`${title} Banner`} className="industry-image" />
       <div className="industry-description">
         <p>{description}</p>
       </div>
