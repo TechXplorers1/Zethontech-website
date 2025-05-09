@@ -2,65 +2,88 @@ import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Form, Button, Row, Col, Alert } from 'react-bootstrap';
 import '../../styles/JobSupportForm.css';
+import { useNavigate } from 'react-router-dom';
+
 import txlogo from "../../assets/txlogo.png"; // replace with actual logo path
 
 
 
 const CandidateForm = () => {
+            const navigate = useNavigate();
+    
     const [formData, setFormData] = useState({
-        firstName: '',
-        middleName: '',
-        lastName: '',
-        dob: '',
-        gender: '',
-        ethnicity: '',
-        address: '',
-        zipCode: '',
-        mobile: '',
-        email: '',
-        securityClearance: '',
-        clearanceLevel: '',
-        willingToRelocate: '',
-        workPreference: '',
-        restrictedCompanies: '',
-        jobsToApply: '',
-        technologySkills: '',
-        currentSalary: '',
-        expectedSalary: '',
-        visaStatus: '',
-        otherVisaStatus: '',
-        schoolName: '',
-        schoolAddress: '',
-        schoolPhone: '',
-        courseOfStudy: '',
-        graduationDate: '',
-        currentCompany: '',
-        currentDesignation: '',
-        preferredInterviewTime: '',
-        earliestJoiningDate: '',
-        relievingDate: '',
-        referenceName: '',
-        referencePhone: '',
-        referenceAddress: '',
-        referenceEmail: '',
-        referenceRole: '',
-        jobPortalAccountName: '',
-        jobPortalCredentials: '',
+         // Personal Information
+    firstName: '',
+    middleName: '',
+    lastName: '',
+    dob: '',
+    gender: '',
+    ethnicity: '',
+    
+    // Contact Information
+    address: '',
+    zipCode: '',
+    mobile: '',
+    email: '',
+    
+    // Employment Information
+    securityClearance: '',
+    clearanceLevel: '',
+    willingToRelocate: '',
+    workPreference: '',
+    restrictedCompanies: '',
+    
+    // Job Preferences
+    jobsToApply: '',
+    technologySkills: '',
+    currentSalary: '',
+    expectedSalary: '',
+    visaStatus: '',
+    otherVisaStatus: '',
+    
+    // Education
+    schoolName: '',
+    schoolAddress: '',
+    schoolPhone: '',
+    courseOfStudy: '',
+    graduationDate: '',
+    
+    // Current Employment
+    currentCompany: '',
+    currentDesignation: '',
+    preferredInterviewTime: '',
+    earliestJoiningDate: '',
+    relievingDate: '',
+    
+    // References
+    referenceName: '',
+    referencePhone: '',
+    referenceAddress: '',
+    referenceEmail: '',
+    referenceRole: '',
+    
+    // Job Portal Information
+    jobPortalAccountName: '',
+    jobPortalCredentials: ''
+
     });
+
+      const [isSubmitting, setIsSubmitting] = useState(false);
+      const [submitStatus, setSubmitStatus] = useState({ success: false, message: '' });
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prev) => ({ ...prev, [name]: value }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(formData);
+        setIsSubmitting(true);
     };
 
     return (
 
-        <div className="main">
+        <div className="main contact-form">
 
             <div className="d-flex justify-content-between align-items-center p-4">
                 <div className="d-flex align-items-center gap-2">
@@ -93,6 +116,7 @@ const CandidateForm = () => {
                                     <Form.Group className="mb-3" controlId="formFirstName">
                                         <Form.Label>First Name</Form.Label>
                                         <Form.Control
+                                        className="form-control"
                                             name="firstName"
                                             value={formData.firstName}
                                             onChange={handleChange}
@@ -595,6 +619,18 @@ const CandidateForm = () => {
                                     rows={2}
                                 />
                             </Form.Group>
+
+                            <div className="d-grid mt-4">
+                                        <Button
+                                        onClick={() => navigate('/dashboard')}
+                                          type="submit"
+                                          size="lg"
+                                          style={{ backgroundColor: '#00ffff', borderColor: '#00ffff', color: '#000' }}
+                                          disabled={isSubmitting}
+                                        >
+                                          {isSubmitting ? 'Sending...' : 'Submit'}
+                                        </Button>
+                                      </div>
 
 
                         </Form>

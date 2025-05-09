@@ -7,7 +7,7 @@
   width: 100%;
   max-width: 750px;
 }
-.contact-form {
+/* .contact-form {
   background: #1f1f1f;
   padding: 40px;
   border-radius: 15px;
@@ -17,7 +17,7 @@
   box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
   color: #f0f0f0;
   box-sizing: border-box;
-}
+} */
 
 .login-page {
   background: linear-gradient(to bottom right, #ffffff 50%, #4fa1dc 100%);
@@ -25,7 +25,7 @@
   position: relative;
 }
 .contact-form h1 {
-  color: #00ffff;
+  color: #181a1a;
   font-weight: 700;
   text-shadow: 0 0 5px #00ffff80;
   margin-bottom: 20px;
@@ -33,38 +33,38 @@
 }
 
 .contact-form h4 {
-  color: #ffffff;
+  color: #212020;
   border-bottom: 1px solid #00ffff;
   padding-bottom: 5px;
   margin-bottom: 20px;
 }
 
 .contact-form p {
-  color: #cccccc;
+  color: #212020;
   font-size: 0.95rem;
 }
 
 .contact-form .form-label {
   font-weight: 500;
-  color: #dddddd;
+  color: #212020;
 }
 
 .contact-form .form-control,
 .contact-form .form-select {
-  background-color: #2a2a2a;
+  background-color: #d9d6d6;
   border: 1px solid #00ffff70;
-  color: #ffffff;
+  color: #111010;
   transition: 0.3s ease;
 }
 
 .contact-form .form-control:focus,
 .contact-form .form-select:focus {
-  border-color: #00ffff;
+  border-color: #141515;
   box-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
 }
 
 .contact-form .form-control::placeholder {
-  color: #bbbbbb;
+  color: #434242;
 }
 
 .submit-button {
@@ -155,23 +155,17 @@
   }
 }
 input[type="date"]::-webkit-calendar-picker-indicator {
-  filter: 
-    invert(77%) 
-    sepia(29%) 
-    saturate(2878%) 
-    hue-rotate(128deg) 
-    brightness(102%) 
-    contrast(101%);
+  filter: brightness(0) saturate(100%);
 }
 /* Custom select styling */
 .custom-select-cyan {
   /* Dropdown arrow */
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='%2300ffff' d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3e%3c/svg%3e");
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='%23121212' d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3e%3c/svg%3e");
   background-repeat: no-repeat;
   background-position: right 0.75rem center;
   background-size: 16px 12px;
   color: white; /* Text color */
-  border-color: #00ffff;
+  border-color: #121212;
 }
 
 /* Options dropdown styling */
@@ -182,11 +176,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 /* Focus state */
 .custom-select-cyan:focus {
-  border-color: #00ffff;
+  border-color: #0a0a0a;
   box-shadow: 0 0 0 0.25rem rgba(0, 255, 255, 0.25);
 }
 
 /* For the dropdown list (requires additional JS in some browsers) */
 .custom-select-cyan::-ms-expand {
-  color: #00ffff;
+  color: #111111;
 }

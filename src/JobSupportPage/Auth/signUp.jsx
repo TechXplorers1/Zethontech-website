@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./SignUp.css";
+import { useNavigate } from 'react-router-dom';
 import txlogo from "../../assets/txlogo.png"; // replace with actual logo path
 import { FcGoogle } from "react-icons/fc";
 import { MdEmail } from "react-icons/md";
@@ -7,6 +8,8 @@ import { RiLockPasswordFill } from "react-icons/ri";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
 export default function SignupPage() {
+        const navigate = useNavigate();
+    
         const [showPassword, setShowPassword] = useState(false);
     
     return (
@@ -21,7 +24,7 @@ export default function SignupPage() {
                 </div>
                 <div>
                     <span className="me-2 text-primary">Have An Account?</span>
-                    <button className="btn btn-primary btn-sm rounded-pill">Login</button>
+                    <button onClick={() => navigate('/login')} className="btn btn-primary btn-sm rounded-pill">Login</button>
                 </div>
             </div>
 
@@ -85,7 +88,7 @@ export default function SignupPage() {
 
                     <div className="text-center mt-3">
                         <span className="me-1 text-muted">Have An Account?</span>
-                        <a href="#" className="text-primary text-decoration-none">Login</a>
+                        <a onClick={() => navigate('/login')} className="text-primary text-decoration-none">Login</a>
                     </div>
                 </div>
             </div>

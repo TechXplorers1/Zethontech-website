@@ -19,6 +19,11 @@ import OilGas from '../pages/industries/OilGas';
 import Retail from '../pages/industries/Retail';
 import Telecommunication from '../pages/industries/Telecommunication';
 
+import LoginPage from '../JobSupportPage/Auth/login';
+import SignupPage from '../JobSupportPage/Auth/signUp';
+import CandidateForm from '../JobSupportPage/Auth/JobSupportForm';
+import Dashboard from '../JobSupportPage/Auth/dashboard';
+
 
 const AppRoutes = () => {
   return (
@@ -42,6 +47,15 @@ const AppRoutes = () => {
         <Route path="/services/it-talent-supply" element={<ITTalentSupply />} />
         <Route path="/services/job-support" element={<JobSupport />} />
         <Route path="/services/job-contact-support" element={<ContactForm />} />
+
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignupPage />} />
+        <Route path="/candidateform" element={<CandidateForm />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+
+
+
+
       </Route>
     </Routes>
   );
