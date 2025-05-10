@@ -1,0 +1,97 @@
+import React, { useState } from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
+import '../styles/AdminDashboard.css';
+import txlogo from '../assets/txlogo.png';
+import { FaUserCircle, FaBars } from 'react-icons/fa';
+import { FaArrowLeft } from 'react-icons/fa';
+
+
+const AdminDashboard = () => {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
+
+  return (
+    <div className="admin-dashboard">
+      {/* Header */}
+     {/* Header */}
+<div className="admin-header">
+  <img src={txlogo} alt="TechXplorers Logo" className="admin-logo" />
+</div>
+
+{/* Hamburger just below the logo */}
+<div className="hamburger-btn" onClick={toggleSidebar}>
+  <FaBars size={24} />
+</div>
+
+
+      {/* Sidebar */}
+      <div className={`admin-sidebar ${sidebarOpen ? 'open' : ''}`}>
+  <div className="sidebar-header">
+  <div className="sidebar-close-btn" onClick={toggleSidebar}>
+    <FaArrowLeft size={20} />
+  </div>
+  <FaUserCircle size={50} className="user-icon" />
+</div>
+
+        <ul className="sidebar-menu">
+          <li>Dashboard</li>
+          <li>
+            Clients
+            <ul className="sub-menu">
+              <li>Registrations</li>
+              <li>Live Clients</li>
+              <li>Previous Clients</li>
+              <li>Rejected Clients</li>
+            </ul>
+          </li>
+          <li>Managers</li>
+          <li>Team Lead</li>
+          <li>Employee</li>
+        </ul>
+        <div className="sidebar-footer">
+          <p>Help & Support</p>
+          <button className="logout-btn">Log Out</button>
+        </div>
+      </div>
+
+      {/* Main Content */}
+      <div className="admin-main-content">
+        <Container>
+          <Row className="card-row">
+            <Col md={6}>
+              <div className="admin-card green">
+                <p>Clients</p>
+                <h4>96</h4>
+              </div>
+            </Col>
+            <Col md={6}>
+              <div className="admin-card cyan">
+                <p>Managers</p>
+                <h4>05</h4>
+              </div>
+            </Col>
+          </Row>
+          <Row className="card-row">
+            <Col md={6}>
+              <div className="admin-card navy">
+                <p>Team Leads</p>
+                <h4>05</h4>
+              </div>
+            </Col>
+            <Col md={6}>
+              <div className="admin-card blue">
+                <p>Employee</p>
+                <h4>30</h4>
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      </div>
+    </div>
+  );
+};
+
+export default AdminDashboard;
