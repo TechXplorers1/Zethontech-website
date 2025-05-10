@@ -8,6 +8,7 @@ import './index.css';
 import { BrowserRouter } from 'react-router-dom';
 import AppRoutes from './routes/Routes';
 import JobSupportRoutes from './routes/JobSupportRoutes.jsx';
+import AdminDashboard from './JobSupportPage/AdminDashboard.jsx';
 
 
 
@@ -15,8 +16,9 @@ import JobSupportRoutes from './routes/JobSupportRoutes.jsx';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
-      <AppRoutes />
-      <JobSupportRoutes/>
+      {/* <AppRoutes />
+      <JobSupportRoutes/> */}
+      <AdminDashboard/>
     </BrowserRouter>
   </React.StrictMode>
 );
