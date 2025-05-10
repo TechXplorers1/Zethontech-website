@@ -21,10 +21,6 @@ function App() {
     contentRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const handleExploreServices = () => {
-    navigate('/services/mobile-app-development');
-  };
-
   useEffect(() => {
     const moveCursor = (e) => {
       setPosition({ x: e.clientX, y: e.clientY });
@@ -43,13 +39,6 @@ function App() {
     };
   }, []);
 
-    useEffect(() => {
-      if (!window.location.hash.includes('#')) {
-        window.location.href = window.location.href + '#';
-        window.location.reload();
-      }
-      }, []);
-
   return (
     <div className="hero-section">
       <div className="hero-overlay"></div>
@@ -59,17 +48,22 @@ function App() {
       <div className="main-content">
         <div className="content-container">
           <div className="welcome-section">
-            <h1 className="cinematic-text">Welcome <span>to</span> Techxplorers private limited</h1>
+            <h1 className="cinematic-text">
+              Welcome <span>to</span> Techxplorers private limited
+            </h1>
           </div>
 
           <div className="engineering-section">
             <h2 className="future-heading">EXPLORING THE FUTURE</h2>
             <h3 className="tech-innovation">OF TECH & INNOVATION</h3>
             <div className="action-buttons">
-              <button className="cta-button talk-button" onClick={() => navigate('/contact')}> LET'S TALK </button>
-              <button className="cta-button services-button" onClick={scrollToContent}> EXPLORE SERVICES </button>
+              <button className="cta-button talk-button" onClick={() => navigate('/contact')}>
+                LET'S TALK
+              </button>
+              <button className="cta-button services-button" onClick={scrollToContent}>
+                EXPLORE SERVICES
+              </button>
             </div>
-
           </div>
         </div>
 
@@ -101,7 +95,6 @@ function App() {
               <h3>Job Support & IT Consulting</h3>
             </div>
           </div>
-
         </div>
       </div>
 
