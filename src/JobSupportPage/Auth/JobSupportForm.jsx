@@ -68,18 +68,38 @@ const CandidateForm = () => {
         UploadResume: ''
 
     });
-
+    const [dobError, setDobError] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitStatus, setSubmitStatus] = useState({ success: false, message: '' });
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prev) => ({ ...prev, [name]: value }));
+
+         // Clear DOB error when user modifies it
+    if (name === "dob") setDobError("");
     };
+
+  const validateAge = (dob) => {
+    const birthDate = new Date(dob);
+    const today = new Date();
+    const age = today.getFullYear() - birthDate.getFullYear();
+    const m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      return age - 1;
+    }
+    return age;
+  };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsSubmitting(true);
+
+         const age = validateAge(formData.dob);
+    if (age < 18) {
+      setDobError("User age must be more than 18 years");
+      return;
+    }
     };
 
     return (
@@ -160,8 +180,10 @@ const CandidateForm = () => {
                                             value={formData.dob}
                                             onChange={handleChange}
                                             type="date"
-                                            required
+                                             required
+                                            isInvalid={!!dobError}
                                         />
+                                         <Form.Control.Feedback type="invalid">{dobError}</Form.Control.Feedback>
                                     </Form.Group>
                                 </Col>
                                 <Col md={4}>
