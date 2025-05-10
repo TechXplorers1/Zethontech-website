@@ -58,7 +58,7 @@ export default function LoginPage() {
                         </div>
                     </div>
 
-                    <button onClick={() => navigate('/candidateform')} className="btn btn-info w-100 text-white fw-bold">Log In</button>
+                    <button onClick={() => navigate('/Dashboard')} className="btn btn-info w-100 text-white fw-bold">Log In</button>
 
                     <div className="text-center mt-3">
                         <span className="me-1 text-muted">Don’t Have An Account?</span>
