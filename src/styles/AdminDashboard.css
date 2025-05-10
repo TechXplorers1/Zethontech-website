@@ -148,3 +148,13 @@
 .admin-card.blue {
   background-color: #007bff;
 }
+
+/* .dropdown-item {
+  cursor: pointer;
+} */
+
+.dropdown-toggle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
