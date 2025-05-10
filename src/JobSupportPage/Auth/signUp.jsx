@@ -84,7 +84,7 @@ export default function SignupPage() {
                         </div>
                     </div>
 
-                    <button className="btn btn-info w-100 text-white fw-bold">Sign Up</button>
+                    <button onClick={() => navigate('/CandidateForm')} className="btn btn-info w-100 text-white fw-bold">Sign Up</button>
 
                     <div className="text-center mt-3">
                         <span className="me-1 text-muted">Have An Account?</span>

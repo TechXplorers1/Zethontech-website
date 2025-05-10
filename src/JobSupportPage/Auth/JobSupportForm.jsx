@@ -9,67 +9,68 @@ import txlogo from "../../assets/txlogo.png"; // replace with actual logo path
 
 
 const CandidateForm = () => {
-            const navigate = useNavigate();
-    
+    const navigate = useNavigate();
+
     const [formData, setFormData] = useState({
-         // Personal Information
-    firstName: '',
-    middleName: '',
-    lastName: '',
-    dob: '',
-    gender: '',
-    ethnicity: '',
-    
-    // Contact Information
-    address: '',
-    zipCode: '',
-    mobile: '',
-    email: '',
-    
-    // Employment Information
-    securityClearance: '',
-    clearanceLevel: '',
-    willingToRelocate: '',
-    workPreference: '',
-    restrictedCompanies: '',
-    
-    // Job Preferences
-    jobsToApply: '',
-    technologySkills: '',
-    currentSalary: '',
-    expectedSalary: '',
-    visaStatus: '',
-    otherVisaStatus: '',
-    
-    // Education
-    schoolName: '',
-    schoolAddress: '',
-    schoolPhone: '',
-    courseOfStudy: '',
-    graduationDate: '',
-    
-    // Current Employment
-    currentCompany: '',
-    currentDesignation: '',
-    preferredInterviewTime: '',
-    earliestJoiningDate: '',
-    relievingDate: '',
-    
-    // References
-    referenceName: '',
-    referencePhone: '',
-    referenceAddress: '',
-    referenceEmail: '',
-    referenceRole: '',
-    
-    // Job Portal Information
-    jobPortalAccountName: '',
-    jobPortalCredentials: ''
+        // Personal Information
+        firstName: '',
+        middleName: '',
+        lastName: '',
+        dob: '',
+        gender: '',
+        ethnicity: '',
+
+        // Contact Information
+        address: '',
+        zipCode: '',
+        mobile: '',
+        email: '',
+
+        // Employment Information
+        securityClearance: '',
+        clearanceLevel: '',
+        willingToRelocate: '',
+        workPreference: '',
+        restrictedCompanies: '',
+
+        // Job Preferences
+        jobsToApply: '',
+        technologySkills: '',
+        currentSalary: '',
+        expectedSalary: '',
+        visaStatus: '',
+        otherVisaStatus: '',
+
+        // Education
+        schoolName: '',
+        schoolAddress: '',
+        schoolPhone: '',
+        courseOfStudy: '',
+        graduationDate: '',
+
+        // Current Employment
+        currentCompany: '',
+        currentDesignation: '',
+        preferredInterviewTime: '',
+        earliestJoiningDate: '',
+        relievingDate: '',
+
+        // References
+        referenceName: '',
+        referencePhone: '',
+        referenceAddress: '',
+        referenceEmail: '',
+        referenceRole: '',
+
+        // Job Portal Information
+        jobPortalAccountName: '',
+        jobPortalCredentials: '',
+        UploadResume: ''
 
     });
 
-      const [isSubmitting, setIsSubmitting] = useState(false);
-      const [submitStatus, setSubmitStatus] = useState({ success: false, message: '' });
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitStatus, setSubmitStatus] = useState({ success: false, message: '' });
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -116,7 +117,7 @@ const CandidateForm = () => {
                                     <Form.Group className="mb-3" controlId="formFirstName">
                                         <Form.Label>First Name</Form.Label>
                                         <Form.Control
-                                        className="form-control"
+                                            className="form-control"
                                             name="firstName"
                                             value={formData.firstName}
                                             onChange={handleChange}
@@ -620,17 +621,27 @@ const CandidateForm = () => {
                                 />
                             </Form.Group>
 
+                            <Form.Group className="mb-3" controlId="formUploadResume">
+                                <Form.Label>Upload Resume</Form.Label>
+                                <Form.Control
+                                    name="UploadResume"
+                                    onChange={handleChange}
+                                    type="file"
+                                    accept=".pdf,.doc,.docx"
+                                />
+                            </Form.Group>
+
                             <div className="d-grid mt-4">
-                                        <Button
-                                        onClick={() => navigate('/dashboard')}
-                                          type="submit"
-                                          size="lg"
-                                          style={{ backgroundColor: '#00ffff', borderColor: '#00ffff', color: '#000' }}
-                                          disabled={isSubmitting}
-                                        >
-                                          {isSubmitting ? 'Sending...' : 'Submit'}
-                                        </Button>
-                                      </div>
+                                <Button
+                                    onClick={() => navigate('/dashboard')}
+                                    type="submit"
+                                    size="lg"
+                                    style={{ backgroundColor: '#00ffff', borderColor: '#00ffff', color: '#000' }}
+                                    disabled={isSubmitting}
+                                >
+                                    {isSubmitting ? 'Sending...' : 'Submit'}
+                                </Button>
+                            </div>
 
 
                         </Form>
