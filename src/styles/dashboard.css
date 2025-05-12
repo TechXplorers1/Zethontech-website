@@ -1,206 +1,165 @@
-/* Container for the dashboard */
+/* Dashboard Container */
 .dashboard-container {
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  background: #f5f5f5;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 100vh;
+  background: #f5f7fa;
 }
 
-/* Header containing hamburger and logo */
-.dashboard-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 20px;
-  background: transparent;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  z-index: 1100;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 70px;
-}
-
-.hamburger {
-  background: transparent;
-  margin-top: 20px;
-  margin-left: 10px;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  color: #333;
+/* Fixed Logo at Top-Left */
+.logo-container {
+  padding: 10px 20px;
   display: flex;
   align-items: center;
-  font-size: 24px;
+  justify-content: flex-start;
+  background-color: white;
+  border-bottom: 1px solid #ddd;
 }
 
-/* Logo aligned right */
 .logo {
-  margin-top: 40px;
-  height: 60px;
+  height: 50px;
 }
 
-/* Sidebar */
-.sidebar-content {
-  position: fixed;
-  top: 70px;
-  left: 0;
-  width: 280px;
+/* Hamburger Button below Logo */
+.hamburger-container {
+  padding: 10px 20px;
+  cursor: pointer;
   background-color: transparent;
-  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  height: calc(100% - 70px);
-  transform: translateX(-100%);
-  transition: transform 0.3s ease-in-out;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 70px; /* Adjusted this value to move below the logo */
+  left: 20px;
   z-index: 1000;
 }
 
-.sidebar-content.show {
-  transform: translateX(0);
+.hamburger-icon {
+  font-size: 24px;
 }
 
-.sidebar-info {
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 72px;
+  left: -250px;
+  width: 250px;
+  height: calc(100% - 60px);
+  background-color: white;
+  border-right: 1px solid #ddd;
+  padding: 20px 10px;
+  transition: left 0.3s ease;
+  z-index: 999;
+}
+
+.sidebar.open {
+  left: 0;
+}
+
+.sidebar-close {
+  cursor: pointer;
+  font-size: 20px;
+  color: #333;
+  position: absolute;
+  right: 20px;
+  top: 15px;
+}
+
+.sidebar h6 {
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.plan-info-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 10px 0;
+}
+
+.plan-box {
   text-align: center;
+  flex: 1;
 }
 
-.plan-info div {
-  margin: 5px 0;
+.vertical-divider {
+  width: 1px;
+  background-color: #ccc;
+  height: 100%;
 }
 
 .renew-button {
   margin-top: 10px;
-  padding: 5px 20px;
-  background-color: #3CB7B7;
-  border: none;
-  color: white;
-  border-radius: 6px;
-  cursor: pointer;
+  width: 100%;
 }
 
 .support-section {
-  margin-top: 300px;
+  margin-top: 280px;
+  text-align: center;
 }
 
 .logout-button {
+  margin-top: 10px;
   width: 100%;
-  margin-top: 20px;
-  padding: 10px;
-  background-color: #e74c3c;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
 }
 
-/* Main content */
+/* Main Content */
 .main-content {
   margin-top: 70px;
-  margin-left: 100px;
-  padding: 30px;
-  flex-grow: 1;
-  width: 100%;
-  overflow: hidden;
-
+  padding: 20px;
+  transition: margin-left 0.3s ease;
 }
 
-/* Cards */
 .card-main {
-  background-color: #3CB7B7;
-  color: white;
-  padding: 30px;
+  background-color: #ffffff;
+  padding: 25px;
   border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  font-weight: bold;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 180px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
 
-.card-number {
-  font-size: 24px;
-  margin-top: 10px;
+.card-main .card-number {
+  font-size: 40px;
+  font-weight: bold;
+  color: #333;
 }
 
+/* Secondary Cards */
 .card-secondary {
-  color: white;
-  padding: 30px;
+  padding: 20px;
   border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  color: white;
   font-weight: bold;
   text-align: center;
-  min-height: 120px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
+.card-main{
+  background-color: #007bff;
+}
 .card-secondary.brown {
-  background-color: #9C4C1D;
+  background-color: #8B4513;
+  height: 130px;
+  padding-top: 50px;
 }
 
 .card-secondary.purple {
-  background-color: #813CB6;
+  background-color: #800080;
+  height: 130px;
+  padding-top: 50px;
 }
 
-/* Responsive Layout */
-@media screen and (max-width: 768px) {
-  .main-content {
-    padding: 20px 15px;
-  }
-
-  .card-main,
-  .card-secondary {
-    padding: 20px;
-    font-size: 16px;
-  }
-
-  .logo {
-    height: 40px;
-  }
-
-  .hamburger {
-    font-size: 20px;
-  }
-
-  .sidebar-content {
-    width: 200px;
-  }
-
-  .renew-button,
-  .logout-button {
-    font-size: 14px;
-  }
+/* Layout adjustments */
+.g-4 {
+  gap: 1.5rem;
 }
 
-@media screen and (max-width: 480px) {
-  .dashboard-header {
-    padding: 10px 15px;
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .sidebar {
+    left: -100%;
+    width: 70%;
   }
-
-  .main-content {
-    padding: 15px 10px;
-  }
-
-  .card-main,
-  .card-secondary {
-    padding: 15px;
-    font-size: 14px;
-  }
-
-  .card-number {
-    font-size: 20px;
-  }
-
-  .sidebar-content {
-    width: 180px;
-  }
-
-  .renew-button,
-  .logout-button {
-    padding: 8px 12px;
+  .sidebar.open {
+    left: 0;
   }
 }

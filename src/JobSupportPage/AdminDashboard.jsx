@@ -1,56 +1,68 @@
 import React, { useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom'; // Import for navigation
 import '../styles/AdminDashboard.css';
 import txlogo from '../assets/txlogo.png';
-import { FaUserCircle, FaBars } from 'react-icons/fa';
-import { FaArrowLeft } from 'react-icons/fa';
-
+import {
+  FaUserCircle,
+  FaBars,
+  FaArrowLeft,
+  FaChevronDown,
+  FaChevronUp,
+} from 'react-icons/fa';
 
 const AdminDashboard = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [clientsDropdownOpen, setClientsDropdownOpen] = useState(false);
+  const navigate = useNavigate(); // Hook for navigation
 
-  const toggleSidebar = () => {
-    setSidebarOpen(!sidebarOpen);
+  const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
+  const toggleClientsDropdown = () => setClientsDropdownOpen(!clientsDropdownOpen);
+
+  const goToManagers = () => {
+    navigate('/managers');
   };
 
   return (
     <div className="admin-dashboard">
       {/* Header */}
-     {/* Header */}
-<div className="admin-header">
-  <img src={txlogo} alt="TechXplorers Logo" className="admin-logo" />
-</div>
+      <div className="admin-header">
+        <img src={txlogo} alt="TechXplorers Logo" className="admin-logo" />
+      </div>
 
-{/* Hamburger just below the logo */}
-<div className="hamburger-btn" onClick={toggleSidebar}>
-  <FaBars size={24} />
-</div>
-
+      {/* Hamburger just below the logo */}
+      <div className="hamburger-btn" onClick={toggleSidebar}>
+        <FaBars size={24} />
+      </div>
 
       {/* Sidebar */}
       <div className={`admin-sidebar ${sidebarOpen ? 'open' : ''}`}>
-  <div className="sidebar-header">
-  <div className="sidebar-close-btn" onClick={toggleSidebar}>
-    <FaArrowLeft size={20} />
-  </div>
-  <FaUserCircle size={50} className="user-icon" />
-</div>
+        <div className="sidebar-header">
+          <div className="sidebar-close-btn" onClick={toggleSidebar}>
+            <FaArrowLeft size={20} />
+          </div>
+          <FaUserCircle size={50} className="user-icon" />
+        </div>
 
         <ul className="sidebar-menu">
           <li>Dashboard</li>
-          <li>
-            Clients
+          <li onClick={toggleClientsDropdown} className="dropdown-toggle">
+            <span>Clients</span>
+            {clientsDropdownOpen ? <FaChevronUp size={12} /> : <FaChevronDown size={12} />}
+          </li>
+          {clientsDropdownOpen && (
             <ul className="sub-menu">
               <li>Registrations</li>
               <li>Live Clients</li>
               <li>Previous Clients</li>
               <li>Rejected Clients</li>
             </ul>
-          </li>
-          <li>Managers</li>
+          )}
+          <li onClick={goToManagers}>Managers</li>
           <li>Team Lead</li>
           <li>Employee</li>
         </ul>
+
         <div className="sidebar-footer">
           <p>Help & Support</p>
           <button className="logout-btn">Log Out</button>
@@ -68,7 +80,11 @@ const AdminDashboard = () => {
               </div>
             </Col>
             <Col md={6}>
-              <div className="admin-card cyan">
+              <div
+                className="admin-card cyan"
+                onClick={goToManagers}
+                style={{ cursor: 'pointer' }}
+              >
                 <p>Managers</p>
                 <h4>05</h4>
               </div>
