@@ -6,6 +6,7 @@ import CandidateForm from '../JobSupportPage/Auth/JobSupportForm';
 import Dashboard from '../JobSupportPage/Auth/dashboard';
 import AdminDashboard from '../JobSupportPage/AdminDashboard';
 import ManagerData from '../JobSupportPage/ManagerData';
+import ClientData from '../JobSupportPage/ClientData';
 
 
 
@@ -19,7 +20,7 @@ const JobSupportRoutes = () => {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/admindashboard" element={<AdminDashboard />} />
         <Route path="/managers" element={<ManagerData />} />
-
+        <Route path="/clients" element={<ClientData />} />
     </Routes>
   );
 };

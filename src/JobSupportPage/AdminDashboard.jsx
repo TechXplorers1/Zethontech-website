@@ -28,6 +28,11 @@ const AdminDashboard = () => {
     navigate('/managers');
   };
 
+   const goToClients = () => {
+    navigate('/clients');
+  };
+
+  
   return (
     <div className="admin-dashboard">
       {/* Header */}
@@ -79,7 +84,10 @@ const AdminDashboard = () => {
         <Container>
           <Row className="card-row">
             <Col md={6}>
-              <div className="admin-card green">
+              <div className="admin-card green"
+                 onClick={goToClients}
+                style={{ cursor: 'pointer' }}
+              >
                 <p>Clients</p>
                 <h4>96</h4>
               </div>
