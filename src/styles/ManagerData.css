@@ -1,0 +1,213 @@
+.manager-container {
+  min-height: 100vh;
+  background: white;
+}
+
+/* Header */
+.manager-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #ccc;
+}
+
+.manager-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.manager-logo img {
+  height: 40px;
+}
+
+/* Search Section */
+.manager-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.manager-search input {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.manager-search button {
+  padding: 6px 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.manager-search button:hover {
+  background-color: #0056b3;
+}
+
+/* Actions */
+.manager-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem 1.5rem;
+}
+
+.manager-actions button {
+  background: #059669;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Table Styling */
+.manager-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.manager-table th,
+.manager-table td {
+  padding: 0.75rem;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+.manager-table thead {
+  background: #0ea5e9;
+  color: white;
+}
+
+.table-row {
+  background: #f97316;
+  color: white;
+}
+
+.table-expanded {
+  background: #fef3c7;
+  color: black;
+}
+
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+}
+
+/* Modal Styling */
+.modal {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 500px;
+  max-width: 90%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal h3 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.modal input,
+.modal select {
+  margin-bottom: 10px;
+  padding: 10px;
+  font-size: 14px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Close Button */
+.modal-close {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Add Member Section */
+.add-member {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.add-member input {
+  flex: 2;
+}
+
+.add-member select {
+  flex: 1;
+}
+
+.add-member button {
+  background-color: #0cb1f2;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Added People Section */
+.added-people {
+  margin-top: 15px;
+}
+
+.added-people p {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.added-member {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.added-member span {
+  flex: 2;
+  font-size: 14px;
+}
+
+.added-member select {
+  flex: 1;
+  padding: 6px;
+}
+
+.added-member svg {
+  cursor: pointer;
+  color: red;
+  font-size: 18px;
+}
+
+/* Save/Done Button */
+.save-button {
+  margin-top: 20px;
+  background-color: #0cb1f2;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  align-self: flex-end;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
