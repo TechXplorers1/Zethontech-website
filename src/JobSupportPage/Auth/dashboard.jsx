@@ -1,13 +1,20 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import { FaArrowLeft, FaBars, FaTimes } from 'react-icons/fa';
 import txlogo from "../../assets/txlogo.png";
 import '../../styles/Dashboard.css';
 
 const Dashboard = () => {
   const [showSidebar, setShowSidebar] = useState(false);
+  const navigate = useNavigate();
   const toggleSidebar = () => setShowSidebar(!showSidebar);
 
+    const handleLogout = () => {
+    // You can also clear any session or token here if needed
+    navigate('/'); // ← Redirects to the root or login route
+  };
+  
   return (
     <div className="dashboard-container">
       {/* Fixed Logo at Top-Left */}
@@ -26,16 +33,24 @@ const Dashboard = () => {
           <FaArrowLeft size={20} />
         </div>
         <h6>Dashboard</h6>
-        <div className="plan-info">
-          <div>1 Month Plan</div>
-          <div><strong>$000</strong></div>
-          <div>Days Left</div>
-          <div><strong>28</strong></div>
-          <Button variant="success" className="renew-button">Renewal</Button>
-        </div>
+       <div className="plan-info-row">
+  <div className="plan-box">
+    <div>1 Month Plan</div>
+    <div><strong>$000</strong></div>
+  </div>
+  <div className="vertical-divider"></div>
+  <div className="plan-box">
+    <div>Days Left</div>
+    <div><strong>28</strong></div>
+  </div>
+</div>
+<Button variant="success" className="renew-button">Renewal</Button>
+
         <div className="support-section">
           <div>Help & Support</div>
-          <Button variant="info" className="logout-button">Log Out</Button>
+          <Button variant="info" className="logout-button" onClick={handleLogout}>
+            Log Out
+          </Button>
         </div>
       </div>
 

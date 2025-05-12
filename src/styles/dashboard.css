@@ -69,13 +69,23 @@
   margin-bottom: 20px;
 }
 
-.plan-info {
-  margin-top: 20px;
-  font-size: 14px;
+.plan-info-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 10px 0;
 }
 
-.plan-info div {
-  margin-bottom: 5px;
+.plan-box {
+  text-align: center;
+  flex: 1;
+}
+
+.vertical-divider {
+  width: 1px;
+  background-color: #ccc;
+  height: 100%;
 }
 
 .renew-button {
@@ -84,7 +94,7 @@
 }
 
 .support-section {
-  margin-top: 50px;
+  margin-top: 280px;
   text-align: center;
 }
 
