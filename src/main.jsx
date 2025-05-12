@@ -9,7 +9,7 @@ import { BrowserRouter } from 'react-router-dom';
 import AppRoutes from './routes/Routes';
 import JobSupportRoutes from './routes/JobSupportRoutes.jsx';
 import AdminDashboard from './JobSupportPage/AdminDashboard.jsx';
-import ManagerData from './JobSupportPage/ManagerData.jsx';
+import ManagerDashboard from './JobSupportPage/ManagerData.jsx';
 import ClientData from './JobSupportPage/ClientData.jsx';
 
 
@@ -17,10 +17,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
       <AppRoutes />
-      <JobSupportRoutes/>
+      {/* <JobSupportRoutes/>
       <AdminDashboard/>
       <ClientData/>
-      {/* <ManagerData/> */}
+      <ManagerDashboard/> */}
     </BrowserRouter>
   </React.StrictMode>
 );
