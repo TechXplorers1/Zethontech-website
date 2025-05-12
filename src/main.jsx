@@ -11,14 +11,11 @@ import JobSupportRoutes from './routes/JobSupportRoutes.jsx';
 import AdminDashboard from './JobSupportPage/AdminDashboard.jsx';
 
 
-
-
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
-      {/* <AppRoutes />
-      <JobSupportRoutes/> */}
-      <AdminDashboard/>
+      <AppRoutes />
+      <JobSupportRoutes/>
     </BrowserRouter>
   </React.StrictMode>
 );
