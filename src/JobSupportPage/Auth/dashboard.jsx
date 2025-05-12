@@ -59,7 +59,7 @@ const Dashboard = () => {
         <Container fluid>
           <Row className="justify-content-center mb-4 mt-5">
             <Col md={8}>
-              <div className="card-main">
+              <div onClick={() => navigate('/managers')} className="card-main">
                 <div className="text-center">
                   <div>TODAY TOTAL APPLICATIONS</div>
                   <div className="card-number">16</div>
