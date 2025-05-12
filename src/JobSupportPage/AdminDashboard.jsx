@@ -19,6 +19,11 @@ const AdminDashboard = () => {
   const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
   const toggleClientsDropdown = () => setClientsDropdownOpen(!clientsDropdownOpen);
 
+   const handleLogout = () => {
+    // You can also clear any session or token here if needed
+    navigate('/'); // ← Redirects to the root or login route
+  };
+
   const goToManagers = () => {
     navigate('/managers');
   };
@@ -65,7 +70,7 @@ const AdminDashboard = () => {
 
         <div className="sidebar-footer">
           <p>Help & Support</p>
-          <button className="logout-btn">Log Out</button>
+          <button onClick={handleLogout} className="logout-btn">Log Out</button>
         </div>
       </div>
 
