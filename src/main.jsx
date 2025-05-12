@@ -18,8 +18,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <BrowserRouter>
       {/* <AppRoutes />
       <JobSupportRoutes/> */}
-      <AdminDashboard/>
-      {/* <ManagerData/> */}
+      {/* <AdminDashboard/> */}
+      <ManagerData/>
     </BrowserRouter>
   </React.StrictMode>
 );
