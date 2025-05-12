@@ -1,264 +1,256 @@
 import React, { useState } from 'react';
-import { AiOutlineClose } from 'react-icons/ai';
-import '../styles/ManagerData.css';
+import { Container, Row, Col, Table, Button, Form, InputGroup, Modal, Dropdown } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+import '../styles/AdminDashboard.css';
 import txlogo from '../assets/txlogo.png';
+import {
+  FaUserCircle,
+  FaBars,
+  FaArrowLeft,
+  FaChevronDown,
+  FaChevronUp,
+} from 'react-icons/fa';
+
+const dummyPeople = [
+  { email: 'demo@gmail.com', role: 'Team lead' },
+  { email: 'demo1@gmail.com', role: 'Employee' },
+  { email: 'demo2@gmail.com', role: 'Employee' }
+];
 
 const ManagerData = () => {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [clientsDropdownOpen, setClientsDropdownOpen] = useState(false);
+  const navigate = useNavigate();
+
   const [showModal, setShowModal] = useState(false);
-  const [people, setPeople] = useState([
-    {
-      name: 'DEMO NAME',
-      mobile: '+91 9874561230',
-      email: 'demo@gmail.com',
-      password: '07072023@Tx123',
-      count: 3,
-      members: [
-        { email: 'demo1@gmail.com', role: 'Team lead' },
-        { email: 'demo2@gmail.com', role: 'Employee' },
-        { email: 'demo3@gmail.com', role: 'Employee' },
-      ],
-    },
-  ]);
+  const [newManager, setNewManager] = useState({ name: '', mobile: '', email: '', password: '' });
+  const [managers, setManagers] = useState([]);
 
-  const [editingIndex, setEditingIndex] = useState(null);
-  const [formData, setFormData] = useState({
-    name: '',
-    mobile: '',
-    email: '',
-    password: '',
-    count: 0,
-    members: [],
-  });
-  const [newMember, setNewMember] = useState('');
-  const [newRole, setNewRole] = useState('Employee');
-  const [expandedRows, setExpandedRows] = useState([]);
+const [isEditing, setIsEditing] = useState(false);
 
-  const handleEdit = (index) => {
-    setEditingIndex(index);
-    setFormData(people[index]);
-    setShowModal(true);
+  const [assignModalOpen, setAssignModalOpen] = useState(false);
+  const [selectedManagerIndex, setSelectedManagerIndex] = useState(null);
+  const [selectedPeople, setSelectedPeople] = useState([]);
+
+  const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
+  const toggleClientsDropdown = () => setClientsDropdownOpen(!clientsDropdownOpen);
+
+  const handleLogout = () => navigate('/');
+  const goToManagers = () => navigate('/managers');
+  const goToClients = () => navigate('/clients');
+
+  const handleShowModal = () => setShowModal(true);
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setNewManager({ name: '', mobile: '', email: '', password: '' });
   };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    setNewManager((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSave = () => {
-    const updated = [...people];
-    const updatedData = {
-      ...formData,
-      count: formData.members.length,
-    };
-    if (editingIndex === null) {
-      updated.push(updatedData);
-    } else {
-      updated[editingIndex] = updatedData;
-    }
-    setPeople(updated);
-    setShowModal(false);
-    setEditingIndex(null);
-  };
-
-  const addMember = () => {
-    if (!newMember) return;
-
-    if (newMember === formData.email) {
-      alert("You can't add the manager's email as a team member.");
+  const handleAddManager = () => {
+    if (!newManager.name || !newManager.mobile || !newManager.email || !newManager.password) {
+      alert('Please fill all fields');
       return;
     }
-
-    if (!formData.members.find((m) => m.email === newMember)) {
-      setFormData((prev) => ({
-        ...prev,
-        members: [...prev.members, { email: newMember, role: newRole }],
-      }));
-      setNewMember('');
+    if (isEditing) {
+      const updatedManagers = [...managers];
+      updatedManagers[currentManagerIndex] = newManager;
+      setManagers(updatedManagers);
     } else {
-      alert('This member is already added.');
+    setManagers([...managers, { ...newManager, assignedPeople: [] }]);
     }
+    handleCloseModal();
   };
 
-  const updateRole = (email, role) => {
-    setFormData((prev) => ({
-      ...prev,
-      members: prev.members.map((m) =>
-        m.email === email ? { ...m, role } : m
-      ),
-    }));
+
+  
+
+  const openAssignModal = (index) => {
+    setSelectedManagerIndex(index);
+    setSelectedPeople([]);
+    setAssignModalOpen(true);
   };
 
-  const removeMember = (email) => {
-    setFormData((prev) => ({
-      ...prev,
-      members: prev.members.filter((m) => m.email !== email),
-    }));
+  const handleAssignDone = () => {
+    const updatedManagers = [...managers];
+    updatedManagers[selectedManagerIndex].assignedPeople = selectedPeople;
+    setManagers(updatedManagers);
+    setAssignModalOpen(false);
   };
 
-  const toggleExpand = (index) => {
-    setExpandedRows((prev) =>
-      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
+  const handlePersonToggle = (email) => {
+    setSelectedPeople((prev) =>
+      prev.includes(email) ? prev.filter((e) => e !== email) : [...prev, email]
     );
   };
 
   return (
-    <div className="manager-container">
-      <header className="manager-header">
-        <div className="manager-logo">
-          <img src={txlogo} alt="TechXplorers Logo" className="admin-logo" />
-          <div>
-            <h1>TECHXPLORERS</h1>
-            <p>Exploring the Future</p>
-          </div>
-        </div>
-        <h2>Manager</h2>
-        <div className="manager-search">
-          <input type="text" placeholder="Search" />
-          <button>Search</button>
-        </div>
-      </header>
-
-      <div className="manager-actions">
-        <button
-          onClick={() => {
-            setFormData({
-              name: '',
-              mobile: '',
-              email: '',
-              password: '',
-              count: 0,
-              members: [],
-            });
-            setEditingIndex(null);
-            setShowModal(true);
-          }}
-        >
-          + Add Manager
-        </button>
+    <div className="admin-dashboard">
+      <div className="admin-header">
+        <img src={txlogo} alt="TechXplorers Logo" className="admin-logo" />
       </div>
 
-      <table className="manager-table">
-        <thead>
-          <tr>
-            <th>NAME</th>
-            <th>MOBILE</th>
-            <th>EMAIL</th>
-            <th>PASSWORD</th>
-            <th>PEOPLE</th>
-            <th>ADD PEOPLE</th>
-          </tr>
-        </thead>
-        <tbody>
-          {people.map((person, idx) => (
-            <React.Fragment key={idx}>
-              <tr className="table-row">
+      <div className="hamburger-btn" onClick={toggleSidebar}>
+        <FaBars size={24} />
+      </div>
+
+      <div className={`admin-sidebar ${sidebarOpen ? 'open' : ''}`}>
+        <div className="sidebar-header">
+          <div className="sidebar-close-btn" onClick={toggleSidebar}>
+            <FaArrowLeft size={20} />
+          </div>
+          <FaUserCircle size={50} className="user-icon" />
+        </div>
+
+        <ul className="sidebar-menu">
+          <li>Dashboard</li>
+          <li onClick={toggleClientsDropdown} className="dropdown-toggle">
+            <span>Clients</span>
+            {clientsDropdownOpen ? <FaChevronUp size={12} /> : <FaChevronDown size={12} />}
+          </li>
+          {clientsDropdownOpen && (
+            <ul className="sub-menu">
+              <li>Registrations</li>
+              <li>Active Clients</li>
+              <li>Previous Clients</li>
+              <li>Rejected Clients</li>
+            </ul>
+          )}
+          <li onClick={goToManagers}>Managers</li>
+          <li>Team Leads</li>
+          <li>Employees</li>
+        </ul>
+
+        <div className="sidebar-footer">
+          <p>Help & Support</p>
+          <button onClick={handleLogout} className="logout-btn">Log Out</button>
+        </div>
+      </div>
+
+      <div className="container mt-4">
+        <div className="d-flex justify-content-between align-items-center mb-3">
+          <InputGroup className="w-50">
+            <Form.Control placeholder="Search" />
+            <Button variant="info">Search</Button>
+          </InputGroup>
+          <Button variant="success" onClick={handleShowModal}>+ Add Manager</Button>
+        </div>
+
+        <Table striped bordered hover responsive className="text-center align-middle">
+          <thead className="table-primary">
+            <tr>
+              <th>NAME</th>
+              <th>MOBILE</th>
+              <th>EMAIL</th>
+              <th>PASSWORD</th>
+              <th>PEOPLE</th>
+              <th>ACTIONS</th>
+            </tr>
+          </thead>
+          <tbody>
+            {managers.map((mgr, idx) => (
+              <tr key={idx} className="table-warning">
+                <td>{mgr.name}</td>
+                <td>{mgr.mobile}</td>
+                <td>{mgr.email}</td>
+                <td>{mgr.password}</td>
                 <td>
-                  <button onClick={() => toggleExpand(idx)}>
-                    {expandedRows.includes(idx) ? '▲' : '▼'}
-                  </button>{' '}
-                  {person.name}
+                  <Button size="sm" variant="success" onClick={() => openAssignModal(idx)}>
+                    Add People ({mgr.assignedPeople?.length || 0})
+                  </Button>
                 </td>
-                <td>{person.mobile}</td>
-                <td>{person.email}</td>
-                <td>{person.password}</td>
-                <td>{person.count}</td>
                 <td>
-                  <button onClick={() => handleEdit(idx)}>Add People</button>
+                  <Button
+                    variant="link"
+                    className="text-decoration-none"
+                    onClick={() => {
+                      setIsEditing(true);
+                      setCurrentManagerIndex(index);
+                      setNewManager(manager);
+                      setShowModal(true);
+                    }}
+                  >
+                    ✏️
+                  </Button>
+                  <Button variant="link" className="text-danger text-decoration-none">❌</Button>
                 </td>
               </tr>
-              {expandedRows.includes(idx) && person.members.length > 0 && (
-                <tr className="table-expanded">
-                  <td colSpan="6">
-                    <strong>Members:</strong>
-                    <ul>
-                      {person.members.map((m, i) => (
-                        <li key={i}>
-                          {m.email} — <em>{m.role}</em>
-                        </li>
-                      ))}
-                    </ul>
-                  </td>
-                </tr>
-              )}
-            </React.Fragment>
-          ))}
-        </tbody>
-      </table>
+            ))}
+          </tbody>
+        </Table>
 
-      {showModal && (
-        <div className="modal-overlay">
-          <div className="modal">
-            <button className="modal-close" onClick={() => setShowModal(false)}>
-              ×
-            </button>
-            <h3>{editingIndex === null ? 'Add Manager' : 'Edit Manager'}</h3>
-            <input
-              name="name"
-              value={formData.name}
-              onChange={handleInputChange}
-              placeholder="Name"
-            />
-            <input
-              name="mobile"
-              value={formData.mobile}
-              onChange={handleInputChange}
-              placeholder="Mobile"
-            />
-            <input
-              name="email"
-              value={formData.email}
-              onChange={handleInputChange}
-              placeholder="Email"
-            />
-            <input
-              name="password"
-              value={formData.password}
-              onChange={handleInputChange}
-              placeholder="Password"
-            />
-
-            <div className="add-member">
-              <input
-                type="email"
-                placeholder="Add team member Email"
-                value={newMember}
-                onChange={(e) => setNewMember(e.target.value)}
-              />
-              <select
-                value={newRole}
-                onChange={(e) => setNewRole(e.target.value)}
-              >
-                <option>Employee</option>
-                <option>Team lead</option>
-              </select>
-              <button onClick={addMember}>Add</button>
-            </div>
-
-            <div className="added-people">
-              <p>Added People</p>
-              {formData.members.map((member, index) => (
-                <div key={index} className="added-member">
-                  <span>{member.email}</span>
-                  <select
-                    value={member.role}
-                    onChange={(e) => updateRole(member.email, e.target.value)}
-                  >
-                    <option>Employee</option>
-                    <option>Team lead</option>
-                  </select>
-                  <AiOutlineClose
-                    onClick={() => removeMember(member.email)}
-                  />
-                </div>
-              ))}
-            </div>
-
-            <button className="save-button" onClick={handleSave}>
-              Done
-            </button>
-          </div>
+        <div className="text-end text-muted">
+          <small>1–20 of 70</small>
+          <span className="ms-3">‹</span>
+          <span className="ms-2">›</span>
         </div>
-      )}
+      </div>
+
+      {/* Modal: Add Manager */}
+      <Modal show={showModal} onHide={handleCloseModal} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>Add Manager</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group className="mb-3">
+              <Form.Label>Name</Form.Label>
+              <Form.Control name="name" value={newManager.name} onChange={handleInputChange} />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Mobile</Form.Label>
+              <Form.Control name="mobile" value={newManager.mobile} onChange={handleInputChange} />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Email</Form.Label>
+              <Form.Control name="email" value={newManager.email} onChange={handleInputChange} />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Password</Form.Label>
+              <Form.Control name="password" value={newManager.password} onChange={handleInputChange} />
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseModal}>Close</Button>
+          <Button variant="primary" onClick={handleAddManager}>Submit</Button>
+        </Modal.Footer>
+      </Modal>
+
+      {/* Modal: Assign People */}
+      <Modal show={assignModalOpen} onHide={() => setAssignModalOpen(false)} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>Assign People</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <h6>Added People</h6>
+          {dummyPeople.map((person, index) => (
+            <div key={index} className="d-flex justify-content-between align-items-center mb-2">
+              <Form.Check
+                type="checkbox"
+                checked={selectedPeople.includes(person.email)}
+                onChange={() => handlePersonToggle(person.email)}
+                label={person.email}
+              />
+              <Dropdown>
+                <Dropdown.Toggle size="sm" variant="light">
+                  {person.role}
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  <Dropdown.Item>Team lead</Dropdown.Item>
+                  <Dropdown.Item>Employee</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </div>
+          ))}
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={handleAssignDone}>Done</Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };
