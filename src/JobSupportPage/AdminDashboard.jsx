@@ -1,15 +1,27 @@
 import React, { useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom'; // Import for navigation
 import '../styles/AdminDashboard.css';
 import txlogo from '../assets/txlogo.png';
-import { FaUserCircle, FaBars, FaArrowLeft, FaChevronDown, FaChevronUp } from 'react-icons/fa';
+import {
+  FaUserCircle,
+  FaBars,
+  FaArrowLeft,
+  FaChevronDown,
+  FaChevronUp,
+} from 'react-icons/fa';
 
 const AdminDashboard = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [clientsDropdownOpen, setClientsDropdownOpen] = useState(false);
+  const navigate = useNavigate(); // Hook for navigation
 
   const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
   const toggleClientsDropdown = () => setClientsDropdownOpen(!clientsDropdownOpen);
+
+  const goToManagers = () => {
+    navigate('/managers');
+  };
 
   return (
     <div className="admin-dashboard">
@@ -46,7 +58,7 @@ const AdminDashboard = () => {
               <li>Rejected Clients</li>
             </ul>
           )}
-          <li>Managers</li>
+          <li onClick={goToManagers}>Managers</li>
           <li>Team Lead</li>
           <li>Employee</li>
         </ul>
@@ -68,7 +80,11 @@ const AdminDashboard = () => {
               </div>
             </Col>
             <Col md={6}>
-              <div className="admin-card cyan">
+              <div
+                className="admin-card cyan"
+                onClick={goToManagers}
+                style={{ cursor: 'pointer' }}
+              >
                 <p>Managers</p>
                 <h4>05</h4>
               </div>

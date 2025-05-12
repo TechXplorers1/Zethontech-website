@@ -16,9 +16,9 @@ import AdminDashboard from './JobSupportPage/AdminDashboard.jsx';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
-      {/* <AppRoutes />
-      <JobSupportRoutes/> */}
-      <AdminDashboard/>
+      <AppRoutes />
+      <JobSupportRoutes/>
+      {/* <AdminDashboard/> */}
     </BrowserRouter>
   </React.StrictMode>
 );
