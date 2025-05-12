@@ -58,14 +58,14 @@ const AdminDashboard = () => {
           {clientsDropdownOpen && (
             <ul className="sub-menu">
               <li>Registrations</li>
-              <li>Live Clients</li>
+              <li>Active Clients</li>
               <li>Previous Clients</li>
               <li>Rejected Clients</li>
             </ul>
           )}
           <li onClick={goToManagers}>Managers</li>
-          <li>Team Lead</li>
-          <li>Employee</li>
+          <li>Team Leads</li>
+          <li>Employees</li>
         </ul>
 
         <div className="sidebar-footer">
@@ -104,7 +104,7 @@ const AdminDashboard = () => {
             </Col>
             <Col md={6}>
               <div className="admin-card blue">
-                <p>Employee</p>
+                <p>Employees</p>
                 <h4>30</h4>
               </div>
             </Col>
