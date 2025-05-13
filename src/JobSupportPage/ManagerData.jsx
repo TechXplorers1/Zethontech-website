@@ -118,7 +118,7 @@ const ManagerData = () => {
     <div className="admin-dashboard">
       <div className="admin-header">
         <img src={txlogo} alt="TechXplorers Logo" className="admin-logo" />
-                <h2 className="logo-heading">Manager Dashboard</h2>
+                <h2 className="logo-heading">Managers Data</h2>
       </div>
 
       <div className="hamburger-btn" onClick={toggleSidebar}>

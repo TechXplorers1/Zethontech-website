@@ -119,7 +119,7 @@ const EmployeeData = () => {
     <div className="admin-dashboard">
       <div className="admin-header">
         <img src={txlogo} alt="TechXplorers Logo" className="admin-logo" />
-                <h2 className="logo-heading">Employee Dashboard</h2>
+                <h2 className="logo-heading">Employees Data</h2>
 
       </div>
 
