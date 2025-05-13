@@ -3,7 +3,7 @@ import { Container, Form, Button, Row, Col, Alert } from 'react-bootstrap';
 import emailjs from 'emailjs-com';
 // import '../../styles/JobSupportForm.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import CustomNavbar from '../../components/Navbar';
+import CustomNavbar from '../../../components/Navbar';
 const ContactForm = () => {
   useEffect(() => {
     emailjs.init('I1UJMnujMWkyQsjA0');

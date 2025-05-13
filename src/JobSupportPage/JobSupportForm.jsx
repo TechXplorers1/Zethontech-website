@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Form, Button, Row, Col, Alert } from 'react-bootstrap';
-import '../../styles/JobSupportForm.css';
+import '../styles/JobSupportForm.css';
 import { useNavigate } from 'react-router-dom';
 
-import txlogo from "../../assets/txlogo.png"; // replace with actual logo path
+import txlogo from "../assets/txlogo.png"; // replace with actual logo path
 
 
 

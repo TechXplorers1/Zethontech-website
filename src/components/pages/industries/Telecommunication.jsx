@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import IndustryTemplate from '../../components/IndustryTemplate';
-import telecomImage from '../../assets/industries/telecom.jpg';
+import IndustryTemplate from '../../IndustryTemplate';
+import telecomImage from '../../../assets/industries/telecom.jpg';
 
 const Telecommunication  = () => {
   useEffect(() => {

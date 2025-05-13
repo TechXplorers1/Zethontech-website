@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 
-import '../../styles/ServiceLayout.css';
+import '../../../styles/ServiceLayout.css';
 
-import img1 from '../../assets/mobile1.png';
-import CustomNavbar from '../../components/Navbar';
+import img1 from '../../../assets/mobile1.png';
+import CustomNavbar from '../../../components/Navbar';
 
 
 const MobileAppDev = () => {

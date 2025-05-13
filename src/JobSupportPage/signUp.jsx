@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import '../../styles/signUp.css';
+import '../styles/signUp.css';
 import { useNavigate } from 'react-router-dom';
-import txlogo from "../../assets/txlogo.png";
+import txlogo from "../assets/txlogo.png";
 import { FcGoogle } from "react-icons/fc";
 import { MdEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
