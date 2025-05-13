@@ -3,8 +3,7 @@ import '../styles/login.css'; // for custom styles
 import { useNavigate } from 'react-router-dom';
 
 import { FcGoogle } from "react-icons/fc";
-import txlogo from "../assets/txlogo.png"; // replace with actual logo path
-// import googleicon from "../../assets/GoogleIcon.png"; 
+import txlogo from "../assets/txlogo.png";
 import { MdEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
@@ -17,7 +16,6 @@ export default function LoginPage() {
     const [emailError, setEmailError] = useState("");
     const [passwordError, setPasswordError] = useState("");
 
-
     const validatePassword = (value) => {
         if (value.length < 8) return 'Password must be at least 8 characters';
         if (!/[A-Z]/.test(value)) return 'Password must contain at least one uppercase letter';
@@ -29,8 +27,6 @@ export default function LoginPage() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        // Clear previous errors
         setEmailError("");
         setPasswordError("");
         let hasError = false;
@@ -52,8 +48,6 @@ export default function LoginPage() {
         navigate('/clientdashboard');
     };
 
-
-
     return (
         <div className="login-page">
             <div className="d-flex justify-content-between align-items-center p-4">
@@ -64,16 +58,17 @@ export default function LoginPage() {
                 </div>
             </div>
 
-            <div className="d-flex justify-content-center align-items-center vh-95">
-                <form onSubmit={handleSubmit}>
+            <div className="d-flex justify-content-center align-items-center vh-100">
+                <form onSubmit={handleSubmit} className="w-100 d-flex justify-content-center">
                     <div className="shadow-lg p-5 rounded bg-white login-box">
-                        <h3 className="text-center fw-bold mb-3">Welcome back !</h3>
+                        <h3 className="text-center fw-bold mb-3">Welcome back!</h3>
                         <button className="btn btn-light w-100 border mb-3 d-flex align-items-center justify-content-center gap-2">
                             <FcGoogle size={20} />
-
-                            Continue With Google</button>
+                            Continue With Google
+                        </button>
                         <div className="text-center text-muted mb-2">──────── OR ────────</div>
 
+                        {/* Email Field */}
                         <div className="mb-3">
                             <label className="form-label">Email</label>
                             <div className="input-group">
@@ -116,7 +111,9 @@ export default function LoginPage() {
 
                         <div className="text-center mt-3">
                             <span className="me-1 text-muted">Don’t Have An Account?</span>
-                            <a onClick={() => navigate('/signup')} className="text-primary text-decoration-none">Sign Up</a>
+                            <a onClick={() => navigate('/signup')} className="text-primary text-decoration-none" style={{ cursor: "pointer" }}>
+                                Sign Up
+                            </a>
                         </div>
                     </div>
                 </form>

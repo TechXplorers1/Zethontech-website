@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import '../styles/signUp.css';
+import '../styles/SignUp.css';
 import { useNavigate } from 'react-router-dom';
 import txlogo from "../assets/txlogo.png";
 import { FcGoogle } from "react-icons/fc";
