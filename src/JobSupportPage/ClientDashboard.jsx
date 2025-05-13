@@ -10,11 +10,11 @@ const ClientDashboard = () => {
   const navigate = useNavigate();
   const toggleSidebar = () => setShowSidebar(!showSidebar);
 
-    const handleLogout = () => {
+  const handleLogout = () => {
     // You can also clear any session or token here if needed
     navigate('/'); // ← Redirects to the root or login route
   };
-  
+
   return (
     <div className="dashboard-container">
       {/* Fixed Logo at Top-Left */}
@@ -23,9 +23,9 @@ const ClientDashboard = () => {
       </div>
 
       {/* Hamburger Icon Below Logo */}
-       <div className="hamburger-btn" onClick={toggleSidebar}>
-            <FaBars size={24} />
-          </div>
+      <div className="hamburger-btn" onClick={toggleSidebar}>
+        <FaBars size={24} />
+      </div>
 
       {/* Sidebar - Starts below the logo */}
       <div className={`sidebar ${showSidebar ? 'open' : ''}`}>
@@ -33,18 +33,18 @@ const ClientDashboard = () => {
           <FaArrowLeft size={20} />
         </div>
         <h6>Dashboard</h6>
-       <div className="plan-info-row">
-  <div className="plan-box">
-    <div>1 Month Plan</div>
-    <div><strong>$000</strong></div>
-  </div>
-  <div className="vertical-divider"></div>
-  <div className="plan-box">
-    <div>Days Left</div>
-    <div><strong>28</strong></div>
-  </div>
-</div>
-<Button variant="success" className="renew-button">Renewal</Button>
+        <div className="plan-info-row">
+          <div className="plan-box">
+            <div>1 Month Plan</div>
+            <div><strong>$000</strong></div>
+          </div>
+          <div className="vertical-divider"></div>
+          <div className="plan-box">
+            <div>Days Left</div>
+            <div><strong>28</strong></div>
+          </div>
+        </div>
+        <Button variant="success" className="renew-button">Renewal</Button>
 
         <div className="support-section">
           <div>Help & Support</div>
