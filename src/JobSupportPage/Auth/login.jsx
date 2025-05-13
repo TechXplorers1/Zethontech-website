@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./login.css"; // for custom styles
+import '../../styles/login.css'; // for custom styles
 import { useNavigate } from 'react-router-dom';
 
 import { FcGoogle } from "react-icons/fc";

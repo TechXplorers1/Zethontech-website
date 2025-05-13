@@ -16,7 +16,7 @@ import ClientData from './JobSupportPage/ClientData.jsx';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
-      {/* /* <AppRoutes /> */}
+    <AppRoutes />
       <JobSupportRoutes/>
       {/* <AdminDashboard/> */}
       {/* <ManagerData/> */}
