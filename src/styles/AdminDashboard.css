@@ -131,22 +131,32 @@
   font-weight: bold;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
   text-align: center;
+  align-items: center;
+  margin-left: 50px;
 }
 
 .admin-card.green {
   background-color: #28a745;
+  width: 620px;
+  height: 180px;
 }
 
 .admin-card.cyan {
   background-color: #17a2b8;
+  width: 620px;
+  height: 180px;
 }
 
 .admin-card.navy {
   background-color: #001f3f;
+  width: 620px;
+  height: 180px;
 }
 
 .admin-card.blue {
   background-color: #007bff;
+  width: 620px;
+  height: 180px;
 }
 
 /* .dropdown-item {
