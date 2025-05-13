@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import IndustryTemplate from '../../components/IndustryTemplate';
-import bfsImage from '../../assets/industries/bfsi.jpg'; // Add relevant image
+import IndustryTemplate from '../../IndustryTemplate';
+import bfsImage from '../../../assets/industries/bfsi.jpg'; // Add relevant image
 
 const BFSI = () => {
   useEffect(() => {

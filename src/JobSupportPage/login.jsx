@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import '../../styles/login.css'; // for custom styles
+import '../styles/login.css'; // for custom styles
 import { useNavigate } from 'react-router-dom';
 
 import { FcGoogle } from "react-icons/fc";
-import txlogo from "../../assets/txlogo.png"; // replace with actual logo path
-import googleicon from "../../assets/GoogleIcon.png"; // replace with actual logo path
+import txlogo from "../assets/txlogo.png"; // replace with actual logo path
+// import googleicon from "../../assets/GoogleIcon.png"; 
 import { MdEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
@@ -49,7 +49,7 @@ export default function LoginPage() {
         if (hasError) return;
 
         console.log("User Registered with Email:", email);
-        navigate('/admindashboard');
+        navigate('/clientdashboard');
     };
 
 

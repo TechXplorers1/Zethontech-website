@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import IndustryTemplate from '../../components/IndustryTemplate';
-import governmentImage from '../../assets/industries/government.jpg';
+import IndustryTemplate from '../../IndustryTemplate';
+import governmentImage from '../../../assets/industries/government.jpg';
 
 const Government = () => {
   useEffect(() => {

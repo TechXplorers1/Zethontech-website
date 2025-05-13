@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import '../../styles/ServiceLayout.css';
-import img1 from '../../assets/mobile3.png';
-import CustomNavbar from '../../components/Navbar';
+import '../../../styles/ServiceLayout.css';
+import img1 from '../../../assets/mobile3.png';
+import CustomNavbar from '../../../components/Navbar';
 const DigitalMarketing = () => {
      useEffect(() => {
       if (!window.location.hash.includes('#')) {

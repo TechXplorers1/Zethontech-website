@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { FaArrowLeft, FaBars, FaTimes } from 'react-icons/fa';
-import txlogo from "../../assets/txlogo.png";
-import '../../styles/Dashboard.css';
+import txlogo from "../assets/txlogo.png";
+import '../styles/ClientDashboard.css';
 
-const Dashboard = () => {
+const ClientDashboard = () => {
   const [showSidebar, setShowSidebar] = useState(false);
   const navigate = useNavigate();
   const toggleSidebar = () => setShowSidebar(!showSidebar);
@@ -81,4 +81,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default ClientDashboard;

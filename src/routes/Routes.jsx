@@ -1,23 +1,23 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Home from '../App';
-import MobileAppDev from '../pages/services/MobileAppDev';
-import WebAppDev from '../pages/services/WebAppDev';
-import DigitalMarketing from '../pages/services/DigitalMarketing';
-import ITTalentSupply from '../pages/services/ITTalentSupply';
-import JobSupport from '../pages/services/JobSupport';
-import ContactForm from '../pages/services/JobSupportContactForm';
+import MobileAppDev from '../components/pages/services/MobileAppDev';
+import WebAppDev from '../components/pages/services/WebAppDev';
+import DigitalMarketing from '../components/pages/services/DigitalMarketing';
+import ITTalentSupply from '../components/pages/services/ITTalentSupply';
+import JobSupport from '../components/pages/services/JobSupport';
+import ContactForm from '../components/pages/services/JobSupportContactForm';
 import ServiceLayout from '../components/ServiceLayout';
 import Contact from '../components/Contact';
-import BFSI from '../pages/industries/BFSI';
-import Construction from '../pages/industries/Construction';
-import Education from '../pages/industries/Education';
-import Government from '../pages/industries/Government';
-import Healthcare from '../pages/industries/Healthcare';
-import Manufacturing from '../pages/industries/Manufacturing';
-import OilGas from '../pages/industries/OilGas';
-import Retail from '../pages/industries/Retail';
-import Telecommunication from '../pages/industries/Telecommunication';
+import BFSI from '../components/pages/industries/BFSI';
+import Construction from '../components/pages/industries/Construction';
+import Education from '../components/pages/industries/Education';
+import Government from '../components/pages/industries/Government';
+import Healthcare from '../components/pages/industries/Healthcare';
+import Manufacturing from '../components/pages/industries/Manufacturing';
+import OilGas from '../components/pages/industries/OilGas';
+import Retail from '../components/pages/industries/Retail';
+import Telecommunication from '../components/pages/industries/Telecommunication';
 
 
 

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import '../../styles/ServiceLayout.css';
-import img1 from '../../assets/mobile4.png';
-import CustomNavbar from '../../components/Navbar';
+import '../../../styles/ServiceLayout.css';
+import img1 from '../../../assets/mobile4.png';
+import CustomNavbar from '../../../components/Navbar';
 const ITTalentSupply = () => {
      useEffect(() => {
       if (!window.location.hash.includes('#')) {

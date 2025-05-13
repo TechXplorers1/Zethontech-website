@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import IndustryTemplate from '../../components/IndustryTemplate';
-import manufacturingImage from '../../assets/industries/manufacturing.jpg';
+import IndustryTemplate from '../../IndustryTemplate';
+import manufacturingImage from '../../../assets/industries/manufacturing.jpg';
 
 const Manufacturing = () => {
   useEffect(() => {
