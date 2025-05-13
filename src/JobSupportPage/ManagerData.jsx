@@ -33,7 +33,21 @@ const ManagerData = () => {
     email: '',
     password: ''
   });
-  const [managers, setManagers] = useState([]);
+  const [managers, setManagers] = useState([
+{
+      name: "Sreenivasulu",
+      mobile: "+91 9874561230",
+      email: "seenu@gmail.com",
+      password: "07072023@Tx123",
+    },
+    {
+      name: "Ram Kiran",
+      mobile: "+91 7894561230",
+      email: "ramkiran@gmail.com",
+      password: "07072023@TxSm",
+    },
+
+  ]);
 
   const [assignModalOpen, setAssignModalOpen] = useState(false);
   const [selectedManagerIndex, setSelectedManagerIndex] = useState(null);

@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import "../styles/ClientData.css";
+import txlogo from '../assets/txlogo.png';
+
+
 
 const sampleClients = {
   registered: [
@@ -105,6 +108,14 @@ const ClientData = () => {
   );
 
   return (
+ <div className="admin-dashboard">
+      {/* Header */}
+      <div className="admin-header">
+        <img src={txlogo} alt="TechXplorers Logo" className="admin-logo" />
+      </div>
+
+
+
     <div className="dashboard-container">
       <h2>Clients Data</h2>
       <div className="tabs">
@@ -119,6 +130,7 @@ const ClientData = () => {
         ))}
       </div>
       <div className="table-wrapper">{renderTable(clients[tab])}</div>
+    </div>
     </div>
   );
 };
