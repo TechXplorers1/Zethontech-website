@@ -6,14 +6,21 @@
   background: #f5f7fa;
 }
 
-/* Fixed Logo at Top-Left */
+/* Fixed Logo at Top - Full Width */
 .logo-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  margin: 0;
   padding: 10px 20px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   background-color: white;
   border-bottom: 1px solid #ddd;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .logo {
@@ -28,9 +35,9 @@
   display: flex;
   align-items: center;
   position: fixed;
-  top: 70px; /* Adjusted this value to move below the logo */
-  left: 20px;
-  z-index: 1000;
+  top: 80px; /* Adjusted this value to move below the logo */
+  left: 5px;
+  z-index: 999;
 }
 
 .hamburger-icon {
@@ -48,7 +55,7 @@
   border-right: 1px solid #ddd;
   padding: 20px 10px;
   transition: left 0.3s ease;
-  z-index: 999;
+  z-index: 998;
 }
 
 .sidebar.open {
@@ -133,9 +140,10 @@
   text-align: center;
 }
 
-.card-main{
+.card-main {
   background-color: #007bff;
 }
+
 .card-secondary.brown {
   background-color: #8B4513;
   height: 130px;

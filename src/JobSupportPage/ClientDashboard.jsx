@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import { FaArrowLeft, FaBars, FaTimes } from 'react-icons/fa';
+import { FaArrowLeft, FaBars } from 'react-icons/fa';
 import txlogo from "../assets/txlogo.png";
 import '../styles/ClientDashboard.css';
 
@@ -10,11 +10,10 @@ const ClientDashboard = () => {
   const navigate = useNavigate();
   const toggleSidebar = () => setShowSidebar(!showSidebar);
 
-    const handleLogout = () => {
-    // You can also clear any session or token here if needed
-    navigate('/'); // ← Redirects to the root or login route
+  const handleLogout = () => {
+    navigate('/');
   };
-  
+
   return (
     <div className="dashboard-container">
       {/* Fixed Logo at Top-Left */}
@@ -23,9 +22,12 @@ const ClientDashboard = () => {
       </div>
 
       {/* Hamburger Icon Below Logo */}
-       <div className="hamburger-btn" onClick={toggleSidebar}>
-            <FaBars size={24} />
-          </div>
+    {!showSidebar && (
+  <div className="hamburger-container" onClick={toggleSidebar}>
+    <FaBars className="hamburger-icon" />
+  </div>
+)}
+
 
       {/* Sidebar - Starts below the logo */}
       <div className={`sidebar ${showSidebar ? 'open' : ''}`}>
@@ -33,18 +35,19 @@ const ClientDashboard = () => {
           <FaArrowLeft size={20} />
         </div>
         <h6>Dashboard</h6>
-       <div className="plan-info-row">
-  <div className="plan-box">
-    <div>1 Month Plan</div>
-    <div><strong>$000</strong></div>
-  </div>
-  <div className="vertical-divider"></div>
-  <div className="plan-box">
-    <div>Days Left</div>
-    <div><strong>28</strong></div>
-  </div>
-</div>
-<Button variant="success" className="renew-button">Renewal</Button>
+
+        <div className="plan-info-row">
+          <div className="plan-box">
+            <div>1 Month Plan</div>
+            <div><strong>$000</strong></div>
+          </div>
+          <div className="vertical-divider"></div>
+          <div className="plan-box">
+            <div>Days Left</div>
+            <div><strong>28</strong></div>
+          </div>
+        </div>
+        <Button variant="success" className="renew-button">Renewal</Button>
 
         <div className="support-section">
           <div>Help & Support</div>
