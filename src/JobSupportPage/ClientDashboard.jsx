@@ -19,14 +19,15 @@ const ClientDashboard = () => {
       {/* Fixed Logo at Top-Left */}
       <div className="logo-container">
         <img src={txlogo} alt="TechXplorers" className="logo" />
+        <h2 className="logo-heading">Client Dashboard</h2>
       </div>
 
       {/* Hamburger Icon Below Logo */}
-    {!showSidebar && (
-  <div className="hamburger-container" onClick={toggleSidebar}>
-    <FaBars className="hamburger-icon" />
-  </div>
-)}
+      {!showSidebar && (
+        <div className="hamburger-container" onClick={toggleSidebar}>
+          <FaBars className="hamburger-icon" />
+        </div>
+      )}
 
 
       {/* Sidebar - Starts below the logo */}

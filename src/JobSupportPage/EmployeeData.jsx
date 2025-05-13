@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Modal } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import '../styles/AdminDashboard.css';
+import '../styles/EmployeeData.css';
 import txlogo from '../assets/txlogo.png';
 import { Table, Button, Form, InputGroup, Dropdown } from 'react-bootstrap';
 import {
@@ -19,7 +19,7 @@ const dummyPeople = [
 ];
 
 
-const ManagerData = () => {
+const EmployeeData = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [clientsDropdownOpen, setClientsDropdownOpen] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -35,15 +35,15 @@ const ManagerData = () => {
   });
   const [managers, setManagers] = useState([
 {
-      name: "Sreenivasulu",
+      name: "Siva",
       mobile: "+91 9874561230",
-      email: "seenu@gmail.com",
+      email: "siva@gmail.com",
       password: "07072023@Tx123",
     },
     {
-      name: "Ram Kiran",
+      name: "Arjun",
       mobile: "+91 7894561230",
-      email: "ramkiran@gmail.com",
+      email: "arjun@gmail.com",
       password: "07072023@TxSm",
     },
 
@@ -63,6 +63,7 @@ const ManagerData = () => {
 
   const goToManagers = () => navigate('/managers');
   const goToClients = () => navigate('/clients');
+  const goToEmployee = () => navigate('/employee');
 
   const handleShowModal = () => setShowModal(true);
   const handleCloseModal = () => {
@@ -118,7 +119,8 @@ const ManagerData = () => {
     <div className="admin-dashboard">
       <div className="admin-header">
         <img src={txlogo} alt="TechXplorers Logo" className="admin-logo" />
-                <h2 className="logo-heading">Manager Dashboard</h2>
+                <h2 className="logo-heading">Employee Dashboard</h2>
+
       </div>
 
       <div className="hamburger-btn" onClick={toggleSidebar}>
@@ -169,7 +171,7 @@ const ManagerData = () => {
             <Button variant="info">Search</Button>
           </InputGroup>
 
-          <Button variant="success" onClick={handleShowModal}>+ Add Manager</Button>
+          <Button variant="success" onClick={handleShowModal}>+ Add Employee</Button>
         </div>
 
         <Table striped bordered hover responsive className="text-center align-middle">
@@ -179,7 +181,6 @@ const ManagerData = () => {
               <th>MOBILE</th>
               <th>EMAIL</th>
               <th>PASSWORD</th>
-              <th>PEOPLE</th>
               <th>ACTIONS</th>
             </tr>
           </thead>
@@ -195,11 +196,6 @@ const ManagerData = () => {
                   <td>{manager.mobile}</td>
                   <td>{manager.email}</td>
                   <td>{manager.password}</td>
-                  <td>
-                    <Button size="sm" variant="success" onClick={() => openAssignModal(index)}>
-                      Add People ({manager.assignedPeople?.length || 0})
-                    </Button>
-                  </td>
                   <td>
                     <Button
                       variant="link"
@@ -255,46 +251,11 @@ const ManagerData = () => {
       </Modal>
 
 
-      {/* Modal: Assign People */}
-      <Modal show={assignModalOpen} onHide={() => setAssignModalOpen(false)} centered>
-        <Modal.Header closeButton>
-          <Modal.Title>Assign People</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <h6>Added People</h6>
-          {dummyPeople.map((person, index) => (
-            <div key={index} className="d-flex justify-content-between align-items-center mb-2">
-              <Form.Check
-                type="checkbox"
-                checked={selectedPeople.includes(person.email)}
-                onChange={() => handlePersonToggle(person.email)}
-                label={person.email}
-              />
-              <Dropdown>
-                <Dropdown.Toggle size="sm" variant="light">
-                  {person.role}
-                </Dropdown.Toggle>
-                <Dropdown.Menu>
-                  <Dropdown.Item>Team lead</Dropdown.Item>
-                  <Dropdown.Item>Employee</Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
-            </div>
-          ))}
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="primary" onClick={handleAssignDone}>Done</Button>
-        </Modal.Footer>
-      </Modal>
-
-
-
-
     </div>
   );
 };
 
-export default ManagerData;
+export default EmployeeData;
 
 
 // Add Manager,Add people and edit options are working

@@ -31,6 +31,9 @@ const AdminDashboard = () => {
    const goToClients = () => {
     navigate('/clients');
   };
+   const goToEmployee = () => {
+    navigate('/employee');
+  };
 
   
   return (
@@ -38,6 +41,7 @@ const AdminDashboard = () => {
       {/* Header */}
       <div className="admin-header">
         <img src={txlogo} alt="TechXplorers Logo" className="admin-logo" />
+        <h2 className="logo-heading">Admin Dashboard</h2>
       </div>
 
       {/* Hamburger just below the logo */}
@@ -111,7 +115,10 @@ const AdminDashboard = () => {
               </div>
             </Col>
             <Col md={6}>
-              <div className="admin-card blue">
+              <div className="admin-card blue"
+               onClick={goToEmployee}
+                style={{ cursor: 'pointer' }}
+              >
                 <p>Employees</p>
                 <h4>30</h4>
               </div>

@@ -119,6 +119,8 @@ const ClientData = () => {
       {/* Header */}
       <div className="admin-header">
         <img src={txlogo} alt="TechXplorers Logo" className="admin-logo" />
+                <h2 className="logo-heading">Clients Data</h2>
+
       </div>
 
 

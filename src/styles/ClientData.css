@@ -1,7 +1,8 @@
 .dashboard-container {
+  background: linear-gradient(to bottom right, #ffffff 50%, #4fa1dc 100%);
   padding: 2rem;
   font-family: Arial, sans-serif;
-  background: #f5f7fa;
+  /* background: #f5f7fa; */
 }
 
 h2 {
