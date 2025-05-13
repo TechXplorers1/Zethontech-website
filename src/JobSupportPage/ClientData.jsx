@@ -6,17 +6,18 @@ import txlogo from '../assets/txlogo.png';
 
 const sampleClients = {
   registered: [
-    { id: 1, name: "John Doe", email: "john@example.com", date: "2025-05-01" },
-    { id: 2, name: "Alice Brown", email: "alice@example.com", date: "2025-05-03" },
+    { id: 1, name: "John Doe",mobile:"9876543210", email: "john@example.com",jobsapplyfor:"Data science", date: "2025-05-01", visastatus: "Pending" },
+    { id: 2, name: "Alice Brown",mobile:"7896543210", email: "alice@example.com",jobsapplyfor:"Cyber security", date: "2025-05-03", visastatus: "Approved" },
+    { id: 3, name: "Mcgregor",mobile:"7776543210", email: "mcg@example.com",jobsapplyfor:"Scrum master", date: "2025-05-01", visastatus: "Pending" },
   ],
   unassigned: [
-    { id: 3, name: "Jane Smith", email: "jane@example.com", date: "2025-05-02" },
+    { id: 4, name: "Jane Smith",mobile:"9977543210", email: "jane@example.com",jobsapplyfor:"Data science", date: "2025-05-02", visastatus: "pending" },
   ],
   active: [
-    { id: 4, name: "Mike Green", email: "mike@example.com", manager: "Sarah Connor", date: "2025-04-28" },
+    { id: 5, name: "Mike Green",mobile:"8876543210", email: "mike@example.com",jobsapplyfor:"Cyber security", manager: "Sarah Connor", date: "2025-04-28", visastatus: "Approved" },
   ],
   rejected: [
-    { id: 5, name: "Tom Black", email: "tom@example.com", date: "2025-04-15" },
+    { id: 6, name: "Tom Black",mobile:"8976543210", email: "tom@example.com",jobsapplyfor:"Scrum master", date: "2025-04-15", visastatus: "Rejected" },
   ],
 };
 
@@ -60,8 +61,11 @@ const ClientData = () => {
       <thead>
         <tr>
           <th>Name</th>
+          <th>Mobile</th>
           <th>Email</th>
-          <th>Date</th>
+          <th>Jobs Apply For</th>
+          <th>Registered Date</th>
+          <th>Visa Status</th>
           {tab === "active" && <th>Manager</th>}
           {tab === "unassigned" && <th>Assign To</th>}
           <th>Actions</th>
@@ -71,8 +75,11 @@ const ClientData = () => {
         {data.map((client) => (
           <tr key={client.id}>
             <td>{client.name}</td>
+            <td>{client.mobile}</td>
             <td>{client.email}</td>
+            <td>{client.jobsapplyfor}</td>
             <td>{client.date}</td>
+            <td>{client.visastatus}</td>
             {tab === "active" && <td>{client.manager}</td>}
             {tab === "unassigned" && (
               <td>

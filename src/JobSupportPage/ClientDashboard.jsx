@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import { FaArrowLeft, FaBars, FaTimes } from 'react-icons/fa';
+import { FaArrowLeft, FaBars } from 'react-icons/fa';
 import txlogo from "../assets/txlogo.png";
 import '../styles/ClientDashboard.css';
 
@@ -11,8 +11,7 @@ const ClientDashboard = () => {
   const toggleSidebar = () => setShowSidebar(!showSidebar);
 
   const handleLogout = () => {
-    // You can also clear any session or token here if needed
-    navigate('/'); // ← Redirects to the root or login route
+    navigate('/');
   };
 
   return (
@@ -23,9 +22,12 @@ const ClientDashboard = () => {
       </div>
 
       {/* Hamburger Icon Below Logo */}
-      <div className="hamburger-btn" onClick={toggleSidebar}>
-        <FaBars size={24} />
-      </div>
+    {!showSidebar && (
+  <div className="hamburger-container" onClick={toggleSidebar}>
+    <FaBars className="hamburger-icon" />
+  </div>
+)}
+
 
       {/* Sidebar - Starts below the logo */}
       <div className={`sidebar ${showSidebar ? 'open' : ''}`}>
@@ -33,6 +35,7 @@ const ClientDashboard = () => {
           <FaArrowLeft size={20} />
         </div>
         <h6>Dashboard</h6>
+
         <div className="plan-info-row">
           <div className="plan-box">
             <div>1 Month Plan</div>
@@ -59,7 +62,7 @@ const ClientDashboard = () => {
         <Container fluid>
           <Row className="justify-content-center mb-4 mt-5">
             <Col md={8}>
-              <div onClick={() => navigate('/managers')} className="card-main">
+              <div onClick={() => navigate('/AdminDashboard')} className="card-main">
                 <div className="text-center">
                   <div>TODAY TOTAL APPLICATIONS</div>
                   <div className="card-number">16</div>
