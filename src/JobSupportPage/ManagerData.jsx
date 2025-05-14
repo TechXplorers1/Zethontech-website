@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Modal } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import '../styles/AdminDashboard.css';
@@ -26,6 +26,9 @@ const ManagerData = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
 
+  const [teamLeads, setTeamLeads] = useState([]);
+  const [employees, setEmployees] = useState([]);
+
   const [currentManagerIndex, setCurrentManagerIndex] = useState(null);
   const [newManager, setNewManager] = useState({
     name: '',
@@ -35,7 +38,7 @@ const ManagerData = () => {
     role: 'Manager'
   });
   const [managers, setManagers] = useState([
-{
+    {
       name: "Sreenivasulu",
       mobile: "+91 9874561230",
       email: "seenu@gmail.com",
@@ -51,6 +54,19 @@ const ManagerData = () => {
     },
 
   ]);
+
+
+  useEffect(() => {
+    // Simulate fetching from local TeamLeadData and EmployeeData
+    setTeamLeads([
+      { email: 'siva@gmail.com', role: 'Team Lead' },
+      { email: 'arjun@gmail.com', role: 'Team Lead' }
+    ]);
+    setEmployees([
+      { email: 'sivaemployee@gmail.com', role: 'Employee' },
+      { email: 'arjunemployee@gmail.com', role: 'Employee' }
+    ]);
+  }, []);
 
   const [assignModalOpen, setAssignModalOpen] = useState(false);
   const [selectedManagerIndex, setSelectedManagerIndex] = useState(null);
@@ -72,7 +88,7 @@ const ManagerData = () => {
     setShowModal(false);
     setIsEditing(false);
     setCurrentManagerIndex(null);
-    setNewManager({ name: '', mobile: '', email: '', password: '',role: 'Manager' });
+    setNewManager({ name: '', mobile: '', email: '', password: '', role: 'Manager' });
   };
 
   const handleInputChange = (e) => {
@@ -111,9 +127,11 @@ const ManagerData = () => {
     setAssignModalOpen(false);
   };
 
-  const handlePersonToggle = (email) => {
+  const togglePersonSelection = (person) => {
     setSelectedPeople((prev) =>
-      prev.includes(email) ? prev.filter((e) => e !== email) : [...prev, email]
+      prev.some(p => p.email === person.email)
+        ? prev.filter(p => p.email !== person.email)
+        : [...prev, person]
     );
   };
 
@@ -121,7 +139,7 @@ const ManagerData = () => {
     <div className="admin-dashboard">
       <div className="admin-header">
         <img src={txlogo} alt="TechXplorers Logo" className="admin-logo" />
-                <h2 className="logo-heading">Managers Data</h2>
+        <h2 className="logo-heading">Managers Data</h2>
       </div>
 
       <div className="hamburger-btn" onClick={toggleSidebar}>
@@ -249,7 +267,7 @@ const ManagerData = () => {
               <Form.Label>Password</Form.Label>
               <Form.Control type="password" name="password" value={newManager.password} onChange={handleInputChange} />
             </Form.Group>
-             <Form.Group className="mb-3">
+            <Form.Group className="mb-3">
               <Form.Label>Role</Form.Label>
               <Form.Control
                 type="text"
@@ -270,41 +288,71 @@ const ManagerData = () => {
 
 
       {/* Modal: Assign People */}
-      <Modal show={assignModalOpen} onHide={() => setAssignModalOpen(false)} centered>
+      <Modal show={assignModalOpen} onHide={() => setAssignModalOpen(false)} centered size="lg">
         <Modal.Header closeButton>
           <Modal.Title>Assign People</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <h6>Added People</h6>
-          {dummyPeople.map((person, index) => (
-            <div key={index} className="d-flex justify-content-between align-items-center mb-2">
-              <Form.Check
-                type="checkbox"
-                checked={selectedPeople.includes(person.email)}
-                onChange={() => handlePersonToggle(person.email)}
-                label={person.email}
-              />
-              <Dropdown>
-                <Dropdown.Toggle size="sm" variant="light">
-                  {person.role}
-                </Dropdown.Toggle>
-                <Dropdown.Menu>
-                  <Dropdown.Item>Team lead</Dropdown.Item>
-                  <Dropdown.Item>Employee</Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
-            </div>
-          ))}
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="primary" onClick={handleAssignDone}>Done</Button>
-        </Modal.Footer>
-      </Modal>
+          <h5>Team Leads</h5>
+          <Table striped bordered size="sm">
+            <thead>
+              <tr>
+                <th>Select</th>
+                <th>Email</th>
+                <th>Role</th>
+              </tr>
+            </thead>
+            <tbody>
+              {teamLeads.map((person, idx) => (
+                <tr key={`tl-${idx}`}>
+              <td>
+                <Form.Check
+                  type="checkbox"
+                  checked={selectedPeople.some(p => p.email === person.email)}
+                  onChange={() => togglePersonSelection(person)}
+                />
+              </td>
+              <td>{person.email}</td>
+              <td>{person.role}</td>
+            </tr>
+           ))}
+          </tbody>
+        </Table>
+        <h5 className="mt-4">Employees</h5>
+        <Table striped bordered size="sm">
+          <thead>
+            <tr>
+              <th>Select</th>
+              <th>Email</th>
+              <th>Role</th>
+            </tr>
+          </thead>
+          <tbody>
+            {employees.map((person, index) => (
+              <tr key={`emp-${index}`}>
+                <td>
+                  <Form.Check
+                    type="checkbox"
+                    checked={selectedPeople.some(p => p.email === person.email)}
+                    onChange={() => togglePersonSelection(person)}
+                  />
+                </td>
+                <td>{person.email}</td>
+                <td>{person.role}</td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant="primary" onClick={handleAssignDone}>Done</Button>
+      </Modal.Footer>
+     </Modal>
 
 
 
 
-    </div>
+    </div >
   );
 };
 
