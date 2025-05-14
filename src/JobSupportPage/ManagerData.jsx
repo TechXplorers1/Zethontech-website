@@ -31,7 +31,8 @@ const ManagerData = () => {
     name: '',
     mobile: '',
     email: '',
-    password: ''
+    password: '',
+    role: 'Manager'
   });
   const [managers, setManagers] = useState([
 {
@@ -39,12 +40,14 @@ const ManagerData = () => {
       mobile: "+91 9874561230",
       email: "seenu@gmail.com",
       password: "07072023@Tx123",
+      role: "Manager"
     },
     {
       name: "Ram Kiran",
       mobile: "+91 7894561230",
       email: "ramkiran@gmail.com",
       password: "07072023@TxSm",
+      role: "Manager"
     },
 
   ]);
@@ -69,7 +72,7 @@ const ManagerData = () => {
     setShowModal(false);
     setIsEditing(false);
     setCurrentManagerIndex(null);
-    setNewManager({ name: '', mobile: '', email: '', password: '' });
+    setNewManager({ name: '', mobile: '', email: '', password: '',role: 'Manager' });
   };
 
   const handleInputChange = (e) => {
@@ -179,6 +182,7 @@ const ManagerData = () => {
               <th>MOBILE</th>
               <th>EMAIL</th>
               <th>PASSWORD</th>
+              <th>ROLE</th>
               <th>PEOPLE</th>
               <th>ACTIONS</th>
             </tr>
@@ -195,9 +199,10 @@ const ManagerData = () => {
                   <td>{manager.mobile}</td>
                   <td>{manager.email}</td>
                   <td>{manager.password}</td>
+                  <td>{manager.role}</td>
                   <td>
                     <Button size="sm" variant="success" onClick={() => openAssignModal(index)}>
-                      Add People ({manager.assignedPeople?.length || 0})
+                      Add Employees ({manager.assignedPeople?.length || 0})
                     </Button>
                   </td>
                   <td>
@@ -243,6 +248,15 @@ const ManagerData = () => {
             <Form.Group className="mb-3">
               <Form.Label>Password</Form.Label>
               <Form.Control type="password" name="password" value={newManager.password} onChange={handleInputChange} />
+            </Form.Group>
+             <Form.Group className="mb-3">
+              <Form.Label>Role</Form.Label>
+              <Form.Control
+                type="text"
+                name="role"
+                value={newManager.role}
+                readOnly
+              />
             </Form.Group>
           </Form>
         </Modal.Body>

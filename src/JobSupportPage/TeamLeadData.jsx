@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Modal } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import '../styles/EmployeeData.css';
+import '../styles/TeamLeadData.css';
 import txlogo from '../assets/txlogo.png';
 import { Table, Button, Form, InputGroup, Dropdown } from 'react-bootstrap';
 import {
@@ -19,7 +19,7 @@ const dummyPeople = [
 ];
 
 
-const EmployeeData = () => {
+const TeamLeadData = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [clientsDropdownOpen, setClientsDropdownOpen] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -32,7 +32,7 @@ const EmployeeData = () => {
     mobile: '',
     email: '',
     password: '',
-    role: 'Employee'
+    role: 'Team Lead'
   });
   const [managers, setManagers] = useState([
 {
@@ -40,14 +40,14 @@ const EmployeeData = () => {
       mobile: "+91 9874561230",
       email: "siva@gmail.com",
       password: "07072023@Tx123",
-      role: "Employee"
+      role: "Team Lead"
     },
     {
       name: "Arjun",
       mobile: "+91 7894561230",
       email: "arjun@gmail.com",
       password: "07072023@TxSm",
-      role: "Employee"
+      role: "Team Lead"
     },
 
   ]);
@@ -73,7 +73,7 @@ const EmployeeData = () => {
     setShowModal(false);
     setIsEditing(false);
     setCurrentManagerIndex(null);
-    setNewManager({ name: '', mobile: '', email: '', password: '' });
+    setNewManager({ name: '', mobile: '', email: '', password: '' ,role: 'Team Lead' });
   };
 
   const handleInputChange = (e) => {
@@ -122,7 +122,7 @@ const EmployeeData = () => {
     <div className="admin-dashboard">
       <div className="admin-header">
         <img src={txlogo} alt="TechXplorers Logo" className="admin-logo" />
-                <h2 className="logo-heading">Employees Data</h2>
+                <h2 className="logo-heading">TeamLead Data</h2>
 
       </div>
 
@@ -174,7 +174,7 @@ const EmployeeData = () => {
             <Button variant="info">Search</Button>
           </InputGroup>
 
-          <Button variant="success" onClick={handleShowModal}>+ Add Employee</Button>
+          <Button variant="success" onClick={handleShowModal}>+ Add TeamLead</Button>
         </div>
 
         <Table striped bordered hover responsive className="text-center align-middle">
@@ -246,14 +246,14 @@ const EmployeeData = () => {
               <Form.Control type="password" name="password" value={newManager.password} onChange={handleInputChange} />
             </Form.Group>
             <Form.Group className="mb-3">
-              <Form.Label>Role</Form.Label>
-              <Form.Control
-                type="text"
-                name="role"
-                value={newManager.role}
-                readOnly
-              />
-            </Form.Group>
+  <Form.Label>Role</Form.Label>
+  <Form.Control
+    type="text"
+    name="role"
+    value={newManager.role}
+    readOnly
+  />
+</Form.Group>
           </Form>
         </Modal.Body>
         <Modal.Footer>
@@ -269,7 +269,7 @@ const EmployeeData = () => {
   );
 };
 
-export default EmployeeData;
+export default TeamLeadData;
 
 
 // Add Manager,Add people and edit options are working

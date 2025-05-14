@@ -34,6 +34,9 @@ const AdminDashboard = () => {
    const goToEmployee = () => {
     navigate('/employee');
   };
+    const goToTeamLead = () => {
+    navigate('/teamlead');
+  };
 
   
   return (
@@ -109,7 +112,10 @@ const AdminDashboard = () => {
           </Row>
           <Row className="card-row">
             <Col md={6}>
-              <div className="admin-card navy">
+              <div className="admin-card navy"
+                onClick={goToTeamLead}
+                style={{ cursor: 'pointer' }}
+              >
                 <p>Team Leads</p>
                 <h4>05</h4>
               </div>

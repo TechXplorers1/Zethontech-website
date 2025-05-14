@@ -8,6 +8,8 @@ import AdminDashboard from '../JobSupportPage/AdminDashboard';
 import ManagerData from '../JobSupportPage/ManagerData';
 import ClientData from '../JobSupportPage/ClientData';
 import EmployeeData from '../JobSupportPage/EmployeeData';
+import TeamLeadData from '../JobSupportPage/TeamLeadData';
+
 
 
 
@@ -24,6 +26,7 @@ const JobSupportRoutes = () => {
         <Route path="/managers" element={<ManagerData />} />
         <Route path="/clients" element={<ClientData />} />
         <Route path="/employee" element={<EmployeeData />} />
+        <Route path="/teamlead" element={<TeamLeadData />} />
 
     </Routes>
   );
