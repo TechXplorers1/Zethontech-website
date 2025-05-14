@@ -60,11 +60,21 @@ const ManagerData = () => {
     // Simulate fetching from local TeamLeadData and EmployeeData
     setTeamLeads([
       { email: 'siva@gmail.com', role: 'Team Lead' },
-      { email: 'arjun@gmail.com', role: 'Team Lead' }
+      { email: 'arjun@gmail.com', role: 'Team Lead' },
+      { email: 'satish@gmail.com', role: 'Team Lead' },
+       { email: 'raju@gmail.com', role: 'Team Lead' },
+      { email: 'harsha@gmail.com', role: 'Team Lead' },
+      { email: 'dinesh@gmail.com', role: 'Team Lead' }
     ]);
     setEmployees([
       { email: 'sivaemployee@gmail.com', role: 'Employee' },
-      { email: 'arjunemployee@gmail.com', role: 'Employee' }
+      { email: 'arjunemployee@gmail.com', role: 'Employee' },
+      { email: 'arunemployee@gmail.com', role: 'Employee' },
+      { email: 'madhuemployee@gmail.com', role: 'Employee' },
+      { email: 'poornaemployee@gmail.com', role: 'Employee' },
+      { email: 'ranjithemployee@gmail.com', role: 'Employee' },
+      { email: 'ashokemployee@gmail.com', role: 'Employee' },
+      { email: 'deepakemployee@gmail.com', role: 'Employee' }
     ]);
   }, []);
 
@@ -116,9 +126,18 @@ const ManagerData = () => {
 
   const openAssignModal = (index) => {
     setSelectedManagerIndex(index);
-    setSelectedPeople([]);
-    setAssignModalOpen(true);
+    // setSelectedPeople([]);
+    // setAssignModalOpen(true);
+
+      // Load previously assigned people if available
+const previouslyAssigned = managers[index].assignedPeople || [];
+setSelectedPeople(previouslyAssigned);
+
+setAssignModalOpen(true);
+
   };
+
+
 
   const handleAssignDone = () => {
     const updatedManagers = [...managers];

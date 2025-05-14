@@ -12,11 +12,7 @@ import {
   FaChevronUp,
 } from 'react-icons/fa';
 
-const dummyPeople = [
-  { email: 'demo@gmail.com', role: 'Team lead' },
-  { email: 'demo1@gmail.com', role: 'Employee' },
-  { email: 'demo2@gmail.com', role: 'Employee' }
-];
+
 
 
 const EmployeeData = () => {
