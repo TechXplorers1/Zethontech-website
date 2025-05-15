@@ -10,6 +10,7 @@ import {
   FaArrowLeft,
   FaChevronDown,
   FaChevronUp,
+  FaSearch,
 } from 'react-icons/fa';
 
 const dummyPeople = [
@@ -28,6 +29,9 @@ const ManagerData = () => {
 
   const [teamLeads, setTeamLeads] = useState([]);
   const [employees, setEmployees] = useState([]);
+
+  const [teamLeadSearch, setTeamLeadSearch] = useState('');
+  const [employeeSearch, setEmployeeSearch] = useState('');
 
   const [currentManagerIndex, setCurrentManagerIndex] = useState(null);
   const [newManager, setNewManager] = useState({
@@ -59,22 +63,22 @@ const ManagerData = () => {
   useEffect(() => {
     // Simulate fetching from local TeamLeadData and EmployeeData
     setTeamLeads([
-      { email: 'siva@gmail.com', role: 'Team Lead' },
-      { email: 'arjun@gmail.com', role: 'Team Lead' },
-      { email: 'satish@gmail.com', role: 'Team Lead' },
-       { email: 'raju@gmail.com', role: 'Team Lead' },
-      { email: 'harsha@gmail.com', role: 'Team Lead' },
-      { email: 'dinesh@gmail.com', role: 'Team Lead' }
+      { name: 'siva', email: 'siva@gmail.com', role: 'Team Lead' },
+      { name: 'arjun', email: 'arjun@gmail.com', role: 'Team Lead' },
+      { name: 'satish', email: 'satish@gmail.com', role: 'Team Lead' },
+      { name: 'raju', email: 'raju@gmail.com', role: 'Team Lead' },
+      { name: 'harsha', email: 'harsha@gmail.com', role: 'Team Lead' },
+      { name: 'dinesh', email: 'dinesh@gmail.com', role: 'Team Lead' }
     ]);
     setEmployees([
-      { email: 'sivaemployee@gmail.com', role: 'Employee' },
-      { email: 'arjunemployee@gmail.com', role: 'Employee' },
-      { email: 'arunemployee@gmail.com', role: 'Employee' },
-      { email: 'madhuemployee@gmail.com', role: 'Employee' },
-      { email: 'poornaemployee@gmail.com', role: 'Employee' },
-      { email: 'ranjithemployee@gmail.com', role: 'Employee' },
-      { email: 'ashokemployee@gmail.com', role: 'Employee' },
-      { email: 'deepakemployee@gmail.com', role: 'Employee' }
+      { name: 'ram', email: 'ramemployee@gmail.com', role: 'Employee' },
+      { name: 'gopi', email: 'gopiemployee@gmail.com', role: 'Employee' },
+      { name: 'arun', email: 'arunemployee@gmail.com', role: 'Employee' },
+      { name: 'madhu', email: 'madhuemployee@gmail.com', role: 'Employee' },
+      { name: 'poorna', email: 'poornaemployee@gmail.com', role: 'Employee' },
+      { name: 'ranjith', email: 'ranjithemployee@gmail.com', role: 'Employee' },
+      { name: 'ashok', email: 'ashokemployee@gmail.com', role: 'Employee' },
+      { name: 'deepak', email: 'deepakemployee@gmail.com', role: 'Employee' }
     ]);
   }, []);
 
@@ -129,11 +133,11 @@ const ManagerData = () => {
     // setSelectedPeople([]);
     // setAssignModalOpen(true);
 
-      // Load previously assigned people if available
-const previouslyAssigned = managers[index].assignedPeople || [];
-setSelectedPeople(previouslyAssigned);
+    // Load previously assigned people if available
+    const previouslyAssigned = managers[index].assignedPeople || [];
+    setSelectedPeople(previouslyAssigned);
 
-setAssignModalOpen(true);
+    setAssignModalOpen(true);
 
   };
 
@@ -200,7 +204,7 @@ setAssignModalOpen(true);
 
       <div className="container mt-4">
         <div className="d-flex justify-content-between align-items-center mb-3">
-          <InputGroup className="w-50">
+           <InputGroup className="w-50"> <InputGroup.Text> <FaSearch /> </InputGroup.Text>
             <Form.Control
               placeholder="Search"
               value={searchTerm}
@@ -208,7 +212,6 @@ setAssignModalOpen(true);
             />
             <Button variant="info">Search</Button>
           </InputGroup>
-
           <Button variant="success" onClick={handleShowModal}>+ Add Manager</Button>
         </div>
 
@@ -312,61 +315,79 @@ setAssignModalOpen(true);
           <Modal.Title>Assign People</Modal.Title>
         </Modal.Header>
         <Modal.Body>
+
           <h5>Team Leads</h5>
+          <InputGroup className="mb-3"> <InputGroup.Text> <FaSearch /> 
+          </InputGroup.Text> <Form.Control placeholder="Search Team Leads by name or email" 
+          value={teamLeadSearch} onChange={(e) => setTeamLeadSearch(e.target.value)} /> </InputGroup>
           <Table striped bordered size="sm">
             <thead>
               <tr>
                 <th>Select</th>
+                <th>Name</th>
                 <th>Email</th>
                 <th>Role</th>
               </tr>
             </thead>
             <tbody>
-              {teamLeads.map((person, idx) => (
+              {teamLeads.filter(p =>
+                p.name.toLowerCase().includes(teamLeadSearch.toLowerCase()) ||
+                p.email.toLowerCase().includes(teamLeadSearch.toLowerCase())
+              ).map((person, idx) => (
                 <tr key={`tl-${idx}`}>
-              <td>
-                <Form.Check
-                  type="checkbox"
-                  checked={selectedPeople.some(p => p.email === person.email)}
-                  onChange={() => togglePersonSelection(person)}
-                />
-              </td>
-              <td>{person.email}</td>
-              <td>{person.role}</td>
-            </tr>
-           ))}
-          </tbody>
-        </Table>
-        <h5 className="mt-4">Employees</h5>
-        <Table striped bordered size="sm">
-          <thead>
-            <tr>
-              <th>Select</th>
-              <th>Email</th>
-              <th>Role</th>
-            </tr>
-          </thead>
-          <tbody>
-            {employees.map((person, index) => (
-              <tr key={`emp-${index}`}>
-                <td>
-                  <Form.Check
-                    type="checkbox"
-                    checked={selectedPeople.some(p => p.email === person.email)}
-                    onChange={() => togglePersonSelection(person)}
-                  />
-                </td>
-                <td>{person.email}</td>
-                <td>{person.role}</td>
+                  <td>
+                    <Form.Check
+                      type="checkbox"
+                      checked={selectedPeople.some(p => p.email === person.email)}
+                      onChange={() => togglePersonSelection(person)}
+                    />
+                  </td>
+                  <td>{person.name}</td>
+                  <td>{person.email}</td>
+                  <td>{person.role}</td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+
+          <h5 className="mt-4">Employees</h5>
+          <InputGroup className="mb-3"> <InputGroup.Text> <FaSearch /> 
+          </InputGroup.Text> <Form.Control placeholder="Search Employees by name or email"
+           value={employeeSearch} onChange={(e) => setEmployeeSearch(e.target.value)} /> </InputGroup>
+          <Table striped bordered size="sm">
+            <thead>
+              <tr>
+                <th>Select</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
               </tr>
-            ))}
-          </tbody>
-        </Table>
-      </Modal.Body>
-      <Modal.Footer>
-        <Button variant="primary" onClick={handleAssignDone}>Done</Button>
-      </Modal.Footer>
-     </Modal>
+            </thead>
+            <tbody>
+              {employees.filter(p =>
+                p.name.toLowerCase().includes(employeeSearch.toLowerCase()) ||
+                p.email.toLowerCase().includes(employeeSearch.toLowerCase())
+              ).map((person, index) => (
+                <tr key={`emp-${index}`}>
+                  <td>
+                    <Form.Check
+                      type="checkbox"
+                      checked={selectedPeople.some(p => p.email === person.email)}
+                      onChange={() => togglePersonSelection(person)}
+                    />
+                  </td>
+                  <td>{person.name}</td>
+                  <td>{person.email}</td>
+                  <td>{person.role}</td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={handleAssignDone}>Done</Button>
+        </Modal.Footer>
+      </Modal>
 
 
 
