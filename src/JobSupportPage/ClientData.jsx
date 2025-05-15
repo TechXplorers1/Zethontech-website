@@ -2,23 +2,22 @@ import React, { useState } from "react";
 import "../styles/ClientData.css";
 import txlogo from '../assets/txlogo.png';
 
-
-
 const sampleClients = {
   registered: [
-    { id: 1, name: "John Doe",mobile:"9876543210", email: "john@example.com",jobsapplyfor:"Data science", date: "2025-05-01", visastatus: "Pending" },
-    { id: 2, name: "Alice Brown",mobile:"7896543210", email: "alice@example.com",jobsapplyfor:"Cyber security", date: "2025-05-03", visastatus: "Approved" },
-    { id: 3, name: "Mcgregor",mobile:"7776543210", email: "mcg@example.com",jobsapplyfor:"Scrum master", date: "2025-05-01", visastatus: "Pending" },
+    { id: 1, name: "John Doe", mobile: "9876543210", email: "john@example.com", jobsapplyfor: "Data science", date: "2025-05-01", country: "USA", visastatus: "Pending" },
+    { id: 2, name: "Alice Brown", mobile: "7896543210", email: "alice@example.com", jobsapplyfor: "Cyber security", date: "2025-05-03", country: "UK", visastatus: "Approved" },
+    { id: 3, name: "Mcgregor", mobile: "7776543210", email: "mcg@example.com", jobsapplyfor: "Scrum master", date: "2025-05-01", country: "Australia", visastatus: "Pending" },
   ],
   unassigned: [
-    { id: 4, name: "Jane Smith",mobile:"9977543210", email: "jane@example.com",jobsapplyfor:"Data science", date: "2025-05-02", visastatus: "pending" },
+    { id: 4, name: "Jane Smith", mobile: "9977543210", email: "jane@example.com", jobsapplyfor: "Data science", date: "2025-05-02", country: "Africa", visastatus: "pending" },
   ],
   active: [
-    { id: 5, name: "Mike Green",mobile:"8876543210", email: "mike@example.com",jobsapplyfor:"Cyber security", manager: "Sarah Connor", date: "2025-04-28", visastatus: "Approved" },
+    { id: 5, name: "Mike Green", mobile: "8876543210", email: "mike@example.com", jobsapplyfor: "Cyber security", manager: "Sarah Connor", date: "2025-04-28", country: "USA", visastatus: "Approved" },
   ],
   rejected: [
-    { id: 6, name: "Tom Black",mobile:"8976543210", email: "tom@example.com",jobsapplyfor:"Scrum master", date: "2025-04-15", visastatus: "Rejected" },
+    { id: 6, name: "Tom Black", mobile: "8976543210", email: "tom@example.com", jobsapplyfor: "Scrum master", date: "2025-04-15", country: "UK", visastatus: "Rejected" },
   ],
+  restored: []
 };
 
 const ClientData = () => {
@@ -56,6 +55,15 @@ const ClientData = () => {
     }));
   };
 
+  const handleRestore = (id) => {
+    const restoredClient = clients.rejected.find((c) => c.id === id);
+    setClients((prev) => ({
+      ...prev,
+      rejected: prev.rejected.filter((c) => c.id !== id),
+      restored: [...prev.restored, restoredClient],
+    }));
+  };
+
   const renderTable = (data) => (
     <table className="client-table">
       <thead>
@@ -65,7 +73,9 @@ const ClientData = () => {
           <th>Email</th>
           <th>Jobs Apply For</th>
           <th>Registered Date</th>
+          <th>Country</th>
           <th>Visa Status</th>
+          
           {tab === "active" && <th>Manager</th>}
           {tab === "unassigned" && <th>Assign To</th>}
           <th>Actions</th>
@@ -79,6 +89,7 @@ const ClientData = () => {
             <td>{client.email}</td>
             <td>{client.jobsapplyfor}</td>
             <td>{client.date}</td>
+            <td>{client.country}</td>
             <td>{client.visastatus}</td>
             {tab === "active" && <td>{client.manager}</td>}
             {tab === "unassigned" && (
@@ -96,17 +107,26 @@ const ClientData = () => {
             )}
             <td>
               {tab === "registered" && (
-                <>
-                  <button onClick={() => handleAccept(client.id)}>Accept</button>
-                  <button onClick={() => handleDecline(client.id)} className="decline">
+                <div>
+                  <button onClick={() => handleAccept(client.id)}>
+                    Accept
+                  </button><br/>
+                  <button onClick={() => handleDecline(client.id)}>
                     Decline
                   </button>
-                </>
+                </div>
               )}
               {tab === "unassigned" && (
-                <button onClick={() => handleAssign(client.id)}>Assign</button>
+                <button onClick={() => handleAssign(client.id)}>
+                  Assign
+                </button>
               )}
-              {(tab === "active" || tab === "rejected") && <span>--</span>}
+              {tab === "rejected" && (
+                <button onClick={() => handleRestore(client.id)}>
+                  Restore
+                </button>
+              )}
+              {(tab === "active" || tab === "restored") && <span>--</span>}
             </td>
           </tr>
         ))}
@@ -115,31 +135,27 @@ const ClientData = () => {
   );
 
   return (
- <div className="admin-dashboard">
-      {/* Header */}
+    <div className="admin-dashboard">
       <div className="admin-header">
         <img src={txlogo} alt="TechXplorers Logo" className="admin-logo" />
-                <h2 className="logo-heading">Clients Data</h2>
-
+        <h2 className="logo-heading">Clients Data</h2>
       </div>
 
-
-
-    <div className="dashboard-container">
-      <h2>Clients Data</h2>
-      <div className="tabs">
-        {Object.keys(clients).map((key) => (
-          <button
-            key={key}
-            className={tab === key ? "active" : ""}
-            onClick={() => setTab(key)}
-          >
-            {key.charAt(0).toUpperCase() + key.slice(1)} Clients
-          </button>
-        ))}
+      <div className="dashboard-container">
+        <h2>Clients Data</h2>
+        <div className="tabs">
+          {Object.keys(clients).map((key) => (
+            <button
+              key={key}
+              className={tab === key ? "active" : ""}
+              onClick={() => setTab(key)}
+            >
+              {key.charAt(0).toUpperCase() + key.slice(1)} Clients
+            </button>
+          ))}
+        </div>
+        <div className="table-wrapper">{renderTable(clients[tab])}</div>
       </div>
-      <div className="table-wrapper">{renderTable(clients[tab])}</div>
-    </div>
     </div>
   );
 };
