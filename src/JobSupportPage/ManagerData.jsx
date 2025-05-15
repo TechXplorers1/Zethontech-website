@@ -26,6 +26,7 @@ const ManagerData = () => {
   const [showModal, setShowModal] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
+    const [expandedManager, setExpandedManager] = useState(null);
 
   const [teamLeads, setTeamLeads] = useState([]);
   const [employees, setEmployees] = useState([]);
@@ -47,14 +48,22 @@ const ManagerData = () => {
       mobile: "+91 9874561230",
       email: "seenu@gmail.com",
       password: "07072023@Tx123",
-      role: "Manager"
+      role: "Manager",
+       assignedPeople: [
+        { email: 'siva@gmail.com', role: 'Team Lead' },
+        { email: 'santhoshemployee@gmail.com', role: 'Employee' }
+      ]
     },
     {
       name: "Ram Kiran",
       mobile: "+91 7894561230",
       email: "ramkiran@gmail.com",
       password: "07072023@TxSm",
-      role: "Manager"
+      role: "Manager",
+      assignedPeople: [
+        { email: 'arjun@gmail.com', role: 'Team Lead' },
+        { email: 'ramemployee@gmail.com', role: 'Employee' }
+      ]
     },
 
   ]);
@@ -78,7 +87,8 @@ const ManagerData = () => {
       { name: 'poorna', email: 'poornaemployee@gmail.com', role: 'Employee' },
       { name: 'ranjith', email: 'ranjithemployee@gmail.com', role: 'Employee' },
       { name: 'ashok', email: 'ashokemployee@gmail.com', role: 'Employee' },
-      { name: 'deepak', email: 'deepakemployee@gmail.com', role: 'Employee' }
+      { name: 'deepak', email: 'deepakemployee@gmail.com', role: 'Employee' },
+      { name: 'santhosh', email: 'santhoshemployee@gmail.com', role: 'Employee' }
     ]);
   }, []);
 
@@ -122,7 +132,7 @@ const ManagerData = () => {
       updatedManagers[currentManagerIndex] = newManager;
       setManagers(updatedManagers);
     } else {
-      setManagers([...managers, { ...newManager, people: [] }]);
+      setManagers([...managers, { ...newManager, assignedPeople: [] }]);
     }
 
     handleCloseModal();
@@ -156,6 +166,9 @@ const ManagerData = () => {
         ? prev.filter(p => p.email !== person.email)
         : [...prev, person]
     );
+  };
+  const toggleManagerExpand = (index) => {
+    setExpandedManager(expandedManager === index ? null : index);
   };
 
   return (
@@ -234,8 +247,20 @@ const ManagerData = () => {
                   field.toLowerCase().includes(searchTerm.toLowerCase())
                 )
               ).map((manager, index) => (
-                <tr key={index} className="table-warning">
-                  <td>{manager.name}</td>
+               <React.Fragment key={index}>
+                  <tr className="table-warning">
+                    <td>
+                      <div className="d-flex justify-content-between align-items-center">
+                        {manager.name}
+                        <Button 
+                          variant="link" 
+                          onClick={() => toggleManagerExpand(index)}
+                          className="p-0"
+                        >
+                          {expandedManager === index ? <FaChevronUp /> : <FaChevronDown />}
+                        </Button>
+                      </div>
+                    </td>
                   <td>{manager.mobile}</td>
                   <td>{manager.email}</td>
                   <td>{manager.password}</td>
@@ -259,8 +284,40 @@ const ManagerData = () => {
                       ✏️
                     </Button>
                     <Button variant="link" className="text-danger text-decoration-none">❌</Button>
-                  </td>
-                </tr>
+                   </td>
+                  </tr>
+                  {expandedManager === index && (
+                    <tr>
+                      <td colSpan="7">
+                        <div className="p-3">
+                          <h5>Assigned Team Leads & Employees</h5>
+                          <Table striped bordered size="sm">
+                            <thead>
+                              <tr>
+                                <th>Email</th>
+                                <th>Role</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {manager.assignedPeople?.length > 0 ? (
+                                manager.assignedPeople.map((person, idx) => (
+                                  <tr key={`assigned-${idx}`}>
+                                    <td>{person.email}</td>
+                                    <td>{person.role}</td>
+                                  </tr>
+                                ))
+                              ) : (
+                                <tr>
+                                  <td colSpan="2" className="text-muted">No people assigned yet</td>
+                                </tr>
+                              )}
+                            </tbody>
+                          </Table>
+                        </div>
+                      </td>
+                    </tr>
+                  )}
+                </React.Fragment>
               ))}
           </tbody>
         </Table>
