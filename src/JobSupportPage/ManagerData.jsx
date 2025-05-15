@@ -18,13 +18,13 @@ const dummyPeople = [
   { email: 'demo2@gmail.com', role: 'Employee' }
 ];
 
-
 const ManagerData = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [clientsDropdownOpen, setClientsDropdownOpen] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
+  const [expandedManager, setExpandedManager] = useState(null);
 
   const [teamLeads, setTeamLeads] = useState([]);
   const [employees, setEmployees] = useState([]);
@@ -43,18 +43,24 @@ const ManagerData = () => {
       mobile: "+91 9874561230",
       email: "seenu@gmail.com",
       password: "07072023@Tx123",
-      role: "Manager"
+      role: "Manager",
+      assignedPeople: [
+        { email: 'siva@gmail.com', role: 'Team Lead' },
+        { email: 'sivaemployee@gmail.com', role: 'Employee' }
+      ]
     },
     {
       name: "Ram Kiran",
       mobile: "+91 7894561230",
       email: "ramkiran@gmail.com",
       password: "07072023@TxSm",
-      role: "Manager"
+      role: "Manager",
+      assignedPeople: [
+        { email: 'arjun@gmail.com', role: 'Team Lead' },
+        { email: 'arjunemployee@gmail.com', role: 'Employee' }
+      ]
     },
-
   ]);
-
 
   useEffect(() => {
     // Simulate fetching from local TeamLeadData and EmployeeData
@@ -118,7 +124,7 @@ const ManagerData = () => {
       updatedManagers[currentManagerIndex] = newManager;
       setManagers(updatedManagers);
     } else {
-      setManagers([...managers, { ...newManager, people: [] }]);
+      setManagers([...managers, { ...newManager, assignedPeople: [] }]);
     }
 
     handleCloseModal();
@@ -126,18 +132,10 @@ const ManagerData = () => {
 
   const openAssignModal = (index) => {
     setSelectedManagerIndex(index);
-    // setSelectedPeople([]);
-    // setAssignModalOpen(true);
-
-      // Load previously assigned people if available
-const previouslyAssigned = managers[index].assignedPeople || [];
-setSelectedPeople(previouslyAssigned);
-
-setAssignModalOpen(true);
-
+    const previouslyAssigned = managers[index].assignedPeople || [];
+    setSelectedPeople(previouslyAssigned);
+    setAssignModalOpen(true);
   };
-
-
 
   const handleAssignDone = () => {
     const updatedManagers = [...managers];
@@ -152,6 +150,10 @@ setAssignModalOpen(true);
         ? prev.filter(p => p.email !== person.email)
         : [...prev, person]
     );
+  };
+
+  const toggleManagerExpand = (index) => {
+    setExpandedManager(expandedManager === index ? null : index);
   };
 
   return (
@@ -231,33 +233,77 @@ setAssignModalOpen(true);
                   field.toLowerCase().includes(searchTerm.toLowerCase())
                 )
               ).map((manager, index) => (
-                <tr key={index} className="table-warning">
-                  <td>{manager.name}</td>
-                  <td>{manager.mobile}</td>
-                  <td>{manager.email}</td>
-                  <td>{manager.password}</td>
-                  <td>{manager.role}</td>
-                  <td>
-                    <Button size="sm" variant="success" onClick={() => openAssignModal(index)}>
-                      Add Employees ({manager.assignedPeople?.length || 0})
-                    </Button>
-                  </td>
-                  <td>
-                    <Button
-                      variant="link"
-                      className="text-decoration-none"
-                      onClick={() => {
-                        setIsEditing(true);
-                        setCurrentManagerIndex(index);
-                        setNewManager(manager);
-                        setShowModal(true);
-                      }}
-                    >
-                      ✏️
-                    </Button>
-                    <Button variant="link" className="text-danger text-decoration-none">❌</Button>
-                  </td>
-                </tr>
+                <React.Fragment key={index}>
+                  <tr className="table-warning">
+                    <td>
+                      <div className="d-flex justify-content-between align-items-center">
+                        {manager.name}
+                        <Button 
+                          variant="link" 
+                          onClick={() => toggleManagerExpand(index)}
+                          className="p-0"
+                        >
+                          {expandedManager === index ? <FaChevronUp /> : <FaChevronDown />}
+                        </Button>
+                      </div>
+                    </td>
+                    <td>{manager.mobile}</td>
+                    <td>{manager.email}</td>
+                    <td>{manager.password}</td>
+                    <td>{manager.role}</td>
+                    <td>
+                      <Button size="sm" variant="success" onClick={() => openAssignModal(index)}>
+                        Add Employees ({manager.assignedPeople?.length || 0})
+                      </Button>
+                    </td>
+                    <td>
+                      <Button
+                        variant="link"
+                        className="text-decoration-none"
+                        onClick={() => {
+                          setIsEditing(true);
+                          setCurrentManagerIndex(index);
+                          setNewManager(manager);
+                          setShowModal(true);
+                        }}
+                      >
+                        ✏️
+                      </Button>
+                      <Button variant="link" className="text-danger text-decoration-none">❌</Button>
+                    </td>
+                  </tr>
+                  {expandedManager === index && (
+                    <tr>
+                      <td colSpan="7">
+                        <div className="p-3">
+                          <h5>Assigned Team Leads & Employees</h5>
+                          <Table striped bordered size="sm">
+                            <thead>
+                              <tr>
+                                <th>Email</th>
+                                <th>Role</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {manager.assignedPeople?.length > 0 ? (
+                                manager.assignedPeople.map((person, idx) => (
+                                  <tr key={`assigned-${idx}`}>
+                                    <td>{person.email}</td>
+                                    <td>{person.role}</td>
+                                  </tr>
+                                ))
+                              ) : (
+                                <tr>
+                                  <td colSpan="2" className="text-muted">No people assigned yet</td>
+                                </tr>
+                              )}
+                            </tbody>
+                          </Table>
+                        </div>
+                      </td>
+                    </tr>
+                  )}
+                </React.Fragment>
               ))}
           </tbody>
         </Table>
@@ -305,7 +351,6 @@ setAssignModalOpen(true);
         </Modal.Footer>
       </Modal>
 
-
       {/* Modal: Assign People */}
       <Modal show={assignModalOpen} onHide={() => setAssignModalOpen(false)} centered size="lg">
         <Modal.Header closeButton>
@@ -324,58 +369,51 @@ setAssignModalOpen(true);
             <tbody>
               {teamLeads.map((person, idx) => (
                 <tr key={`tl-${idx}`}>
-              <td>
-                <Form.Check
-                  type="checkbox"
-                  checked={selectedPeople.some(p => p.email === person.email)}
-                  onChange={() => togglePersonSelection(person)}
-                />
-              </td>
-              <td>{person.email}</td>
-              <td>{person.role}</td>
-            </tr>
-           ))}
-          </tbody>
-        </Table>
-        <h5 className="mt-4">Employees</h5>
-        <Table striped bordered size="sm">
-          <thead>
-            <tr>
-              <th>Select</th>
-              <th>Email</th>
-              <th>Role</th>
-            </tr>
-          </thead>
-          <tbody>
-            {employees.map((person, index) => (
-              <tr key={`emp-${index}`}>
-                <td>
-                  <Form.Check
-                    type="checkbox"
-                    checked={selectedPeople.some(p => p.email === person.email)}
-                    onChange={() => togglePersonSelection(person)}
-                  />
-                </td>
-                <td>{person.email}</td>
-                <td>{person.role}</td>
+                  <td>
+                    <Form.Check
+                      type="checkbox"
+                      checked={selectedPeople.some(p => p.email === person.email)}
+                      onChange={() => togglePersonSelection(person)}
+                    />
+                  </td>
+                  <td>{person.email}</td>
+                  <td>{person.role}</td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+          <h5 className="mt-4">Employees</h5>
+          <Table striped bordered size="sm">
+            <thead>
+              <tr>
+                <th>Select</th>
+                <th>Email</th>
+                <th>Role</th>
               </tr>
-            ))}
-          </tbody>
-        </Table>
-      </Modal.Body>
-      <Modal.Footer>
-        <Button variant="primary" onClick={handleAssignDone}>Done</Button>
-      </Modal.Footer>
-     </Modal>
-
-
-
-
-    </div >
+            </thead>
+            <tbody>
+              {employees.map((person, index) => (
+                <tr key={`emp-${index}`}>
+                  <td>
+                    <Form.Check
+                      type="checkbox"
+                      checked={selectedPeople.some(p => p.email === person.email)}
+                      onChange={() => togglePersonSelection(person)}
+                    />
+                  </td>
+                  <td>{person.email}</td>
+                  <td>{person.role}</td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={handleAssignDone}>Done</Button>
+        </Modal.Footer>
+      </Modal>
+    </div>
   );
 };
 
 export default ManagerData;
-
-
-// Add Manager,Add people and edit options are working
