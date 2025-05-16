@@ -50,8 +50,8 @@ const ManagerData = () => {
       password: "07072023@Tx123",
       role: "Manager",
        assignedPeople: [
-        { email: 'siva@gmail.com', role: 'Team Lead' },
-        { email: 'santhoshemployee@gmail.com', role: 'Employee' }
+        {name:'siva',mobile:'+91 987456123', email: 'siva@gmail.com', role: 'Team Lead' },
+        {name:'santhosh',mobile:'+91 987456123', email: 'santhoshemployee@gmail.com', role: 'Employee' }
       ]
     },
     {
@@ -61,8 +61,8 @@ const ManagerData = () => {
       password: "07072023@TxSm",
       role: "Manager",
       assignedPeople: [
-        { email: 'arjun@gmail.com', role: 'Team Lead' },
-        { email: 'ramemployee@gmail.com', role: 'Employee' }
+        { name:'arjun',mobile:'+91 987456123', email: 'arjun@gmail.com', role: 'Team Lead' },
+        { name:'ram',mobile:'+91 987456123',email: 'ramemployee@gmail.com', role: 'Employee' }
       ]
     },
 
@@ -72,23 +72,23 @@ const ManagerData = () => {
   useEffect(() => {
     // Simulate fetching from local TeamLeadData and EmployeeData
     setTeamLeads([
-      { name: 'siva', email: 'siva@gmail.com', role: 'Team Lead' },
-      { name: 'arjun', email: 'arjun@gmail.com', role: 'Team Lead' },
-      { name: 'satish', email: 'satish@gmail.com', role: 'Team Lead' },
-      { name: 'raju', email: 'raju@gmail.com', role: 'Team Lead' },
-      { name: 'harsha', email: 'harsha@gmail.com', role: 'Team Lead' },
-      { name: 'dinesh', email: 'dinesh@gmail.com', role: 'Team Lead' }
+      { name: 'siva',mobile:'+91 9874561230', email: 'siva@gmail.com', role: 'Team Lead' },
+      { name: 'arjun',mobile:'+91 9874561230', email: 'arjun@gmail.com', role: 'Team Lead' },
+      { name: 'satish',mobile:'+91 9874561230', email: 'satish@gmail.com', role: 'Team Lead' },
+      { name: 'raju',mobile:'+91 9874561230', email: 'raju@gmail.com', role: 'Team Lead' },
+      { name: 'harsha',mobile:'+91 9874561230', email: 'harsha@gmail.com', role: 'Team Lead' },
+      { name: 'dinesh',mobile:'+91 9874561230', email: 'dinesh@gmail.com', role: 'Team Lead' }
     ]);
     setEmployees([
-      { name: 'ram', email: 'ramemployee@gmail.com', role: 'Employee' },
-      { name: 'gopi', email: 'gopiemployee@gmail.com', role: 'Employee' },
-      { name: 'arun', email: 'arunemployee@gmail.com', role: 'Employee' },
-      { name: 'madhu', email: 'madhuemployee@gmail.com', role: 'Employee' },
-      { name: 'poorna', email: 'poornaemployee@gmail.com', role: 'Employee' },
-      { name: 'ranjith', email: 'ranjithemployee@gmail.com', role: 'Employee' },
-      { name: 'ashok', email: 'ashokemployee@gmail.com', role: 'Employee' },
-      { name: 'deepak', email: 'deepakemployee@gmail.com', role: 'Employee' },
-      { name: 'santhosh', email: 'santhoshemployee@gmail.com', role: 'Employee' }
+      { name: 'ram',mobile:'+91 9874561230', email: 'ramemployee@gmail.com', role: 'Employee' },
+      { name: 'gopi',mobile:'+91 9874561230', email: 'gopiemployee@gmail.com', role: 'Employee' },
+      { name: 'arun',mobile:'+91 9874561230', email: 'arunemployee@gmail.com', role: 'Employee' },
+      { name: 'madhu',mobile:'+91 9874561230', email: 'madhuemployee@gmail.com', role: 'Employee' },
+      { name: 'poorna',mobile:'+91 9874561230', email: 'poornaemployee@gmail.com', role: 'Employee' },
+      { name: 'ranjith',mobile:'+91 9874561230', email: 'ranjithemployee@gmail.com', role: 'Employee' },
+      { name: 'ashok',mobile:'+91 9874561230', email: 'ashokemployee@gmail.com', role: 'Employee' },
+      { name: 'deepak',mobile:'+91 9874561230', email: 'deepakemployee@gmail.com', role: 'Employee' },
+      { name: 'santhosh',mobile:'+91 9874561230', email: 'santhoshemployee@gmail.com', role: 'Employee' }
     ]);
   }, []);
 
@@ -294,6 +294,9 @@ const ManagerData = () => {
                           <Table striped bordered size="sm">
                             <thead>
                               <tr>
+                                <th>S.No</th>
+                                <th>Name</th>
+                                <th>Mobile</th>
                                 <th>Email</th>
                                 <th>Role</th>
                               </tr>
@@ -302,13 +305,16 @@ const ManagerData = () => {
                               {manager.assignedPeople?.length > 0 ? (
                                 manager.assignedPeople.map((person, idx) => (
                                   <tr key={`assigned-${idx}`}>
+                                    <td>{idx + 1}</td>
+                                    <td>{person.name}</td>
+                                    <td>{person.mobile}</td>
                                     <td>{person.email}</td>
                                     <td>{person.role}</td>
                                   </tr>
                                 ))
                               ) : (
                                 <tr>
-                                  <td colSpan="2" className="text-muted">No people assigned yet</td>
+                                  <td colSpan="4" className="text-muted">No people assigned yet</td>
                                 </tr>
                               )}
                             </tbody>
@@ -382,6 +388,7 @@ const ManagerData = () => {
               <tr>
                 <th>Select</th>
                 <th>Name</th>
+                <th>Mobile</th>
                 <th>Email</th>
                 <th>Role</th>
               </tr>
@@ -400,6 +407,7 @@ const ManagerData = () => {
                     />
                   </td>
                   <td>{person.name}</td>
+                  <td>{person.mobile}</td>
                   <td>{person.email}</td>
                   <td>{person.role}</td>
                 </tr>
@@ -416,6 +424,7 @@ const ManagerData = () => {
               <tr>
                 <th>Select</th>
                 <th>Name</th>
+                <th>Mobile</th>
                 <th>Email</th>
                 <th>Role</th>
               </tr>
@@ -434,6 +443,7 @@ const ManagerData = () => {
                     />
                   </td>
                   <td>{person.name}</td>
+                  <td>{person.mobile}</td>
                   <td>{person.email}</td>
                   <td>{person.role}</td>
                 </tr>

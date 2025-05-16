@@ -22,15 +22,15 @@ const EmployeeData = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
 
-  const [currentManagerIndex, setCurrentManagerIndex] = useState(null);
-  const [newManager, setNewManager] = useState({
+  const [currentEmployeeIndex, setCurrentEmployeeIndex] = useState(null);
+  const [newEmployee, setNewEmployee] = useState({
     name: '',
     mobile: '',
     email: '',
     password: '',
     role: 'Employee'
   });
-  const [managers, setManagers] = useState([
+  const [employees, setEmployees] = useState([
 {
       name: "Siva",
       mobile: "+91 9874561230",
@@ -49,7 +49,7 @@ const EmployeeData = () => {
   ]);
 
   const [assignModalOpen, setAssignModalOpen] = useState(false);
-  const [selectedManagerIndex, setSelectedManagerIndex] = useState(null);
+  const [selectedEmployeeIndex, setSelectedEmployeeIndex] = useState(null);
   const [selectedPeople, setSelectedPeople] = useState([]);
 
   const navigate = useNavigate();
@@ -62,49 +62,49 @@ const EmployeeData = () => {
 
   const goToManagers = () => navigate('/managers');
   const goToClients = () => navigate('/clients');
-  const goToEmployee = () => navigate('/employee');
+  const goToEmployee = () => navigate('/employees');
 
   const handleShowModal = () => setShowModal(true);
   const handleCloseModal = () => {
     setShowModal(false);
     setIsEditing(false);
-    setCurrentManagerIndex(null);
-    setNewManager({ name: '', mobile: '', email: '', password: '' });
+    setCurrentEmployeeIndex(null);
+    setNewEmployee({ name: '', mobile: '', email: '', password: '' });
   };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setNewManager((prev) => ({ ...prev, [name]: value }));
+    setNewEmployee((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleAddManager = () => {
-    const { name, mobile, email, password } = newManager;
+  const handleAddEmployee = () => {
+    const { name, mobile, email, password } = newEmployee;
     if (!name || !mobile || !email || !password) {
       alert('Please fill all fields');
       return;
     }
 
     if (isEditing) {
-      const updatedManagers = [...managers];
-      updatedManagers[currentManagerIndex] = newManager;
-      setManagers(updatedManagers);
+      const updatedEmployees = [...employees];
+      updatedEmployees[currentEmployeeIndex] = newEmployee;
+      setEmployees(updatedEmployees);
     } else {
-      setManagers([...managers, { ...newManager, people: [] }]);
+      setEmployees([...employees, { ...newEmployee, people: [] }]);
     }
 
     handleCloseModal();
   };
 
   const openAssignModal = (index) => {
-    setSelectedManagerIndex(index);
+    setSelectedEmployeeIndex(index);
     setSelectedPeople([]);
     setAssignModalOpen(true);
   };
 
   const handleAssignDone = () => {
-    const updatedManagers = [...managers];
-    updatedManagers[selectedManagerIndex].assignedPeople = selectedPeople;
-    setManagers(updatedManagers);
+    const updatedEmployees = [...employees];
+    updatedEmployees[selectedEmployeeIndex].assignedPeople = selectedPeople;
+    setEmployees(updatedEmployees);
     setAssignModalOpen(false);
   };
 
@@ -115,9 +115,9 @@ const EmployeeData = () => {
   };
 
   return (
-    <div className="admin-dashboard">
-      <div className="admin-header">
-        <img src={txlogo} alt="TechXplorers Logo" className="admin-logo" />
+    <div className="employee-dashboard">
+      <div className="employee-header">
+        <img src={txlogo} alt="TechXplorers Logo" className="employee-logo" />
                 <h2 className="logo-heading">Employees Data</h2>
 
       </div>
@@ -126,7 +126,7 @@ const EmployeeData = () => {
         <FaBars size={24} />
       </div>
 
-      <div className={`admin-sidebar ${sidebarOpen ? 'open' : ''}`}>
+      <div className={`employee-sidebar ${sidebarOpen ? 'open' : ''}`}>
         <div className="sidebar-header">
           <div className="sidebar-close-btn" onClick={toggleSidebar}>
             <FaArrowLeft size={20} />
@@ -185,26 +185,26 @@ const EmployeeData = () => {
             </tr>
           </thead>
           <tbody>
-            {managers
-              .filter((manager) =>
-                [manager.name, manager.email, manager.mobile].some((field) =>
+            {employees
+              .filter((employee) =>
+                [employee.name, employee.email, employee.mobile].some((field) =>
                   field.toLowerCase().includes(searchTerm.toLowerCase())
                 )
-              ).map((manager, index) => (
+              ).map((employee, index) => (
                 <tr key={index} className="table-warning">
-                  <td>{manager.name}</td>
-                  <td>{manager.mobile}</td>
-                  <td>{manager.email}</td>
-                  <td>{manager.password}</td>
-                  <td>{manager.role}</td>
+                  <td>{employee.name}</td>
+                  <td>{employee.mobile}</td>
+                  <td>{employee.email}</td>
+                  <td>{employee.password}</td>
+                  <td>{employee.role}</td>
                   <td>
                     <Button
                       variant="link"
                       className="text-decoration-none"
                       onClick={() => {
                         setIsEditing(true);
-                        setCurrentManagerIndex(index);
-                        setNewManager(manager);
+                        setCurrentEmployeeIndex(index);
+                        setNewEmployee(employee);
                         setShowModal(true);
                       }}
                     >
@@ -221,32 +221,32 @@ const EmployeeData = () => {
       {/* Modal for Add/Edit Manager */}
       <Modal show={showModal} onHide={handleCloseModal} centered>
         <Modal.Header closeButton>
-          <Modal.Title>{isEditing ? 'Edit Manager' : 'Add Manager'}</Modal.Title>
+          <Modal.Title>{isEditing ? 'Edit Employee' : 'Add Employee'}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
             <Form.Group className="mb-3">
               <Form.Label>Name</Form.Label>
-              <Form.Control type="text" name="name" value={newManager.name} onChange={handleInputChange} />
+              <Form.Control type="text" name="name" value={newEmployee.name} onChange={handleInputChange} />
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Mobile</Form.Label>
-              <Form.Control type="text" name="mobile" value={newManager.mobile} onChange={handleInputChange} />
+              <Form.Control type="text" name="mobile" value={newEmployee.mobile} onChange={handleInputChange} />
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Email</Form.Label>
-              <Form.Control type="email" name="email" value={newManager.email} onChange={handleInputChange} />
+              <Form.Control type="email" name="email" value={newEmployee.email} onChange={handleInputChange} />
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Password</Form.Label>
-              <Form.Control type="password" name="password" value={newManager.password} onChange={handleInputChange} />
+              <Form.Control type="password" name="password" value={newEmployee.password} onChange={handleInputChange} />
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Role</Form.Label>
               <Form.Control
                 type="text"
                 name="role"
-                value={newManager.role}
+                value={newEmployee.role}
                 readOnly
               />
             </Form.Group>
@@ -254,8 +254,8 @@ const EmployeeData = () => {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleCloseModal}>Cancel</Button>
-          <Button variant="primary" onClick={handleAddManager}>
-            {isEditing ? 'Update Manager' : 'Add Manager'}
+          <Button variant="primary" onClick={handleAddEmployee}>
+            {isEditing ? 'Update Employee' : 'Add Employee'}
           </Button>
         </Modal.Footer>
       </Modal>

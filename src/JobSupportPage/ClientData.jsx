@@ -4,18 +4,18 @@ import txlogo from '../assets/txlogo.png';
 
 const sampleClients = {
   registered: [
-    { id: 1, name: "John Doe", mobile: "9876543210", email: "john@example.com", jobsapplyfor: "Data science", date: "2025-05-01", country: "USA", visastatus: "Pending" },
-    { id: 2, name: "Alice Brown", mobile: "7896543210", email: "alice@example.com", jobsapplyfor: "Cyber security", date: "2025-05-03", country: "UK", visastatus: "Approved" },
-    { id: 3, name: "Mcgregor", mobile: "7776543210", email: "mcg@example.com", jobsapplyfor: "Scrum master", date: "2025-05-01", country: "Australia", visastatus: "Pending" },
+    { id: 1, name: "John Doe", mobile: "9876543210", email: "john@example.com", jobsapplyfor: "Data science", date: "2025-05-01", country: "USA", visastatus: "Citizen (U.S.)" },
+    { id: 2, name: "Alice Brown", mobile: "7896543210", email: "alice@example.com", jobsapplyfor: "Cyber security", date: "2025-05-03", country: "UK", visastatus: "Green Card" },
+    { id: 3, name: "Mcgregor", mobile: "7776543210", email: "mcg@example.com", jobsapplyfor: "Scrum master", date: "2025-05-01", country: "Australia", visastatus: "H-1B Visa" },
   ],
   unassigned: [
-    { id: 4, name: "Jane Smith", mobile: "9977543210", email: "jane@example.com", jobsapplyfor: "Data science", date: "2025-05-02", country: "Africa", visastatus: "pending" },
+    { id: 4, name: "Jane Smith", mobile: "9977543210", email: "jane@example.com", jobsapplyfor: "Data science", date: "2025-05-02", country: "Africa", visastatus: "F-1 Visa" },
   ],
   active: [
-    { id: 5, name: "Mike Green", mobile: "8876543210", email: "mike@example.com", jobsapplyfor: "Cyber security", manager: "Sarah Connor", date: "2025-04-28", country: "USA", visastatus: "Approved" },
+    { id: 5, name: "Mike Green", mobile: "8876543210", email: "mike@example.com", jobsapplyfor: "Cyber security", manager: "Sarah Connor", date: "2025-04-28", country: "USA", visastatus: "L-1 Visa" },
   ],
   rejected: [
-    { id: 6, name: "Tom Black", mobile: "8976543210", email: "tom@example.com", jobsapplyfor: "Scrum master", date: "2025-04-15", country: "UK", visastatus: "Rejected" },
+    { id: 6, name: "Tom Black", mobile: "8976543210", email: "tom@example.com", jobsapplyfor: "Scrum master", date: "2025-04-15", country: "UK", visastatus: "Green Card" },
   ],
   restored: []
 };
@@ -108,10 +108,10 @@ const ClientData = () => {
             <td>
               {tab === "registered" && (
                 <div>
-                  <button onClick={() => handleAccept(client.id)}>
+                  <button className="accept" onClick={() => handleAccept(client.id)}>
                     Accept
                   </button><br/>
-                  <button onClick={() => handleDecline(client.id)}>
+                  <button className="decline" onClick={() => handleDecline(client.id)}>
                     Decline
                   </button>
                 </div>

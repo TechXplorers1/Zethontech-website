@@ -26,15 +26,15 @@ const TeamLeadData = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
 
-  const [currentManagerIndex, setCurrentManagerIndex] = useState(null);
-  const [newManager, setNewManager] = useState({
+  const [currentTeamLeadIndex, setCurrentTeamLeadIndex] = useState(null);
+  const [newTeamLead, setNewTeamLead] = useState({
     name: '',
     mobile: '',
     email: '',
     password: '',
     role: 'Team Lead'
   });
-  const [managers, setManagers] = useState([
+  const [teamLeads, setTeamLeads] = useState([
 {
       name: "Siva",
       mobile: "+91 9874561230",
@@ -53,7 +53,7 @@ const TeamLeadData = () => {
   ]);
 
   const [assignModalOpen, setAssignModalOpen] = useState(false);
-  const [selectedManagerIndex, setSelectedManagerIndex] = useState(null);
+  const [selectedTeamLeadIndex, setSelectedTeamLeadIndex] = useState(null);
   const [selectedPeople, setSelectedPeople] = useState([]);
 
   const navigate = useNavigate();
@@ -72,43 +72,43 @@ const TeamLeadData = () => {
   const handleCloseModal = () => {
     setShowModal(false);
     setIsEditing(false);
-    setCurrentManagerIndex(null);
-    setNewManager({ name: '', mobile: '', email: '', password: '' ,role: 'Team Lead' });
+    setCurrentTeamLeadIndex(null);
+    setNewTeamLead({ name: '', mobile: '', email: '', password: '' ,role: 'Team Lead' });
   };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setNewManager((prev) => ({ ...prev, [name]: value }));
+    setNewTeamLead((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleAddManager = () => {
-    const { name, mobile, email, password } = newManager;
+  const handleAddTeamLead = () => {
+    const { name, mobile, email, password } = newTeamLead;
     if (!name || !mobile || !email || !password) {
       alert('Please fill all fields');
       return;
     }
 
     if (isEditing) {
-      const updatedManagers = [...managers];
-      updatedManagers[currentManagerIndex] = newManager;
-      setManagers(updatedManagers);
+      const updatedTeamLeads = [...teamLeads];
+      updatedTeamLeads[currentTeamLeadIndex] = newTeamLead;
+      setTeamLeads(updatedTeamLeads);
     } else {
-      setManagers([...managers, { ...newManager, people: [] }]);
+      setTeamLeads([...teamLeads, { ...newTeamLead, people: [] }]);
     }
 
     handleCloseModal();
   };
 
   const openAssignModal = (index) => {
-    setSelectedManagerIndex(index);
+    setSelectedTeamLeadIndex(index);
     setSelectedPeople([]);
     setAssignModalOpen(true);
   };
 
   const handleAssignDone = () => {
-    const updatedManagers = [...managers];
-    updatedManagers[selectedManagerIndex].assignedPeople = selectedPeople;
-    setManagers(updatedManagers);
+    const updatedTeamLeads = [...teamLeads];
+    updatedTeamLeads[selectedTeamLeadIndex].assignedPeople = selectedPeople;
+    setTeamLeads(updatedTeamLeads);
     setAssignModalOpen(false);
   };
 
@@ -119,9 +119,9 @@ const TeamLeadData = () => {
   };
 
   return (
-    <div className="admin-dashboard">
-      <div className="admin-header">
-        <img src={txlogo} alt="TechXplorers Logo" className="admin-logo" />
+    <div className="teamlead-dashboard">
+      <div className="teamlead-header">
+        <img src={txlogo} alt="TechXplorers Logo" className="teamlead-logo" />
                 <h2 className="logo-heading">TeamLead Data</h2>
 
       </div>
@@ -130,7 +130,7 @@ const TeamLeadData = () => {
         <FaBars size={24} />
       </div>
 
-      <div className={`admin-sidebar ${sidebarOpen ? 'open' : ''}`}>
+      <div className={`teamlead-sidebar ${sidebarOpen ? 'open' : ''}`}>
         <div className="sidebar-header">
           <div className="sidebar-close-btn" onClick={toggleSidebar}>
             <FaArrowLeft size={20} />
@@ -189,26 +189,26 @@ const TeamLeadData = () => {
             </tr>
           </thead>
           <tbody>
-            {managers
-              .filter((manager) =>
-                [manager.name, manager.email, manager.mobile].some((field) =>
+            {teamLeads
+              .filter((teamlead) =>
+                [teamlead.name, teamlead.email, teamlead.mobile].some((field) =>
                   field.toLowerCase().includes(searchTerm.toLowerCase())
                 )
-              ).map((manager, index) => (
+              ).map((teamlead, index) => (
                 <tr key={index} className="table-warning">
-                  <td>{manager.name}</td>
-                  <td>{manager.mobile}</td>
-                  <td>{manager.email}</td>
-                  <td>{manager.password}</td>
-                  <td>{manager.role}</td>
+                  <td>{teamlead.name}</td>
+                  <td>{teamlead.mobile}</td>
+                  <td>{teamlead.email}</td>
+                  <td>{teamlead.password}</td>
+                  <td>{teamlead.role}</td>
                   <td>
                     <Button
                       variant="link"
                       className="text-decoration-none"
                       onClick={() => {
                         setIsEditing(true);
-                        setCurrentManagerIndex(index);
-                        setNewManager(manager);
+                        setCurrentTeamLeadIndex(index);
+                        setNewTeamLead(teamlead);
                         setShowModal(true);
                       }}
                     >
@@ -222,35 +222,35 @@ const TeamLeadData = () => {
         </Table>
       </div>
 
-      {/* Modal for Add/Edit Manager */}
+      {/* Modal for Add/Edit TeamLead */}
       <Modal show={showModal} onHide={handleCloseModal} centered>
         <Modal.Header closeButton>
-          <Modal.Title>{isEditing ? 'Edit Manager' : 'Add Manager'}</Modal.Title>
+          <Modal.Title>{isEditing ? 'Edit TeamLead' : 'Add TeamLead'}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
             <Form.Group className="mb-3">
               <Form.Label>Name</Form.Label>
-              <Form.Control type="text" name="name" value={newManager.name} onChange={handleInputChange} />
+              <Form.Control type="text" name="name" value={newTeamLead.name} onChange={handleInputChange} />
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Mobile</Form.Label>
-              <Form.Control type="text" name="mobile" value={newManager.mobile} onChange={handleInputChange} />
+              <Form.Control type="text" name="mobile" value={newTeamLead.mobile} onChange={handleInputChange} />
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Email</Form.Label>
-              <Form.Control type="email" name="email" value={newManager.email} onChange={handleInputChange} />
+              <Form.Control type="email" name="email" value={newTeamLead.email} onChange={handleInputChange} />
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Password</Form.Label>
-              <Form.Control type="password" name="password" value={newManager.password} onChange={handleInputChange} />
+              <Form.Control type="password" name="password" value={newTeamLead.password} onChange={handleInputChange} />
             </Form.Group>
             <Form.Group className="mb-3">
   <Form.Label>Role</Form.Label>
   <Form.Control
     type="text"
     name="role"
-    value={newManager.role}
+    value={newTeamLead.role}
     readOnly
   />
 </Form.Group>
@@ -258,8 +258,8 @@ const TeamLeadData = () => {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleCloseModal}>Cancel</Button>
-          <Button variant="primary" onClick={handleAddManager}>
-            {isEditing ? 'Update Manager' : 'Add Manager'}
+          <Button variant="primary" onClick={handleAddTeamLead}>
+            {isEditing ? 'Update TeamLead' : 'Add TeamLead'}
           </Button>
         </Modal.Footer>
       </Modal>
