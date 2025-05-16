@@ -1,19 +1,9 @@
 import React, { useState } from 'react';
-import { Container, Row, Col, Modal } from 'react-bootstrap';
+import { Container, Row, Col, Modal, Table, Button, Form, InputGroup } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import '../styles/EmployeeData.css';
 import txlogo from '../assets/txlogo.png';
-import { Table, Button, Form, InputGroup, Dropdown } from 'react-bootstrap';
-import {
-  FaUserCircle,
-  FaBars,
-  FaArrowLeft,
-  FaChevronDown,
-  FaChevronUp,
-} from 'react-icons/fa';
-
-
-
+import { FaUserCircle, FaBars, FaArrowLeft, FaChevronDown, FaChevronUp } from 'react-icons/fa';
 
 const EmployeeData = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -21,37 +11,31 @@ const EmployeeData = () => {
   const [showModal, setShowModal] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
-
   const [currentEmployeeIndex, setCurrentEmployeeIndex] = useState(null);
+  const [confirmationOpen, setConfirmationOpen] = useState(false);
+  const [employeeToDeactivate, setEmployeeToDeactivate] = useState(null);
+
   const [newEmployee, setNewEmployee] = useState({
     name: '',
     mobile: '',
     email: '',
     password: '',
-    role: ''
+    role: '',
+    active: true,
   });
+
   const [employees, setEmployees] = useState([
-      { name: 'ram',mobile:'+91 9874561230', email: 'ramemployee@gmail.com',password: '07072023@TxRm', role: 'Employee' },
-      { name: 'gopi',mobile:'+91 9874561230', email: 'gopiemployee@gmail.com',password: '07072023@TxRm', role: 'Employee' },
-      { name: 'arun',mobile:'+91 9874561230', email: 'arunemployee@gmail.com',password: '07072023@TxRm', role: 'Employee' },
-      { name: 'madhu',mobile:'+91 9874561230', email: 'madhuemployee@gmail.com',password: '07072023@TxRm', role: 'Employee' },
-      { name: 'poorna',mobile:'+91 9874561230', email: 'poornaemployee@gmail.com',password: '07072023@TxRm', role: 'Employee' },
-
-
+    { name: 'Humer', mobile: '+91 9874561230', email: 'ramemployee@gmail.com', password: '07072023@TxRm', role: 'Employee', active: true },
+    { name: 'Chaveen', mobile: '+91 9874561230', email: 'gopiemployee@gmail.com', password: '07072023@TxRm', role: 'Employee', active: true },
+    { name: 'Bharath', mobile: '+91 9874561230', email: 'arunemployee@gmail.com', password: '07072023@TxRm', role: 'Employee', active: true },
+    { name: 'Sandeep', mobile: '+91 9874561230', email: 'madhuemployee@gmail.com', password: '07072023@TxRm', role: 'Employee', active: true },
+    { name: 'Neelam Sai', mobile: '+91 9874561230', email: 'poornaemployee@gmail.com', password: '07072023@TxRm', role: 'Employee', active: true },
   ]);
-
-  const [assignModalOpen, setAssignModalOpen] = useState(false);
-  const [selectedEmployeeIndex, setSelectedEmployeeIndex] = useState(null);
-  const [selectedPeople, setSelectedPeople] = useState([]);
 
   const navigate = useNavigate();
   const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
   const toggleClientsDropdown = () => setClientsDropdownOpen(!clientsDropdownOpen);
-
-  const handleLogout = () => {
-    navigate('/');
-  };
-
+  const handleLogout = () => navigate('/');
   const goToManagers = () => navigate('/managers');
   const goToClients = () => navigate('/clients');
   const goToEmployee = () => navigate('/employees');
@@ -61,7 +45,7 @@ const EmployeeData = () => {
     setShowModal(false);
     setIsEditing(false);
     setCurrentEmployeeIndex(null);
-    setNewEmployee({ name: '', mobile: '', email: '', password: '', role: '' });
+    setNewEmployee({ name: '', mobile: '', email: '', password: '', role: '', active: true });
   };
 
   const handleInputChange = (e) => {
@@ -81,37 +65,42 @@ const EmployeeData = () => {
       updatedEmployees[currentEmployeeIndex] = newEmployee;
       setEmployees(updatedEmployees);
     } else {
-      setEmployees([...employees, { ...newEmployee, people: [] }]);
+      setEmployees([...employees, { ...newEmployee }]);
     }
 
     handleCloseModal();
   };
 
-  const openAssignModal = (index) => {
-    setSelectedEmployeeIndex(index);
-    setSelectedPeople([]);
-    setAssignModalOpen(true);
+  const toggleActivation = (index) => {
+    const employee = employees[index];
+    
+    if (employee.active) {
+      // Show confirmation only when deactivating
+      setEmployeeToDeactivate(index);
+      setConfirmationOpen(true);
+    } else {
+      // Activate immediately without confirmation
+      const updatedEmployees = [...employees];
+      updatedEmployees[index].active = true;
+      setEmployees(updatedEmployees);
+    }
   };
 
-  const handleAssignDone = () => {
-    const updatedEmployees = [...employees];
-    updatedEmployees[selectedEmployeeIndex].assignedPeople = selectedPeople;
-    setEmployees(updatedEmployees);
-    setAssignModalOpen(false);
-  };
-
-  const handlePersonToggle = (email) => {
-    setSelectedPeople((prev) =>
-      prev.includes(email) ? prev.filter((e) => e !== email) : [...prev, email]
-    );
+  const confirmDeactivation = () => {
+    if (employeeToDeactivate !== null) {
+      const updatedEmployees = [...employees];
+      updatedEmployees[employeeToDeactivate].active = false;
+      setEmployees(updatedEmployees);
+      setConfirmationOpen(false);
+      setEmployeeToDeactivate(null);
+    }
   };
 
   return (
     <div className="employee-dashboard">
       <div className="employee-header">
         <img src={txlogo} alt="TechXplorers Logo" className="employee-logo" />
-                <h2 className="logo-heading">Employees Data</h2>
-
+        <h2 className="logo-heading">Employees Data</h2>
       </div>
 
       <div className="hamburger-btn" onClick={toggleSidebar}>
@@ -173,7 +162,8 @@ const EmployeeData = () => {
               <th>EMAIL</th>
               <th>PASSWORD</th>
               <th>ROLE</th>
-              <th>ACTIONS</th>
+              <th>EDIT</th>
+              <th>STATUS</th>
             </tr>
           </thead>
           <tbody>
@@ -202,7 +192,17 @@ const EmployeeData = () => {
                     >
                       ✏️
                     </Button>
-                    <Button variant="link" className="text-danger text-decoration-none">❌</Button>
+                  </td>
+                  <td>
+                    <div className="d-flex align-items-center justify-content-center">
+                      <span className="me-2">{employee.active ? 'Active' : 'Inactive'}</span>
+                      <Form.Check
+                        type="switch"
+                        id={`active-switch-${index}`}
+                        checked={employee.active}
+                        onChange={() => toggleActivation(index)}
+                      />
+                    </div>
                   </td>
                 </tr>
               ))}
@@ -210,7 +210,7 @@ const EmployeeData = () => {
         </Table>
       </div>
 
-      {/* Modal for Add/Edit Manager */}
+      {/* Modal for Add/Edit Employee */}
       <Modal show={showModal} onHide={handleCloseModal} centered>
         <Modal.Header closeButton>
           <Modal.Title>{isEditing ? 'Edit Employee' : 'Add Employee'}</Modal.Title>
@@ -234,15 +234,12 @@ const EmployeeData = () => {
               <Form.Control type="password" name="password" value={newEmployee.password} onChange={handleInputChange} />
             </Form.Group>
             <Form.Group className="mb-3">
-<Form.Label>Role</Form.Label>
-<Form.Select
-name="role"
-value={newEmployee.role}
-onChange={handleInputChange}>
-<option value="Employee">Employee</option>
-<option value="Intern">Intern</option>
-</Form.Select>
-</Form.Group>
+              <Form.Label>Role</Form.Label>
+              <Form.Select name="role" value={newEmployee.role} onChange={handleInputChange}>
+                <option value="Employee">Employee</option>
+                <option value="Intern">Intern</option>
+              </Form.Select>
+            </Form.Group>
           </Form>
         </Modal.Body>
         <Modal.Footer>
@@ -253,12 +250,19 @@ onChange={handleInputChange}>
         </Modal.Footer>
       </Modal>
 
-
+      {/* Confirmation Modal */}
+      <Modal show={confirmationOpen} onHide={() => setConfirmationOpen(false)} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirm Deactivation</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Are you sure you want to mark this Team Lead as inactive?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setConfirmationOpen(false)}>Cancel</Button>
+          <Button variant="danger" onClick={confirmDeactivation}>Yes, Deactivate</Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };
 
 export default EmployeeData;
-
-
-// Add Manager,Add people and edit options are working
