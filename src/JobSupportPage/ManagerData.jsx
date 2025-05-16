@@ -13,20 +13,13 @@ import {
   FaSearch,
 } from 'react-icons/fa';
 
-const dummyPeople = [
-  { email: 'demo@gmail.com', role: 'Team lead' },
-  { email: 'demo1@gmail.com', role: 'Employee' },
-  { email: 'demo2@gmail.com', role: 'Employee' }
-];
-
-
 const ManagerData = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [clientsDropdownOpen, setClientsDropdownOpen] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
-    const [expandedManager, setExpandedManager] = useState(null);
+  const [expandedManager, setExpandedManager] = useState(null);
 
   const [teamLeads, setTeamLeads] = useState([]);
   const [employees, setEmployees] = useState([]);
@@ -40,8 +33,10 @@ const ManagerData = () => {
     mobile: '',
     email: '',
     password: '',
-    role: 'Manager'
+    role: 'Manager',
+    active: true // Default to active
   });
+
   const [managers, setManagers] = useState([
     {
       name: "Sreenivasulu",
@@ -49,9 +44,10 @@ const ManagerData = () => {
       email: "seenu@gmail.com",
       password: "07072023@Tx123",
       role: "Manager",
-       assignedPeople: [
-        {name:'siva',mobile:'+91 987456123', email: 'siva@gmail.com', role: 'Team Lead' },
-        {name:'santhosh',mobile:'+91 987456123', email: 'santhoshemployee@gmail.com', role: 'Employee' }
+      active: true, // Default to active
+      assignedPeople: [
+        { name: 'siva', mobile: '+91 987456123', email: 'siva@gmail.com', role: 'Team Lead' },
+        { name: 'santhosh', mobile: '+91 987456123', email: 'santhoshemployee@gmail.com', role: 'Employee' }
       ]
     },
     {
@@ -60,35 +56,33 @@ const ManagerData = () => {
       email: "ramkiran@gmail.com",
       password: "07072023@TxSm",
       role: "Manager",
+      active: true, // Default to active
       assignedPeople: [
-        { name:'arjun',mobile:'+91 987456123', email: 'arjun@gmail.com', role: 'Team Lead' },
-        { name:'ram',mobile:'+91 987456123',email: 'ramemployee@gmail.com', role: 'Employee' }
+        { name: 'arjun', mobile: '+91 987456123', email: 'arjun@gmail.com', role: 'Team Lead' },
+        { name: 'ram', mobile: '+91 987456123', email: 'ramemployee@gmail.com', role: 'Employee' }
       ]
     },
-
   ]);
 
-
   useEffect(() => {
-    // Simulate fetching from local TeamLeadData and EmployeeData
     setTeamLeads([
-      { name: 'siva',mobile:'+91 9874561230', email: 'siva@gmail.com', role: 'Team Lead' },
-      { name: 'arjun',mobile:'+91 9874561230', email: 'arjun@gmail.com', role: 'Team Lead' },
-      { name: 'satish',mobile:'+91 9874561230', email: 'satish@gmail.com', role: 'Team Lead' },
-      { name: 'raju',mobile:'+91 9874561230', email: 'raju@gmail.com', role: 'Team Lead' },
-      { name: 'harsha',mobile:'+91 9874561230', email: 'harsha@gmail.com', role: 'Team Lead' },
-      { name: 'dinesh',mobile:'+91 9874561230', email: 'dinesh@gmail.com', role: 'Team Lead' }
+      { name: 'siva', mobile: '+91 9874561230', email: 'siva@gmail.com', role: 'Team Lead' },
+      { name: 'arjun', mobile: '+91 9874561230', email: 'arjun@gmail.com', role: 'Team Lead' },
+      { name: 'satish', mobile: '+91 9874561230', email: 'satish@gmail.com', role: 'Team Lead' },
+      { name: 'raju', mobile: '+91 9874561230', email: 'raju@gmail.com', role: 'Team Lead' },
+      { name: 'harsha', mobile: '+91 9874561230', email: 'harsha@gmail.com', role: 'Team Lead' },
+      { name: 'dinesh', mobile: '+91 9874561230', email: 'dinesh@gmail.com', role: 'Team Lead' }
     ]);
     setEmployees([
-      { name: 'ram',mobile:'+91 9874561230', email: 'ramemployee@gmail.com', role: 'Employee' },
-      { name: 'gopi',mobile:'+91 9874561230', email: 'gopiemployee@gmail.com', role: 'Employee' },
-      { name: 'arun',mobile:'+91 9874561230', email: 'arunemployee@gmail.com', role: 'Employee' },
-      { name: 'madhu',mobile:'+91 9874561230', email: 'madhuemployee@gmail.com', role: 'Employee' },
-      { name: 'poorna',mobile:'+91 9874561230', email: 'poornaemployee@gmail.com', role: 'Employee' },
-      { name: 'ranjith',mobile:'+91 9874561230', email: 'ranjithemployee@gmail.com', role: 'Employee' },
-      { name: 'ashok',mobile:'+91 9874561230', email: 'ashokemployee@gmail.com', role: 'Employee' },
-      { name: 'deepak',mobile:'+91 9874561230', email: 'deepakemployee@gmail.com', role: 'Employee' },
-      { name: 'santhosh',mobile:'+91 9874561230', email: 'santhoshemployee@gmail.com', role: 'Employee' }
+      { name: 'ram', mobile: '+91 9874561230', email: 'ramemployee@gmail.com', role: 'Employee' },
+      { name: 'gopi', mobile: '+91 9874561230', email: 'gopiemployee@gmail.com', role: 'Employee' },
+      { name: 'arun', mobile: '+91 9874561230', email: 'arunemployee@gmail.com', role: 'Employee' },
+      { name: 'madhu', mobile: '+91 9874561230', email: 'madhuemployee@gmail.com', role: 'Employee' },
+      { name: 'poorna', mobile: '+91 9874561230', email: 'poornaemployee@gmail.com', role: 'Employee' },
+      { name: 'ranjith', mobile: '+91 9874561230', email: 'ranjithemployee@gmail.com', role: 'Employee' },
+      { name: 'ashok', mobile: '+91 9874561230', email: 'ashokemployee@gmail.com', role: 'Employee' },
+      { name: 'deepak', mobile: '+91 9874561230', email: 'deepakemployee@gmail.com', role: 'Employee' },
+      { name: 'santhosh', mobile: '+91 9874561230', email: 'santhoshemployee@gmail.com', role: 'Employee' }
     ]);
   }, []);
 
@@ -112,7 +106,7 @@ const ManagerData = () => {
     setShowModal(false);
     setIsEditing(false);
     setCurrentManagerIndex(null);
-    setNewManager({ name: '', mobile: '', email: '', password: '', role: 'Manager' });
+    setNewManager({ name: '', mobile: '', email: '', password: '', role: 'Manager', active: true });
   };
 
   const handleInputChange = (e) => {
@@ -140,18 +134,10 @@ const ManagerData = () => {
 
   const openAssignModal = (index) => {
     setSelectedManagerIndex(index);
-    // setSelectedPeople([]);
-    // setAssignModalOpen(true);
-
-    // Load previously assigned people if available
     const previouslyAssigned = managers[index].assignedPeople || [];
     setSelectedPeople(previouslyAssigned);
-
     setAssignModalOpen(true);
-
   };
-
-
 
   const handleAssignDone = () => {
     const updatedManagers = [...managers];
@@ -167,8 +153,28 @@ const ManagerData = () => {
         : [...prev, person]
     );
   };
+
   const toggleManagerExpand = (index) => {
     setExpandedManager(expandedManager === index ? null : index);
+  };
+
+  // New function to handle activation toggle with confirmation
+  const toggleActivation = (index) => {
+    const manager = managers[index];
+
+    // If trying to deactivate, show confirmation
+    if (manager.active) {
+      if (window.confirm(`Are you sure you want to deactivate ${manager.name}?`)) {
+        const updatedManagers = [...managers];
+        updatedManagers[index].active = false;
+        setManagers(updatedManagers);
+      }
+    } else {
+      // If activating, just update without confirmation
+      const updatedManagers = [...managers];
+      updatedManagers[index].active = true;
+      setManagers(updatedManagers);
+    }
   };
 
   return (
@@ -217,7 +223,8 @@ const ManagerData = () => {
 
       <div className="container mt-4">
         <div className="d-flex justify-content-between align-items-center mb-3">
-           <InputGroup className="w-50"> <InputGroup.Text> <FaSearch /> </InputGroup.Text>
+          <InputGroup className="w-50">
+            <InputGroup.Text><FaSearch /></InputGroup.Text>
             <Form.Control
               placeholder="Search"
               value={searchTerm}
@@ -237,7 +244,8 @@ const ManagerData = () => {
               <th>PASSWORD</th>
               <th>ROLE</th>
               <th>PEOPLE</th>
-              <th>ACTIONS</th>
+              <th>EDIT</th>
+              <th>STATUS</th>
             </tr>
           </thead>
           <tbody>
@@ -247,13 +255,13 @@ const ManagerData = () => {
                   field.toLowerCase().includes(searchTerm.toLowerCase())
                 )
               ).map((manager, index) => (
-               <React.Fragment key={index}>
+                <React.Fragment key={index}>
                   <tr className="table-warning">
                     <td>
                       <div className="d-flex justify-content-between align-items-center">
                         {manager.name}
-                        <Button 
-                          variant="link" 
+                        <Button
+                          variant="link"
                           onClick={() => toggleManagerExpand(index)}
                           className="p-0"
                         >
@@ -261,34 +269,45 @@ const ManagerData = () => {
                         </Button>
                       </div>
                     </td>
-                  <td>{manager.mobile}</td>
-                  <td>{manager.email}</td>
-                  <td>{manager.password}</td>
-                  <td>{manager.role}</td>
-                  <td>
-                    <Button size="sm" variant="success" onClick={() => openAssignModal(index)}>
-                      Add Employees ({manager.assignedPeople?.length || 0})
-                    </Button>
-                  </td>
-                  <td>
-                    <Button
-                      variant="link"
-                      className="text-decoration-none"
-                      onClick={() => {
-                        setIsEditing(true);
-                        setCurrentManagerIndex(index);
-                        setNewManager(manager);
-                        setShowModal(true);
-                      }}
-                    >
-                      ✏️
-                    </Button>
-                    <Button variant="link" className="text-danger text-decoration-none">❌</Button>
-                   </td>
+                    <td>{manager.mobile}</td>
+                    <td>{manager.email}</td>
+                    <td>{manager.password}</td>
+                    <td>{manager.role}</td>
+                    <td>
+                      <Button size="sm" variant="success" onClick={() => openAssignModal(index)}>
+                        Add Employees ({manager.assignedPeople?.length || 0})
+                      </Button>
+                    </td>
+                    <td>
+                      <Button
+                        variant="link"
+                        className="text-decoration-none"
+                        onClick={() => {
+                          setIsEditing(true);
+                          setCurrentManagerIndex(index);
+                          setNewManager(manager);
+                          setShowModal(true);
+                        }}
+                      >
+                        ✏️
+                      </Button>
+                    </td>
+                    <td>
+                      <div className="d-flex align-items-center justify-content-center">
+                        <span className="me-2">{manager.active ? 'Active' : 'Inactive'}</span>
+                        <Form.Check
+                          type="switch"
+                          id={`active-switch-${index}`}
+                          checked={manager.active}
+                          onChange={() => toggleActivation(index)}
+                        />
+                      </div>
+                    </td>
+
                   </tr>
                   {expandedManager === index && (
                     <tr>
-                      <td colSpan="7">
+                      <td colSpan="8">
                         <div className="p-3">
                           <h5>Assigned Team Leads & Employees</h5>
                           <Table striped bordered size="sm">
@@ -314,7 +333,7 @@ const ManagerData = () => {
                                 ))
                               ) : (
                                 <tr>
-                                  <td colSpan="4" className="text-muted">No people assigned yet</td>
+                                  <td colSpan="5" className="text-muted">No people assigned yet</td>
                                 </tr>
                               )}
                             </tbody>
@@ -371,18 +390,21 @@ const ManagerData = () => {
         </Modal.Footer>
       </Modal>
 
-
       {/* Modal: Assign People */}
       <Modal show={assignModalOpen} onHide={() => setAssignModalOpen(false)} centered size="lg">
         <Modal.Header closeButton>
           <Modal.Title>Assign People</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-
           <h5>Team Leads</h5>
-          <InputGroup className="mb-3"> <InputGroup.Text> <FaSearch /> 
-          </InputGroup.Text> <Form.Control placeholder="Search Team Leads by name or email" 
-          value={teamLeadSearch} onChange={(e) => setTeamLeadSearch(e.target.value)} /> </InputGroup>
+          <InputGroup className="mb-3">
+            <InputGroup.Text><FaSearch /></InputGroup.Text>
+            <Form.Control
+              placeholder="Search Team Leads by name or email"
+              value={teamLeadSearch}
+              onChange={(e) => setTeamLeadSearch(e.target.value)}
+            />
+          </InputGroup>
           <Table striped bordered size="sm">
             <thead>
               <tr>
@@ -416,9 +438,14 @@ const ManagerData = () => {
           </Table>
 
           <h5 className="mt-4">Employees</h5>
-          <InputGroup className="mb-3"> <InputGroup.Text> <FaSearch /> 
-          </InputGroup.Text> <Form.Control placeholder="Search Employees by name or email"
-           value={employeeSearch} onChange={(e) => setEmployeeSearch(e.target.value)} /> </InputGroup>
+          <InputGroup className="mb-3">
+            <InputGroup.Text><FaSearch /></InputGroup.Text>
+            <Form.Control
+              placeholder="Search Employees by name or email"
+              value={employeeSearch}
+              onChange={(e) => setEmployeeSearch(e.target.value)}
+            />
+          </InputGroup>
           <Table striped bordered size="sm">
             <thead>
               <tr>
@@ -455,15 +482,8 @@ const ManagerData = () => {
           <Button variant="primary" onClick={handleAssignDone}>Done</Button>
         </Modal.Footer>
       </Modal>
-
-
-
-
-    </div >
+    </div>
   );
 };
 
 export default ManagerData;
-
-
-// Add Manager,Add people and edit options are working
