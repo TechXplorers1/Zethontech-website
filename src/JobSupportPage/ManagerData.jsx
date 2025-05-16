@@ -23,9 +23,12 @@ const ManagerData = () => {
 
   const [teamLeads, setTeamLeads] = useState([]);
   const [employees, setEmployees] = useState([]);
+  const [interns, setInterns] = useState([]);
 
   const [teamLeadSearch, setTeamLeadSearch] = useState('');
   const [employeeSearch, setEmployeeSearch] = useState('');
+  const [internSearch, setInternSearch] = useState('');
+
 
   const [currentManagerIndex, setCurrentManagerIndex] = useState(null);
   const [newManager, setNewManager] = useState({
@@ -44,45 +47,53 @@ const ManagerData = () => {
       email: "seenu@gmail.com",
       password: "07072023@Tx123",
       role: "Manager",
-      active: true, // Default to active
-      assignedPeople: [
-        { name: 'siva', mobile: '+91 987456123', email: 'siva@gmail.com', role: 'Team Lead' },
-        { name: 'santhosh', mobile: '+91 987456123', email: 'santhoshemployee@gmail.com', role: 'Employee' }
+       assignedPeople: [
+        {name:'Murali',mobile:'+91 987456123', email: 'murali@gmail.com', role: 'Team Lead' },
+        {name:'Madhu',mobile:'+91 987456123', email: 'madhuemployee@gmail.com', role: 'Employee' }
       ]
     },
     {
-      name: "Ram Kiran",
+      name: "Vamsi",
       mobile: "+91 7894561230",
-      email: "ramkiran@gmail.com",
+      email: "vamsi@gmail.com",
       password: "07072023@TxSm",
       role: "Manager",
       active: true, // Default to active
       assignedPeople: [
-        { name: 'arjun', mobile: '+91 987456123', email: 'arjun@gmail.com', role: 'Team Lead' },
-        { name: 'ram', mobile: '+91 987456123', email: 'ramemployee@gmail.com', role: 'Employee' }
+        { name:'Kavitha',mobile:'+91 987456123', email: 'kavitha@gmail.com', role: 'Team Lead' },
+        { name:'santhosh',mobile:'+91 987456123',email: 'santhoshemployee@gmail.com', role: 'Employee' }
       ]
     },
   ]);
 
   useEffect(() => {
     setTeamLeads([
-      { name: 'siva', mobile: '+91 9874561230', email: 'siva@gmail.com', role: 'Team Lead' },
-      { name: 'arjun', mobile: '+91 9874561230', email: 'arjun@gmail.com', role: 'Team Lead' },
-      { name: 'satish', mobile: '+91 9874561230', email: 'satish@gmail.com', role: 'Team Lead' },
-      { name: 'raju', mobile: '+91 9874561230', email: 'raju@gmail.com', role: 'Team Lead' },
-      { name: 'harsha', mobile: '+91 9874561230', email: 'harsha@gmail.com', role: 'Team Lead' },
-      { name: 'dinesh', mobile: '+91 9874561230', email: 'dinesh@gmail.com', role: 'Team Lead' }
+      { name: 'Murali',mobile:'+91 9874561230', email: 'murali@gmail.com', role: 'Team Lead' },
+      { name: 'Vamsi',mobile:'+91 9874561230', email: 'vamsi@gmail.com', role: 'Team Lead' },
+      { name: 'Kavitha',mobile:'+91 9874561230', email: 'kavitha@gmail.com', role: 'Team Lead' },
+      { name: 'Bharath',mobile:'+91 9874561230', email: 'bharath@gmail.com', role: 'Team Lead' },
+      { name: 'SaiKrishna',mobile:'+91 9874561230', email: 'saikrishna@gmail.com', role: 'Team Lead' },
+      { name: 'Vyshnavi',mobile:'+91 9874561230', email: 'vyshnavi@gmail.com', role: 'Team Lead' }
     ]);
     setEmployees([
-      { name: 'ram', mobile: '+91 9874561230', email: 'ramemployee@gmail.com', role: 'Employee' },
-      { name: 'gopi', mobile: '+91 9874561230', email: 'gopiemployee@gmail.com', role: 'Employee' },
-      { name: 'arun', mobile: '+91 9874561230', email: 'arunemployee@gmail.com', role: 'Employee' },
-      { name: 'madhu', mobile: '+91 9874561230', email: 'madhuemployee@gmail.com', role: 'Employee' },
-      { name: 'poorna', mobile: '+91 9874561230', email: 'poornaemployee@gmail.com', role: 'Employee' },
-      { name: 'ranjith', mobile: '+91 9874561230', email: 'ranjithemployee@gmail.com', role: 'Employee' },
-      { name: 'ashok', mobile: '+91 9874561230', email: 'ashokemployee@gmail.com', role: 'Employee' },
-      { name: 'deepak', mobile: '+91 9874561230', email: 'deepakemployee@gmail.com', role: 'Employee' },
-      { name: 'santhosh', mobile: '+91 9874561230', email: 'santhoshemployee@gmail.com', role: 'Employee' }
+      { name: 'Madhu',mobile:'+91 9874561230', email: 'madhuemployee@gmail.com', role: 'Employee' },
+      { name: 'krishna',mobile:'+91 9874561230', email: 'krishnaemployee@gmail.com', role: 'Employee' },
+      { name: 'arun',mobile:'+91 9874561230', email: 'arunemployee@gmail.com', role: 'Employee' },
+      { name: 'dharani',mobile:'+91 9874561230', email: 'dharaniemployee@gmail.com', role: 'Employee' },
+      { name: 'rajitha',mobile:'+91 9874561230', email: 'rajithaemployee@gmail.com', role: 'Employee' },
+      { name: 'siva',mobile:'+91 9874561230', email: 'sivaemployee@gmail.com', role: 'Employee' },
+      { name: 'ashok',mobile:'+91 9874561230', email: 'ashokemployee@gmail.com', role: 'Employee' },
+      { name: 'deepak',mobile:'+91 9874561230', email: 'deepakemployee@gmail.com', role: 'Employee' },
+      { name: 'santhosh',mobile:'+91 9874561230', email: 'santhoshemployee@gmail.com', role: 'Employee' }
+    ]);
+    setInterns([
+      { name: 'Sandeep',mobile:'+91 9874561230', email: 'sandeepmployee@gmail.com', role: 'Employee' },
+      { name: 'Humer',mobile:'+91 9874561230', email: 'humeremployee@gmail.com', role: 'Employee' },
+      { name: 'Chaveen',mobile:'+91 9874561230', email: 'chaveenemployee@gmail.com', role: 'Employee' },
+
+
+
+
     ]);
   }, []);
 
@@ -477,6 +488,44 @@ const ManagerData = () => {
               ))}
             </tbody>
           </Table>
+
+<h5 className="mt-4">Interns</h5>
+          <InputGroup className="mb-3"> <InputGroup.Text> <FaSearch /> 
+          </InputGroup.Text> <Form.Control placeholder="Search Employees by name or email"
+           value={internSearch} onChange={(e) => setInternSearch(e.target.value)} /> </InputGroup>
+          <Table striped bordered size="sm">
+            <thead>
+              <tr>
+                <th>Select</th>
+                <th>Name</th>
+                <th>Mobile</th>
+                <th>Email</th>
+                <th>Role</th>
+              </tr>
+            </thead>
+            <tbody>
+              {interns.filter(p =>
+                p.name.toLowerCase().includes(internSearch.toLowerCase()) ||
+                p.email.toLowerCase().includes(internSearch.toLowerCase())
+              ).map((person, index) => (
+                <tr key={`emp-${index}`}>
+                  <td>
+                    <Form.Check
+                      type="checkbox"
+                      checked={selectedPeople.some(p => p.email === person.email)}
+                      onChange={() => togglePersonSelection(person)}
+                    />
+                  </td>
+                  <td>{person.name}</td>
+                  <td>{person.mobile}</td>
+                  <td>{person.email}</td>
+                  <td>{person.role}</td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+
+
         </Modal.Body>
         <Modal.Footer>
           <Button variant="primary" onClick={handleAssignDone}>Done</Button>

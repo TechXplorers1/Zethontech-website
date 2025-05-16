@@ -28,23 +28,15 @@ const EmployeeData = () => {
     mobile: '',
     email: '',
     password: '',
-    role: 'Employee'
+    role: ''
   });
   const [employees, setEmployees] = useState([
-{
-      name: "Siva",
-      mobile: "+91 9874561230",
-      email: "siva@gmail.com",
-      password: "07072023@Tx123",
-      role: "Employee"
-    },
-    {
-      name: "Arjun",
-      mobile: "+91 7894561230",
-      email: "arjun@gmail.com",
-      password: "07072023@TxSm",
-      role: "Employee"
-    },
+      { name: 'ram',mobile:'+91 9874561230', email: 'ramemployee@gmail.com', role: 'Employee' },
+      { name: 'gopi',mobile:'+91 9874561230', email: 'gopiemployee@gmail.com', role: 'Employee' },
+      { name: 'arun',mobile:'+91 9874561230', email: 'arunemployee@gmail.com', role: 'Employee' },
+      { name: 'madhu',mobile:'+91 9874561230', email: 'madhuemployee@gmail.com', role: 'Employee' },
+      { name: 'poorna',mobile:'+91 9874561230', email: 'poornaemployee@gmail.com', role: 'Employee' },
+
 
   ]);
 
@@ -69,7 +61,7 @@ const EmployeeData = () => {
     setShowModal(false);
     setIsEditing(false);
     setCurrentEmployeeIndex(null);
-    setNewEmployee({ name: '', mobile: '', email: '', password: '' });
+    setNewEmployee({ name: '', mobile: '', email: '', password: '', role: '' });
   };
 
   const handleInputChange = (e) => {
@@ -242,14 +234,15 @@ const EmployeeData = () => {
               <Form.Control type="password" name="password" value={newEmployee.password} onChange={handleInputChange} />
             </Form.Group>
             <Form.Group className="mb-3">
-              <Form.Label>Role</Form.Label>
-              <Form.Control
-                type="text"
-                name="role"
-                value={newEmployee.role}
-                readOnly
-              />
-            </Form.Group>
+<Form.Label>Role</Form.Label>
+<Form.Select
+name="role"
+value={newEmployee.role}
+onChange={handleInputChange}>
+<option value="Employee">Employee</option>
+<option value="Intern">Intern</option>
+</Form.Select>
+</Form.Group>
           </Form>
         </Modal.Body>
         <Modal.Footer>
