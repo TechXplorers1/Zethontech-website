@@ -47,6 +47,7 @@ const ManagerData = () => {
       email: "seenu@gmail.com",
       password: "07072023@Tx123",
       role: "Manager",
+       active: true,
        assignedPeople: [
         {name:'Murali',mobile:'+91 987456123', email: 'murali@gmail.com', role: 'Team Lead' },
         {name:'Madhu',mobile:'+91 987456123', email: 'madhuemployee@gmail.com', role: 'Employee' }
