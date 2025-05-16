@@ -30,9 +30,9 @@ const TeamLeadData = () => {
     role: 'Team Lead'
   });
   const [teamLeads, setTeamLeads] = useState([
-      { name: 'siva',mobile:'+91 9874561230', email: 'siva@gmail.com', role: 'Team Lead' },
-      { name: 'arjun',mobile:'+91 9874561230', email: 'arjun@gmail.com', role: 'Team Lead' },
-      { name: 'satish',mobile:'+91 9874561230', email: 'satish@gmail.com', role: 'Team Lead' },
+      { name: 'siva',mobile:'+91 9874561230', email: 'siva@gmail.com',password: '07072023@TxRm', role: 'Team Lead' },
+      { name: 'arjun',mobile:'+91 9874561230', email: 'arjun@gmail.com',password: '07072023@TxRm', role: 'Team Lead' },
+      { name: 'satish',mobile:'+91 9874561230', email: 'satish@gmail.com',password: '07072023@TxRm', role: 'Team Lead' },
 
   ]);
 
