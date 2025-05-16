@@ -1,6 +1,14 @@
 import React, { useState } from "react";
 import "../styles/ClientData.css";
 import txlogo from '../assets/txlogo.png';
+import { useNavigate } from 'react-router-dom';
+import {
+  FaUserCircle,
+  FaBars,
+  FaArrowLeft,
+  FaChevronDown,
+  FaChevronUp,
+} from 'react-icons/fa';
 
 const sampleClients = {
   registered: [
@@ -24,6 +32,18 @@ const ClientData = () => {
   const [tab, setTab] = useState("registered");
   const [clients, setClients] = useState(sampleClients);
   const [managerAssign, setManagerAssign] = useState({});
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [clientsDropdownOpen, setClientsDropdownOpen] = useState(false);
+
+  const navigate = useNavigate();
+  const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
+  const toggleClientsDropdown = () => setClientsDropdownOpen(!clientsDropdownOpen);
+
+  const handleLogout = () => navigate('/');
+
+  const goToManagers = () => navigate('/managers');
+  const goToTeamLeads = () => navigate('/teamleads');
+  const goToEmployees = () => navigate('/employees');
 
   const handleAccept = (id) => {
     const accepted = clients.registered.find((c) => c.id === id);
@@ -43,14 +63,14 @@ const ClientData = () => {
     }));
   };
 
-  const handleAssign = (id) => {
-    const client = clients.unassigned.find((c) => c.id === id);
+  const handleAssign = (id, source) => {
+    const client = clients[source].find((c) => c.id === id);
     const manager = managerAssign[id];
     if (!manager) return alert("Please select a manager.");
 
     setClients((prev) => ({
       ...prev,
-      unassigned: prev.unassigned.filter((c) => c.id !== id),
+      [source]: prev[source].filter((c) => c.id !== id),
       active: [...prev.active, { ...client, manager }],
     }));
   };
@@ -75,9 +95,8 @@ const ClientData = () => {
           <th>Registered Date</th>
           <th>Country</th>
           <th>Visa Status</th>
-          
           {tab === "active" && <th>Manager</th>}
-          {tab === "unassigned" && <th>Assign To</th>}
+          {(tab === "unassigned" || tab === "restored") && <th>Assign To</th>}
           <th>Actions</th>
         </tr>
       </thead>
@@ -92,9 +111,10 @@ const ClientData = () => {
             <td>{client.country}</td>
             <td>{client.visastatus}</td>
             {tab === "active" && <td>{client.manager}</td>}
-            {tab === "unassigned" && (
+            {(tab === "unassigned" || tab === "restored") && (
               <td>
                 <select
+                  value={managerAssign[client.id] || ""}
                   onChange={(e) =>
                     setManagerAssign({ ...managerAssign, [client.id]: e.target.value })
                   }
@@ -110,23 +130,28 @@ const ClientData = () => {
                 <div>
                   <button className="accept" onClick={() => handleAccept(client.id)}>
                     Accept
-                  </button><br/>
+                  </button><br />
                   <button className="decline" onClick={() => handleDecline(client.id)}>
                     Decline
                   </button>
                 </div>
               )}
               {tab === "unassigned" && (
-                <button onClick={() => handleAssign(client.id)}>
+                <button className="assign" onClick={() => handleAssign(client.id, "unassigned")}>
+                  Assign
+                </button>
+              )}
+              {tab === "restored" && (
+                <button className="assign" onClick={() => handleAssign(client.id, "restored")}>
                   Assign
                 </button>
               )}
               {tab === "rejected" && (
-                <button onClick={() => handleRestore(client.id)}>
+                <button className="restore" onClick={() => handleRestore(client.id)}>
                   Restore
                 </button>
               )}
-              {(tab === "active" || tab === "restored") && <span>--</span>}
+              {tab === "active" && <span>--</span>}
             </td>
           </tr>
         ))}
@@ -139,6 +164,43 @@ const ClientData = () => {
       <div className="admin-header">
         <img src={txlogo} alt="TechXplorers Logo" className="admin-logo" />
         <h2 className="logo-heading">Clients Data</h2>
+      </div>
+
+      <div className="hamburger-btn" onClick={toggleSidebar}>
+        <FaBars size={24} />
+      </div>
+
+      <div className={`admin-sidebar ${sidebarOpen ? 'open' : ''}`}>
+        <div className="sidebar-header">
+          <div className="sidebar-close-btn" onClick={toggleSidebar}>
+            <FaArrowLeft size={20} />
+          </div>
+          <FaUserCircle size={50} className="user-icon" />
+        </div>
+
+        <ul className="sidebar-menu">
+          <li>Dashboard</li>
+          <li onClick={toggleClientsDropdown} className="dropdown-toggle">
+            <span>Clients</span>
+            {clientsDropdownOpen ? <FaChevronUp size={12} /> : <FaChevronDown size={12} />}
+          </li>
+          {clientsDropdownOpen && (
+            <ul className="sub-menu">
+              <li>Registrations</li>
+              <li>Active Clients</li>
+              <li>Previous Clients</li>
+              <li>Rejected Clients</li>
+            </ul>
+          )}
+          <li onClick={goToManagers}>Managers</li>
+          <li onClick={goToTeamLeads}>Team Leads</li>
+          <li onClick={goToEmployees}>Employees</li>
+        </ul>
+
+        <div className="sidebar-footer">
+          <p>Help & Support</p>
+          <button onClick={handleLogout} className="logout-btn">Log Out</button>
+        </div>
       </div>
 
       <div className="dashboard-container">
