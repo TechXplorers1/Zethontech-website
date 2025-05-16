@@ -87,9 +87,9 @@ const ManagerData = () => {
       { name: 'santhosh',mobile:'+91 9874561230', email: 'santhoshemployee@gmail.com', role: 'Employee' }
     ]);
     setInterns([
-      { name: 'Sandeep',mobile:'+91 9874561230', email: 'sandeepmployee@gmail.com', role: 'Employee' },
-      { name: 'Humer',mobile:'+91 9874561230', email: 'humeremployee@gmail.com', role: 'Employee' },
-      { name: 'Chaveen',mobile:'+91 9874561230', email: 'chaveenemployee@gmail.com', role: 'Employee' },
+      { name: 'Sandeep',mobile:'+91 9874561230', email: 'sandeepmployee@gmail.com', role: 'Intern' },
+      { name: 'Humer',mobile:'+91 9874561230', email: 'humeremployee@gmail.com', role: 'Intern' },
+      { name: 'Chaveen',mobile:'+91 9874561230', email: 'chaveenemployee@gmail.com', role: 'Intern' },
 
 
 
