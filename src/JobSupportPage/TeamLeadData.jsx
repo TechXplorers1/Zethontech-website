@@ -12,11 +12,6 @@ import {
   FaChevronUp,
 } from 'react-icons/fa';
 
-const dummyPeople = [
-  { email: 'demo@gmail.com', role: 'Team lead' },
-  { email: 'demo1@gmail.com', role: 'Employee' },
-  { email: 'demo2@gmail.com', role: 'Employee' }
-];
 
 
 const TeamLeadData = () => {
@@ -35,20 +30,9 @@ const TeamLeadData = () => {
     role: 'Team Lead'
   });
   const [teamLeads, setTeamLeads] = useState([
-{
-      name: "Siva",
-      mobile: "+91 9874561230",
-      email: "siva@gmail.com",
-      password: "07072023@Tx123",
-      role: "Team Lead"
-    },
-    {
-      name: "Arjun",
-      mobile: "+91 7894561230",
-      email: "arjun@gmail.com",
-      password: "07072023@TxSm",
-      role: "Team Lead"
-    },
+      { name: 'siva',mobile:'+91 9874561230', email: 'siva@gmail.com', role: 'Team Lead' },
+      { name: 'arjun',mobile:'+91 9874561230', email: 'arjun@gmail.com', role: 'Team Lead' },
+      { name: 'satish',mobile:'+91 9874561230', email: 'satish@gmail.com', role: 'Team Lead' },
 
   ]);
 
