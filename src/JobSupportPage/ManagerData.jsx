@@ -465,7 +465,7 @@ const ManagerData = () => {
 
 <h5 className="mt-4">Interns</h5>
           <InputGroup className="mb-3"> <InputGroup.Text> <FaSearch /> 
-          </InputGroup.Text> <Form.Control placeholder="Search Employees by name or email"
+          </InputGroup.Text> <Form.Control placeholder="Search Interns by name or email"
            value={internSearch} onChange={(e) => setInternSearch(e.target.value)} /> </InputGroup>
           <Table striped bordered size="sm">
             <thead>
