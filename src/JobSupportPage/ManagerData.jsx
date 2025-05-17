@@ -20,6 +20,8 @@ const ManagerData = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [expandedManager, setExpandedManager] = useState(null);
+  const [confirmationOpen, setConfirmationOpen] = useState(false);
+  const [managerToDeactivate, setManagerToDeactivate] = useState(null);
 
   const [teamLeads, setTeamLeads] = useState([]);
   const [employees, setEmployees] = useState([]);
@@ -29,7 +31,6 @@ const ManagerData = () => {
   const [employeeSearch, setEmployeeSearch] = useState('');
   const [internSearch, setInternSearch] = useState('');
 
-
   const [currentManagerIndex, setCurrentManagerIndex] = useState(null);
   const [newManager, setNewManager] = useState({
     name: '',
@@ -37,7 +38,7 @@ const ManagerData = () => {
     email: '',
     password: '',
     role: 'Manager',
-    active: true // Default to active
+    active: true
   });
 
   const [managers, setManagers] = useState([
@@ -47,7 +48,8 @@ const ManagerData = () => {
       email: "seenu@gmail.com",
       password: "07072023@Tx123",
       role: "Manager",
-       assignedPeople: [
+      active: true,
+      assignedPeople: [
         {name:'Murali',mobile:'+91 987456123', email: 'murali@gmail.com', role: 'Team Lead' },
         {name:'Madhu',mobile:'+91 987456123', email: 'madhuemployee@gmail.com', role: 'Employee' }
       ]
@@ -58,7 +60,7 @@ const ManagerData = () => {
       email: "vamsi@gmail.com",
       password: "07072023@TxSm",
       role: "Manager",
-      active: true, // Default to active
+      active: true,
       assignedPeople: [
         { name:'Kavitha',mobile:'+91 987456123', email: 'kavitha@gmail.com', role: 'Team Lead' },
         { name:'santhosh',mobile:'+91 987456123',email: 'santhoshemployee@gmail.com', role: 'Employee' }
@@ -90,10 +92,6 @@ const ManagerData = () => {
       { name: 'Sandeep',mobile:'+91 9874561230', email: 'sandeepmployee@gmail.com', role: 'Intern' },
       { name: 'Humer',mobile:'+91 9874561230', email: 'humeremployee@gmail.com', role: 'Intern' },
       { name: 'Chaveen',mobile:'+91 9874561230', email: 'chaveenemployee@gmail.com', role: 'Intern' },
-
-
-
-
     ]);
   }, []);
 
@@ -169,22 +167,28 @@ const ManagerData = () => {
     setExpandedManager(expandedManager === index ? null : index);
   };
 
-  // New function to handle activation toggle with confirmation
   const toggleActivation = (index) => {
     const manager = managers[index];
-
-    // If trying to deactivate, show confirmation
+    
     if (manager.active) {
-      if (window.confirm(`Are you sure you want to deactivate ${manager.name}?`)) {
-        const updatedManagers = [...managers];
-        updatedManagers[index].active = false;
-        setManagers(updatedManagers);
-      }
+      // Show confirmation only when deactivating
+      setManagerToDeactivate(index);
+      setConfirmationOpen(true);
     } else {
-      // If activating, just update without confirmation
+      // Activate immediately without confirmation
       const updatedManagers = [...managers];
       updatedManagers[index].active = true;
       setManagers(updatedManagers);
+    }
+  };
+
+  const confirmDeactivation = () => {
+    if (managerToDeactivate !== null) {
+      const updatedManagers = [...managers];
+      updatedManagers[managerToDeactivate].active = false;
+      setManagers(updatedManagers);
+      setConfirmationOpen(false);
+      setManagerToDeactivate(null);
     }
   };
 
@@ -314,7 +318,6 @@ const ManagerData = () => {
                         />
                       </div>
                     </td>
-
                   </tr>
                   {expandedManager === index && (
                     <tr>
@@ -397,6 +400,24 @@ const ManagerData = () => {
           <Button variant="secondary" onClick={handleCloseModal}>Cancel</Button>
           <Button variant="primary" onClick={handleAddManager}>
             {isEditing ? 'Update Manager' : 'Add Manager'}
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      {/* Confirmation Modal */}
+      <Modal show={confirmationOpen} onHide={() => setConfirmationOpen(false)} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirm Deactivation</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Are you sure you want to mark this Manager as inactive?
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setConfirmationOpen(false)}>
+            Cancel
+          </Button>
+          <Button variant="danger" onClick={confirmDeactivation}>
+            Yes, Deactivate
           </Button>
         </Modal.Footer>
       </Modal>
@@ -489,10 +510,15 @@ const ManagerData = () => {
             </tbody>
           </Table>
 
-<h5 className="mt-4">Interns</h5>
-          <InputGroup className="mb-3"> <InputGroup.Text> <FaSearch /> 
-          </InputGroup.Text> <Form.Control placeholder="Search Interns by name or email"
-           value={internSearch} onChange={(e) => setInternSearch(e.target.value)} /> </InputGroup>
+          <h5 className="mt-4">Interns</h5>
+          <InputGroup className="mb-3">
+            <InputGroup.Text><FaSearch /></InputGroup.Text>
+            <Form.Control
+              placeholder="Search Interns by name or email"
+              value={internSearch}
+              onChange={(e) => setInternSearch(e.target.value)}
+            />
+          </InputGroup>
           <Table striped bordered size="sm">
             <thead>
               <tr>
@@ -524,8 +550,6 @@ const ManagerData = () => {
               ))}
             </tbody>
           </Table>
-
-
         </Modal.Body>
         <Modal.Footer>
           <Button variant="primary" onClick={handleAssignDone}>Done</Button>

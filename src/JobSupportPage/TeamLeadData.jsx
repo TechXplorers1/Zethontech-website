@@ -3,16 +3,15 @@ import { Container, Row, Col, Modal } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import '../styles/TeamLeadData.css';
 import txlogo from '../assets/txlogo.png';
-import { Table, Button, Form, InputGroup, Dropdown } from 'react-bootstrap';
+import { Table, Button, Form, InputGroup } from 'react-bootstrap';
 import {
   FaUserCircle,
   FaBars,
   FaArrowLeft,
   FaChevronDown,
   FaChevronUp,
+  FaEdit,
 } from 'react-icons/fa';
-
-
 
 const TeamLeadData = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -20,44 +19,38 @@ const TeamLeadData = () => {
   const [showModal, setShowModal] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
+  const [confirmationOpen, setConfirmationOpen] = useState(false);
+  const [toggleIndex, setToggleIndex] = useState(null);
 
-  const [currentTeamLeadIndex, setCurrentTeamLeadIndex] = useState(null);
+  const [teamLeads, setTeamLeads] = useState([
+    { name: 'siva', mobile: '+91 9874561230', email: 'siva@gmail.com', password: '07072023@TxRm', role: 'Team Lead', isActive: true },
+    { name: 'arjun', mobile: '+91 9874561230', email: 'arjun@gmail.com', password: '07072023@TxRm', role: 'Team Lead', isActive: true },
+    { name: 'satish', mobile: '+91 9874561230', email: 'satish@gmail.com', password: '07072023@TxRm', role: 'Team Lead', isActive: true },
+  ]);
+
   const [newTeamLead, setNewTeamLead] = useState({
     name: '',
     mobile: '',
     email: '',
     password: '',
-    role: 'Team Lead'
+    role: 'Team Lead',
+    isActive: true,
   });
-  const [teamLeads, setTeamLeads] = useState([
-      { name: 'siva',mobile:'+91 9874561230', email: 'siva@gmail.com',password: '07072023@TxRm', role: 'Team Lead' },
-      { name: 'arjun',mobile:'+91 9874561230', email: 'arjun@gmail.com',password: '07072023@TxRm', role: 'Team Lead' },
-      { name: 'satish',mobile:'+91 9874561230', email: 'satish@gmail.com',password: '07072023@TxRm', role: 'Team Lead' },
 
-  ]);
-
-  const [assignModalOpen, setAssignModalOpen] = useState(false);
-  const [selectedTeamLeadIndex, setSelectedTeamLeadIndex] = useState(null);
-  const [selectedPeople, setSelectedPeople] = useState([]);
-
+  const [currentTeamLeadIndex, setCurrentTeamLeadIndex] = useState(null);
   const navigate = useNavigate();
   const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
   const toggleClientsDropdown = () => setClientsDropdownOpen(!clientsDropdownOpen);
 
-  const handleLogout = () => {
-    navigate('/');
-  };
-
+  const handleLogout = () => navigate('/');
   const goToManagers = () => navigate('/managers');
-  const goToClients = () => navigate('/clients');
-  const goToEmployee = () => navigate('/employee');
 
   const handleShowModal = () => setShowModal(true);
   const handleCloseModal = () => {
     setShowModal(false);
     setIsEditing(false);
     setCurrentTeamLeadIndex(null);
-    setNewTeamLead({ name: '', mobile: '', email: '', password: '' ,role: 'Team Lead' });
+    setNewTeamLead({ name: '', mobile: '', email: '', password: '', role: 'Team Lead', isActive: true });
   };
 
   const handleInputChange = (e) => {
@@ -72,42 +65,40 @@ const TeamLeadData = () => {
       return;
     }
 
+    const updated = [...teamLeads];
     if (isEditing) {
-      const updatedTeamLeads = [...teamLeads];
-      updatedTeamLeads[currentTeamLeadIndex] = newTeamLead;
-      setTeamLeads(updatedTeamLeads);
+      updated[currentTeamLeadIndex] = newTeamLead;
     } else {
-      setTeamLeads([...teamLeads, { ...newTeamLead, people: [] }]);
+      updated.push({ ...newTeamLead, isActive: true });
     }
 
+    setTeamLeads(updated);
     handleCloseModal();
   };
 
-  const openAssignModal = (index) => {
-    setSelectedTeamLeadIndex(index);
-    setSelectedPeople([]);
-    setAssignModalOpen(true);
+  const handleToggleStatus = (index) => {
+    const teamLead = teamLeads[index];
+    if (teamLead.isActive) {
+      setToggleIndex(index);
+      setConfirmationOpen(true);
+    } else {
+      updateStatus(index, true);
+    }
   };
 
-  const handleAssignDone = () => {
-    const updatedTeamLeads = [...teamLeads];
-    updatedTeamLeads[selectedTeamLeadIndex].assignedPeople = selectedPeople;
-    setTeamLeads(updatedTeamLeads);
-    setAssignModalOpen(false);
-  };
-
-  const handlePersonToggle = (email) => {
-    setSelectedPeople((prev) =>
-      prev.includes(email) ? prev.filter((e) => e !== email) : [...prev, email]
-    );
+  const updateStatus = (index, status) => {
+    const updated = [...teamLeads];
+    updated[index].isActive = status;
+    setTeamLeads(updated);
+    setConfirmationOpen(false);
+    setToggleIndex(null);
   };
 
   return (
     <div className="teamlead-dashboard">
       <div className="teamlead-header">
         <img src={txlogo} alt="TechXplorers Logo" className="teamlead-logo" />
-                <h2 className="logo-heading">TeamLead Data</h2>
-
+        <h2 className="logo-heading">TeamLead Data</h2>
       </div>
 
       <div className="hamburger-btn" onClick={toggleSidebar}>
@@ -157,7 +148,6 @@ const TeamLeadData = () => {
             />
             <Button variant="info">Search</Button>
           </InputGroup>
-
           <Button variant="success" onClick={handleShowModal}>+ Add TeamLead</Button>
         </div>
 
@@ -169,16 +159,18 @@ const TeamLeadData = () => {
               <th>EMAIL</th>
               <th>PASSWORD</th>
               <th>ROLE</th>
-              <th>ACTIONS</th>
+              <th>EDIT</th>
+              <th>STATUS</th>
             </tr>
           </thead>
           <tbody>
             {teamLeads
-              .filter((teamlead) =>
-                [teamlead.name, teamlead.email, teamlead.mobile].some((field) =>
+              .filter((t) =>
+                [t.name, t.email, t.mobile].some((field) =>
                   field.toLowerCase().includes(searchTerm.toLowerCase())
                 )
-              ).map((teamlead, index) => (
+              )
+              .map((teamlead, index) => (
                 <tr key={index} className="table-warning">
                   <td>{teamlead.name}</td>
                   <td>{teamlead.mobile}</td>
@@ -186,19 +178,27 @@ const TeamLeadData = () => {
                   <td>{teamlead.password}</td>
                   <td>{teamlead.role}</td>
                   <td>
-                    <Button
-                      variant="link"
-                      className="text-decoration-none"
+                    <FaEdit
+                      className="text-primary"
+                      style={{ cursor: 'pointer', fontSize: '1.2rem' }}
                       onClick={() => {
                         setIsEditing(true);
                         setCurrentTeamLeadIndex(index);
                         setNewTeamLead(teamlead);
                         setShowModal(true);
                       }}
-                    >
-                      ✏️
-                    </Button>
-                    <Button variant="link" className="text-danger text-decoration-none">❌</Button>
+                    />
+                  </td>
+                  <td>
+                    <div className="d-flex align-items-center justify-content-center">
+                      <span className="me-2">{teamlead.isActive ? 'Active' : 'Inactive'}</span>
+                      <Form.Check
+                        type="switch"
+                        id={`active-switch-${index}`}
+                        checked={teamlead.isActive}
+                        onChange={() => handleToggleStatus(index)}
+                      />
+                    </div>
                   </td>
                 </tr>
               ))}
@@ -206,7 +206,7 @@ const TeamLeadData = () => {
         </Table>
       </div>
 
-      {/* Modal for Add/Edit TeamLead */}
+      {/* Add/Edit Modal */}
       <Modal show={showModal} onHide={handleCloseModal} centered>
         <Modal.Header closeButton>
           <Modal.Title>{isEditing ? 'Edit TeamLead' : 'Add TeamLead'}</Modal.Title>
@@ -230,14 +230,9 @@ const TeamLeadData = () => {
               <Form.Control type="password" name="password" value={newTeamLead.password} onChange={handleInputChange} />
             </Form.Group>
             <Form.Group className="mb-3">
-  <Form.Label>Role</Form.Label>
-  <Form.Control
-    type="text"
-    name="role"
-    value={newTeamLead.role}
-    readOnly
-  />
-</Form.Group>
+              <Form.Label>Role</Form.Label>
+              <Form.Control type="text" name="role" value={newTeamLead.role} readOnly />
+            </Form.Group>
           </Form>
         </Modal.Body>
         <Modal.Footer>
@@ -248,12 +243,19 @@ const TeamLeadData = () => {
         </Modal.Footer>
       </Modal>
 
-
+      {/* Confirmation Modal */}
+      <Modal show={confirmationOpen} onHide={() => setConfirmationOpen(false)} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirm Deactivation</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Are you sure you want to mark this Team Lead as inactive?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setConfirmationOpen(false)}>Cancel</Button>
+          <Button variant="danger" onClick={() => updateStatus(toggleIndex, false)}>Yes, Deactivate</Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };
 
 export default TeamLeadData;
-
-
-// Add Manager,Add people and edit options are working
