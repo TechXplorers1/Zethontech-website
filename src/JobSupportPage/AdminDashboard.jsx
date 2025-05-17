@@ -63,18 +63,18 @@ const AdminDashboard = () => {
 
         <ul className="sidebar-menu">
           <li>Dashboard</li>
-          <li onClick={toggleClientsDropdown} className="dropdown-toggle">
+          <li onClick={goToClients}>
             <span>Clients</span>
-            {clientsDropdownOpen ? <FaChevronUp size={12} /> : <FaChevronDown size={12} />}
+            {/* {clientsDropdownOpen ? <FaChevronUp size={12} /> : <FaChevronDown size={12} />} */}
           </li>
-          {clientsDropdownOpen && (
+          {/* {clientsDropdownOpen && (
             <ul className="sub-menu">
               <li>Registrations</li>
               <li>Active Clients</li>
               <li>Previous Clients</li>
               <li>Rejected Clients</li>
             </ul>
-          )}
+          )} */}
           <li onClick={goToManagers}>Managers</li>
           <li onClick={goToTeamLeads}>Team Leads</li>
           <li onClick={goToEmployees}>Employees</li>

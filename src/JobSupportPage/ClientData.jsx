@@ -41,10 +41,12 @@ const ClientData = () => {
   const toggleClientsDropdown = () => setClientsDropdownOpen(!clientsDropdownOpen);
 
   const handleLogout = () => navigate('/');
-
+  const goToDashboard = () => navigate('/AdminDashboard');
   const goToManagers = () => navigate('/managers');
   const goToTeamLeads = () => navigate('/teamleads');
   const goToEmployees = () => navigate('/employees');
+  const goToClients = () => navigate('/clients');
+
 
   const handleAccept = (id) => {
     const accepted = clients.registered.find((c) => c.id === id);
@@ -180,22 +182,24 @@ const ClientData = () => {
         </div>
 
         <ul className="sidebar-menu">
-          <li>Dashboard</li>
-          <li onClick={toggleClientsDropdown} className="dropdown-toggle">
+          <li onClick={goToDashboard}>Dashboard</li>
+          <li onClick={goToClients}>
             <span>Clients</span>
-            {clientsDropdownOpen ? <FaChevronUp size={12} /> : <FaChevronDown size={12} />}
+            {/* {clientsDropdownOpen ? <FaChevronUp size={12} /> : <FaChevronDown size={12} />} */}
           </li>
-          {clientsDropdownOpen && (
+          {/* {clientsDropdownOpen && (
             <ul className="sub-menu">
               <li>Registrations</li>
               <li>Active Clients</li>
               <li>Previous Clients</li>
               <li>Rejected Clients</li>
             </ul>
-          )}
+          )}    */}
           <li onClick={goToManagers}>Managers</li>
           <li onClick={goToTeamLeads}>Team Leads</li>
           <li onClick={goToEmployees}>Employees</li>
+          {/* <li onClick={goToClients}>Employees</li> */}
+
         </ul>
 
         <div className="sidebar-footer">

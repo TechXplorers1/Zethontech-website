@@ -17,3 +17,7 @@ body, html, #root {
   cursor: default !important;
 }
 
+button,li{
+  cursor: pointer;
+}
+
