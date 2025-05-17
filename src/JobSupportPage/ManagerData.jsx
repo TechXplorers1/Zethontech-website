@@ -202,24 +202,28 @@ const ManagerData = () => {
   const toggleManagerExpand = (index) => {
     setExpandedManager(expandedManager === index ? null : index);
   };
+ 
+const [isActivating, setIsActivating] = useState(false);
 
   const toggleActivation = (index) => {
     const manager = managers[index];
+    setManagerToDeactivate(index);
     
     if (manager.active) {
-      setManagerToDeactivate(index);
+      // Show deactivation confirmation
+      setIsActivating(false);
       setConfirmationOpen(true);
     } else {
-      const updatedManagers = [...managers];
-      updatedManagers[index].active = true;
-      setManagers(updatedManagers);
+      // Show activation confirmation
+      setIsActivating(true);
+      setConfirmationOpen(true);
     }
   };
 
-  const confirmDeactivation = () => {
+ const confirmToggle = () => {
     if (managerToDeactivate !== null) {
       const updatedManagers = [...managers];
-      updatedManagers[managerToDeactivate].active = false;
+      updatedManagers[managerToDeactivate].active = !updatedManagers[managerToDeactivate].active;
       setManagers(updatedManagers);
       setConfirmationOpen(false);
       setManagerToDeactivate(null);
@@ -251,14 +255,7 @@ const ManagerData = () => {
             <span>Clients</span>
             {/* {clientsDropdownOpen ? <FaChevronUp size={12} /> : <FaChevronDown size={12} />} */}
           </li>
-          {/* {clientsDropdownOpen && (
-            <ul className="sub-menu">
-              <li>Registrations</li>
-              <li>Active Clients</li>
-              <li>Previous Clients</li>
-              <li>Rejected Clients</li>
-            </ul>
-          )} */}
+      
           <li onClick={goToManagers}>Managers</li>
           <li onClick={goToTeamLeads}>Team Leads</li>
           <li onClick={goToEmployees}>Employees</li>
@@ -438,20 +435,27 @@ const ManagerData = () => {
         </Modal.Footer>
       </Modal>
 
-      {/* Confirmation Modal */}
+       {/* Update the Confirmation Modal */}
       <Modal show={confirmationOpen} onHide={() => setConfirmationOpen(false)} centered>
         <Modal.Header closeButton>
-          <Modal.Title>Confirm Deactivation</Modal.Title>
+          <Modal.Title>
+            {isActivating ? 'Confirm Activation' : 'Confirm Deactivation'}
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          Are you sure you want to mark this Manager as inactive?
+          {isActivating 
+            ? 'Are you sure you want to mark this Manager as active?'
+            : 'Are you sure you want to mark this Manager as inactive?'}
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => setConfirmationOpen(false)}>
             Cancel
           </Button>
-          <Button variant="danger" onClick={confirmDeactivation}>
-            Yes, Deactivate
+          <Button 
+            variant={isActivating ? 'success' : 'danger'} 
+            onClick={confirmToggle}
+          >
+            {isActivating ? 'Yes, Activate' : 'Yes, Deactivate'}
           </Button>
         </Modal.Footer>
       </Modal>

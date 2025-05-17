@@ -13,7 +13,8 @@ const EmployeeData = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [currentEmployeeIndex, setCurrentEmployeeIndex] = useState(null);
   const [confirmationOpen, setConfirmationOpen] = useState(false);
-  const [employeeToDeactivate, setEmployeeToDeactivate] = useState(null);
+  const [employeeToToggle, setEmployeeToToggle] = useState(null);
+  const [isActivating, setIsActivating] = useState(false);
 
   const [newEmployee, setNewEmployee] = useState({
     name: '',
@@ -41,7 +42,6 @@ const EmployeeData = () => {
   const goToClients = () => navigate('/clients');
   const goToEmployees = () => navigate('/employees');
   const goToTeamLeads = () => navigate('/teamleads');
-
 
   const handleShowModal = () => setShowModal(true);
   const handleCloseModal = () => {
@@ -76,26 +76,26 @@ const EmployeeData = () => {
 
   const toggleActivation = (index) => {
     const employee = employees[index];
+    setEmployeeToToggle(index);
     
     if (employee.active) {
-      // Show confirmation only when deactivating
-      setEmployeeToDeactivate(index);
+      // Show deactivation confirmation
+      setIsActivating(false);
       setConfirmationOpen(true);
     } else {
-      // Activate immediately without confirmation
-      const updatedEmployees = [...employees];
-      updatedEmployees[index].active = true;
-      setEmployees(updatedEmployees);
+      // Show activation confirmation
+      setIsActivating(true);
+      setConfirmationOpen(true);
     }
   };
 
-  const confirmDeactivation = () => {
-    if (employeeToDeactivate !== null) {
+  const confirmToggle = () => {
+    if (employeeToToggle !== null) {
       const updatedEmployees = [...employees];
-      updatedEmployees[employeeToDeactivate].active = false;
+      updatedEmployees[employeeToToggle].active = !updatedEmployees[employeeToToggle].active;
       setEmployees(updatedEmployees);
       setConfirmationOpen(false);
-      setEmployeeToDeactivate(null);
+      setEmployeeToToggle(null);
     }
   };
 
@@ -253,19 +253,32 @@ const EmployeeData = () => {
         </Modal.Footer>
       </Modal>
 
+ 
       {/* Confirmation Modal */}
       <Modal show={confirmationOpen} onHide={() => setConfirmationOpen(false)} centered>
         <Modal.Header closeButton>
-          <Modal.Title>Confirm Deactivation</Modal.Title>
+          <Modal.Title>
+            {isActivating ? 'Confirm Activation' : 'Confirm Deactivation'}
+          </Modal.Title>
         </Modal.Header>
-        <Modal.Body>Are you sure you want to mark this Team Lead as inactive?</Modal.Body>
+        <Modal.Body>
+          {isActivating 
+            ? 'Are you sure you want to mark this Employee as active?'
+            : 'Are you sure you want to mark this Employee as inactive?'}
+        </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => setConfirmationOpen(false)}>Cancel</Button>
-          <Button variant="danger" onClick={confirmDeactivation}>Yes, Deactivate</Button>
+          <Button 
+            variant={isActivating ? 'success' : 'danger'} 
+            onClick={confirmToggle}
+          >
+            {isActivating ? 'Yes, Activate' : 'Yes, Deactivate'}
+          </Button>
         </Modal.Footer>
       </Modal>
     </div>
   );
 };
+
 
 export default EmployeeData;

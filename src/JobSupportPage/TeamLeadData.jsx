@@ -21,7 +21,7 @@ const TeamLeadData = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [confirmationOpen, setConfirmationOpen] = useState(false);
   const [toggleIndex, setToggleIndex] = useState(null);
-
+  const [isActivating, setIsActivating] = useState(false);
   const [teamLeads, setTeamLeads] = useState([
     { name: 'siva', mobile: '+91 9874561230', email: 'siva@gmail.com', password: '07072023@TxRm', role: 'Team Lead', isActive: true },
     { name: 'arjun', mobile: '+91 9874561230', email: 'arjun@gmail.com', password: '07072023@TxRm', role: 'Team Lead', isActive: true },
@@ -49,7 +49,7 @@ const TeamLeadData = () => {
   const goToEmployees = () => navigate('/employees');
   const goToClients = () => navigate('/clients');
 
-  
+
   const handleShowModal = () => setShowModal(true);
   const handleCloseModal = () => {
     setShowModal(false);
@@ -83,13 +83,20 @@ const TeamLeadData = () => {
 
   const handleToggleStatus = (index) => {
     const teamLead = teamLeads[index];
+    setToggleIndex(index);
+
     if (teamLead.isActive) {
-      setToggleIndex(index);
+      // Show deactivation confirmation
+      setIsActivating(false);
       setConfirmationOpen(true);
     } else {
-      updateStatus(index, true);
+      // Show activation confirmation
+      setIsActivating(true);
+      setConfirmationOpen(true);
     }
   };
+
+
 
   const updateStatus = (index, status) => {
     const updated = [...teamLeads];
@@ -124,14 +131,7 @@ const TeamLeadData = () => {
             <span>Clients</span>
             {/* {clientsDropdownOpen ? <FaChevronUp size={12} /> : <FaChevronDown size={12} />} */}
           </li>
-          {/* {clientsDropdownOpen && (
-            <ul className="sub-menu">
-              <li>Registrations</li>
-              <li>Active Clients</li>
-              <li>Previous Clients</li>
-              <li>Rejected Clients</li>
-            </ul>
-          )} */}
+
           <li onClick={goToManagers}>Managers</li>
           <li onClick={goToTeamLeads}>Team Leads</li>
           <li onClick={goToEmployees}>Employees</li>
@@ -253,12 +253,27 @@ const TeamLeadData = () => {
       {/* Confirmation Modal */}
       <Modal show={confirmationOpen} onHide={() => setConfirmationOpen(false)} centered>
         <Modal.Header closeButton>
-          <Modal.Title>Confirm Deactivation</Modal.Title>
+          <Modal.Title>
+            {isActivating ? 'Confirm Activation' : 'Confirm Deactivation'}
+          </Modal.Title>
         </Modal.Header>
-        <Modal.Body>Are you sure you want to mark this Team Lead as inactive?</Modal.Body>
+        <Modal.Body>
+          {isActivating
+            ? 'Are you sure you want to mark this Team Lead as active?'
+            : 'Are you sure you want to mark this Team Lead as inactive?'}
+        </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={() => setConfirmationOpen(false)}>Cancel</Button>
-          <Button variant="danger" onClick={() => updateStatus(toggleIndex, false)}>Yes, Deactivate</Button>
+          <Button variant="secondary" onClick={() => setConfirmationOpen(false)}>
+            Cancel
+          </Button>
+          <Button
+            variant={isActivating ? 'success' : 'danger'}
+            onClick={() => {
+              updateStatus(toggleIndex, isActivating);
+            }}
+          >
+            {isActivating ? 'Yes, Activate' : 'Yes, Deactivate'}
+          </Button>
         </Modal.Footer>
       </Modal>
     </div>
