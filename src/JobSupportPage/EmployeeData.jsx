@@ -31,11 +31,11 @@ const EmployeeData = () => {
     role: ''
   });
   const [employees, setEmployees] = useState([
-      { name: 'ram',mobile:'+91 9874561230', email: 'ramemployee@gmail.com',password: '07072023@TxRm', role: 'Employee' },
-      { name: 'gopi',mobile:'+91 9874561230', email: 'gopiemployee@gmail.com',password: '07072023@TxRm', role: 'Employee' },
-      { name: 'arun',mobile:'+91 9874561230', email: 'arunemployee@gmail.com',password: '07072023@TxRm', role: 'Employee' },
-      { name: 'madhu',mobile:'+91 9874561230', email: 'madhuemployee@gmail.com',password: '07072023@TxRm', role: 'Employee' },
-      { name: 'poorna',mobile:'+91 9874561230', email: 'poornaemployee@gmail.com',password: '07072023@TxRm', role: 'Employee' },
+    { name: 'ram', mobile: '+91 9874561230', email: 'ramemployee@gmail.com', password: '07072023@TxRm', role: 'Employee' },
+    { name: 'gopi', mobile: '+91 9874561230', email: 'gopiemployee@gmail.com', password: '07072023@TxRm', role: 'Employee' },
+    { name: 'arun', mobile: '+91 9874561230', email: 'arunemployee@gmail.com', password: '07072023@TxRm', role: 'Employee' },
+    { name: 'madhu', mobile: '+91 9874561230', email: 'madhuemployee@gmail.com', password: '07072023@TxRm', role: 'Employee' },
+    { name: 'poorna', mobile: '+91 9874561230', email: 'poornaemployee@gmail.com', password: '07072023@TxRm', role: 'Employee' },
 
 
   ]);
@@ -110,7 +110,7 @@ const EmployeeData = () => {
     <div className="employee-dashboard">
       <div className="employee-header">
         <img src={txlogo} alt="TechXplorers Logo" className="employee-logo" />
-                <h2 className="logo-heading">Employees Data</h2>
+        <h2 className="logo-heading">Employees Data</h2>
 
       </div>
 
@@ -234,15 +234,15 @@ const EmployeeData = () => {
               <Form.Control type="password" name="password" value={newEmployee.password} onChange={handleInputChange} />
             </Form.Group>
             <Form.Group className="mb-3">
-<Form.Label>Role</Form.Label>
-<Form.Select
-name="role"
-value={newEmployee.role}
-onChange={handleInputChange}>
-<option value="Employee">Employee</option>
-<option value="Intern">Intern</option>
-</Form.Select>
-</Form.Group>
+              <Form.Label>Role</Form.Label>
+              <Form.Select
+                name="role"
+                value={newEmployee.role}
+                onChange={handleInputChange}>
+                <option value="Employee">Employee</option>
+                <option value="Intern">Intern</option>
+              </Form.Select>
+            </Form.Group>
           </Form>
         </Modal.Body>
         <Modal.Footer>

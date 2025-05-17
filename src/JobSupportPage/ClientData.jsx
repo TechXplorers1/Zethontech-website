@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../styles/ClientData.css";
 import txlogo from '../assets/txlogo.png';
 import { useNavigate } from 'react-router-dom';
+import { Table, Button, Form, InputGroup, Dropdown } from 'react-bootstrap';
 import {
   FaUserCircle,
   FaBars,
@@ -85,8 +86,8 @@ const ClientData = () => {
   };
 
   const renderTable = (data) => (
-    <table className="client-table">
-      <thead>
+    <Table striped bordered hover responsive className="client-table">
+      <thead className="table-primary">
         <tr>
           <th>Name</th>
           <th>Mobile</th>
@@ -102,7 +103,7 @@ const ClientData = () => {
       </thead>
       <tbody>
         {data.map((client) => (
-          <tr key={client.id}>
+          <tr key={client.id} className="table-warning">
             <td>{client.name}</td>
             <td>{client.mobile}</td>
             <td>{client.email}</td>
@@ -156,7 +157,7 @@ const ClientData = () => {
           </tr>
         ))}
       </tbody>
-    </table>
+    </Table>
   );
 
   return (
@@ -216,7 +217,7 @@ const ClientData = () => {
             </button>
           ))}
         </div>
-        <div className="table-wrapper">{renderTable(clients[tab])}</div>
+        <div className="table-warning">{renderTable(clients[tab])}</div>
       </div>
     </div>
   );
