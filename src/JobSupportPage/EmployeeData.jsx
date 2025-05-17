@@ -38,7 +38,9 @@ const EmployeeData = () => {
   const handleLogout = () => navigate('/');
   const goToManagers = () => navigate('/managers');
   const goToClients = () => navigate('/clients');
-  const goToEmployee = () => navigate('/employees');
+  const goToEmployees = () => navigate('/employees');
+  const goToTeamLeads = () => navigate('/teamleads');
+
 
   const handleShowModal = () => setShowModal(true);
   const handleCloseModal = () => {
@@ -130,8 +132,8 @@ const EmployeeData = () => {
             </ul>
           )}
           <li onClick={goToManagers}>Managers</li>
-          <li>Team Leads</li>
-          <li>Employees</li>
+          <li onClick={goToTeamLeads}>Team Leads</li>
+          <li onClick={goToEmployees}>Employees</li>
         </ul>
 
         <div className="sidebar-footer">

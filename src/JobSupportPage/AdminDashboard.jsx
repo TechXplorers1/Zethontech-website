@@ -31,11 +31,11 @@ const AdminDashboard = () => {
    const goToClients = () => {
     navigate('/clients');
   };
-   const goToEmployee = () => {
-    navigate('/employee');
+   const goToEmployees = () => {
+    navigate('/employees');
   };
-    const goToTeamLead = () => {
-    navigate('/teamlead');
+    const goToTeamLeads = () => {
+    navigate('/teamleads');
   };
 
   
@@ -76,8 +76,8 @@ const AdminDashboard = () => {
             </ul>
           )}
           <li onClick={goToManagers}>Managers</li>
-          <li>Team Leads</li>
-          <li>Employees</li>
+          <li onClick={goToTeamLeads}>Team Leads</li>
+          <li onClick={goToEmployees}>Employees</li>
         </ul>
 
         <div className="sidebar-footer">
@@ -113,7 +113,7 @@ const AdminDashboard = () => {
           <Row className="card-row">
             <Col md={6}>
               <div className="admin-card navy"
-                onClick={goToTeamLead}
+                onClick={goToTeamLeads}
                 style={{ cursor: 'pointer' }}
               >
                 <p>Team Leads</p>
@@ -122,7 +122,7 @@ const AdminDashboard = () => {
             </Col>
             <Col md={6}>
               <div className="admin-card blue"
-               onClick={goToEmployee}
+               onClick={goToEmployees}
                 style={{ cursor: 'pointer' }}
               >
                 <p>Employees</p>

@@ -25,8 +25,8 @@ const JobSupportRoutes = () => {
         <Route path="/admindashboard" element={<AdminDashboard />} />
         <Route path="/managers" element={<ManagerData />} />
         <Route path="/clients" element={<ClientData />} />
-        <Route path="/employee" element={<EmployeeData />} />
-        <Route path="/teamlead" element={<TeamLeadData />} />
+        <Route path="/employees" element={<EmployeeData />} />
+        <Route path="/teamleads" element={<TeamLeadData />} />
 
     </Routes>
   );
