@@ -183,16 +183,18 @@ const TeamLeadData = () => {
                   <td>{teamlead.password}</td>
                   <td>{teamlead.role}</td>
                   <td>
-                    <FaEdit
-                      className="text-primary"
-                      style={{ cursor: 'pointer', fontSize: '1.2rem' }}
+                    <Button
+                      variant="link"
+                      className="text-decoration-none"
                       onClick={() => {
                         setIsEditing(true);
                         setCurrentTeamLeadIndex(index);
                         setNewTeamLead(teamlead);
                         setShowModal(true);
                       }}
-                    />
+                    >
+                      ✏️
+                    </Button>
                   </td>
                   <td>
                     <div className="d-flex align-items-center justify-content-center">
