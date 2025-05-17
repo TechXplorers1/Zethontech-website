@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Modal } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import '../styles/AdminDashboard.css';
+import '../styles/ManagerData.css';
 import txlogo from '../assets/txlogo.png';
 import { Table, Button, Form, InputGroup, Dropdown } from 'react-bootstrap';
 import {
@@ -193,9 +193,9 @@ const ManagerData = () => {
   };
 
   return (
-    <div className="admin-dashboard">
-      <div className="admin-header">
-        <img src={txlogo} alt="TechXplorers Logo" className="admin-logo" />
+    <div className="manager-dashboard">
+      <div className="manager-header">
+        <img src={txlogo} alt="TechXplorers Logo" className="manager-logo" />
         <h2 className="logo-heading">Managers Data</h2>
       </div>
 
@@ -203,7 +203,7 @@ const ManagerData = () => {
         <FaBars size={24} />
       </div>
 
-      <div className={`admin-sidebar ${sidebarOpen ? 'open' : ''}`}>
+      <div className={`manager-sidebar ${sidebarOpen ? 'open' : ''}`}>
         <div className="sidebar-header">
           <div className="sidebar-close-btn" onClick={toggleSidebar}>
             <FaArrowLeft size={20} />
