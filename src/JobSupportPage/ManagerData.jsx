@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Modal } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import '../styles/AdminDashboard.css';
+import '../styles/ManagerData.css';
 import txlogo from '../assets/txlogo.png';
 import { Table, Button, Form, InputGroup, Dropdown } from 'react-bootstrap';
 import {
@@ -23,9 +23,13 @@ const ManagerData = () => {
   const [confirmationOpen, setConfirmationOpen] = useState(false);
   const [managerToDeactivate, setManagerToDeactivate] = useState(null);
 
-  const [teamLeads, setTeamLeads] = useState([]);
-  const [employees, setEmployees] = useState([]);
-  const [interns, setInterns] = useState([]);
+  const [originalTeamLeads, setOriginalTeamLeads] = useState([]);
+  const [originalEmployees, setOriginalEmployees] = useState([]);
+  const [originalInterns, setOriginalInterns] = useState([]);
+
+  const [filteredTeamLeads, setFilteredTeamLeads] = useState([]);
+  const [filteredEmployees, setFilteredEmployees] = useState([]);
+  const [filteredInterns, setFilteredInterns] = useState([]);
 
   const [teamLeadSearch, setTeamLeadSearch] = useState('');
   const [employeeSearch, setEmployeeSearch] = useState('');
@@ -69,15 +73,15 @@ const ManagerData = () => {
   ]);
 
   useEffect(() => {
-    setTeamLeads([
+    const initialTeamLeads = [
       { name: 'Murali',mobile:'+91 9874561230', email: 'murali@gmail.com', role: 'Team Lead' },
       { name: 'Vamsi',mobile:'+91 9874561230', email: 'vamsi@gmail.com', role: 'Team Lead' },
       { name: 'Kavitha',mobile:'+91 9874561230', email: 'kavitha@gmail.com', role: 'Team Lead' },
       { name: 'Bharath',mobile:'+91 9874561230', email: 'bharath@gmail.com', role: 'Team Lead' },
       { name: 'SaiKrishna',mobile:'+91 9874561230', email: 'saikrishna@gmail.com', role: 'Team Lead' },
       { name: 'Vyshnavi',mobile:'+91 9874561230', email: 'vyshnavi@gmail.com', role: 'Team Lead' }
-    ]);
-    setEmployees([
+    ];
+    const initialEmployees = [
       { name: 'Madhu',mobile:'+91 9874561230', email: 'madhuemployee@gmail.com', role: 'Employee' },
       { name: 'krishna',mobile:'+91 9874561230', email: 'krishnaemployee@gmail.com', role: 'Employee' },
       { name: 'arun',mobile:'+91 9874561230', email: 'arunemployee@gmail.com', role: 'Employee' },
@@ -87,13 +91,21 @@ const ManagerData = () => {
       { name: 'ashok',mobile:'+91 9874561230', email: 'ashokemployee@gmail.com', role: 'Employee' },
       { name: 'deepak',mobile:'+91 9874561230', email: 'deepakemployee@gmail.com', role: 'Employee' },
       { name: 'santhosh',mobile:'+91 9874561230', email: 'santhoshemployee@gmail.com', role: 'Employee' }
-    ]);
-    setInterns([
+    ];
+    const initialInterns = [
       { name: 'Sandeep',mobile:'+91 9874561230', email: 'sandeepmployee@gmail.com', role: 'Intern' },
       { name: 'Humer',mobile:'+91 9874561230', email: 'humeremployee@gmail.com', role: 'Intern' },
       { name: 'Chaveen',mobile:'+91 9874561230', email: 'chaveenemployee@gmail.com', role: 'Intern' },
-    ]);
+    ];
+
+    setOriginalTeamLeads(initialTeamLeads);
+    setOriginalEmployees(initialEmployees);
+    setOriginalInterns(initialInterns);
   }, []);
+
+  const getAllAssignedPeople = () => {
+    return managers.flatMap(manager => manager.assignedPeople || []);
+  };
 
   const [assignModalOpen, setAssignModalOpen] = useState(false);
   const [selectedManagerIndex, setSelectedManagerIndex] = useState(null);
@@ -149,6 +161,25 @@ const ManagerData = () => {
     setSelectedManagerIndex(index);
     const previouslyAssigned = managers[index].assignedPeople || [];
     setSelectedPeople(previouslyAssigned);
+    
+    const allAssigned = getAllAssignedPeople();
+    
+    // Filter people - show only unassigned or those already assigned to this manager
+    setFilteredTeamLeads(originalTeamLeads.filter(tl => 
+      !allAssigned.some(a => a.email === tl.email) || 
+      previouslyAssigned.some(pa => pa.email === tl.email)
+    ));
+    
+    setFilteredEmployees(originalEmployees.filter(emp => 
+      !allAssigned.some(a => a.email === emp.email) || 
+      previouslyAssigned.some(pa => pa.email === emp.email))
+    );
+    
+    setFilteredInterns(originalInterns.filter(int => 
+      !allAssigned.some(a => a.email === int.email) || 
+      previouslyAssigned.some(pa => pa.email === int.email)
+    ));
+    
     setAssignModalOpen(true);
   };
 
@@ -175,11 +206,9 @@ const ManagerData = () => {
     const manager = managers[index];
     
     if (manager.active) {
-      // Show confirmation only when deactivating
       setManagerToDeactivate(index);
       setConfirmationOpen(true);
     } else {
-      // Activate immediately without confirmation
       const updatedManagers = [...managers];
       updatedManagers[index].active = true;
       setManagers(updatedManagers);
@@ -197,9 +226,9 @@ const ManagerData = () => {
   };
 
   return (
-    <div className="admin-dashboard">
-      <div className="admin-header">
-        <img src={txlogo} alt="TechXplorers Logo" className="admin-logo" />
+    <div className="manager-dashboard">
+      <div className="manager-header">
+        <img src={txlogo} alt="TechXplorers Logo" className="manager-logo" />
         <h2 className="logo-heading">Managers Data</h2>
       </div>
 
@@ -207,7 +236,7 @@ const ManagerData = () => {
         <FaBars size={24} />
       </div>
 
-      <div className={`admin-sidebar ${sidebarOpen ? 'open' : ''}`}>
+      <div className={`manager-sidebar ${sidebarOpen ? 'open' : ''}`}>
         <div className="sidebar-header">
           <div className="sidebar-close-btn" onClick={toggleSidebar}>
             <FaArrowLeft size={20} />
@@ -452,24 +481,26 @@ const ManagerData = () => {
               </tr>
             </thead>
             <tbody>
-              {teamLeads.filter(p =>
-                p.name.toLowerCase().includes(teamLeadSearch.toLowerCase()) ||
-                p.email.toLowerCase().includes(teamLeadSearch.toLowerCase())
-              ).map((person, idx) => (
-                <tr key={`tl-${idx}`}>
-                  <td>
-                    <Form.Check
-                      type="checkbox"
-                      checked={selectedPeople.some(p => p.email === person.email)}
-                      onChange={() => togglePersonSelection(person)}
-                    />
-                  </td>
-                  <td>{person.name}</td>
-                  <td>{person.mobile}</td>
-                  <td>{person.email}</td>
-                  <td>{person.role}</td>
-                </tr>
-              ))}
+              {filteredTeamLeads
+                .filter(p =>
+                  p.name.toLowerCase().includes(teamLeadSearch.toLowerCase()) ||
+                  p.email.toLowerCase().includes(teamLeadSearch.toLowerCase())
+                )
+                .map((person, idx) => (
+                  <tr key={`tl-${idx}`}>
+                    <td>
+                      <Form.Check
+                        type="checkbox"
+                        checked={selectedPeople.some(p => p.email === person.email)}
+                        onChange={() => togglePersonSelection(person)}
+                      />
+                    </td>
+                    <td>{person.name}</td>
+                    <td>{person.mobile}</td>
+                    <td>{person.email}</td>
+                    <td>{person.role}</td>
+                  </tr>
+                ))}
             </tbody>
           </Table>
 
@@ -493,24 +524,26 @@ const ManagerData = () => {
               </tr>
             </thead>
             <tbody>
-              {employees.filter(p =>
-                p.name.toLowerCase().includes(employeeSearch.toLowerCase()) ||
-                p.email.toLowerCase().includes(employeeSearch.toLowerCase())
-              ).map((person, index) => (
-                <tr key={`emp-${index}`}>
-                  <td>
-                    <Form.Check
-                      type="checkbox"
-                      checked={selectedPeople.some(p => p.email === person.email)}
-                      onChange={() => togglePersonSelection(person)}
-                    />
-                  </td>
-                  <td>{person.name}</td>
-                  <td>{person.mobile}</td>
-                  <td>{person.email}</td>
-                  <td>{person.role}</td>
-                </tr>
-              ))}
+              {filteredEmployees
+                .filter(p =>
+                  p.name.toLowerCase().includes(employeeSearch.toLowerCase()) ||
+                  p.email.toLowerCase().includes(employeeSearch.toLowerCase())
+                )
+                .map((person, index) => (
+                  <tr key={`emp-${index}`}>
+                    <td>
+                      <Form.Check
+                        type="checkbox"
+                        checked={selectedPeople.some(p => p.email === person.email)}
+                        onChange={() => togglePersonSelection(person)}
+                      />
+                    </td>
+                    <td>{person.name}</td>
+                    <td>{person.mobile}</td>
+                    <td>{person.email}</td>
+                    <td>{person.role}</td>
+                  </tr>
+                ))}
             </tbody>
           </Table>
 
@@ -534,24 +567,26 @@ const ManagerData = () => {
               </tr>
             </thead>
             <tbody>
-              {interns.filter(p =>
-                p.name.toLowerCase().includes(internSearch.toLowerCase()) ||
-                p.email.toLowerCase().includes(internSearch.toLowerCase())
-              ).map((person, index) => (
-                <tr key={`emp-${index}`}>
-                  <td>
-                    <Form.Check
-                      type="checkbox"
-                      checked={selectedPeople.some(p => p.email === person.email)}
-                      onChange={() => togglePersonSelection(person)}
-                    />
-                  </td>
-                  <td>{person.name}</td>
-                  <td>{person.mobile}</td>
-                  <td>{person.email}</td>
-                  <td>{person.role}</td>
-                </tr>
-              ))}
+              {filteredInterns
+                .filter(p =>
+                  p.name.toLowerCase().includes(internSearch.toLowerCase()) ||
+                  p.email.toLowerCase().includes(internSearch.toLowerCase())
+                )
+                .map((person, index) => (
+                  <tr key={`int-${index}`}>
+                    <td>
+                      <Form.Check
+                        type="checkbox"
+                        checked={selectedPeople.some(p => p.email === person.email)}
+                        onChange={() => togglePersonSelection(person)}
+                      />
+                    </td>
+                    <td>{person.name}</td>
+                    <td>{person.mobile}</td>
+                    <td>{person.email}</td>
+                    <td>{person.role}</td>
+                  </tr>
+                ))}
             </tbody>
           </Table>
         </Modal.Body>

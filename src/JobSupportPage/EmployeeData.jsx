@@ -25,11 +25,11 @@ const EmployeeData = () => {
   });
 
   const [employees, setEmployees] = useState([
-    { name: 'Humer', mobile: '+91 9874561230', email: 'ramemployee@gmail.com', password: '07072023@TxRm', role: 'Employee', active: true },
-    { name: 'Chaveen', mobile: '+91 9874561230', email: 'gopiemployee@gmail.com', password: '07072023@TxRm', role: 'Employee', active: true },
-    { name: 'Bharath', mobile: '+91 9874561230', email: 'arunemployee@gmail.com', password: '07072023@TxRm', role: 'Employee', active: true },
-    { name: 'Sandeep', mobile: '+91 9874561230', email: 'madhuemployee@gmail.com', password: '07072023@TxRm', role: 'Employee', active: true },
-    { name: 'Neelam Sai', mobile: '+91 9874561230', email: 'poornaemployee@gmail.com', password: '07072023@TxRm', role: 'Employee', active: true },
+    { name: 'Humer', mobile: '+91 9874561230', email: 'humermployee@gmail.com', password: '07072023@TxRm', role: 'Employee', active: true },
+    { name: 'Chaveen', mobile: '+91 9874561230', email: 'chaveenemployee@gmail.com', password: '07072023@TxRm', role: 'Employee', active: true },
+    { name: 'Bharath', mobile: '+91 9874561230', email: 'bharathemployee@gmail.com', password: '07072023@TxRm', role: 'Employee', active: true },
+    { name: 'Sandeep', mobile: '+91 9874561230', email: 'sandeepemployee@gmail.com', password: '07072023@TxRm', role: 'Employee', active: true },
+    { name: 'Neelam Sai Krishna', mobile: '+91 9874561230', email: 'saiemployee@gmail.com', password: '07072023@TxRm', role: 'Intern', active: true },
   ]);
 
   const navigate = useNavigate();
