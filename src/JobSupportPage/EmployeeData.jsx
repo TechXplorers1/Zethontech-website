@@ -3,11 +3,10 @@ import { Container, Row, Col, Modal, Table, Button, Form, InputGroup } from 'rea
 import { useNavigate } from 'react-router-dom';
 import '../styles/EmployeeData.css';
 import txlogo from '../assets/txlogo.png';
-import { FaUserCircle, FaBars, FaArrowLeft, FaChevronDown, FaChevronUp } from 'react-icons/fa';
+import { FaUserCircle, FaBars, FaArrowLeft } from 'react-icons/fa';
 
 const EmployeeData = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [clientsDropdownOpen, setClientsDropdownOpen] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
@@ -17,7 +16,8 @@ const EmployeeData = () => {
   const [isActivating, setIsActivating] = useState(false);
 
   const [newEmployee, setNewEmployee] = useState({
-    name: '',
+    firstName: '',
+    lastName: '',
     mobile: '',
     email: '',
     password: '',
@@ -26,16 +26,15 @@ const EmployeeData = () => {
   });
 
   const [employees, setEmployees] = useState([
-    { name: 'Humer', mobile: '+91 9874561230', email: 'humermployee@gmail.com', password: '07072023@TxRm', role: 'Employee', active: true },
-    { name: 'Chaveen', mobile: '+91 9874561230', email: 'chaveenemployee@gmail.com', password: '07072023@TxRm', role: 'Employee', active: true },
-    { name: 'Bharath', mobile: '+91 9874561230', email: 'bharathemployee@gmail.com', password: '07072023@TxRm', role: 'Employee', active: true },
-    { name: 'Sandeep', mobile: '+91 9874561230', email: 'sandeepemployee@gmail.com', password: '07072023@TxRm', role: 'Employee', active: true },
-    { name: 'Neelam Sai Krishna', mobile: '+91 9874561230', email: 'saiemployee@gmail.com', password: '07072023@TxRm', role: 'Intern', active: true },
+    { firstName: 'Humer', lastName: 'R', mobile: '+91 9874561230', email: 'humermployee@gmail.com', password: '07072023@TxRm', role: 'Employee', active: true },
+    { firstName: 'Chaveen', lastName: 'Reddy', mobile: '+91 9874561230', email: 'chaveenemployee@gmail.com', password: '07072023@TxRm', role: 'Employee', active: true },
+    { firstName: 'Bharath', lastName: 'Surya', mobile: '+91 9874561230', email: 'bharathemployee@gmail.com', password: '07072023@TxRm', role: 'Employee', active: true },
+    { firstName: 'Sandeep', lastName: 'Kumar', mobile: '+91 9874561230', email: 'sandeepemployee@gmail.com', password: '07072023@TxRm', role: 'Employee', active: true },
+    { firstName: 'Neelam', lastName: 'Sai Krishna', mobile: '+91 9874561230', email: 'saiemployee@gmail.com', password: '07072023@TxRm', role: 'Intern', active: true },
   ]);
 
   const navigate = useNavigate();
   const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
-  const toggleClientsDropdown = () => setClientsDropdownOpen(!clientsDropdownOpen);
   const handleLogout = () => navigate('/');
   const goToDashboard = () => navigate('/AdminDashboard');
   const goToManagers = () => navigate('/managers');
@@ -48,7 +47,7 @@ const EmployeeData = () => {
     setShowModal(false);
     setIsEditing(false);
     setCurrentEmployeeIndex(null);
-    setNewEmployee({ name: '', mobile: '', email: '', password: '', role: '', active: true });
+    setNewEmployee({ firstName: '', lastName: '', mobile: '', email: '', password: '', role: '', active: true });
   };
 
   const handleInputChange = (e) => {
@@ -57,8 +56,8 @@ const EmployeeData = () => {
   };
 
   const handleAddEmployee = () => {
-    const { name, mobile, email, password } = newEmployee;
-    if (!name || !mobile || !email || !password) {
+    const { firstName, lastName, mobile, email, password } = newEmployee;
+    if (!firstName || !lastName || !mobile || !email || !password) {
       alert('Please fill all fields');
       return;
     }
@@ -77,13 +76,11 @@ const EmployeeData = () => {
   const toggleActivation = (index) => {
     const employee = employees[index];
     setEmployeeToToggle(index);
-    
+
     if (employee.active) {
-      // Show deactivation confirmation
       setIsActivating(false);
       setConfirmationOpen(true);
     } else {
-      // Show activation confirmation
       setIsActivating(true);
       setConfirmationOpen(true);
     }
@@ -120,18 +117,7 @@ const EmployeeData = () => {
 
         <ul className="sidebar-menu">
           <li onClick={goToDashboard}>Dashboard</li>
-          <li onClick={goToClients}>
-            <span>Clients</span>
-            {/* {clientsDropdownOpen ? <FaChevronUp size={12} /> : <FaChevronDown size={12} />} */}
-          </li>
-          {/* {clientsDropdownOpen && (
-            <ul className="sub-menu">
-              <li>Registrations</li>
-              <li>Active Clients</li>
-              <li>Previous Clients</li>
-              <li>Rejected Clients</li>
-            </ul>
-          )} */}
+          <li onClick={goToClients}><span>Clients</span></li>
           <li onClick={goToManagers}>Managers</li>
           <li onClick={goToTeamLeads}>Team Leads</li>
           <li onClick={goToEmployees}>Employees</li>
@@ -160,7 +146,8 @@ const EmployeeData = () => {
         <Table striped bordered hover responsive className="text-center align-middle">
           <thead className="table-primary">
             <tr>
-              <th>NAME</th>
+              <th>FIRST NAME</th>
+              <th>LAST NAME</th>
               <th>MOBILE</th>
               <th>EMAIL</th>
               <th>PASSWORD</th>
@@ -172,12 +159,12 @@ const EmployeeData = () => {
           <tbody>
             {employees
               .filter((employee) =>
-                [employee.name, employee.email, employee.mobile].some((field) =>
-                  field.toLowerCase().includes(searchTerm.toLowerCase())
-                )
+                [employee.firstName, employee.lastName, employee.email, employee.mobile]
+                  .some((field) => field.toLowerCase().includes(searchTerm.toLowerCase()))
               ).map((employee, index) => (
                 <tr key={index} className="table-warning">
-                  <td>{employee.name}</td>
+                  <td>{employee.firstName}</td>
+                  <td>{employee.lastName}</td>
                   <td>{employee.mobile}</td>
                   <td>{employee.email}</td>
                   <td>{employee.password}</td>
@@ -221,8 +208,12 @@ const EmployeeData = () => {
         <Modal.Body>
           <Form>
             <Form.Group className="mb-3">
-              <Form.Label>Name</Form.Label>
-              <Form.Control type="text" name="name" value={newEmployee.name} onChange={handleInputChange} />
+              <Form.Label>First Name</Form.Label>
+              <Form.Control type="text" name="firstName" value={newEmployee.firstName} onChange={handleInputChange} />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Last Name</Form.Label>
+              <Form.Control type="text" name="lastName" value={newEmployee.lastName} onChange={handleInputChange} />
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Mobile</Form.Label>
@@ -252,33 +243,8 @@ const EmployeeData = () => {
           </Button>
         </Modal.Footer>
       </Modal>
-
- 
-      {/* Confirmation Modal */}
-      <Modal show={confirmationOpen} onHide={() => setConfirmationOpen(false)} centered>
-        <Modal.Header closeButton>
-          <Modal.Title>
-            {isActivating ? 'Confirm Activation' : 'Confirm Deactivation'}
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          {isActivating 
-            ? 'Are you sure you want to mark this Employee as active?'
-            : 'Are you sure you want to mark this Employee as inactive?'}
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={() => setConfirmationOpen(false)}>Cancel</Button>
-          <Button 
-            variant={isActivating ? 'success' : 'danger'} 
-            onClick={confirmToggle}
-          >
-            {isActivating ? 'Yes, Activate' : 'Yes, Deactivate'}
-          </Button>
-        </Modal.Footer>
-      </Modal>
     </div>
   );
 };
-
 
 export default EmployeeData;
