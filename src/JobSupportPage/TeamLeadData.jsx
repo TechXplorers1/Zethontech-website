@@ -11,6 +11,7 @@ import {
   FaChevronDown,
   FaChevronUp,
   FaEdit,
+  FaArrowUp,
 } from 'react-icons/fa';
 
 const TeamLeadData = () => {
@@ -20,7 +21,9 @@ const TeamLeadData = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [confirmationOpen, setConfirmationOpen] = useState(false);
+  const [promotionConfirmationOpen, setPromotionConfirmationOpen] = useState(false);
   const [toggleIndex, setToggleIndex] = useState(null);
+  const [promotionIndex, setPromotionIndex] = useState(null);
   const [isActivating, setIsActivating] = useState(false);
   const [teamLeads, setTeamLeads] = useState([
     { name: 'siva', mobile: '+91 9874561230', email: 'siva@gmail.com', password: '07072023@TxRm', role: 'Team Lead', isActive: true },
@@ -48,7 +51,6 @@ const TeamLeadData = () => {
   const goToTeamLeads = () => navigate('/teamleads');
   const goToEmployees = () => navigate('/employees');
   const goToClients = () => navigate('/clients');
-
 
   const handleShowModal = () => setShowModal(true);
   const handleCloseModal = () => {
@@ -96,7 +98,37 @@ const TeamLeadData = () => {
     }
   };
 
+  const handlePromoteTeamLead = (index) => {
+    setPromotionIndex(index);
+    setPromotionConfirmationOpen(true);
+  };
 
+  const promoteToManager = (index) => {
+    const teamLeadToPromote = teamLeads[index];
+    
+    // Get existing managers from localStorage or initialize empty array
+    const existingManagers = JSON.parse(localStorage.getItem('managers')) || [];
+    
+    // Create new manager object
+    const newManager = {
+      ...teamLeadToPromote,
+      role: 'Manager',
+      isActive: true,
+      promotedFrom: 'Team Lead'
+    };
+    
+    // Update managers list
+    const updatedManagers = [...existingManagers, newManager];
+    localStorage.setItem('managers', JSON.stringify(updatedManagers));
+    
+    // Update team leads list
+    const updatedTeamLeads = [...teamLeads];
+    updatedTeamLeads[index].isActive = false; // Deactivate the team lead
+    setTeamLeads(updatedTeamLeads);
+    
+    setPromotionConfirmationOpen(false);
+    setPromotionIndex(null);
+  };
 
   const updateStatus = (index, status) => {
     const updated = [...teamLeads];
@@ -129,9 +161,7 @@ const TeamLeadData = () => {
           <li onClick={goToDashboard}>Dashboard</li>
           <li onClick={goToClients}>
             <span>Clients</span>
-            {/* {clientsDropdownOpen ? <FaChevronUp size={12} /> : <FaChevronDown size={12} />} */}
           </li>
-
           <li onClick={goToManagers}>Managers</li>
           <li onClick={goToTeamLeads}>Team Leads</li>
           <li onClick={goToEmployees}>Employees</li>
@@ -166,6 +196,7 @@ const TeamLeadData = () => {
               <th>ROLE</th>
               <th>EDIT</th>
               <th>STATUS</th>
+              <th>PROMOTE</th>
             </tr>
           </thead>
           <tbody>
@@ -206,6 +237,17 @@ const TeamLeadData = () => {
                         onChange={() => handleToggleStatus(index)}
                       />
                     </div>
+                  </td>
+                  <td>
+                    <Button
+                      variant="success"
+                      size="sm"
+                      onClick={() => handlePromoteTeamLead(index)}
+                      disabled={!teamlead.isActive}
+                      title="Promote to Manager"
+                    >
+                      <FaArrowUp /> Promote
+                    </Button>
                   </td>
                 </tr>
               ))}
@@ -250,7 +292,7 @@ const TeamLeadData = () => {
         </Modal.Footer>
       </Modal>
 
-      {/* Confirmation Modal */}
+      {/* Status Confirmation Modal */}
       <Modal show={confirmationOpen} onHide={() => setConfirmationOpen(false)} centered>
         <Modal.Header closeButton>
           <Modal.Title>
@@ -273,6 +315,31 @@ const TeamLeadData = () => {
             }}
           >
             {isActivating ? 'Yes, Activate' : 'Yes, Deactivate'}
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      {/* Promotion Confirmation Modal */}
+      <Modal show={promotionConfirmationOpen} onHide={() => setPromotionConfirmationOpen(false)} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirm Promotion</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Are you sure you want to promote this Team Lead to Manager? 
+          <br /><br />
+          This will deactivate their Team Lead role and add them to the Managers list.
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setPromotionConfirmationOpen(false)}>
+            Cancel
+          </Button>
+          <Button
+            variant="success"
+            onClick={() => {
+              promoteToManager(promotionIndex);
+            }}
+          >
+            Yes, Promote
           </Button>
         </Modal.Footer>
       </Modal>
