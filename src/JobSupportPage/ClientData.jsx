@@ -130,10 +130,10 @@ const ClientData = () => {
             )}
             <td>
               {tab === "registered" && (
-                <div>
+                <div className="buttons">
                   <button className="accept" onClick={() => handleAccept(client.id)}>
                     Accept
-                  </button><br />
+                  </button>
                   <button className="decline" onClick={() => handleDecline(client.id)}>
                     Decline
                   </button>
