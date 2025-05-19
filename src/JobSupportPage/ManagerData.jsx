@@ -401,9 +401,13 @@ const [isActivating, setIsActivating] = useState(false);
         <Modal.Body>
           <Form>
             <Form.Group className="mb-3">
-              <Form.Label>Name</Form.Label>
-              <Form.Control type="text" name="name" value={newManager.name} onChange={handleInputChange} />
+              <Form.Label>First Name</Form.Label>
+              <Form.Control type="text" name="firstname" value={newManager.firstname} onChange={handleInputChange} />
             </Form.Group>
+                        <Form.Group className="mb-3">
+                          <Form.Label>Last Name</Form.Label>
+                          <Form.Control type="text" name="lastname" value={newManager.lastname} onChange={handleInputChange} />
+                        </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Mobile</Form.Label>
               <Form.Control type="text" name="mobile" value={newManager.mobile} onChange={handleInputChange} />
