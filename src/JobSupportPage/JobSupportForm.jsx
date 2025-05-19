@@ -1,12 +1,104 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Form, Button, Row, Col, Alert } from 'react-bootstrap';
+import { Container, Form, Button, Row, Col, Alert, InputGroup } from 'react-bootstrap';
 import '../styles/JobSupportForm.css';
 import { useNavigate } from 'react-router-dom';
 
 import txlogo from "../assets/txlogo.png"; // replace with actual logo path
 
+const countryCodes = [
+    { code: '+1', name: 'USA (+1)' },
+    { code: '+44', name: 'UK (+44)' },
+    { code: '+91', name: 'India (+91)' },
+    { code: '+61', name: 'Australia (+61)' },
+    { code: '+49', name: 'Germany (+49)' },
+    { code: '+33', name: 'France (+33)' },
+    { code: '+81', name: 'Japan (+81)' },
+    { code: '+86', name: 'China (+86)' },
+    { code: '+971', name: 'UAE (+971)' },
+    { code: '+65', name: 'Singapore (+65)' },
+    { code: '+60', name: 'Malaysia (+60)' },
+    { code: '+82', name: 'South Korea (+82)' },
+    { code: '+7', name: 'Russia (+7)' },
+    { code: '+55', name: 'Brazil (+55)' },
+    { code: '+52', name: 'Mexico (+52)' },
+    { code: '+34', name: 'Spain (+34)' },
+    { code: '+39', name: 'Italy (+39)' },
+    { code: '+31', name: 'Netherlands (+31)' },
+    { code: '+41', name: 'Switzerland (+41)' },
+    { code: '+46', name: 'Sweden (+46)' },
+    { code: '+358', name: 'Finland (+358)' },
+    { code: '+47', name: 'Norway (+47)' },
+    { code: '+45', name: 'Denmark (+45)' },
+    { code: '+32', name: 'Belgium (+32)' },
+    { code: '+43', name: 'Austria (+43)' },
+    { code: '+353', name: 'Ireland (+353)' },
+    { code: '+351', name: 'Portugal (+351)' },
+    { code: '+90', name: 'Turkey (+90)' },
+    { code: '+20', name: 'Egypt (+20)' },
+    { code: '+27', name: 'South Africa (+27)' },
+    { code: '+234', name: 'Nigeria (+234)' },
+    { code: '+254', name: 'Kenya (+254)' },
+    { code: '+92', name: 'Pakistan (+92)' },
+    { code: '+880', name: 'Bangladesh (+880)' },
+    { code: '+94', name: 'Sri Lanka (+94)' },
+    { code: '+977', name: 'Nepal (+977)' },
+    { code: '+84', name: 'Vietnam (+84)' },
+    { code: '+66', name: 'Thailand (+66)' },
+    { code: '+62', name: 'Indonesia (+62)' },
+    { code: '+63', name: 'Philippines (+63)' },
+    { code: '+64', name: 'New Zealand (+64)' },
+    { code: '+507', name: 'Panama (+507)' },
+    { code: '+506', name: 'Costa Rica (+506)' },
+    { code: '+57', name: 'Colombia (+57)' },
+    { code: '+58', name: 'Venezuela (+58)' },
+    { code: '+51', name: 'Peru (+51)' },
+    { code: '+56', name: 'Chile (+56)' },
+    { code: '+54', name: 'Argentina (+54)' },
+];
 
+const countries = [
+    "United States",
+    "United Kingdom",
+    "Canada",
+    "Australia",
+    "India",
+    "Germany",
+    "France",
+    "Japan",
+    "China",
+    "Brazil",
+    "South Korea",
+    "Mexico",
+    "Italy",
+    "Spain",
+    "Russia",
+    "Netherlands",
+    "Switzerland",
+    "Sweden",
+    "Belgium",
+    "Norway",
+    "Austria",
+    "Denmark",
+    "Finland",
+    "Poland",
+    "Portugal",
+    "Ireland",
+    "Singapore",
+    "Malaysia",
+    "South Africa",
+    "United Arab Emirates",
+    "Saudi Arabia",
+    "Thailand",
+    "Vietnam",
+    "Indonesia",
+    "Philippines",
+    "New Zealand",
+    "Argentina",
+    "Chile",
+    "Colombia",
+    "Other"
+];
 
 const CandidateForm = () => {
     const navigate = useNavigate();
@@ -22,7 +114,9 @@ const CandidateForm = () => {
 
         // Contact Information
         address: '',
+        country: '',
         zipCode: '',
+        mobileCountryCode: '+1',
         mobile: '',
         email: '',
 
@@ -42,11 +136,16 @@ const CandidateForm = () => {
         otherVisaStatus: '',
 
         // Education
+        universityName: '',
+        universityAddress: '',
+        courseOfStudy: '',
+        startDate: '',
+        endDate: '',
+
         schoolName: '',
         schoolAddress: '',
-        schoolPhone: '',
         courseOfStudy: '',
-        graduationDate: '',
+        completionDate: '',
 
         // Current Employment
         currentCompany: '',
@@ -76,57 +175,46 @@ const CandidateForm = () => {
         const { name, value } = e.target;
         setFormData((prev) => ({ ...prev, [name]: value }));
 
-         // Clear DOB error when user modifies it
-    if (name === "dob") setDobError("");
+        // Clear DOB error when user modifies it
+        if (name === "dob") setDobError("");
     };
 
-  const validateAge = (dob) => {
-    const birthDate = new Date(dob);
-    const today = new Date();
-    const age = today.getFullYear() - birthDate.getFullYear();
-    const m = today.getMonth() - birthDate.getMonth();
-    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-      return age - 1;
-    }
-    return age;
-  };
+    const validateAge = (dob) => {
+        const birthDate = new Date(dob);
+        const today = new Date();
+        const age = today.getFullYear() - birthDate.getFullYear();
+        const m = today.getMonth() - birthDate.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+            return age - 1;
+        }
+        return age;
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsSubmitting(true);
 
-         const age = validateAge(formData.dob);
-    if (age < 18) {
-      setDobError("User age must be more than 18 years");
-      return;
-    }
+        const age = validateAge(formData.dob);
+        if (age < 18) {
+            setDobError("User age must be more than 18 years");
+            return;
+        }
     };
 
     return (
-
         <div className="main contact-form">
-
             <div className="d-flex justify-content-between align-items-center p-4">
                 <div className="d-flex align-items-center gap-2">
                     <img src={txlogo} alt="TechXplorers" style={{ height: "50px" }} />
-
                 </div>
             </div>
 
             <div className="d-flex justify-content-center align-items-center vh-90 ">
-
                 <div className="shadow-lg p-5 rounded bg-white contactform-box  " style={{ backgroundColor: 'transparent', padding: '10px' }}>
-
-
-
-
-                    <h1 className="text-center mb-4" style={{ fontFamily: "Orbitron" }}>TALK WITH TECHXPLORERS</h1>
+                    {/* <h1 className="text-center mb-4" style={{ fontFamily: "Orbitron" }}>TALK WITH TECHXPLORERS</h1> */}
                     <p className="text-center mb-4">
                         <b>Fill out your contact details below and our experts will be in touch</b>
                     </p>
-
-
-
 
                     <div className="container mt-4">
                         <Form onSubmit={handleSubmit} className="mx-auto" style={{ maxWidth: '800px' }}>
@@ -180,10 +268,10 @@ const CandidateForm = () => {
                                             value={formData.dob}
                                             onChange={handleChange}
                                             type="date"
-                                             required
+                                            required
                                             isInvalid={!!dobError}
                                         />
-                                         <Form.Control.Feedback type="invalid">{dobError}</Form.Control.Feedback>
+                                        <Form.Control.Feedback type="invalid">{dobError}</Form.Control.Feedback>
                                     </Form.Group>
                                 </Col>
                                 <Col md={4}>
@@ -232,6 +320,23 @@ const CandidateForm = () => {
 
                             <Row>
                                 <Col md={4}>
+                                    <Form.Group className="mb-3" controlId="formCountry">
+                                        <Form.Label>Country</Form.Label>
+                                        <Form.Select
+                                            name="country"
+                                            value={formData.country}
+                                            onChange={handleChange}
+                                            required
+                                            className="custom-select-cyan"
+                                        >
+                                            <option value="">Select country</option>
+                                            {countries.map((country, index) => (
+                                                <option key={index} value={country}>{country}</option>
+                                            ))}
+                                        </Form.Select>
+                                    </Form.Group>
+                                </Col>
+                                <Col md={4}>
                                     <Form.Group className="mb-3" controlId="formZipCode">
                                         <Form.Label>Zip Code</Form.Label>
                                         <Form.Control
@@ -239,18 +344,6 @@ const CandidateForm = () => {
                                             value={formData.zipCode}
                                             onChange={handleChange}
                                             type="text"
-                                            required
-                                        />
-                                    </Form.Group>
-                                </Col>
-                                <Col md={4}>
-                                    <Form.Group className="mb-3" controlId="formMobile">
-                                        <Form.Label>Mobile Number</Form.Label>
-                                        <Form.Control
-                                            name="mobile"
-                                            value={formData.mobile}
-                                            onChange={handleChange}
-                                            type="tel"
                                             required
                                         />
                                     </Form.Group>
@@ -265,6 +358,33 @@ const CandidateForm = () => {
                                             type="email"
                                             required
                                         />
+                                    </Form.Group>
+                                </Col>
+                            </Row>
+
+                            <Row>
+                                <Col md={6}>
+                                    <Form.Group className="mb-3" controlId="formMobile">
+                                        <Form.Label>Mobile Number</Form.Label>
+                                        <InputGroup>
+                                            <Form.Select
+                                                name="mobileCountryCode"
+                                                value={formData.mobileCountryCode}
+                                                onChange={handleChange}
+                                                style={{ maxWidth: '150px' }}
+                                            >
+                                                {countryCodes.map((country, index) => (
+                                                    <option key={index} value={country.code}>{country.name}</option>
+                                                ))}
+                                            </Form.Select>
+                                            <Form.Control
+                                                name="mobile"
+                                                value={formData.mobile}
+                                                onChange={handleChange}
+                                                type="tel"
+                                                required
+                                            />
+                                        </InputGroup>
                                     </Form.Group>
                                 </Col>
                             </Row>
@@ -330,9 +450,10 @@ const CandidateForm = () => {
                                         >
                                             <option value="">Select</option>
                                             <option value="remote">Remote</option>
-                                            <option value="onsite">Onsite</option>
                                             <option value="hybrid">Hybrid</option>
+                                            <option value="onsite">Onsite</option>
                                             <option value="remote-hybrid">Remote + Hybrid</option>
+                                            <option value="remote-hybrid-onsite">Remote + Hybrid + Onsite</option>
                                         </Form.Select>
                                     </Form.Group>
                                 </Col>
@@ -437,6 +558,81 @@ const CandidateForm = () => {
                             <h4 className="mb-3 mt-4 border-bottom pb-2">Education</h4>
                             <Row>
                                 <Col md={6}>
+                                    <Form.Group className="mb-3" controlId="formUniversityName">
+                                        <Form.Label>University Name</Form.Label>
+                                        <Form.Control
+                                            name="universityName"
+                                            value={formData.universityName}
+                                            onChange={handleChange}
+                                            type="text"
+                                            required
+                                        />
+                                    </Form.Group>
+                                </Col>
+                                <Col md={6}>
+                                    <Form.Group className="mb-3" controlId="formUniversityAddress">
+                                        <Form.Label>University Address</Form.Label>
+                                        <Form.Control
+                                            name="universityAddress"
+                                            value={formData.universityAddress}
+                                            onChange={handleChange}
+                                            type="text"
+                                        />
+                                    </Form.Group>
+                                </Col>
+                            </Row>
+
+                            <Row>
+                                {/* <Col md={4}>
+                                    <Form.Group className="mb-3" controlId="formUniversityPhone">
+                                        <Form.Label>University Phone</Form.Label>
+                                        <Form.Control
+                                            name="universityPhone"
+                                            value={formData.universityPhone}
+                                            onChange={handleChange}
+                                            type="tel"
+                                        />
+                                    </Form.Group>
+                                </Col> */}
+                                <Col md={4}>
+                                    <Form.Group className="mb-3" controlId="formCourseOfStudy">
+                                        <Form.Label>Course of Study</Form.Label>
+                                        <Form.Control
+                                            name="courseOfStudy"
+                                            value={formData.courseOfStudy}
+                                            onChange={handleChange}
+                                            type="text"
+                                            required
+                                        />
+                                    </Form.Group>
+                                </Col>
+                                <Col md={4}>
+                                    <Form.Group className="mb-3" controlId="formGraduationStartDate">
+                                        <Form.Label>Start Date</Form.Label>
+                                        <Form.Control
+                                            name="startDate"
+                                            value={formData.startDate}
+                                            onChange={handleChange}
+                                            type="date"
+                                            required
+                                        />
+                                    </Form.Group>
+                                </Col>
+                                <Col md={4}>
+                                    <Form.Group className="mb-3" controlId="formGraduationEndDate">
+                                        <Form.Label>End Date</Form.Label>
+                                        <Form.Control
+                                            name="endDate"
+                                            value={formData.endDate}
+                                            onChange={handleChange}
+                                            type="date"
+                                            required
+                                        />
+                                    </Form.Group>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col md={6}>
                                     <Form.Group className="mb-3" controlId="formSchoolName">
                                         <Form.Label>School Name</Form.Label>
                                         <Form.Control
@@ -462,7 +658,7 @@ const CandidateForm = () => {
                             </Row>
 
                             <Row>
-                                <Col md={4}>
+                                {/* <Col md={4}>
                                     <Form.Group className="mb-3" controlId="formSchoolPhone">
                                         <Form.Label>School Phone</Form.Label>
                                         <Form.Control
@@ -472,7 +668,7 @@ const CandidateForm = () => {
                                             type="tel"
                                         />
                                     </Form.Group>
-                                </Col>
+                                </Col> */}
                                 <Col md={4}>
                                     <Form.Group className="mb-3" controlId="formCourseOfStudy">
                                         <Form.Label>Course of Study</Form.Label>
@@ -487,9 +683,9 @@ const CandidateForm = () => {
                                 </Col>
                                 <Col md={4}>
                                     <Form.Group className="mb-3" controlId="formGraduationDate">
-                                        <Form.Label>Graduation Date</Form.Label>
+                                        <Form.Label>End Date</Form.Label>
                                         <Form.Control
-                                            name="graduationDate"
+                                            name="completionDate"
                                             value={formData.graduationDate}
                                             onChange={handleChange}
                                             type="date"
@@ -498,7 +694,6 @@ const CandidateForm = () => {
                                     </Form.Group>
                                 </Col>
                             </Row>
-
                             {/* Current Employment */}
                             <h4 className="mb-3 mt-4 border-bottom pb-2">Current Employment</h4>
                             <Row>
@@ -553,15 +748,38 @@ const CandidateForm = () => {
                                 </Col>
                             </Row>
 
-                            <Form.Group className="mb-3" controlId="formRelievingDate">
-                                <Form.Label>Relieving Date from Current Company</Form.Label>
-                                <Form.Control
-                                    name="relievingDate"
-                                    value={formData.relievingDate}
-                                    onChange={handleChange}
-                                    type="date"
-                                />
-                            </Form.Group>
+                            <Row>
+                                <Col md={6}>
+                                    <Form.Group className="mb-3" controlId="formEmploymentStatus">
+                                        <Form.Label>Employment Status</Form.Label>
+                                        <Form.Select
+                                            name="employmentStatus"
+                                            value={formData.employmentStatus}
+                                            onChange={handleChange}
+                                            required
+                                            className="custom-select-cyan"
+                                        >
+                                            <option value="">Select status</option>
+                                            <option value="currently-working">Currently Working</option>
+                                            <option value="resigned">Resigned</option>
+                                        </Form.Select>
+                                    </Form.Group>
+                                </Col>
+                                <Col md={6}>
+                                    {formData.employmentStatus === 'resigned' && (
+                                        <Form.Group className="mb-3" controlId="formRelievingDate">
+                                            <Form.Label>Relieving Date from Current Company</Form.Label>
+                                            <Form.Control
+                                                name="relievingDate"
+                                                value={formData.relievingDate}
+                                                onChange={handleChange}
+                                                type="date"
+                                                required={formData.employmentStatus === 'resigned'}
+                                            />
+                                        </Form.Group>
+                                    )}
+                                </Col>
+                            </Row>
 
                             {/* References */}
                             <h4 className="mb-3 mt-4 border-bottom pb-2">References</h4>
@@ -664,14 +882,11 @@ const CandidateForm = () => {
                                     {isSubmitting ? 'Sending...' : 'Submit'}
                                 </Button>
                             </div>
-
-
                         </Form>
                     </div>
                 </div>
             </div>
         </div>
-
     );
 };
 
