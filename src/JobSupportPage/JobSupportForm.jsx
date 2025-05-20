@@ -873,7 +873,7 @@ const CandidateForm = () => {
 
                             <div className="d-grid mt-4">
                                 <Button
-                                    onClick={() => navigate('/dashboard')}
+                                    onClick={() => navigate('/clientdashboard')}
                                     type="submit"
                                     size="lg"
                                     style={{ backgroundColor: '#00ffff', borderColor: '#00ffff', color: '#000' }}

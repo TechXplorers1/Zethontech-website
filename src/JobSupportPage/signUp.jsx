@@ -57,7 +57,7 @@ export default function SignupPage() {
     if (hasError) return;
 
     console.log("User Registered with Email:", email);
-    navigate('/CandidateForm');
+    navigate('/candidateform');
   };
 
   return (
