@@ -1,4 +1,4 @@
-import React, { useState , useEffect } from "react";
+import React, { useState } from "react";
 import '../styles/login.css'; // for custom styles
 import { useNavigate } from 'react-router-dom';
 
@@ -44,18 +44,8 @@ export default function LoginPage() {
 
         if (hasError) return;
 
-        // // Dummy credential check
-        // if (email === "admin@gmail.com" && password === "Admin@123") {
-        //     sessionStorage.setItem("userRole", "admin");
-        //     sessionStorage.setItem("userEmail", email);
-        //     navigate('/admindashboard');
-        // } else if (email === "client@gmail.com" && password === "Client@123") {
-        //     sessionStorage.setItem("userRole", "client");
-        //     sessionStorage.setItem("userEmail", email);
-        //     navigate('/clientdashboard');
-        // } else {
-        //     setPasswordError("Invalid email or password");
-        // }
+        console.log("User Registered with Email:", email);
+        navigate('/clientdashboard');
     };
 
 
