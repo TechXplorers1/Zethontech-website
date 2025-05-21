@@ -3,102 +3,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Form, Button, Row, Col, Alert, InputGroup } from 'react-bootstrap';
 import '../styles/JobSupportForm.css';
 import { useNavigate } from 'react-router-dom';
+import PhoneInput from 'react-phone-number-input';
+import 'react-phone-number-input/style.css';
+import Select from 'react-select';
+import countryList from 'react-select-country-list';
 
 import txlogo from "../assets/txlogo.png"; // replace with actual logo path
-
-const countryCodes = [
-    { code: '+1', name: 'USA (+1)' },
-    { code: '+44', name: 'UK (+44)' },
-    { code: '+91', name: 'India (+91)' },
-    { code: '+61', name: 'Australia (+61)' },
-    { code: '+49', name: 'Germany (+49)' },
-    { code: '+33', name: 'France (+33)' },
-    { code: '+81', name: 'Japan (+81)' },
-    { code: '+86', name: 'China (+86)' },
-    { code: '+971', name: 'UAE (+971)' },
-    { code: '+65', name: 'Singapore (+65)' },
-    { code: '+60', name: 'Malaysia (+60)' },
-    { code: '+82', name: 'South Korea (+82)' },
-    { code: '+7', name: 'Russia (+7)' },
-    { code: '+55', name: 'Brazil (+55)' },
-    { code: '+52', name: 'Mexico (+52)' },
-    { code: '+34', name: 'Spain (+34)' },
-    { code: '+39', name: 'Italy (+39)' },
-    { code: '+31', name: 'Netherlands (+31)' },
-    { code: '+41', name: 'Switzerland (+41)' },
-    { code: '+46', name: 'Sweden (+46)' },
-    { code: '+358', name: 'Finland (+358)' },
-    { code: '+47', name: 'Norway (+47)' },
-    { code: '+45', name: 'Denmark (+45)' },
-    { code: '+32', name: 'Belgium (+32)' },
-    { code: '+43', name: 'Austria (+43)' },
-    { code: '+353', name: 'Ireland (+353)' },
-    { code: '+351', name: 'Portugal (+351)' },
-    { code: '+90', name: 'Turkey (+90)' },
-    { code: '+20', name: 'Egypt (+20)' },
-    { code: '+27', name: 'South Africa (+27)' },
-    { code: '+234', name: 'Nigeria (+234)' },
-    { code: '+254', name: 'Kenya (+254)' },
-    { code: '+92', name: 'Pakistan (+92)' },
-    { code: '+880', name: 'Bangladesh (+880)' },
-    { code: '+94', name: 'Sri Lanka (+94)' },
-    { code: '+977', name: 'Nepal (+977)' },
-    { code: '+84', name: 'Vietnam (+84)' },
-    { code: '+66', name: 'Thailand (+66)' },
-    { code: '+62', name: 'Indonesia (+62)' },
-    { code: '+63', name: 'Philippines (+63)' },
-    { code: '+64', name: 'New Zealand (+64)' },
-    { code: '+507', name: 'Panama (+507)' },
-    { code: '+506', name: 'Costa Rica (+506)' },
-    { code: '+57', name: 'Colombia (+57)' },
-    { code: '+58', name: 'Venezuela (+58)' },
-    { code: '+51', name: 'Peru (+51)' },
-    { code: '+56', name: 'Chile (+56)' },
-    { code: '+54', name: 'Argentina (+54)' },
-];
-
-const countries = [
-    "United States",
-    "United Kingdom",
-    "Canada",
-    "Australia",
-    "India",
-    "Germany",
-    "France",
-    "Japan",
-    "China",
-    "Brazil",
-    "South Korea",
-    "Mexico",
-    "Italy",
-    "Spain",
-    "Russia",
-    "Netherlands",
-    "Switzerland",
-    "Sweden",
-    "Belgium",
-    "Norway",
-    "Austria",
-    "Denmark",
-    "Finland",
-    "Poland",
-    "Portugal",
-    "Ireland",
-    "Singapore",
-    "Malaysia",
-    "South Africa",
-    "United Arab Emirates",
-    "Saudi Arabia",
-    "Thailand",
-    "Vietnam",
-    "Indonesia",
-    "Philippines",
-    "New Zealand",
-    "Argentina",
-    "Chile",
-    "Colombia",
-    "Other"
-];
 
 const CandidateForm = () => {
     const navigate = useNavigate();
@@ -116,7 +26,6 @@ const CandidateForm = () => {
         address: '',
         country: '',
         zipCode: '',
-        mobileCountryCode: '+1',
         mobile: '',
         email: '',
 
@@ -144,7 +53,7 @@ const CandidateForm = () => {
 
         schoolName: '',
         schoolAddress: '',
-        courseOfStudy: '',
+        schoolCourseOfStudy: '',
         completionDate: '',
 
         // Current Employment
@@ -153,6 +62,7 @@ const CandidateForm = () => {
         preferredInterviewTime: '',
         earliestJoiningDate: '',
         relievingDate: '',
+        employmentStatus: '',
 
         // References
         referenceName: '',
@@ -165,8 +75,8 @@ const CandidateForm = () => {
         jobPortalAccountName: '',
         jobPortalCredentials: '',
         UploadResume: ''
-
     });
+
     const [dobError, setDobError] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitStatus, setSubmitStatus] = useState({ success: false, message: '' });
@@ -177,6 +87,14 @@ const CandidateForm = () => {
 
         // Clear DOB error when user modifies it
         if (name === "dob") setDobError("");
+    };
+
+    const handleCountryChange = (selectedOption) => {
+        setFormData((prev) => ({ ...prev, country: selectedOption ? selectedOption.label : '' }));
+    };
+
+    const handlePhoneChange = (value) => {
+        setFormData((prev) => ({ ...prev, mobile: value }));
     };
 
     const validateAge = (dob) => {
@@ -197,9 +115,15 @@ const CandidateForm = () => {
         const age = validateAge(formData.dob);
         if (age < 18) {
             setDobError("User age must be more than 18 years");
+            setIsSubmitting(false);
             return;
         }
+
+        // Submit logic here
+        setIsSubmitting(false);
     };
+
+    const countryOptions = countryList().getData();
 
     return (
         <div className="main contact-form">
@@ -210,8 +134,7 @@ const CandidateForm = () => {
             </div>
 
             <div className="d-flex justify-content-center align-items-center vh-90 ">
-                <div className="shadow-lg p-5 rounded bg-white contactform-box  " style={{ backgroundColor: 'transparent', padding: '10px' }}>
-                    {/* <h1 className="text-center mb-4" style={{ fontFamily: "Orbitron" }}>TALK WITH TECHXPLORERS</h1> */}
+                <div className="shadow-lg p-5 rounded bg-white contactform-box" style={{ backgroundColor: 'transparent', padding: '10px' }}>
                     <p className="text-center mb-4">
                         <b>Fill out your contact details below and our experts will be in touch</b>
                     </p>
@@ -322,18 +245,15 @@ const CandidateForm = () => {
                                 <Col md={4}>
                                     <Form.Group className="mb-3" controlId="formCountry">
                                         <Form.Label>Country</Form.Label>
-                                        <Form.Select
-                                            name="country"
-                                            value={formData.country}
-                                            onChange={handleChange}
+                                        <Select
+                                            options={countryOptions}
+                                            value={countryOptions.find(option => option.label === formData.country)}
+                                            onChange={handleCountryChange}
                                             required
-                                            className="custom-select-cyan"
-                                        >
-                                            <option value="">Select country</option>
-                                            {countries.map((country, index) => (
-                                                <option key={index} value={country}>{country}</option>
-                                            ))}
-                                        </Form.Select>
+                                            className="basic-single"
+                                            classNamePrefix="select"
+                                            placeholder="Select country"
+                                        />
                                     </Form.Group>
                                 </Col>
                                 <Col md={4}>
@@ -366,29 +286,19 @@ const CandidateForm = () => {
                                 <Col md={6}>
                                     <Form.Group className="mb-3" controlId="formMobile">
                                         <Form.Label>Mobile Number</Form.Label>
-                                        <InputGroup>
-                                            <Form.Select
-                                                name="mobileCountryCode"
-                                                value={formData.mobileCountryCode}
-                                                onChange={handleChange}
-                                                style={{ maxWidth: '150px' }}
-                                            >
-                                                {countryCodes.map((country, index) => (
-                                                    <option key={index} value={country.code}>{country.name}</option>
-                                                ))}
-                                            </Form.Select>
-                                            <Form.Control
-                                                name="mobile"
-                                                value={formData.mobile}
-                                                onChange={handleChange}
-                                                type="tel"
-                                                required
-                                            />
-                                        </InputGroup>
+                                        <PhoneInput
+                                            international
+                                            defaultCountry="US"
+                                            value={formData.mobile}
+                                            onChange={handlePhoneChange}
+                                            className="form-control"
+                                            required
+                                        />
                                     </Form.Group>
                                 </Col>
                             </Row>
 
+                            {/* Rest of the form remains the same */}
                             {/* Employment Information */}
                             <h4 className="mb-3 mt-4 border-bottom pb-2">Employment Information</h4>
                             <Row>
@@ -583,17 +493,6 @@ const CandidateForm = () => {
                             </Row>
 
                             <Row>
-                                {/* <Col md={4}>
-                                    <Form.Group className="mb-3" controlId="formUniversityPhone">
-                                        <Form.Label>University Phone</Form.Label>
-                                        <Form.Control
-                                            name="universityPhone"
-                                            value={formData.universityPhone}
-                                            onChange={handleChange}
-                                            type="tel"
-                                        />
-                                    </Form.Group>
-                                </Col> */}
                                 <Col md={4}>
                                     <Form.Group className="mb-3" controlId="formCourseOfStudy">
                                         <Form.Label>Course of Study</Form.Label>
@@ -658,23 +557,12 @@ const CandidateForm = () => {
                             </Row>
 
                             <Row>
-                                {/* <Col md={4}>
-                                    <Form.Group className="mb-3" controlId="formSchoolPhone">
-                                        <Form.Label>School Phone</Form.Label>
-                                        <Form.Control
-                                            name="schoolPhone"
-                                            value={formData.schoolPhone}
-                                            onChange={handleChange}
-                                            type="tel"
-                                        />
-                                    </Form.Group>
-                                </Col> */}
                                 <Col md={4}>
-                                    <Form.Group className="mb-3" controlId="formCourseOfStudy">
+                                    <Form.Group className="mb-3" controlId="formSchoolCourseOfStudy">
                                         <Form.Label>Course of Study</Form.Label>
                                         <Form.Control
-                                            name="courseOfStudy"
-                                            value={formData.courseOfStudy}
+                                            name="schoolCourseOfStudy"
+                                            value={formData.schoolCourseOfStudy}
                                             onChange={handleChange}
                                             type="text"
                                             required
@@ -686,7 +574,7 @@ const CandidateForm = () => {
                                         <Form.Label>End Date</Form.Label>
                                         <Form.Control
                                             name="completionDate"
-                                            value={formData.graduationDate}
+                                            value={formData.completionDate}
                                             onChange={handleChange}
                                             type="date"
                                             required
