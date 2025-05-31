@@ -49,7 +49,7 @@ function App() {
         <div className="content-container">
           <div className="welcome-section">
             <h1 className="cinematic-text">
-              Welcome <span>to</span> Techxplorers private limited
+              Welcome <span>to</span> Zethon Tech private limited
             </h1>
           </div>
 

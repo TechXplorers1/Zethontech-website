@@ -37,7 +37,7 @@ const Contact = () => {
       <CustomNavbar />
       <br />
       <div className="contact-section" id="contact">
-        <h2 className="contact-heading">TECHXPLORERS NAVIGATING THE FUTURE OF INNOVATION</h2>
+        <h2 className="contact-heading">Zethon Tech NAVIGATING THE FUTURE OF INNOVATION</h2>
 
         <div className="contact-info-cards">
           <div className="info-card">
@@ -65,7 +65,7 @@ const Contact = () => {
           </div>
 
           <div className="form-container">
-            <h3>TALK WITH TECHXPLORERS</h3>
+            <h3>CONNECT WITH ZETHON </h3>
             <p>Fill out your contact details below and our experts will be in touch</p>
             <form onSubmit={handleSubmit}>
               <input

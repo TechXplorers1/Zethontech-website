@@ -79,7 +79,7 @@ const CustomNavbar = ({ scrolled, aboutRef }) => {
     <Navbar expand="lg" fixed="top" className={`navbar-custom ${scrolled ? 'scrolled' : ''}`}>
       <Container fluid>
         <Navbar.Brand as={Link} to="/" onClick={handleHomeClick}>
-          <img src={logo} alt="TechXplorers Logo" height="40" />
+          <img src={logo} alt="Zethon Tech Logo" height="40" />
         </Navbar.Brand>
 
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
