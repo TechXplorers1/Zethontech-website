@@ -2,7 +2,7 @@ import React from 'react';
 import '../styles/Footer.css';
 import { FaFacebookF, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
-import Logo from '../assets/tx_official_logo.png';
+import Logo from '../assets/zethon_logo.png';
 
 const Footer = ({ aboutRef }) => {
   const scrollToAbout = () => {
