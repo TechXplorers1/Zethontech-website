@@ -23,9 +23,9 @@ const JobSupport = () => {
       </div>
 
       <div className="service-description">
-        <h4>IT Consulting & Job Support – TechXplorers Private Limited</h4>
+        <h4>IT Consulting & Job Support – Zethon Tech Private Limited</h4>
         <p>
-          At TechXplorers Private Limited, we provide expert IT consulting and job support services to help businesses and professionals navigate the complex technology landscape. Our goal is to empower organizations with cutting-edge solutions and equip professionals with real-time project support, ensuring success in their IT careers.
+          At Zethon Tech Private Limited, we provide expert IT consulting and job support services to help businesses and professionals navigate the complex technology landscape. Our goal is to empower organizations with cutting-edge solutions and equip professionals with real-time project support, ensuring success in their IT careers.
         </p>
 
         <h4>Our IT Consulting Services</h4>
