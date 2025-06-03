@@ -14,8 +14,11 @@ import ClientSheet from '../JobSupportPage/ClientSheet';
 import EmployeeData from '../JobSupportPage/EmployeeData';
 import TeamLeadData from '../JobSupportPage/TeamLeadData';
 
+import PowerBi from '../JobSupportPage/powerBi';
 
-ClientSheet
+
+
+
 
 
 
@@ -32,10 +35,12 @@ const JobSupportRoutes = () => {
         <Route path="/employeedashboard" element={<EmployeeDashboard />} />
         <Route path="/managers" element={<ManagerData />} />
         <Route path="/clients" element={<ClientData />} />
-        <Route path="/
-        ." element={<ClientSheet />} />
+        <Route path="/clientsheet" element={<ClientSheet />} />
         <Route path="/employees" element={<EmployeeData />} />
         <Route path="/teamleads" element={<TeamLeadData />} />
+
+        <Route path="/powerbi" element={<PowerBi />} />
+
 
     </Routes>
   );

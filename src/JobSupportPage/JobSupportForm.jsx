@@ -144,7 +144,6 @@ const CandidateForm = () => {
 
         schoolName: '',
         schoolAddress: '',
-        courseOfStudy: '',
         completionDate: '',
 
         // Current Employment
@@ -669,7 +668,7 @@ const CandidateForm = () => {
                                         />
                                     </Form.Group>
                                 </Col> */}
-                                <Col md={4}>
+                                {/* <Col md={4}>
                                     <Form.Group className="mb-3" controlId="formCourseOfStudy">
                                         <Form.Label>Course of Study</Form.Label>
                                         <Form.Control
@@ -680,7 +679,7 @@ const CandidateForm = () => {
                                             required
                                         />
                                     </Form.Group>
-                                </Col>
+                                </Col> */}
                                 <Col md={4}>
                                     <Form.Group className="mb-3" controlId="formGraduationDate">
                                         <Form.Label>End Date</Form.Label>
