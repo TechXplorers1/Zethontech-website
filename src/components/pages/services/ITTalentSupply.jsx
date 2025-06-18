@@ -20,9 +20,9 @@ const ITTalentSupply = () => {
       </div>
 
       <div className="service-description">
-        <h4>IT Talent Supply – TechXplorers Private Limited</h4>
+        <h4>IT Talent Supply – Zethon Tech Private Limited</h4>
         <p>
-          At TechXplorers Private Limited, we specialize in IT talent supply solutions, helping businesses find the right tech professionals to drive innovation and success. Whether you need contract-based, full-time, or project-based IT talent, we provide skilled professionals tailored to your business needs.
+          At Zethon Tech Private Limited, we specialize in IT talent supply solutions, helping businesses find the right tech professionals to drive innovation and success. Whether you need contract-based, full-time, or project-based IT talent, we provide skilled professionals tailored to your business needs.
         </p>
         
         <h4>Our IT Talent Supply Services</h4>

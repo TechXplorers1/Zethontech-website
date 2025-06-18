@@ -20,9 +20,9 @@ const WebAppDev = () => {
       </div>
 
       <div className="service-description">
-        <h4>Web Application Development – TechXplorers Private Limited</h4>
+        <h4>Web Application Development – Zethon Tech Private Limited</h4>
         <p>
-          At TechXplorers Private Limited, we design and develop scalable, secure, and high-performance web applications that empower businesses across industries. Whether you need a robust enterprise solution, SaaS product, e-commerce platform, or a custom web portal, our team delivers cutting-edge web applications that drive engagement, efficiency, and revenue growth.
+          At Zethon Tech Private Limited, we design and develop scalable, secure, and high-performance web applications that empower businesses across industries. Whether you need a robust enterprise solution, SaaS product, e-commerce platform, or a custom web portal, our team delivers cutting-edge web applications that drive engagement, efficiency, and revenue growth.
         </p>
 
         <h4>Our Web Application Development Services</h4>

@@ -2,7 +2,7 @@ import React from 'react';
 import '../styles/Footer.css';
 import { FaFacebookF, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
-import Logo from '../assets/tx_official_logo.png';
+import Logo from '../assets/zethon_logo.png';
 
 const Footer = ({ aboutRef }) => {
   const scrollToAbout = () => {
@@ -23,7 +23,7 @@ const Footer = ({ aboutRef }) => {
           
           {/* Description */}
           <div className="col-12 col-md-3 mb-4">
-            <h5 className="text-info fw-bold">TECHXPLORERS PRIVATE LIMITED</h5>
+            <h5 className="text-info fw-bold">ZETHON TECH PRIVATE LIMITED</h5>
             <p className="small mt-2">
               BUILDING THE FUTURE WITH STYLE AND INNOVATION.<br />
               JOIN US ON OUR JOURNEY!
@@ -74,7 +74,7 @@ const Footer = ({ aboutRef }) => {
 
       {/* Footer Bottom */}
       <div className="footer-bottom text-center py-3">
-        <small className="text-info">© 2025 TECHXPLORERS ALL RIGHTS RESERVED</small>
+        <small className="text-info">© 2025 ZETHON TECH ALL RIGHTS RESERVED</small>
       </div>
     </footer>
   );

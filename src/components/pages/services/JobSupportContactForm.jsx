@@ -148,7 +148,7 @@ const ContactForm = () => {
       <Container className="my-1 contact-form">
       <CustomNavbar />
 
-        <h1 className="text-center mb-4" style={{ fontFamily: "Orbitron" }}>TALK WITH TECHXPLORERS</h1>
+        <h1 className="text-center mb-4" style={{ fontFamily: "Orbitron" }}>CONNECT WITH ZETHON</h1>
         <p className="text-center mb-4">
           <b>Fill out your contact details below and our experts will be in touch</b>
         </p>

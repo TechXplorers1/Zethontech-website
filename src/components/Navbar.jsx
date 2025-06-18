@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
-import logo from '../assets/logo.png';
+import logo from '../assets/zethon_logo.png';
 import '../styles/navbar.css';
 import ServicesDropdown from './Services';
 import IndustriesDropdown from './Industry';
@@ -78,9 +78,13 @@ const CustomNavbar = ({ scrolled, aboutRef }) => {
   return (
     <Navbar expand="lg" fixed="top" className={`navbar-custom ${scrolled ? 'scrolled' : ''}`}>
       <Container fluid>
-        <Navbar.Brand as={Link} to="/" onClick={handleHomeClick}>
-          <img src={logo} alt="TechXplorers Logo" height="40" />
+        <Navbar.Brand as={Link} to="/" onClick={handleHomeClick} className="d-flex align-items-center">
+          <img src={logo} alt="Zethon Tech Logo" height="50" />
+          <span style={{ color: 'white', marginLeft: '10px', fontWeight: '', fontSize: '1.5rem' }}>
+            Zethon Tech
+          </span>
         </Navbar.Brand>
+
 
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">

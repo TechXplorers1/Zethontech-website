@@ -37,12 +37,12 @@ const Contact = () => {
       <CustomNavbar />
       <br />
       <div className="contact-section" id="contact">
-        <h2 className="contact-heading">TECHXPLORERS NAVIGATING THE FUTURE OF INNOVATION</h2>
+        <h2 className="contact-heading">Zethon Tech NAVIGATING THE FUTURE OF INNOVATION</h2>
 
         <div className="contact-info-cards">
           <div className="info-card">
             <img src={ContactImg} alt="Contact Icon" className="info-icon" />
-            <p>+91 9052990765</p>
+            <p>+91 9390601802</p>
           </div>
           <div className="info-card">
             <img src={MailImg} alt="Mail Icon" className="info-icon" />
@@ -50,7 +50,7 @@ const Contact = () => {
           </div>
           <div className="info-card">
             <img src={LocationImg} alt="Location Icon" className="info-icon" />
-            <p>Maruthi Nagar 3rd Cross ,<br />Near Panda Mini Mart, Anantapur, 515001</p>
+            <p>D.no-1/1361 , Srinagar Colony , <br />Rudrampeta, Anantapur, 515001</p>
           </div>
         </div>
 
@@ -58,14 +58,24 @@ const Contact = () => {
           <div className="map-container">
             <iframe
               title="Google Map"
+              src="https://www.google.com/maps?q=Techxplorers+Pvt+Ltd+new+branch,+Srinagar+Colony,+Anantapur,+India&output=embed"
+              width="100%"
+              height="300"
+              style={{ border: 0 }}
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
+            {/* <iframe
+              title="Google Map"
               src="https://www.google.com/maps?q=Tech+Xplorers+Private+Limited,+3rd+Cross+Rd,+Anantapur,+India&output=embed"
               allowFullScreen=""
               loading="lazy"
-            ></iframe>
+            ></iframe> */}
           </div>
 
           <div className="form-container">
-            <h3>TALK WITH TECHXPLORERS</h3>
+            <h3>CONNECT WITH ZETHON </h3>
             <p>Fill out your contact details below and our experts will be in touch</p>
             <form onSubmit={handleSubmit}>
               <input
@@ -108,7 +118,7 @@ const Contact = () => {
         </div>
         <Footer />
       </div>
-      
+
     </div>
   );
 };
