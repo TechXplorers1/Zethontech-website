@@ -50,7 +50,7 @@ const Contact = () => {
           </div>
           <div className="info-card">
             <img src={LocationImg} alt="Location Icon" className="info-icon" />
-            <p>D.no-1/1361 , Srinagar Colony , <br />Rudrampeta, Anantapur, 515001</p>
+            <p>31 Windsor Ave, Vauxhall, NJ 07088, USA</p>
           </div>
         </div>
 
