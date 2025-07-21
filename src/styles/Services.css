@@ -1,6 +1,6 @@
 .services-dropdown-container {
   position: fixed; /* Changed from absolute to fixed */
-  top: 45px; /* Height of your navbar */
+  top: 75px; /* Height of your navbar */
   left: 0;
   width: 100vw;
   background: rgba(0, 0, 0, 0.95);
@@ -19,7 +19,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 30px;
+  gap: 70px;
   width: 100%;
   max-width: 1200px;
   box-sizing: border-box;

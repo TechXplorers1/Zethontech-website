@@ -1,11 +1,13 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Home from '../App';
+import ScrollToTop from '../components/ScrollToTop';
 import MobileAppDev from '../components/pages/services/MobileAppDev';
 import WebAppDev from '../components/pages/services/WebAppDev';
 import DigitalMarketing from '../components/pages/services/DigitalMarketing';
 import ITTalentSupply from '../components/pages/services/ITTalentSupply';
 import JobSupport from '../components/pages/services/JobSupport';
+import CyberSecurity from '../components/pages/services/CyberSecurity';
 import ContactForm from '../components/pages/services/JobSupportContactForm';
 import ServiceLayout from '../components/ServiceLayout';
 import Contact from '../components/Contact';
@@ -23,6 +25,8 @@ import Telecommunication from '../components/pages/industries/Telecommunication'
 
 const AppRoutes = () => {
   return (
+    <>
+    <ScrollToTop />
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/Contact" element={<Contact />} />
@@ -43,8 +47,10 @@ const AppRoutes = () => {
         <Route path="/services/it-talent-supply" element={<ITTalentSupply />} />
         <Route path="/services/job-support" element={<JobSupport />} />
         <Route path="/services/job-contact-support" element={<ContactForm />} />
+        <Route path="/services/cyber_security" element={<CyberSecurity />} />
       </Route>
     </Routes>
+    </>
   );
 };
 

@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-
+import ScrollToTop from '../components/ScrollToTop';
 import LoginPage from '../JobSupportPage/login';
 import SignupPage from '../JobSupportPage/signUp';
 import CandidateForm from '../JobSupportPage/JobSupportForm';
@@ -14,7 +14,6 @@ import ClientSheet from '../JobSupportPage/ClientSheet';
 import EmployeeData from '../JobSupportPage/EmployeeData';
 import TeamLeadData from '../JobSupportPage/TeamLeadData';
 
-import PowerBi from '../JobSupportPage/powerBi';
 
 
 
@@ -24,6 +23,8 @@ import PowerBi from '../JobSupportPage/powerBi';
 
 const JobSupportRoutes = () => {
   return (
+    <>
+    <ScrollToTop />
     <Routes>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
@@ -39,10 +40,11 @@ const JobSupportRoutes = () => {
         <Route path="/employees" element={<EmployeeData />} />
         <Route path="/teamleads" element={<TeamLeadData />} />
 
-        <Route path="/powerbi" element={<PowerBi />} />
+       
 
 
     </Routes>
+    </>
   );
 };
 export default JobSupportRoutes;

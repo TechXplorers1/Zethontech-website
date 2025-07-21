@@ -7,6 +7,7 @@ import webImg from './assets/web_app_dev.png';
 import digiImg from './assets/digi_mark.png';
 import ittalentImg from './assets/it_talent_supply.png';
 import jobsupportImg from './assets/job_support.png';
+import cybersecurityImg from './assets/cyber_security.png';
 import Footer from './components/Footer';
 import About from './components/About';
 
@@ -93,6 +94,10 @@ function App() {
             <div className="info-card" onClick={() => navigate('/services/job-support')}>
               <img src={jobsupportImg} alt="Consulting" className="card-icon" />
               <h3>Job Support & IT Consulting</h3>
+            </div>
+            <div className="info-card" onClick={() => navigate('/services/cyber_security')}>
+              <img src={cybersecurityImg} alt="Cyber Security" className="card-icon" style={{ width: '70px', height: '70px',marginBottom:'10px' }} />
+              <h3>Cyber Security</h3>
             </div>
           </div>
         </div>

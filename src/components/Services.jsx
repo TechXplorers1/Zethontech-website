@@ -5,6 +5,7 @@ import webIcon from '../assets/web_app_dev.png';
 import marketingIcon from '../assets/digi_mark.png';
 import talentIcon from '../assets/it_talent_supply.png';
 import consultingIcon from '../assets/job_support.png';
+import cyberSecurity from '../assets/cyber_security.png';
 import '../styles/Services.css';
 
 const services = [
@@ -32,6 +33,11 @@ const services = [
     title: "Job Support & IT Consulting", 
     icon: consultingIcon,
     path: "/services/job-support" 
+  },
+   { 
+    title: "Cyber Security", 
+    icon: cyberSecurity,
+    path: "/services/cyber_security" 
   },
 ];
 
