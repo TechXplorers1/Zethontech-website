@@ -65,17 +65,19 @@ const Contact = () => {
               src="https://www.google.com/maps?q=Techxplorers+Pvt+Ltd+new+branch,+Srinagar+Colony,+Anantapur,+India&output=embed"
               width="100%"
               height="300"
-              style={{ border: 0 }}
+              style={{ border: 0, marginRight: "50px" }}
               allowFullScreen=""
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             ></iframe>
-            {/* <iframe
-              title="Google Map"
-              src="https://www.google.com/maps?q=Tech+Xplorers+Private+Limited,+3rd+Cross+Rd,+Anantapur,+India&output=embed"
-              allowFullScreen=""
-              loading="lazy"
-            ></iframe> */}
+            <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.9690887335846!2d-74.28930122409692!3d40.718696971392575!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c3ac4acad7a37d%3A0x3052338d763eab90!2s31%20Windsor%20Ave%2C%20Vauxhall%2C%20NJ%2007088%2C%20USA!5e0!3m2!1sen!2sin!4v1753409948177!5m2!1sen!2sin"
+            width="100%"
+              height="300"
+            style={{ border: 0 }} 
+            allowFullScreen="" 
+            loading="lazy" 
+            referrerPolicy="no-referrer-when-downgrade"></iframe>
           </div>
 
           <div className="form-container">

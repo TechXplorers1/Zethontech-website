@@ -39,7 +39,7 @@
 .contact-info-cards {
   display: flex;
   justify-content: center;
-  gap: 30px;
+  gap: 95px;
   margin-bottom: 40px;
   flex-wrap: wrap;
 }
