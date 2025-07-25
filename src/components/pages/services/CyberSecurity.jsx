@@ -68,8 +68,8 @@ const CyberSecurity = () => {
       <li>Comprehensive Protection – End-to-end cyber security services covering networks, endpoints, cloud, and data.</li>
       <li>24/7 Support – Around-the-clock monitoring and support to ensure your systems remain secure at all times.</li>
     </ul>
-    <div class="contact-container">
-      <h2 class="headline">Want to know more or work with us?</h2>
+    <div className="contact-container">
+      <h2 className="headline">Want to know more or work with us?</h2>
       <a href="https://wa.me/919052990765 " target="_blank" rel="noopener noreferrer" className="contact-button">
         Contact Us
       </a>

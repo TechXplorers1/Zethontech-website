@@ -7,63 +7,47 @@
   width: 100%;
   max-width: 750px;
 }
-/* .contact-form {
-  background: #1f1f1f;
-  padding: 40px;
-  border-radius: 15px;
-  width: 100%;
-  max-width: 960px;
-  margin: auto;
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
-  color: #f0f0f0;
-  box-sizing: border-box;
-} */
 
-.login-page {
-  background: linear-gradient(to bottom right, #ffffff 50%, #4fa1dc 100%);
-  min-height: 100vh;
-  position: relative;
-}
-.contact-form h1 {
-  color: #181a1a;
+.contact-form1 h1 {
+  color: #1e9393;
   font-weight: 700;
   text-shadow: 0 0 5px #00ffff80;
   margin-bottom: 20px;
   text-align: center;
 }
 
-.contact-form h4 {
-  color: #212020;
+.contact-form1 h4 {
+  color: #f3f3f3;
   border-bottom: 1px solid #00ffff;
   padding-bottom: 5px;
   margin-bottom: 20px;
 }
 
-.contact-form p {
-  color: #212020;
+.contact-form1 p {
+  color: #fefefe;
   font-size: 0.95rem;
 }
 
-.contact-form .form-label {
+.contact-form1 .form-label {
   font-weight: 500;
-  color: #212020;
+  color: #e8e8e8;
 }
 
-.contact-form .form-control,
-.contact-form .form-select {
+.contact-form1 .form-control,
+.contact-form1 .form-select {
   background-color: #d9d6d6;
   border: 1px solid #00ffff70;
   color: #111010;
   transition: 0.3s ease;
 }
 
-.contact-form .form-control:focus,
-.contact-form .form-select:focus {
+.contact-form1 .form-control:focus,
+.contact-form1 .form-select:focus {
   border-color: #141515;
   box-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
 }
 
-.contact-form .form-control::placeholder {
+.contact-form1 .form-control::placeholder {
   color: #434242;
 }
 
@@ -121,11 +105,11 @@
 
 /* Tablet */
 @media (max-width: 768px) {
-  .contact-form {
+  .contact-form1 {
     padding: 30px 20px;
   }
 
-  .contact-form h1 {
+  .contact-form1 h1 {
     font-size: 1.8rem;
   }
 
@@ -136,16 +120,16 @@
 
 /* Mobile */
 @media (max-width: 480px) {
-  .contact-form {
+  .contact-form1 {
     padding: 25px 15px;
     border-radius: 12px;
   }
 
-  .contact-form h1 {
+  .contact-form1 h1 {
     font-size: 1.5rem;
   }
 
-  .contact-form h4 {
+  .contact-form1 h4 {
     font-size: 1rem;
   }
 

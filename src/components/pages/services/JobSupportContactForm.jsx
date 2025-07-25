@@ -1,10 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Container, Form, Button, Row, Col, Alert } from 'react-bootstrap';
 import emailjs from 'emailjs-com';
-// import '../../styles/JobSupportForm.css';
+
+import PhoneInput from 'react-phone-number-input';
+import 'react-phone-number-input/style.css';
+
+import '../../../styles/JobSupportForm.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import CustomNavbar from '../../../components/Navbar';
 const ContactForm = () => {
+
+    const form = useRef(); // Create a ref for the form element
+
   useEffect(() => {
     emailjs.init('I1UJMnujMWkyQsjA0');
   }, []);
@@ -40,11 +47,11 @@ const ContactForm = () => {
     otherVisaStatus: '',
     
     // Education
-    schoolName: '',
-    schoolAddress: '',
-    schoolPhone: '',
+    universityName: '',
+    universityAddress: '',
     courseOfStudy: '',
-    graduationDate: '',
+    graduationFromDate: '',
+    graduationToDate: '',
     
     // Current Employment
     currentCompany: '',
@@ -61,16 +68,30 @@ const ContactForm = () => {
     referenceRole: '',
     
     // Job Portal Information
-    jobPortalAccountName: '',
-    jobPortalCredentials: ''
+   jobPortalAccountNameandCredentials:''
   });
 
+   const [resumeFile, setResumeFile] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState({ success: false, message: '' });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+   // Specific handlers for the PhoneInput components
+    const handleMobileChange = (value) => {
+        setFormData(prev => ({ ...prev, mobile: value }));
+    };
+
+    const handleReferencePhoneChange = (value) => {
+        setFormData(prev => ({ ...prev, referencePhone: value }));
+    };
+
+  // New handler for file input
+  const handleFileChange = (e) => {
+    setResumeFile(e.target.files[0]);
   };
 
   const handleSubmit = async (e) => {
@@ -86,6 +107,7 @@ const ContactForm = () => {
       );
       console.log('EmailJS Response:', response); // Add this line
 
+      form.current.reset();
       // Reset form
       setFormData({
         firstName: '',
@@ -109,11 +131,11 @@ const ContactForm = () => {
         expectedSalary: '',
         visaStatus: '',
         otherVisaStatus: '',
-        schoolName: '',
-        schoolAddress: '',
-        schoolPhone: '',
+        universityName: '',
+        universityAddress: '',
         courseOfStudy: '',
-        graduationDate: '',
+        graduationFromDate: '',
+        graduationToDate: '',
         currentCompany: '',
         currentDesignation: '',
         preferredInterviewTime: '',
@@ -124,9 +146,9 @@ const ContactForm = () => {
         referenceAddress: '',
         referenceEmail: '',
         referenceRole: '',
-        jobPortalAccountName: '',
-        jobPortalCredentials: ''
+        jobPortalAccountNameandCredentials:''
       });
+      setResumeFile(null);
       
       setSubmitStatus({ success: true, message: 'Form submitted successfully!' });
     } catch (error) {
@@ -145,7 +167,7 @@ const ContactForm = () => {
   return (
     <div style={{ backgroundColor: 'transparent', padding: '10px' }}>
        <CustomNavbar/>
-      <Container className="my-1 contact-form">
+      <Container className="my-1 contact-form1">
       <CustomNavbar />
 
         <h1 className="text-center mb-4" style={{ fontFamily: "Orbitron" }}>CONNECT WITH ZETHON</h1>
@@ -165,7 +187,7 @@ const ContactForm = () => {
           <Row>
             <Col md={4}>
               <Form.Group className="mb-3" controlId="formFirstName">
-                <Form.Label>First Name</Form.Label>
+                <Form.Label>First Name<span className="text-danger"> *</span></Form.Label>
                 <Form.Control
                   name="firstName"
                   value={formData.firstName}
@@ -177,7 +199,7 @@ const ContactForm = () => {
             </Col>
             <Col md={4}>
               <Form.Group className="mb-3" controlId="formMiddleName">
-                <Form.Label>Middle Name</Form.Label>
+                <Form.Label>Middle Name<span className="text-danger"> *</span></Form.Label>
                 <Form.Control
                   name="middleName"
                   value={formData.middleName}
@@ -188,7 +210,7 @@ const ContactForm = () => {
             </Col>
             <Col md={4}>
               <Form.Group className="mb-3" controlId="formLastName">
-                <Form.Label>Last Name</Form.Label>
+                <Form.Label>Last Name<span className="text-danger"> *</span></Form.Label>
                 <Form.Control
                   name="lastName"
                   value={formData.lastName}
@@ -203,7 +225,7 @@ const ContactForm = () => {
           <Row>
             <Col md={4}>
               <Form.Group className="mb-3" controlId="formDob">
-                <Form.Label>Date of Birth</Form.Label>
+                <Form.Label>Date of Birth<span className="text-danger"> *</span></Form.Label>
                 <Form.Control
                   name="dob"
                   value={formData.dob}
@@ -215,7 +237,7 @@ const ContactForm = () => {
             </Col>
             <Col md={4}>
               <Form.Group className="mb-3" controlId="formGender">
-                <Form.Label>Gender</Form.Label>
+                <Form.Label>Gender<span className="text-danger"> *</span></Form.Label>
                 <Form.Select
                   name="gender"
                   value={formData.gender}
@@ -232,7 +254,7 @@ const ContactForm = () => {
             </Col>
             <Col md={4}>
               <Form.Group className="mb-3" controlId="formEthnicity">
-                <Form.Label>Ethnicity</Form.Label>
+                <Form.Label>Ethnicity<span className="text-danger"> *</span></Form.Label>
                 <Form.Control
                   name="ethnicity"
                   value={formData.ethnicity}
@@ -246,7 +268,7 @@ const ContactForm = () => {
           {/* Contact Information */}
           <h4 className="mb-3 mt-4 border-bottom pb-2">Contact Information</h4>
           <Form.Group className="mb-3" controlId="formAddress">
-            <Form.Label>Full Address</Form.Label>
+            <Form.Label>Full Address<span className="text-danger"> *</span></Form.Label>
             <Form.Control
               name="address"
               value={formData.address}
@@ -260,7 +282,7 @@ const ContactForm = () => {
           <Row>
             <Col md={4}>
               <Form.Group className="mb-3" controlId="formZipCode">
-                <Form.Label>Zip Code</Form.Label>
+                <Form.Label>Zip Code<span className="text-danger"> *</span></Form.Label>
                 <Form.Control
                   name="zipCode"
                   value={formData.zipCode}
@@ -272,19 +294,22 @@ const ContactForm = () => {
             </Col>
             <Col md={4}>
               <Form.Group className="mb-3" controlId="formMobile">
-                <Form.Label>Mobile Number</Form.Label>
-                <Form.Control
-                  name="mobile"
-                  value={formData.mobile}
-                  onChange={handleChange}
-                  type="tel"
-                  required
-                />
+                <Form.Label>Mobile Number<span className="text-danger"> *</span></Form.Label>
+                <PhoneInput
+                                    international
+                                    defaultCountry="IN"
+                                    value={formData.mobile}
+                                    onChange={handleMobileChange}
+                                    className="form-control"
+                                    name="mobile"
+                                />
+                                 {/* Hidden input to pass the value through the form ref */}
+                                <input type="hidden" name="mobile" value={formData.mobile || ''} />
               </Form.Group>
             </Col>
             <Col md={4}>
               <Form.Group className="mb-3" controlId="formEmail">
-                <Form.Label>Email</Form.Label>
+                <Form.Label>Email<span className="text-danger"> *</span></Form.Label>
                 <Form.Control
                   name="email"
                   value={formData.email}
@@ -301,7 +326,7 @@ const ContactForm = () => {
           <Row>
             <Col md={6}>
               <Form.Group className="mb-3" controlId="formSecurityClearance">
-                <Form.Label>Security Clearance</Form.Label>
+                <Form.Label>Security Clearance<span className="text-danger"> *</span></Form.Label>
                 <Form.Select
                   name="securityClearance"
                   value={formData.securityClearance}
@@ -317,7 +342,7 @@ const ContactForm = () => {
             </Col>
             <Col md={6}>
               <Form.Group className="mb-3" controlId="formClearanceLevel">
-                <Form.Label>Clearance Level</Form.Label>
+                <Form.Label>Clearance Level<span className="text-danger"> *</span></Form.Label>
                 <Form.Control
                   name="clearanceLevel"
                   value={formData.clearanceLevel}
@@ -331,7 +356,7 @@ const ContactForm = () => {
           <Row>
             <Col md={6}>
               <Form.Group className="mb-3" controlId="formRelocation">
-                <Form.Label>Willing to Relocate?</Form.Label>
+                <Form.Label>Willing to Relocate?<span className="text-danger"> *</span></Form.Label>
                 <Form.Select
                   name="willingToRelocate"
                   value={formData.willingToRelocate}
@@ -347,7 +372,7 @@ const ContactForm = () => {
             </Col>
             <Col md={6}>
               <Form.Group className="mb-3" controlId="formWorkPreference">
-                <Form.Label>Work Preference</Form.Label>
+                <Form.Label>Work Preference<span className="text-danger"> *</span></Form.Label>
                 <Form.Select
                   name="workPreference"
                   value={formData.workPreference}
@@ -366,7 +391,7 @@ const ContactForm = () => {
           </Row>
 
           <Form.Group className="mb-3" controlId="formRestrictedCompanies">
-            <Form.Label>Companies you don't want to apply to</Form.Label>
+            <Form.Label>Companies you don't want to apply to<span className="text-danger"> *</span></Form.Label>
             <Form.Control
               name="restrictedCompanies"
               value={formData.restrictedCompanies}
@@ -381,7 +406,7 @@ const ContactForm = () => {
           <Row>
             <Col md={6}>
               <Form.Group className="mb-3" controlId="formJobsToApply">
-                <Form.Label>Jobs to apply for</Form.Label>
+                <Form.Label>Jobs to apply for<span className="text-danger"> *</span></Form.Label>
                 <Form.Control
                   name="jobsToApply"
                   value={formData.jobsToApply}
@@ -394,7 +419,7 @@ const ContactForm = () => {
             </Col>
             <Col md={6}>
               <Form.Group className="mb-3" controlId="formTechnology">
-                <Form.Label>Technology/Skills</Form.Label>
+                <Form.Label>Technology/Skills<span className="text-danger"> *</span></Form.Label>
                 <Form.Control
                   name="technologySkills"
                   value={formData.technologySkills}
@@ -410,7 +435,7 @@ const ContactForm = () => {
           <Row>
             <Col md={6}>
               <Form.Group className="mb-3" controlId="formCurrentSalary">
-                <Form.Label>Current Salary</Form.Label>
+                <Form.Label>Current Salary<span className="text-danger"> *</span></Form.Label>
                 <Form.Control
                   name="currentSalary"
                   value={formData.currentSalary}
@@ -421,7 +446,7 @@ const ContactForm = () => {
             </Col>
             <Col md={6}>
               <Form.Group className="mb-3" controlId="formExpectedSalary">
-                <Form.Label>Expected Salary</Form.Label>
+                <Form.Label>Expected Salary<span className="text-danger"> *</span></Form.Label>
                 <Form.Control
                   name="expectedSalary"
                   value={formData.expectedSalary}
@@ -433,7 +458,7 @@ const ContactForm = () => {
           </Row>
 
           <Form.Group className="mb-3" controlId="formVisaStatus">
-            <Form.Label>Visa Status</Form.Label>
+            <Form.Label>Visa Status<span className="text-danger"> *</span></Form.Label>
             <Form.Select
               name="visaStatus"
               value={formData.visaStatus}
@@ -464,11 +489,11 @@ const ContactForm = () => {
           <h4 className="mb-3 mt-4 border-bottom pb-2">Education</h4>
           <Row>
             <Col md={6}>
-              <Form.Group className="mb-3" controlId="formSchoolName">
-                <Form.Label>School Name</Form.Label>
+              <Form.Group className="mb-3" controlId="formUniversityName">
+                <Form.Label>University Name<span className="text-danger"> *</span></Form.Label>
                 <Form.Control
-                  name="schoolName"
-                  value={formData.schoolName}
+                  name="universityName"
+                  value={formData.universityName}
                   onChange={handleChange}
                   type="text"
                   required
@@ -476,11 +501,11 @@ const ContactForm = () => {
               </Form.Group>
             </Col>
             <Col md={6}>
-              <Form.Group className="mb-3" controlId="formSchoolAddress">
-                <Form.Label>School Address</Form.Label>
+              <Form.Group className="mb-3" controlId="formUniversityAddress">
+                <Form.Label>University Address<span className="text-danger"> *</span></Form.Label>
                 <Form.Control
-                  name="schoolAddress"
-                  value={formData.schoolAddress}
+                  name="universityAddress"
+                  value={formData.universityAddress}
                   onChange={handleChange}
                   type="text"
                 />
@@ -490,19 +515,8 @@ const ContactForm = () => {
 
           <Row>
             <Col md={4}>
-              <Form.Group className="mb-3" controlId="formSchoolPhone">
-                <Form.Label>School Phone</Form.Label>
-                <Form.Control
-                  name="schoolPhone"
-                  value={formData.schoolPhone}
-                  onChange={handleChange}
-                  type="tel"
-                />
-              </Form.Group>
-            </Col>
-            <Col md={4}>
               <Form.Group className="mb-3" controlId="formCourseOfStudy">
-                <Form.Label>Course of Study</Form.Label>
+                <Form.Label>Course of Study<span className="text-danger"> *</span></Form.Label>
                 <Form.Control
                   name="courseOfStudy"
                   value={formData.courseOfStudy}
@@ -514,10 +528,22 @@ const ContactForm = () => {
             </Col>
             <Col md={4}>
               <Form.Group className="mb-3" controlId="formGraduationDate">
-                <Form.Label>Graduation Date</Form.Label>
+                <Form.Label>Graduation From Date<span className="text-danger"> *</span></Form.Label>
                 <Form.Control
-                  name="graduationDate"
-                  value={formData.graduationDate}
+                  name="graduationFromDate"
+                  value={formData.graduationFromDate}
+                  onChange={handleChange}
+                  type="date"
+                  required
+                />
+              </Form.Group>
+            </Col>
+            <Col md={4}>
+              <Form.Group className="mb-3" controlId="formGraduationDate">
+                <Form.Label>Graduation To Date<span className="text-danger"> *</span></Form.Label>
+                <Form.Control
+                  name="graduationToDate"
+                  value={formData.graduationToDate}
                   onChange={handleChange}
                   type="date"
                   required
@@ -531,7 +557,7 @@ const ContactForm = () => {
           <Row>
             <Col md={6}>
               <Form.Group className="mb-3" controlId="formCurrentCompany">
-                <Form.Label>Current Company</Form.Label>
+                <Form.Label>Current Company<span className="text-danger"> *</span></Form.Label>
                 <Form.Control
                   name="currentCompany"
                   value={formData.currentCompany}
@@ -543,7 +569,7 @@ const ContactForm = () => {
             </Col>
             <Col md={6}>
               <Form.Group className="mb-3" controlId="formCurrentDesignation">
-                <Form.Label>Current Designation</Form.Label>
+                <Form.Label>Current Designation<span className="text-danger"> *</span></Form.Label>
                 <Form.Control
                   name="currentDesignation"
                   value={formData.currentDesignation}
@@ -558,7 +584,7 @@ const ContactForm = () => {
           <Row>
             <Col md={6}>
               <Form.Group className="mb-3" controlId="formInterviewTime">
-                <Form.Label>Preferred Interview Time</Form.Label>
+                <Form.Label>Preferred Interview Time<span className="text-danger"> *</span></Form.Label>
                 <Form.Control
                   name="preferredInterviewTime"
                   value={formData.preferredInterviewTime}
@@ -569,7 +595,7 @@ const ContactForm = () => {
             </Col>
             <Col md={6}>
               <Form.Group className="mb-3" controlId="formJoiningDate">
-                <Form.Label>Earliest Joining Date</Form.Label>
+                <Form.Label>Earliest Joining Date<span className="text-danger"> *</span></Form.Label>
                 <Form.Control
                   name="earliestJoiningDate"
                   value={formData.earliestJoiningDate}
@@ -581,7 +607,7 @@ const ContactForm = () => {
           </Row>
 
           <Form.Group className="mb-3" controlId="formRelievingDate">
-            <Form.Label>Relieving Date from Current Company</Form.Label>
+            <Form.Label>Relieving Date from Current Company<span className="text-danger"> *</span></Form.Label>
             <Form.Control
               name="relievingDate"
               value={formData.relievingDate}
@@ -607,12 +633,15 @@ const ContactForm = () => {
             <Col md={6}>
               <Form.Group className="mb-3" controlId="formReferencePhone">
                 <Form.Label>Reference Phone</Form.Label>
-                <Form.Control
-                  name="referencePhone"
-                  value={formData.referencePhone}
-                  onChange={handleChange}
-                  type="tel"
-                />
+               <PhoneInput
+                                    international
+                                    defaultCountry="IN"
+                                    value={formData.referencePhone}
+                                    onChange={handleReferencePhoneChange}
+                                    className="form-control"
+                                />
+                                 {/* Hidden input to pass the value through the form ref */}
+                                <input type="hidden" name="referencePhone" value={formData.referencePhone || ''} />
               </Form.Group>
             </Col>
           </Row>
@@ -649,21 +678,11 @@ const ContactForm = () => {
 
           {/* Job Portal Information */}
           <h4 className="mb-3 mt-4 border-bottom pb-2">Job Portal Information</h4>
-          <Form.Group className="mb-3" controlId="formJobPortalAccount">
-            <Form.Label>Job Portal Account Name</Form.Label>
-            <Form.Control
-              name="jobPortalAccountName"
-              value={formData.jobPortalAccountName}
-              onChange={handleChange}
-              type="text"
-            />
-          </Form.Group>
-
           <Form.Group className="mb-3" controlId="formJobPortalCredentials">
-            <Form.Label>Login Credentials (For USA)</Form.Label>
+            <Form.Label>Job Portal Account Name & Credentials</Form.Label>
             <Form.Control
-              name="jobPortalCredentials"
-              value={formData.jobPortalCredentials}
+              name="jobPortalAccountNameandCredentials"
+              value={formData.jobPortalAccountNameandCredentials}
               onChange={handleChange}
               as="textarea"
               rows={2}

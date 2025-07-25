@@ -1,7 +1,6 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Home from '../App';
-import ScrollToTop from '../components/ScrollToTop';
+import App from '../App';
 import MobileAppDev from '../components/pages/services/MobileAppDev';
 import WebAppDev from '../components/pages/services/WebAppDev';
 import DigitalMarketing from '../components/pages/services/DigitalMarketing';
@@ -25,10 +24,8 @@ import Telecommunication from '../components/pages/industries/Telecommunication'
 
 const AppRoutes = () => {
   return (
-    <>
-    <ScrollToTop />
     <Routes>
-      <Route path="/" element={<Home />} />
+      <Route path="/" element={<App />} />
       <Route path="/Contact" element={<Contact />} />
       <Route element={<ServiceLayout />}>
 
@@ -50,7 +47,6 @@ const AppRoutes = () => {
         <Route path="/services/cyber_security" element={<CyberSecurity />} />
       </Route>
     </Routes>
-    </>
   );
 };
 

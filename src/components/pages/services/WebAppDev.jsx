@@ -47,8 +47,8 @@ const WebAppDev = () => {
           <li>Deployment & Launch – Ensuring a smooth launch with cloud hosting, domain setup, and database configurations.</li>
           <li>Ongoing Maintenance & Upgrades – Continuous monitoring, bug fixes, security updates, and feature enhancements.</li>
         </ul>
-        <div class="contact-container">
-          <h2 class="headline">Want to know more or work with us?</h2>
+        <div className="contact-container">
+          <h2 className="headline">Want to know more or work with us?</h2>
           <a href="https://wa.me/919052990765" target="_blank" rel="noopener noreferrer" className="contact-button">
   Contact Us
 </a>

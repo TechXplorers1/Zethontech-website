@@ -39,8 +39,8 @@ const ITTalentSupply = () => {
           <li><strong>Project-Based IT Staffing</strong> – Deploy the right talent for specific IT projects, ensuring success.</li>
           <li><strong>On-Demand IT Experts</strong> – Quickly hire professionals to address urgent skill gaps.</li>
         </ul>
-        <div class="contact-container">
-          <h2 class="headline">Want to know more or work with us?</h2>
+        <div className="contact-container">
+          <h2 className="headline">Want to know more or work with us?</h2>
           <a href="https://wa.me/919052990765" target="_blank" rel="noopener noreferrer" className="contact-button">
   Contact Us
 </a>

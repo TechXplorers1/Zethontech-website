@@ -68,8 +68,8 @@ const DigitalMarketing = () => {
           <li>Multi-Channel Marketing – Integrated strategies across search, social media, content, and more.</li>
           <li>Transparent Reporting – Regular performance reports to track progress and optimize results.</li>
         </ul>
-        <div class="contact-container">
-          <h2 class="headline">Want to know more or work with us?</h2>
+        <div className="contact-container">
+          <h2 className="headline">Want to know more or work with us?</h2>
           <a href="https://wa.me/919052990765" target="_blank" rel="noopener noreferrer" className="contact-button">
   Contact Us
 </a>
